@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jour 4 - Les intentions (Niyyah) 💫</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #f5e6d3 0%, #e8d5c4 50%, #f5e6d3 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #ffffff 0%, #faf8f5 100%);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(139, 149, 132, 0.2);
+            border: 3px solid #8b9584;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .day-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #8b9584, #a4b29b);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(139, 149, 132, 0.3);
+        }
+
+        h1 {
+            color: #5a6b4f;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-family: 'Amiri', serif;
+        }
+
+        .moon-icon {
+            font-size: 3rem;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 10px rgba(139, 149, 132, 0.5));
+            }
+            50% {
+                transform: scale(1.1);
+                filter: drop-shadow(0 0 20px rgba(139, 149, 132, 0.8));
+            }
+        }
+
+        .logo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 120px;
+            height: auto;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo:hover {
+            opacity: 1;
+        }
+
+        .intro-text {
+            background: linear-gradient(135deg, #f5e6d3, #e8d5c4);
+            padding: 25px;
+            border-radius: 20px;
+            border-left: 5px solid #8b9584;
+            margin: 30px 0;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #4a5442;
+        }
+
+        .story-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 2px solid #d4c4b0;
+            transition: all 0.3s ease;
+        }
+
+        .story-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(139, 149, 132, 0.2);
+            border-color: #8b9584;
+        }
+
+        .story-card h3 {
+            color: #5a6b4f;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .story-card p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .quiz-section {
+            background: linear-gradient(135deg, #8b9584, #a4b29b);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+            color: white;
+        }
+
+        .quiz-section h3 {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+        }
+
+        .question-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            color: #4a5442;
+        }
+
+        .question-text {
+            font-weight: 600;
+            font-size: 1.15rem;
+            margin-bottom: 20px;
+            color: #5a6b4f;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .option {
+            background: linear-gradient(135deg, #f5e6d3, #e8d5c4);
+            padding: 15px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            font-weight: 500;
+        }
+
+        .option:hover {
+            background: linear-gradient(135deg, #e8d5c4, #d4c4b0);
+            transform: translateX(5px);
+        }
+
+        .option.selected {
+            background: linear-gradient(135deg, #8b9584, #a4b29b);
+            color: white;
+            border-color: #5a6b4f;
+            transform: scale(1.02);
+        }
+
+        .option.correct {
+            background: linear-gradient(135deg, #7fb069, #8fbc77);
+            color: white;
+            border-color: #5a8049;
+            animation: correctPulse 0.5s ease;
+        }
+
+        .option.incorrect {
+            background: linear-gradient(135deg, #d4916c, #c47d5a);
+            color: white;
+            border-color: #a4614a;
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes correctPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #8b9584, #a4b29b);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 25px auto;
+            box-shadow: 0 5px 20px rgba(139, 149, 132, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 149, 132, 0.4);
+        }
+
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .result-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            transition: transform 0.3s ease;
+        }
+
+        .result-modal.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .result-modal h3 {
+            color: #5a6b4f;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .result-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: bounce-in 0.6s ease;
+        }
+
+        @keyframes bounce-in {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .result-message {
+            color: #666;
+            font-size: 1.1rem;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+
+        .score-display {
+            background: linear-gradient(135deg, #f5e6d3, #e8d5c4);
+            padding: 15px;
+            border-radius: 15px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #5a6b4f;
+            margin: 20px 0;
+        }
+
+        .fun-facts {
+            background: linear-gradient(135deg, #f5e6d3, #e8d5c4);
+            padding: 25px;
+            border-radius: 20px;
+            margin: 30px 0;
+            border: 2px dashed #8b9584;
+        }
+
+        .fun-facts h3 {
+            color: #5a6b4f;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .fun-facts ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .fun-facts li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #4a5442;
+            line-height: 1.6;
+        }
+
+        .fun-facts li:before {
+            content: "⭐";
+            position: absolute;
+            left: 0;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 999;
+        }
+
+        .overlay.show {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                width: 80px;
+                top: 5px;
+                left: 5px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .intro-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="logonoir_lespetitesplumes.png" alt="Les petites plumes" class="logo">
+            <div class="day-badge">Jour 4 / 30</div>
+            <div class="moon-icon">💫</div>
+            <h1>Les intentions (Niyyah)</h1>
+            <p style="color: #8b9584; font-size: 1.1rem;">L'importance de l'intention en Islam !</p>
+        </div>
+
+        <div class="intro-text">
+            <p style="font-weight: 600; margin-bottom: 10px;">🌟 Découvrons la Niyyah !</p>
+            <p>Aujourd'hui, nous allons parler de quelque chose de très important : <strong>l'intention</strong>, qu'on appelle <strong>Niyyah</strong> en arabe. Sais-tu que ce qui compte le plus pour Allah, ce n'est pas seulement ce qu'on fait, mais <strong>pourquoi</strong> on le fait ? Notre cœur est la clé ! 💝</p>
+        </div>
+
+        <div class="story-section">
+            <div class="story-card">
+                <h3>🎯 Qu'est-ce que la Niyyah ?</h3>
+                <p>La <strong>Niyyah</strong>, c'est l'intention qu'on a dans notre cœur quand on fait quelque chose. C'est notre "pourquoi". Par exemple : Quand tu aides ta maman, le fais-tu pour qu'Allah soit content de toi, ou juste pour recevoir un cadeau ? Quand tu partages tes jouets, est-ce pour faire plaisir à Allah ou pour que les autres t'admirent ? La Niyyah, c'est ce que tu as vraiment dans ton cœur ! 🎯</p>
+            </div>
+
+            <div class="story-card">
+                <h3>💝 Pourquoi l'intention est-elle importante ?</h3>
+                <p>Le Prophète Muhammad (paix et bénédictions sur lui) a dit : <em>"Les actes ne valent que par leurs intentions"</em>. Cela veut dire qu'Allah regarde d'abord notre <strong>cœur</strong> avant de regarder nos actions ! Une petite bonne action faite avec une bonne intention (pour Allah) vaut beaucoup plus qu'une grande action faite pour impressionner les gens. C'est la sincérité qui compte ! ✨</p>
+            </div>
+
+            <div class="story-card">
+                <h3>✨ Comment avoir une bonne intention ?</h3>
+                <p>Pour avoir une bonne intention, il faut faire les choses <strong>uniquement pour Allah</strong>. Ne cherche pas à impressionner les gens ou à recevoir des compliments. Sois <strong>sincère</strong> dans ton cœur. Avant de faire une bonne action, demande-toi : "Est-ce que je fais ça pour Allah ?" Et tu peux aussi demander à Allah de t'aider à purifier ton intention en faisant une petite dou'a (prière) 🤲</p>
+            </div>
+
+            <div class="story-card">
+                <h3>🌟 L'intention pour le jeûne</h3>
+                <p>Pour que notre jeûne soit accepté par Allah, il faut avoir <strong>l'intention de jeûner</strong> avant de commencer. L'intention se fait dans le <strong>cœur</strong>, on n'a pas besoin de la dire à voix haute. Chaque soir avant de dormir, on peut renouveler notre intention de jeûner le lendemain pour Allah. Cette intention rend notre jeûne valide et précieux aux yeux d'Allah ! 🌙</p>
+            </div>
+        </div>
+
+        <div class="fun-facts">
+            <h3>✨ Le savais-tu ?</h3>
+            <ul>
+                <li>Le Prophète Muhammad (paix et bénédictions sur lui) a dit : <strong>"Les actes ne valent que par leurs intentions"</strong></li>
+                <li>L'intention se fait <strong>dans le cœur</strong>, tu n'as pas besoin de la dire à voix haute !</li>
+                <li>Une bonne intention peut transformer une action ordinaire en <strong>acte d'adoration</strong> récompensé par Allah</li>
+                <li>Même <strong>dormir</strong> peut devenir une adoration si ton intention est de te reposer pour mieux adorer Allah le lendemain !</li>
+            </ul>
+        </div>
+
+        <div class="quiz-section">
+            <h3>🎮 Quiz : As-tu bien compris ?</h3>
+
+            <div class="question-card">
+                <div class="question-text">1. Qu'est-ce que la Niyyah ?</div>
+                <div class="options">
+                    <div class="option" onclick="selectAnswer(this, false, 0)">Une prière spéciale</div>
+                    <div class="option" onclick="selectAnswer(this, true, 0)">L'intention dans le cœur</div>
+                    <div class="option" onclick="selectAnswer(this, false, 0)">Un type de jeûne</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-text">2. Selon le hadith, les actes valent par quoi ?</div>
+                <div class="options">
+                    <div class="option" onclick="selectAnswer(this, false, 1)">Par leur nombre</div>
+                    <div class="option" onclick="selectAnswer(this, true, 1)">Par leurs intentions</div>
+                    <div class="option" onclick="selectAnswer(this, false, 1)">Par leur difficulté</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-text">3. Où se fait l'intention ?</div>
+                <div class="options">
+                    <div class="option" onclick="selectAnswer(this, false, 2)">À voix haute</div>
+                    <div class="option" onclick="selectAnswer(this, true, 2)">Dans le cœur</div>
+                    <div class="option" onclick="selectAnswer(this, false, 2)">Par écrit</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-text">4. Pourquoi avoir une bonne intention ?</div>
+                <div class="options">
+                    <div class="option" onclick="selectAnswer(this, false, 3)">Pour impressionner les gens</div>
+                    <div class="option" onclick="selectAnswer(this, true, 3)">Pour que nos actions soient acceptées par Allah</div>
+                    <div class="option" onclick="selectAnswer(this, false, 3)">Pour être plus fort</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-text">5. Quand doit-on avoir l'intention de jeûner ?</div>
+                <div class="options">
+                    <div class="option" onclick="selectAnswer(this, false, 4)">Après avoir mangé</div>
+                    <div class="option" onclick="selectAnswer(this, true, 4)">Avant de commencer le jeûne</div>
+                    <div class="option" onclick="selectAnswer(this, false, 4)">À la fin du Ramadan</div>
+                </div>
+            </div>
+
+            <button class="btn" id="submitBtn" onclick="checkAnswers()" disabled>Vérifier mes réponses</button>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <p style="color: #8b9584; font-size: 1.1rem;">
+                <strong>Bravo d'avoir terminé le Jour 4 ! 🌟</strong><br>
+                N'oublie pas : c'est ton cœur qui compte le plus !<br>
+                Vérifie toujours tes intentions avant d'agir.<br>
+                Rendez-vous demain pour le Jour 5 !
+            </p>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    <div class="result-modal" id="resultModal">
+        <div class="result-icon" id="resultIcon">🎉</div>
+        <h3 id="resultTitle">Excellent !</h3>
+        <div class="score-display" id="scoreDisplay">Score : 5/5</div>
+        <div class="result-message" id="resultMessage">
+            Masha Allah ! Tu as tout compris sur les intentions !
+        </div>
+        <button class="btn" onclick="closeModal()">Continuer</button>
+    </div>
+
+    <script>
+        let answers = [null, null, null, null, null];
+        let selectedCount = 0;
+
+        function selectAnswer(element, isCorrect, questionIndex) {
+            const options = element.parentElement.querySelectorAll('.option');
+            options.forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+            if (answers[questionIndex] === null) selectedCount++;
+            answers[questionIndex] = isCorrect;
+            if (selectedCount === 5) document.getElementById('submitBtn').disabled = false;
+        }
+
+        function checkAnswers() {
+            let score = 0;
+            const allOptions = document.querySelectorAll('.option.selected');
+            allOptions.forEach((option, index) => {
+                if (answers[index]) { option.classList.add('correct'); score++; }
+                else option.classList.add('incorrect');
+            });
+            document.getElementById('submitBtn').disabled = true;
+            setTimeout(() => showResults(score), 1000);
+        }
+
+        function showResults(score) {
+            const modal = document.getElementById('resultModal');
+            const overlay = document.getElementById('overlay');
+            document.getElementById('scoreDisplay').textContent = 'Score : ' + score + '/5';
+            if (score === 5) {
+                document.getElementById('resultIcon').textContent = '🎉';
+                document.getElementById('resultTitle').textContent = 'Masha Allah ! Parfait !';
+                document.getElementById('resultMessage').textContent = 'Tu as tout compris sur les intentions (Niyyah) ! Que ton cœur reste toujours pur ! 🌟';
+            } else if (score >= 3) {
+                document.getElementById('resultIcon').textContent = '😊';
+                document.getElementById('resultTitle').textContent = 'Très bien !';
+                document.getElementById('resultMessage').textContent = 'Tu as bien compris l\'importance des intentions ! Continue à purifier ton cœur ! 💪';
+            } else {
+                document.getElementById('resultIcon').textContent = '📚';
+                document.getElementById('resultTitle').textContent = 'Continue tes efforts !';
+                document.getElementById('resultMessage').textContent = 'Relis bien la leçon sur les intentions et tu vas mieux comprendre. N\'abandonne jamais ! 🌈';
+            }
+            overlay.classList.add('show');
+            modal.classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('resultModal').classList.remove('show');
+            document.getElementById('overlay').classList.remove('show');
+        }
+    </script>
+</body>
+</html>
