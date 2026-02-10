@@ -33,6 +33,7 @@
         .header {
             text-align: center;
             margin-bottom: 40px;
+            position: relative;
         }
 
         .day-badge {
@@ -68,6 +69,20 @@
                 transform: scale(1.1);
                 filter: drop-shadow(0 0 20px rgba(139, 149, 132, 0.8));
             }
+        }
+
+        .logo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 120px;
+            height: auto;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo:hover {
+            opacity: 1;
         }
 
         .intro-text {
@@ -320,6 +335,12 @@
         }
 
         @media (max-width: 768px) {
+            .logo {
+                width: 80px;
+                top: 5px;
+                left: 5px;
+            }
+
             .container {
                 padding: 20px;
             }
@@ -337,6 +358,7 @@
 <body>
     <div class="container">
         <div class="header">
+            <img src="logonoir lespetitesplumes.png" alt="Les petites plumes" class="logo">
             <div class="day-badge">Jour 2 / 30</div>
             <div class="moon-icon">🤲</div>
             <h1>Pourquoi jeûne-t-on ?</h1>
