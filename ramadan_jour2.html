@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jour 2 - Pourquoi jeûne-t-on ? 🤲</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #f5e6d3 0%, #e8d5c4 50%, #f5e6d3 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #ffffff 0%, #faf8f5 100%);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(139, 149, 132, 0.2);
+            border: 3px solid #8b9584;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .day-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #8b9584, #a4b29b);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(139, 149, 132, 0.3);
+        }
+
+        h1 {
+            color: #5a6b4f;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-family: 'Amiri', serif;
+        }
+
+        .moon-icon {
+            font-size: 3rem;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 10px rgba(139, 149, 132, 0.5));
+            }
+            50% {
+                transform: scale(1.1);
+                filter: drop-shadow(0 0 20px rgba(139, 149, 132, 0.8));
+            }
+        }
+
+        .intro-text {
+            background: linear-gradient(135deg, #f5e6d3, #e8d5c4);
+            padding: 25px;
+            border-radius: 20px;
+            border-left: 5px solid #8b9584;
+            margin: 30px 0;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #4a5442;
+        }
+
+        .story-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 2px solid #d4c4b0;
+            transition: all 0.3s ease;
+        }
+
+        .story-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(139, 149, 132, 0.2);
+            border-color: #8b9584;
+        }
+
+        .story-card h3 {
+            color: #5a6b4f;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .story-card p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .quiz-section {
+            background: linear-gradient(135deg, #8b9584, #a4b29b);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+            color: white;
+        }
+
+        .quiz-section h3 {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+        }
+
+        .question-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            color: #4a5442;
+        }
+
+        .question-text {
+            font-weight: 600;
+            font-size: 1.15rem;
+            margin-bottom: 20px;
+            color: #5a6b4f;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .option {
+            background: linear-gradient(135deg, #f5e6d3, #e8d5c4);
+            padding: 15px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            font-weight: 500;
+        }
+
+        .option:hover {
+            background: linear-gradient(135deg, #e8d5c4, #d4c4b0);
+            transform: translateX(5px);
+        }
+
+        .option.selected {
+            background: linear-gradient(135deg, #8b9584, #a4b29b);
+            color: white;
+            border-color: #5a6b4f;
+            transform: scale(1.02);
+        }
+
+        .option.correct {
+            background: linear-gradient(135deg, #7fb069, #8fbc77);
+            color: white;
+            border-color: #5a8049;
+            animation: correctPulse 0.5s ease;
+        }
+
+        .option.incorrect {
+            background: linear-gradient(135deg, #d4916c, #c47d5a);
+            color: white;
+            border-color: #a4614a;
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes correctPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #8b9584, #a4b29b);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 25px auto;
+            box-shadow: 0 5px 20px rgba(139, 149, 132, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 149, 132, 0.4);
+        }
+
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .result-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            transition: transform 0.3s ease;
+        }
+
+        .result-modal.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .result-modal h3 {
+            color: #5a6b4f;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .result-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: bounce-in 0.6s ease;
+        }
+
+        @keyframes bounce-in {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .result-message {
+            color: #666;
+            font-size: 1.1rem;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+
+        .score-display {
+            background: linear-gradient(135deg, #f5e6d3, #e8d5c4);
+            padding: 15px;
+            border-radius: 15px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #5a6b4f;
+            margin: 20px 0;
+        }
+
+        .fun-facts {
+            background: linear-gradient(135deg, #f5e6d3, #e8d5c4);
+            padding: 25px;
+            border-radius: 20px;
+            margin: 30px 0;
+            border: 2px dashed #8b9584;
+        }
+
+        .fun-facts h3 {
+            color: #5a6b4f;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .fun-facts ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .fun-facts li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #4a5442;
+            line-height: 1.6;
+        }
+
+        .fun-facts li:before {
+            content: "⭐";
+            position: absolute;
+            left: 0;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 999;
+        }
+
+        .overlay.show {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .intro-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="day-badge">Jour 2 / 30</div>
+            <div class="moon-icon">🤲</div>
+            <h1>Pourquoi jeûne-t-on ?</h1>
+            <p style="color: #8b9584; font-size: 1.1rem;">Découvrons les raisons profondes du jeûne !</p>
+        </div>
+
+        <div class="intro-text">
+            <p style="font-weight: 600; margin-bottom: 10px;">🌟 Continuons notre voyage !</p>
+            <p>Aujourd'hui, nous allons découvrir pourquoi les musulmans jeûnent pendant le Ramadan. Le jeûne n'est pas juste arrêter de manger et de boire, c'est beaucoup plus que ça ! C'est un cadeau précieux qu'Allah nous a donné pour nous aider à devenir meilleurs ! ✨</p>
+        </div>
+
+        <div class="story-section">
+            <div class="story-card">
+                <h3>🤲 Se rapprocher d'Allah</h3>
+                <p>La raison la plus importante du jeûne est de se rapprocher d'Allah. Quand nous jeûnons, nous montrons à Allah que nous L'aimons et que nous sommes prêts à faire des efforts pour Lui. C'est comme dire "Ô Allah, je t'obéis avec joie !" Le jeûne nous aide à penser plus souvent à Allah et à Le remercier pour tous Ses bienfaits.</p>
+            </div>
+
+            <div class="story-card">
+                <h3>❤️ Apprendre la patience et la gratitude</h3>
+                <p>Le jeûne nous apprend à être <strong>patients</strong>. Quand on a faim ou soif, on attend avec patience l'heure de l'Iftar. Et quand on mange enfin, on apprécie tellement plus notre nourriture ! On dit <strong>Alhamdulillah</strong> (Merci Allah) avec tout notre cœur. Le jeûne nous fait comprendre combien les cadeaux d'Allah sont précieux !</p>
+            </div>
+
+            <div class="story-card">
+                <h3>🤝 Comprendre ceux qui ont faim</h3>
+                <p>Dans le monde, il y a des personnes qui ont faim tous les jours. Quand nous jeûnons, nous ressentons un peu ce qu'elles ressentent. Cela nous rend plus <strong>gentils et généreux</strong>. On veut aider les pauvres, partager notre nourriture et faire du bien autour de nous. Le Ramadan nous apprend à penser aux autres !</p>
+            </div>
+
+            <div class="story-card">
+                <h3>📿 Purifier son cœur et son corps</h3>
+                <p>Le jeûne est comme un grand nettoyage pour notre cœur et notre corps ! Il nous aide à nous débarrasser des mauvaises habitudes. On devient plus calmes, plus gentils, et on essaie d'éviter les disputes. Le jeûne nous aide aussi à contrôler nos envies et à devenir plus forts à l'intérieur. C'est une purification complète ! 💫</p>
+            </div>
+        </div>
+
+        <div class="fun-facts">
+            <h3>✨ Le savais-tu ?</h3>
+            <ul>
+                <li>Le jeûne est l'un des <strong>5 piliers de l'Islam</strong>, c'est vraiment important !</li>
+                <li>Le Prophète Muhammad (paix et bénédictions sur lui) a dit que celui qui jeûne pendant le Ramadan avec foi, tous ses péchés passés seront pardonnés !</li>
+                <li>Allah aime tellement le jeûne qu'Il a dit : "Le jeûne est pour Moi et c'est Moi qui en donne la récompense !"</li>
+                <li>Le jeûne nous rend plus <strong>sains</strong> : notre corps se nettoie et se repose pendant qu'on ne mange pas</li>
+            </ul>
+        </div>
+
+        <div class="quiz-section">
+            <h3>🎮 Quiz : As-tu bien compris ?</h3>
+
+            <div class="question-card">
+                <div class="question-text">1. Quelle est la raison la plus importante du jeûne ?</div>
+                <div class="options">
+                    <div class="option" onclick="selectAnswer(this, false, 0)">Pour maigrir</div>
+                    <div class="option" onclick="selectAnswer(this, true, 0)">Se rapprocher d'Allah</div>
+                    <div class="option" onclick="selectAnswer(this, false, 0)">Parce que tout le monde le fait</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-text">2. Qu'est-ce que le jeûne nous apprend ?</div>
+                <div class="options">
+                    <div class="option" onclick="selectAnswer(this, false, 1)">À dormir toute la journée</div>
+                    <div class="option" onclick="selectAnswer(this, true, 1)">La patience et la gratitude</div>
+                    <div class="option" onclick="selectAnswer(this, false, 1)">À ne pas parler</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-text">3. Pourquoi le jeûne nous aide à comprendre les pauvres ?</div>
+                <div class="options">
+                    <div class="option" onclick="selectAnswer(this, false, 2)">Parce qu'on perd de l'argent</div>
+                    <div class="option" onclick="selectAnswer(this, true, 2)">Parce qu'on ressent la faim comme eux</div>
+                    <div class="option" onclick="selectAnswer(this, false, 2)">Parce qu'on doit donner tous nos jouets</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-text">4. Le jeûne est comme un grand nettoyage de quoi ?</div>
+                <div class="options">
+                    <div class="option" onclick="selectAnswer(this, false, 3)">De notre chambre</div>
+                    <div class="option" onclick="selectAnswer(this, true, 3)">De notre cœur et notre corps</div>
+                    <div class="option" onclick="selectAnswer(this, false, 3)">De nos vêtements</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-text">5. Que dit Allah à propos du jeûne ?</div>
+                <div class="options">
+                    <div class="option" onclick="selectAnswer(this, false, 4)">C'est difficile et obligatoire</div>
+                    <div class="option" onclick="selectAnswer(this, true, 4)">"Le jeûne est pour Moi et c'est Moi qui en donne la récompense"</div>
+                    <div class="option" onclick="selectAnswer(this, false, 4)">Il faut jeûner tous les jours de l'année</div>
+                </div>
+            </div>
+
+            <button class="btn" id="submitBtn" onclick="checkAnswers()" disabled>Vérifier mes réponses</button>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <p style="color: #8b9584; font-size: 1.1rem;">
+                <strong>Bravo d'avoir terminé le Jour 2 ! 🌟</strong><br>
+                Tu comprends maintenant pourquoi le jeûne est si spécial !<br>
+                Rendez-vous demain pour le Jour 3 !
+            </p>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    <div class="result-modal" id="resultModal">
+        <div class="result-icon" id="resultIcon">🎉</div>
+        <h3 id="resultTitle">Excellent !</h3>
+        <div class="score-display" id="scoreDisplay">Score : 5/5</div>
+        <div class="result-message" id="resultMessage">
+            Masha Allah ! Tu as tout compris sur les raisons du jeûne !
+        </div>
+        <button class="btn" onclick="closeModal()">Continuer</button>
+    </div>
+
+    <script>
+        let answers = [null, null, null, null, null];
+        let selectedCount = 0;
+
+        function selectAnswer(element, isCorrect, questionIndex) {
+            const options = element.parentElement.querySelectorAll('.option');
+            options.forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+            if (answers[questionIndex] === null) selectedCount++;
+            answers[questionIndex] = isCorrect;
+            if (selectedCount === 5) document.getElementById('submitBtn').disabled = false;
+        }
+
+        function checkAnswers() {
+            let score = 0;
+            const allOptions = document.querySelectorAll('.option.selected');
+            allOptions.forEach((option, index) => {
+                if (answers[index]) { option.classList.add('correct'); score++; }
+                else option.classList.add('incorrect');
+            });
+            document.getElementById('submitBtn').disabled = true;
+            setTimeout(() => showResults(score), 1000);
+        }
+
+        function showResults(score) {
+            const modal = document.getElementById('resultModal');
+            const overlay = document.getElementById('overlay');
+            document.getElementById('scoreDisplay').textContent = 'Score : ' + score + '/5';
+            if (score === 5) {
+                document.getElementById('resultIcon').textContent = '🎉';
+                document.getElementById('resultTitle').textContent = 'Masha Allah ! Parfait !';
+                document.getElementById('resultMessage').textContent = 'Tu as tout compris sur les raisons du jeûne ! Tu es un champion ! Continue comme ça ! 🌟';
+            } else if (score >= 3) {
+                document.getElementById('resultIcon').textContent = '😊';
+                document.getElementById('resultTitle').textContent = 'Très bien !';
+                document.getElementById('resultMessage').textContent = 'Tu as bien compris pourquoi on jeûne ! Avec un peu plus d\'attention, tu auras tout juste la prochaine fois ! 💪';
+            } else {
+                document.getElementById('resultIcon').textContent = '📚';
+                document.getElementById('resultTitle').textContent = 'Continue tes efforts !';
+                document.getElementById('resultMessage').textContent = 'Relis bien la leçon et tu vas mieux comprendre les raisons du jeûne. N\'abandonne jamais ! 🌈';
+            }
+            overlay.classList.add('show');
+            modal.classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('resultModal').classList.remove('show');
+            document.getElementById('overlay').classList.remove('show');
+        }
+    </script>
+</body>
+</html>
