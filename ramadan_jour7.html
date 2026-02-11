@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jour 7 - Les bonnes actions ⭐</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #f5e6d3 0%, #e8d5c4 50%, #f5e6d3 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #ffffff 0%, #faf8f5 100%);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(139, 149, 132, 0.2);
+            border: 3px solid #8b9584;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .day-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #8b9584, #a4b29b);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(139, 149, 132, 0.3);
+        }
+
+        h1 {
+            color: #5a6b4f;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-family: 'Amiri', serif;
+        }
+
+        .moon-icon {
+            font-size: 3rem;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 10px rgba(139, 149, 132, 0.5));
+            }
+            50% {
+                transform: scale(1.1);
+                filter: drop-shadow(0 0 20px rgba(139, 149, 132, 0.8));
+            }
+        }
+
+        .logo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 120px;
+            height: auto;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo:hover {
+            opacity: 1;
+        }
+
+        .intro-text {
+            background: linear-gradient(135deg, #f5e6d3, #e8d5c4);
+            padding: 25px;
+            border-radius: 20px;
+            border-left: 5px solid #8b9584;
+            margin: 30px 0;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #4a5442;
+        }
+
+        .story-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 2px solid #d4c4b0;
+            transition: all 0.3s ease;
+        }
+
+        .story-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(139, 149, 132, 0.2);
+            border-color: #8b9584;
+        }
+
+        .story-card h3 {
+            color: #5a6b4f;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .story-card p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* Good Deeds Counter Section */
+        .good-deeds-section {
+            background: linear-gradient(135deg, #f5e6d3, #e8d5c4);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .good-deeds-section h3 {
+            color: #5a6b4f;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .good-deeds-section > p {
+            color: #4a5442;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+
+        .total-counter {
+            background: linear-gradient(135deg, #8b9584, #a4b29b);
+            color: white;
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            display: inline-block;
+            min-width: 200px;
+        }
+
+        .total-icon {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+        }
+
+        .total-label {
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .total-count {
+            font-size: 3rem;
+            font-weight: 700;
+            font-family: 'Amiri', serif;
+        }
+
+        .deeds-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .deed-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            border: 2px solid #d4c4b0;
+            transition: all 0.3s ease;
+        }
+
+        .deed-card:hover {
+            border-color: #8b9584;
+            box-shadow: 0 5px 20px rgba(139, 149, 132, 0.2);
+        }
+
+        .deed-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .deed-label {
+            color: #5a6b4f;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .deed-counter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .deed-btn {
+            background: linear-gradient(135deg, #8b9584, #a4b29b);
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .deed-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 3px 10px rgba(139, 149, 132, 0.4);
+        }
+
+        .deed-btn:active {
+            transform: scale(0.95);
+        }
+
+        .deed-count {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #5a6b4f;
+            min-width: 40px;
+            text-align: center;
+            font-family: 'Amiri', serif;
+        }
+
+        .btn-reset {
+            background: linear-gradient(135deg, #d4916c, #c47d5a);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .btn-reset:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 145, 108, 0.4);
+        }
+
+        @keyframes countPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); color: #7fb069; }
+        }
+
+        .deed-count.pulse {
+            animation: countPulse 0.4s ease;
+        }
+
+        .total-count.pulse {
+            animation: countPulse 0.4s ease;
+        }
+
+        .quiz-section {
+            background: linear-gradient(135deg, #8b9584, #a4b29b);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+            color: white;
+        }
+
+        .quiz-section h3 {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+        }
+
+        .question-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            color: #4a5442;
+        }
+
+        .question-text {
+            font-weight: 600;
+            font-size: 1.15rem;
+            margin-bottom: 20px;
+            color: #5a6b4f;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .option {
+            background: linear-gradient(135deg, #f5e6d3, #e8d5c4);
+            padding: 15px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            font-weight: 500;
+        }
+
+        .option:hover {
+            background: linear-gradient(135deg, #e8d5c4, #d4c4b0);
+            transform: translateX(5px);
+        }
+
+        .option.selected {
+            background: linear-gradient(135deg, #8b9584, #a4b29b);
+            color: white;
+            border-color: #5a6b4f;
+            transform: scale(1.02);
+        }
+
+        .option.correct {
+            background: linear-gradient(135deg, #7fb069, #8fbc77);
+            color: white;
+            border-color: #5a8049;
+            animation: correctPulse 0.5s ease;
+        }
+
+        .option.incorrect {
+            background: linear-gradient(135deg, #d4916c, #c47d5a);
+            color: white;
+            border-color: #a4614a;
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes correctPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #8b9584, #a4b29b);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 25px auto;
+            box-shadow: 0 5px 20px rgba(139, 149, 132, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 149, 132, 0.4);
+        }
+
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .result-modal, .milestone-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            z-index: 1001;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            transition: transform 0.3s ease;
+        }
+
+        .result-modal.show, .milestone-modal.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .result-modal h3, .milestone-modal h3 {
+            color: #5a6b4f;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .result-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: bounce-in 0.6s ease;
+        }
+
+        @keyframes bounce-in {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .result-message {
+            color: #666;
+            font-size: 1.1rem;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+
+        .score-display {
+            background: linear-gradient(135deg, #f5e6d3, #e8d5c4);
+            padding: 15px;
+            border-radius: 15px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #5a6b4f;
+            margin: 20px 0;
+        }
+
+        .fun-facts {
+            background: linear-gradient(135deg, #f5e6d3, #e8d5c4);
+            padding: 25px;
+            border-radius: 20px;
+            margin: 30px 0;
+            border: 2px dashed #8b9584;
+        }
+
+        .fun-facts h3 {
+            color: #5a6b4f;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .fun-facts ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .fun-facts li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #4a5442;
+            line-height: 1.6;
+        }
+
+        .fun-facts li:before {
+            content: "⭐";
+            position: absolute;
+            left: 0;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 999;
+        }
+
+        .overlay.show {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                width: 80px;
+                top: 5px;
+                left: 5px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .intro-text {
+                font-size: 1rem;
+            }
+
+            .deeds-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="logonoir_lespetitesplumes.png" alt="Les petites plumes" class="logo">
+            <div class="day-badge">Jour 7 / 30</div>
+            <div class="moon-icon">⭐</div>
+            <h1>Les bonnes actions</h1>
+            <p style="color: #8b9584; font-size: 1.1rem;">Compte tes bonnes actions quotidiennes !</p>
+        </div>
+
+        <div class="intro-text">
+            <p style="font-weight: 600; margin-bottom: 10px;">🌟 Faisons de bonnes actions !</p>
+            <p>Les <strong>bonnes actions</strong> (Hasanat en arabe) sont parmi les meilleures choses que nous pouvons faire ! Allah aime ceux qui font le bien et Il multiplie leurs récompenses, surtout pendant le mois béni du Ramadan. Chaque petit geste compte et peut te rapprocher d'Allah ! Découvrons ensemble comment faire des bonnes actions chaque jour ! 💫</p>
+        </div>
+
+        <div class="story-section">
+            <div class="story-card">
+                <h3>📿 Qu'est-ce qu'une bonne action ?</h3>
+                <p>Une bonne action, c'est tout ce que tu fais pour <strong>plaire à Allah</strong>. Dans le Coran, Allah nous dit : <em>"L'exemple de ceux qui dépensent leurs biens dans le sentier d'Allah est semblable à une graine d'où naissent sept épis, à cent grains l'épi. Car Allah multiplie la récompense à qui Il veut"</em> <strong>(Coran, Sourate Al-Baqarah 2:261)</strong>. Cela veut dire que chaque bonne action peut être multipliée par <strong>10</strong>, jusqu'à <strong>700 fois</strong> ou plus ! Imagine : quand tu fais quelque chose de bien pour Allah, Il te donne beaucoup, beaucoup de récompenses ! 🎁</p>
+            </div>
+
+            <div class="story-card">
+                <h3>🌟 Exemples de bonnes actions pour enfants</h3>
+                <p>Il y a plein de bonnes actions que tu peux faire chaque jour ! Voici quelques exemples : <strong>Aider papa et maman</strong> à la maison 🏠, <strong>être gentil</strong> avec tes frères et sœurs ❤️, dire <strong>Bismillah</strong> avant de manger, dire <strong>Salam</strong> aux gens que tu croises, <strong>partager</strong> tes jouets avec les autres, faire la <strong>prière</strong> (Salat) 🤲, <strong>lire ou écouter</strong> le Coran 📖, donner la <strong>charité</strong> (même une petite pièce compte !), <strong>sourire</strong> 😊 (le Prophète a dit que sourire est une charité !), et dire des <strong>bonnes paroles</strong> 💬 à tout le monde. Tu vois, c'est facile de faire le bien !</p>
+            </div>
+
+            <div class="story-card">
+                <h3>🎁 La récompense des bonnes actions</h3>
+                <p>Le Prophète Muhammad (paix et bénédictions sur lui) nous a appris des choses magnifiques sur les bonnes actions ! Il a dit : <em>"Toute bonne action est une charité"</em> <strong>(Sahih Muslim 223)</strong>. Il a aussi dit : <em>"Celui qui fait une bonne action recevra dix fois sa récompense"</em> <strong>(Sahih Bukhari 6502)</strong>. Et le plus important : <em>"Les actes les plus aimés d'Allah sont ceux faits régulièrement, même s'ils sont petits"</em> <strong>(Sahih Bukhari 6465)</strong>. Cela veut dire qu'Allah préfère que tu fasses de <strong>petites bonnes actions chaque jour</strong> plutôt qu'une grande action de temps en temps. Même les petites choses comptent beaucoup ! 💫</p>
+            </div>
+
+            <div class="story-card">
+                <h3>💫 Multiplier les bonnes actions en Ramadan</h3>
+                <p>Pendant le Ramadan, les récompenses sont encore <strong>plus multipliées</strong> ! C'est le moment parfait pour faire plein de bonnes actions. Assure-toi de les faire avec <strong>sincérité (Niyyah)</strong> pour Allah, c'est-à-dire vraiment pour Lui faire plaisir. Essaie de faire des bonnes actions <strong>chaque jour</strong> sans exception. Tu sais quoi ? Si tu aides quelqu'un à rompre son jeûne (même avec une simple datte !), tu obtiens la <strong>même récompense que son jeûne</strong> ! Les portes du Paradis sont ouvertes pendant le Ramadan, alors remplis-les de bonnes actions ! 🌈</p>
+            </div>
+        </div>
+
+        <div class="good-deeds-section">
+            <h3>⭐ Mon compteur de bonnes actions</h3>
+            <p>Compte tes bonnes actions d'aujourd'hui !</p>
+
+            <div class="total-counter">
+                <div class="total-icon">⭐</div>
+                <div class="total-label">Total aujourd'hui</div>
+                <div class="total-count" id="totalCount">0</div>
+            </div>
+
+            <div class="deeds-grid">
+                <div class="deed-card">
+                    <div class="deed-icon">🤲</div>
+                    <div class="deed-label">Prières/Dhikr</div>
+                    <div class="deed-counter">
+                        <button class="deed-btn deed-minus" onclick="decrementDeed('prayer')">-</button>
+                        <span class="deed-count" id="prayer-count">0</span>
+                        <button class="deed-btn deed-plus" onclick="incrementDeed('prayer')">+</button>
+                    </div>
+                </div>
+
+                <div class="deed-card">
+                    <div class="deed-icon">🏠</div>
+                    <div class="deed-label">Aider à la maison</div>
+                    <div class="deed-counter">
+                        <button class="deed-btn deed-minus" onclick="decrementDeed('helping')">-</button>
+                        <span class="deed-count" id="helping-count">0</span>
+                        <button class="deed-btn deed-plus" onclick="incrementDeed('helping')">+</button>
+                    </div>
+                </div>
+
+                <div class="deed-card">
+                    <div class="deed-icon">❤️</div>
+                    <div class="deed-label">Être gentil</div>
+                    <div class="deed-counter">
+                        <button class="deed-btn deed-minus" onclick="decrementDeed('kindness')">-</button>
+                        <span class="deed-count" id="kindness-count">0</span>
+                        <button class="deed-btn deed-plus" onclick="incrementDeed('kindness')">+</button>
+                    </div>
+                </div>
+
+                <div class="deed-card">
+                    <div class="deed-icon">📖</div>
+                    <div class="deed-label">Lire/Écouter le Coran</div>
+                    <div class="deed-counter">
+                        <button class="deed-btn deed-minus" onclick="decrementDeed('quran')">-</button>
+                        <span class="deed-count" id="quran-count">0</span>
+                        <button class="deed-btn deed-plus" onclick="incrementDeed('quran')">+</button>
+                    </div>
+                </div>
+
+                <div class="deed-card">
+                    <div class="deed-icon">🎁</div>
+                    <div class="deed-label">Partager/Donner</div>
+                    <div class="deed-counter">
+                        <button class="deed-btn deed-minus" onclick="decrementDeed('charity')">-</button>
+                        <span class="deed-count" id="charity-count">0</span>
+                        <button class="deed-btn deed-plus" onclick="incrementDeed('charity')">+</button>
+                    </div>
+                </div>
+
+                <div class="deed-card">
+                    <div class="deed-icon">💬</div>
+                    <div class="deed-label">Bonnes paroles</div>
+                    <div class="deed-counter">
+                        <button class="deed-btn deed-minus" onclick="decrementDeed('words')">-</button>
+                        <span class="deed-count" id="words-count">0</span>
+                        <button class="deed-btn deed-plus" onclick="incrementDeed('words')">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-reset" onclick="resetAllDeeds()">🔄 Réinitialiser pour demain</button>
+        </div>
+
+        <div class="fun-facts">
+            <h3>✨ Le savais-tu ?</h3>
+            <ul>
+                <li>Le Prophète Muhammad (paix et bénédictions sur lui) a dit qu'un <strong>sourire</strong> est une charité ! Souris souvent !</li>
+                <li>Pendant le Ramadan, les récompenses des bonnes actions sont <strong>multipliées par 70</strong> ou plus !</li>
+                <li>Même dire <strong>"Subhan Allah"</strong> (Gloire à Allah) est une bonne action qui te donne des récompenses !</li>
+                <li>Aider quelqu'un à rompre son jeûne te donne la <strong>même récompense que son jeûne</strong> sans diminuer la sienne !</li>
+            </ul>
+        </div>
+
+        <div class="quiz-section">
+            <h3>🎮 Quiz : As-tu bien compris ?</h3>
+
+            <div class="question-card">
+                <div class="question-text">1. Selon le Coran, par combien Allah peut-il multiplier nos bonnes actions ?</div>
+                <div class="options">
+                    <div class="option" onclick="selectAnswer(this, false, 0)">Par 2 fois</div>
+                    <div class="option" onclick="selectAnswer(this, true, 0)">Par 10 jusqu'à 700 fois ou plus</div>
+                    <div class="option" onclick="selectAnswer(this, false, 0)">Il ne les multiplie pas</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-text">2. Lequel de ces actes est une bonne action ?</div>
+                <div class="options">
+                    <div class="option" onclick="selectAnswer(this, false, 1)">Disputer avec son frère</div>
+                    <div class="option" onclick="selectAnswer(this, true, 1)">Aider sa maman à la maison</div>
+                    <div class="option" onclick="selectAnswer(this, false, 1)">Mentir</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-text">3. Qu'a dit le Prophète (paix et bénédictions sur lui) sur les petites bonnes actions ?</div>
+                <div class="options">
+                    <div class="option" onclick="selectAnswer(this, false, 2)">Elles ne comptent pas</div>
+                    <div class="option" onclick="selectAnswer(this, true, 2)">Les actes les plus aimés d'Allah sont ceux faits régulièrement, même s'ils sont petits</div>
+                    <div class="option" onclick="selectAnswer(this, false, 2)">Il faut toujours faire de grandes actions</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-text">4. Quel acte simple est considéré comme une charité selon le Prophète ?</div>
+                <div class="options">
+                    <div class="option" onclick="selectAnswer(this, true, 3)">Un sourire</div>
+                    <div class="option" onclick="selectAnswer(this, false, 3)">Dormir</div>
+                    <div class="option" onclick="selectAnswer(this, false, 3)">Jouer</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-text">5. Que se passe-t-il quand on aide quelqu'un à rompre son jeûne ?</div>
+                <div class="options">
+                    <div class="option" onclick="selectAnswer(this, false, 4)">On perd notre récompense</div>
+                    <div class="option" onclick="selectAnswer(this, true, 4)">On obtient la même récompense que son jeûne</div>
+                    <div class="option" onclick="selectAnswer(this, false, 4)">Rien de spécial</div>
+                </div>
+            </div>
+
+            <button class="btn" id="submitBtn" onclick="checkAnswers()" disabled>Vérifier mes réponses</button>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <p style="color: #8b9584; font-size: 1.1rem;">
+                <strong>Bravo d'avoir terminé le Jour 7 ! 🌟</strong><br>
+                N'oublie pas de compter toutes tes bonnes actions chaque jour !<br>
+                Chaque petit geste compte auprès d'Allah !<br>
+                Rendez-vous demain pour le Jour 8 !
+            </p>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="result-modal" id="resultModal">
+        <div class="result-icon" id="resultIcon">🎉</div>
+        <h3 id="resultTitle">Excellent !</h3>
+        <div class="score-display" id="scoreDisplay">Score : 5/5</div>
+        <div class="result-message" id="resultMessage">
+            Masha Allah ! Tu as tout compris sur les bonnes actions !
+        </div>
+        <button class="btn" onclick="closeModal()">Continuer</button>
+    </div>
+
+    <div class="milestone-modal" id="milestoneModal">
+        <div class="result-icon" id="milestoneIcon">🌟</div>
+        <h3 id="milestoneTitle">Masha Allah !</h3>
+        <div class="result-message" id="milestoneMessage">
+            Tu as fait 5 bonnes actions ! Continue comme ça !
+        </div>
+        <button class="btn" onclick="closeMilestoneModal()">Continuer !</button>
+    </div>
+
+    <script>
+        // Quiz functionality
+        let answers = [null, null, null, null, null];
+        let selectedCount = 0;
+
+        function selectAnswer(element, isCorrect, questionIndex) {
+            const options = element.parentElement.querySelectorAll('.option');
+            options.forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+            if (answers[questionIndex] === null) selectedCount++;
+            answers[questionIndex] = isCorrect;
+            if (selectedCount === 5) document.getElementById('submitBtn').disabled = false;
+        }
+
+        function checkAnswers() {
+            let score = 0;
+            const allOptions = document.querySelectorAll('.option.selected');
+            allOptions.forEach((option, index) => {
+                if (answers[index]) { option.classList.add('correct'); score++; }
+                else option.classList.add('incorrect');
+            });
+            document.getElementById('submitBtn').disabled = true;
+            setTimeout(() => showResults(score), 1000);
+        }
+
+        function showResults(score) {
+            const modal = document.getElementById('resultModal');
+            const overlay = document.getElementById('overlay');
+            document.getElementById('scoreDisplay').textContent = 'Score : ' + score + '/5';
+            if (score === 5) {
+                document.getElementById('resultIcon').textContent = '🎉';
+                document.getElementById('resultTitle').textContent = 'Masha Allah ! Parfait !';
+                document.getElementById('resultMessage').textContent = 'Tu as tout compris sur les bonnes actions ! Qu\'Allah accepte tes bonnes œuvres ! 🌟';
+            } else if (score >= 3) {
+                document.getElementById('resultIcon').textContent = '😊';
+                document.getElementById('resultTitle').textContent = 'Très bien !';
+                document.getElementById('resultMessage').textContent = 'Tu as bien compris l\'importance des bonnes actions ! Continue à faire le bien ! 💪';
+            } else {
+                document.getElementById('resultIcon').textContent = '📚';
+                document.getElementById('resultTitle').textContent = 'Continue tes efforts !';
+                document.getElementById('resultMessage').textContent = 'Relis bien la leçon sur les bonnes actions et tu vas mieux comprendre. N\'abandonne jamais ! 🌈';
+            }
+            overlay.classList.add('show');
+            modal.classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('resultModal').classList.remove('show');
+            document.getElementById('overlay').classList.remove('show');
+        }
+
+        // Good deeds counter functionality
+        const DEED_TYPES = ['prayer', 'helping', 'kindness', 'quran', 'charity', 'words'];
+        const STORAGE_KEY = 'ramadan_good_deeds';
+        const DATE_KEY = 'ramadan_deeds_date';
+        const MILESTONES = [5, 10, 20, 30, 50];
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadDeeds();
+        });
+
+        function loadDeeds() {
+            // Check if data is from today
+            const savedDate = localStorage.getItem(DATE_KEY);
+            const today = new Date().toDateString();
+
+            if (savedDate !== today) {
+                // New day, reset counters
+                localStorage.setItem(DATE_KEY, today);
+                localStorage.setItem(STORAGE_KEY, JSON.stringify({}));
+                return;
+            }
+
+            // Load saved data
+            const savedData = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+            DEED_TYPES.forEach(deed => {
+                const count = savedData[deed] || 0;
+                document.getElementById(deed + '-count').textContent = count;
+            });
+
+            updateTotal();
+        }
+
+        function saveDeeds() {
+            const data = {};
+            DEED_TYPES.forEach(deed => {
+                data[deed] = parseInt(document.getElementById(deed + '-count').textContent);
+            });
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        }
+
+        function incrementDeed(deedType) {
+            const countElement = document.getElementById(deedType + '-count');
+            let count = parseInt(countElement.textContent);
+            count++;
+            countElement.textContent = count;
+
+            // Add pulse animation
+            countElement.classList.add('pulse');
+            setTimeout(() => countElement.classList.remove('pulse'), 400);
+
+            // Update total and check milestones
+            const oldTotal = getCurrentTotal();
+            updateTotal();
+            const newTotal = getCurrentTotal();
+
+            // Check if we hit a milestone
+            checkMilestone(oldTotal, newTotal);
+
+            // Save to localStorage
+            saveDeeds();
+        }
+
+        function decrementDeed(deedType) {
+            const countElement = document.getElementById(deedType + '-count');
+            let count = parseInt(countElement.textContent);
+            if (count > 0) {
+                count--;
+                countElement.textContent = count;
+                updateTotal();
+                saveDeeds();
+            }
+        }
+
+        function getCurrentTotal() {
+            let total = 0;
+            DEED_TYPES.forEach(deed => {
+                total += parseInt(document.getElementById(deed + '-count').textContent);
+            });
+            return total;
+        }
+
+        function updateTotal() {
+            const total = getCurrentTotal();
+            const totalElement = document.getElementById('totalCount');
+            totalElement.textContent = total;
+
+            // Add pulse animation
+            totalElement.classList.add('pulse');
+            setTimeout(() => totalElement.classList.remove('pulse'), 400);
+        }
+
+        function checkMilestone(oldTotal, newTotal) {
+            // Check if we just crossed a milestone
+            const crossedMilestone = MILESTONES.find(m => oldTotal < m && newTotal >= m);
+            if (crossedMilestone) {
+                showMilestoneModal(crossedMilestone);
+            }
+        }
+
+        function showMilestoneModal(milestone) {
+            const messages = {
+                5: { icon: '🌟', title: 'Masha Allah !', message: 'Tu as fait 5 bonnes actions ! Continue comme ça !' },
+                10: { icon: '✨', title: 'Bravo !', message: '10 bonnes actions ! Tu es sur le bon chemin !' },
+                20: { icon: '🎉', title: 'Extraordinaire !', message: '20 bonnes actions ! Allah est fier de toi !' },
+                30: { icon: '💫', title: 'Champion !', message: '30 bonnes actions ! Qu\'Allah multiplie tes récompenses !' },
+                50: { icon: '🏆', title: 'Incroyable !', message: '50 bonnes actions ! Tu es un exemple pour tous !' }
+            };
+
+            const msg = messages[milestone];
+
+            document.getElementById('milestoneIcon').textContent = msg.icon;
+            document.getElementById('milestoneTitle').textContent = msg.title;
+            document.getElementById('milestoneMessage').textContent = msg.message;
+
+            // Show overlay and modal
+            document.getElementById('overlay').classList.add('show');
+            document.getElementById('milestoneModal').classList.add('show');
+        }
+
+        function closeMilestoneModal() {
+            document.getElementById('milestoneModal').classList.remove('show');
+            document.getElementById('overlay').classList.remove('show');
+        }
+
+        function resetAllDeeds() {
+            if (confirm('Es-tu sûr de vouloir réinitialiser tous les compteurs ?')) {
+                DEED_TYPES.forEach(deed => {
+                    document.getElementById(deed + '-count').textContent = '0';
+                });
+                updateTotal();
+                localStorage.setItem(STORAGE_KEY, JSON.stringify({}));
+            }
+        }
+    </script>
+</body>
+</html>
