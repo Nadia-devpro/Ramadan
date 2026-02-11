@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jour 6 - Les prières du Tarawih 🕌</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #f5e6d3 0%, #e8d5c4 50%, #f5e6d3 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #ffffff 0%, #faf8f5 100%);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(139, 149, 132, 0.2);
+            border: 3px solid #8b9584;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .day-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #8b9584, #a4b29b);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(139, 149, 132, 0.3);
+        }
+
+        h1 {
+            color: #5a6b4f;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-family: 'Amiri', serif;
+        }
+
+        .moon-icon {
+            font-size: 3rem;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 10px rgba(139, 149, 132, 0.5));
+            }
+            50% {
+                transform: scale(1.1);
+                filter: drop-shadow(0 0 20px rgba(139, 149, 132, 0.8));
+            }
+        }
+
+        .logo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 120px;
+            height: auto;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo:hover {
+            opacity: 1;
+        }
+
+        .intro-text {
+            background: linear-gradient(135deg, #f5e6d3, #e8d5c4);
+            padding: 25px;
+            border-radius: 20px;
+            border-left: 5px solid #8b9584;
+            margin: 30px 0;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #4a5442;
+        }
+
+        .story-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 2px solid #d4c4b0;
+            transition: all 0.3s ease;
+        }
+
+        .story-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(139, 149, 132, 0.2);
+            border-color: #8b9584;
+        }
+
+        .story-card h3 {
+            color: #5a6b4f;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .story-card p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .quiz-section {
+            background: linear-gradient(135deg, #8b9584, #a4b29b);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+            color: white;
+        }
+
+        .quiz-section h3 {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+        }
+
+        .question-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            color: #4a5442;
+        }
+
+        .question-text {
+            font-weight: 600;
+            font-size: 1.15rem;
+            margin-bottom: 20px;
+            color: #5a6b4f;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .option {
+            background: linear-gradient(135deg, #f5e6d3, #e8d5c4);
+            padding: 15px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            font-weight: 500;
+        }
+
+        .option:hover {
+            background: linear-gradient(135deg, #e8d5c4, #d4c4b0);
+            transform: translateX(5px);
+        }
+
+        .option.selected {
+            background: linear-gradient(135deg, #8b9584, #a4b29b);
+            color: white;
+            border-color: #5a6b4f;
+            transform: scale(1.02);
+        }
+
+        .option.correct {
+            background: linear-gradient(135deg, #7fb069, #8fbc77);
+            color: white;
+            border-color: #5a8049;
+            animation: correctPulse 0.5s ease;
+        }
+
+        .option.incorrect {
+            background: linear-gradient(135deg, #d4916c, #c47d5a);
+            color: white;
+            border-color: #a4614a;
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes correctPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #8b9584, #a4b29b);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 25px auto;
+            box-shadow: 0 5px 20px rgba(139, 149, 132, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 149, 132, 0.4);
+        }
+
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .result-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            transition: transform 0.3s ease;
+        }
+
+        .result-modal.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .result-modal h3 {
+            color: #5a6b4f;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .result-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: bounce-in 0.6s ease;
+        }
+
+        @keyframes bounce-in {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .result-message {
+            color: #666;
+            font-size: 1.1rem;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+
+        .score-display {
+            background: linear-gradient(135deg, #f5e6d3, #e8d5c4);
+            padding: 15px;
+            border-radius: 15px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #5a6b4f;
+            margin: 20px 0;
+        }
+
+        .fun-facts {
+            background: linear-gradient(135deg, #f5e6d3, #e8d5c4);
+            padding: 25px;
+            border-radius: 20px;
+            margin: 30px 0;
+            border: 2px dashed #8b9584;
+        }
+
+        .fun-facts h3 {
+            color: #5a6b4f;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .fun-facts ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .fun-facts li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #4a5442;
+            line-height: 1.6;
+        }
+
+        .fun-facts li:before {
+            content: "⭐";
+            position: absolute;
+            left: 0;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 999;
+        }
+
+        .overlay.show {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                width: 80px;
+                top: 5px;
+                left: 5px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .intro-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="logonoir_lespetitesplumes.png" alt="Les petites plumes" class="logo">
+            <div class="day-badge">Jour 6 / 30</div>
+            <div class="moon-icon">🕌</div>
+            <h1>Les prières du Tarawih</h1>
+            <p style="color: #8b9584; font-size: 1.1rem;">Découvrir les prières spéciales du Ramadan !</p>
+        </div>
+
+        <div class="intro-text">
+            <p style="font-weight: 600; margin-bottom: 10px;">🌟 Parlons des prières de Tarawih !</p>
+            <p>Le <strong>Tarawih</strong> sont des prières spéciales que l'on fait pendant les nuits du Ramadan. Ces prières sont très belles et remplies de spiritualité ! C'est un moment où les musulmans se rassemblent à la mosquée pour prier ensemble et écouter la récitation du Coran. Découvrons ensemble ces prières magnifiques ! 🌙</p>
+        </div>
+
+        <div class="story-section">
+            <div class="story-card">
+                <h3>🕌 Qu'est-ce que le Tarawih ?</h3>
+                <p>Le <strong>Tarawih</strong> sont des prières <strong>surérogatoires</strong> (c'est-à-dire non obligatoires, mais très recommandées) que l'on fait pendant le Ramadan. On les prie après la prière d'<strong>Isha</strong> (la prière de la nuit). Le mot "Tarawih" vient d'un mot arabe qui signifie <strong>"repos"</strong> parce qu'on fait de petites pauses entre les séries de prières. C'est un moment très spécial de <strong>recueillement</strong> et de connexion avec Allah ! 💫</p>
+            </div>
+
+            <div class="story-card">
+                <h3>🌙 Comment prie-t-on le Tarawih ?</h3>
+                <p>Les prières de Tarawih se font par <strong>paires de 2 rak'ahs</strong> (unités de prière). On peut prier 8, 11 ou 20 rak'ahs selon les différentes traditions. On peut les prier à la <strong>mosquée en groupe</strong> (c'est très beau !) ou à la <strong>maison</strong>. Pendant le Tarawih, l'imam récite de longs et magnifiques passages du Coran. C'est un moment de <strong>tranquillité</strong> et de connexion profonde avec Allah. Beaucoup de gens aiment ce moment de paix ! 🙏</p>
+            </div>
+
+            <div class="story-card">
+                <h3>⭐ Les mérites du Tarawih</h3>
+                <p>Le Prophète Muhammad (paix et bénédictions sur lui) priait le Tarawih et encourageait les musulmans à le faire. Il a dit : <em>"Celui qui prie la nuit pendant le Ramadan avec <strong>foi</strong> et <strong>espoir de récompense</strong>, ses péchés passés seront pardonnés"</em>. Quelle belle promesse ! Les prières de Tarawih rapprochent d'Allah et permettent de méditer sur les beaux versets du Coran. C'est une des plus belles pratiques du Ramadan ! 🌟</p>
+            </div>
+
+            <div class="story-card">
+                <h3>👨‍👩‍👧‍👦 Le Tarawih pour les enfants</h3>
+                <p>Les enfants <strong>ne sont pas obligés</strong> de prier le Tarawih. Mais c'est vraiment bien d'<strong>accompagner les parents</strong> à la mosquée pour observer et apprendre ! Tu peux prier quelques rak'ahs avec eux pour t'habituer progressivement. L'ambiance à la mosquée pendant le Tarawih est <strong>spéciale et spirituelle</strong>. Tu te sens connecté à toute la communauté musulmane qui prie ensemble. C'est un beau souvenir à créer ! ❤️</p>
+            </div>
+        </div>
+
+        <div class="fun-facts">
+            <h3>✨ Le savais-tu ?</h3>
+            <ul>
+                <li>Le Prophète Muhammad (paix et bénédictions sur lui) a prié le Tarawih et a <strong>encouragé les croyants</strong> à le faire</li>
+                <li>Le calife <strong>'Umar ibn al-Khattab</strong> a organisé les prières de Tarawih en groupe à la mosquée</li>
+                <li>Pendant le Ramadan, de nombreux imams récitent <strong>tout le Coran</strong> pendant les prières de Tarawih (on appelle ça Khatm al-Quran) !</li>
+                <li>Le nom "Tarawih" vient du mot arabe "<strong>raaha</strong>" qui signifie se reposer, car on fait de courtes pauses entre les séries de prières</li>
+            </ul>
+        </div>
+
+        <div class="quiz-section">
+            <h3>🎮 Quiz : As-tu bien compris ?</h3>
+
+            <div class="question-card">
+                <div class="question-text">1. Qu'est-ce que le Tarawih ?</div>
+                <div class="options">
+                    <div class="option" onclick="selectAnswer(this, false, 0)">Une prière obligatoire</div>
+                    <div class="option" onclick="selectAnswer(this, true, 0)">Des prières spéciales nocturnes du Ramadan</div>
+                    <div class="option" onclick="selectAnswer(this, false, 0)">Un type de jeûne</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-text">2. Quand prie-t-on le Tarawih ?</div>
+                <div class="options">
+                    <div class="option" onclick="selectAnswer(this, false, 1)">Le matin</div>
+                    <div class="option" onclick="selectAnswer(this, true, 1)">Après la prière d'Isha (la nuit)</div>
+                    <div class="option" onclick="selectAnswer(this, false, 1)">À midi</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-text">3. Les enfants sont-ils obligés de prier le Tarawih ?</div>
+                <div class="options">
+                    <div class="option" onclick="selectAnswer(this, false, 2)">Oui, c'est obligatoire</div>
+                    <div class="option" onclick="selectAnswer(this, true, 2)">Non, mais c'est bien d'accompagner les parents</div>
+                    <div class="option" onclick="selectAnswer(this, false, 2)">Seulement les filles</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-text">4. Que signifie le mot "Tarawih" ?</div>
+                <div class="options">
+                    <div class="option" onclick="selectAnswer(this, false, 3)">Jeûne</div>
+                    <div class="option" onclick="selectAnswer(this, true, 3)">Repos</div>
+                    <div class="option" onclick="selectAnswer(this, false, 3)">Lumière</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-text">5. Quelle est la récompense de prier le Tarawih ?</div>
+                <div class="options">
+                    <div class="option" onclick="selectAnswer(this, false, 4)">Aucune récompense</div>
+                    <div class="option" onclick="selectAnswer(this, true, 4)">Le pardon des péchés passés pour celui qui prie avec foi</div>
+                    <div class="option" onclick="selectAnswer(this, false, 4)">Un cadeau</div>
+                </div>
+            </div>
+
+            <button class="btn" id="submitBtn" onclick="checkAnswers()" disabled>Vérifier mes réponses</button>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <p style="color: #8b9584; font-size: 1.1rem;">
+                <strong>Bravo d'avoir terminé le Jour 6 ! 🌟</strong><br>
+                Si tu le peux, accompagne tes parents à la mosquée pour le Tarawih !<br>
+                C'est un moment spécial et spirituel !<br>
+                Rendez-vous demain pour le Jour 7 !
+            </p>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    <div class="result-modal" id="resultModal">
+        <div class="result-icon" id="resultIcon">🎉</div>
+        <h3 id="resultTitle">Excellent !</h3>
+        <div class="score-display" id="scoreDisplay">Score : 5/5</div>
+        <div class="result-message" id="resultMessage">
+            Masha Allah ! Tu as tout compris sur le Tarawih !
+        </div>
+        <button class="btn" onclick="closeModal()">Continuer</button>
+    </div>
+
+    <script>
+        let answers = [null, null, null, null, null];
+        let selectedCount = 0;
+
+        function selectAnswer(element, isCorrect, questionIndex) {
+            const options = element.parentElement.querySelectorAll('.option');
+            options.forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+            if (answers[questionIndex] === null) selectedCount++;
+            answers[questionIndex] = isCorrect;
+            if (selectedCount === 5) document.getElementById('submitBtn').disabled = false;
+        }
+
+        function checkAnswers() {
+            let score = 0;
+            const allOptions = document.querySelectorAll('.option.selected');
+            allOptions.forEach((option, index) => {
+                if (answers[index]) { option.classList.add('correct'); score++; }
+                else option.classList.add('incorrect');
+            });
+            document.getElementById('submitBtn').disabled = true;
+            setTimeout(() => showResults(score), 1000);
+        }
+
+        function showResults(score) {
+            const modal = document.getElementById('resultModal');
+            const overlay = document.getElementById('overlay');
+            document.getElementById('scoreDisplay').textContent = 'Score : ' + score + '/5';
+            if (score === 5) {
+                document.getElementById('resultIcon').textContent = '🎉';
+                document.getElementById('resultTitle').textContent = 'Masha Allah ! Parfait !';
+                document.getElementById('resultMessage').textContent = 'Tu as tout compris sur les prières de Tarawih ! Qu\'Allah accepte tes prières ! 🌟';
+            } else if (score >= 3) {
+                document.getElementById('resultIcon').textContent = '😊';
+                document.getElementById('resultTitle').textContent = 'Très bien !';
+                document.getElementById('resultMessage').textContent = 'Tu as bien compris le Tarawih ! Continue d\'apprendre et de grandir dans ta foi ! 💪';
+            } else {
+                document.getElementById('resultIcon').textContent = '📚';
+                document.getElementById('resultTitle').textContent = 'Continue tes efforts !';
+                document.getElementById('resultMessage').textContent = 'Relis bien la leçon sur le Tarawih et tu vas mieux comprendre. N\'abandonne jamais ! 🌈';
+            }
+            overlay.classList.add('show');
+            modal.classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('resultModal').classList.remove('show');
+            document.getElementById('overlay').classList.remove('show');
+        }
+    </script>
+</body>
+</html>
