@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jour 3 - Le croissant de lune 🌙</title>
+    <title>Jour 3 - Pourquoi jeûne-t-on ? 🤲</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@400;600;700&display=swap');
 
@@ -334,115 +334,6 @@
             display: block;
         }
 
-        /* Canvas Drawing Section */
-        .drawing-section {
-            background: linear-gradient(135deg, #f5e6d3, #e8d5c4);
-            padding: 30px;
-            border-radius: 20px;
-            margin: 30px 0;
-            text-align: center;
-        }
-
-        .drawing-section h3 {
-            color: #5a6b4f;
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        .drawing-section > p {
-            color: #4a5442;
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-        }
-
-        .canvas-container {
-            background: white;
-            border-radius: 15px;
-            padding: 10px;
-            display: inline-block;
-            box-shadow: 0 5px 20px rgba(139, 149, 132, 0.2);
-            margin-bottom: 20px;
-        }
-
-        #drawingCanvas {
-            border: 2px solid #8b9584;
-            border-radius: 10px;
-            cursor: crosshair;
-            display: block;
-            max-width: 100%;
-            height: auto;
-        }
-
-        .drawing-controls {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .color-picker, .brush-size {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .color-picker span, .brush-size span {
-            color: #5a6b4f;
-            font-weight: 600;
-        }
-
-        .color-btn {
-            width: 35px;
-            height: 35px;
-            border: 3px solid #8b9584;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .color-btn:hover {
-            transform: scale(1.15);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .color-btn.active {
-            border-width: 4px;
-            transform: scale(1.2);
-        }
-
-        .size-btn {
-            background: white;
-            border: 2px solid #8b9584;
-            padding: 8px 15px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: 600;
-            color: #5a6b4f;
-            transition: all 0.3s ease;
-        }
-
-        .size-btn:hover, .size-btn.active {
-            background: linear-gradient(135deg, #8b9584, #a4b29b);
-            color: white;
-        }
-
-        .btn-clear {
-            background: linear-gradient(135deg, #d4916c, #c47d5a);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 15px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .btn-clear:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(212, 145, 108, 0.4);
-        }
-
         @media (max-width: 768px) {
             .logo {
                 width: 80px;
@@ -461,14 +352,6 @@
             .intro-text {
                 font-size: 1rem;
             }
-
-            .drawing-controls {
-                flex-direction: column;
-            }
-
-            #drawingCanvas {
-                width: 100%;
-            }
         }
     </style>
 </head>
@@ -477,120 +360,93 @@
         <div class="header">
             <img src="logonoir_lespetitesplumes.png" alt="Les petites plumes" class="logo">
             <div class="day-badge">Jour 3 / 30</div>
-            <div class="moon-icon">🌙</div>
-            <h1>Le croissant de lune</h1>
-            <p style="color: #8b9584; font-size: 1.1rem;">Observer et dessiner le croissant !</p>
+            <div class="moon-icon">🤲</div>
+            <h1>Pourquoi jeûne-t-on ?</h1>
+            <p style="color: #8b9584; font-size: 1.1rem;">Découvrons les raisons profondes du jeûne !</p>
         </div>
 
         <div class="intro-text">
-            <p style="font-weight: 600; margin-bottom: 10px;">🌟 Levons les yeux vers le ciel !</p>
-            <p>Aujourd'hui, nous allons découvrir le magnifique <strong>croissant de lune</strong> ! Cette petite lune en forme de sourire dans le ciel est très importante pour les musulmans. C'est elle qui nous dit quand le Ramadan commence et quand il se termine ! 🌙✨</p>
+            <p style="font-weight: 600; margin-bottom: 10px;">🌟 Continuons notre voyage !</p>
+            <p>Aujourd'hui, nous allons découvrir pourquoi les musulmans jeûnent pendant le Ramadan. Le jeûne n'est pas juste arrêter de manger et de boire, c'est beaucoup plus que ça ! C'est un cadeau précieux qu'Allah nous a donné pour nous aider à devenir meilleurs ! ✨</p>
         </div>
 
         <div class="story-section">
             <div class="story-card">
-                <h3>🌙 Qu'est-ce que le croissant de lune ?</h3>
-                <p>Le croissant de lune est la première forme visible de la lune après la nouvelle lune. On le voit comme un fin sourire lumineux dans le ciel ! La lune ne produit pas sa propre lumière : c'est le soleil qui l'éclaire. Quand nous voyons juste un petit bout éclairé, c'est le <strong>croissant</strong>. C'est beau et magique à observer ! 🌟</p>
+                <h3>🤲 Se rapprocher d'Allah</h3>
+                <p>La raison la plus importante du jeûne est de se rapprocher d'Allah. Quand nous jeûnons, nous montrons à Allah que nous L'aimons et que nous sommes prêts à faire des efforts pour Lui. C'est comme dire "Ô Allah, je t'obéis avec joie !" Le jeûne nous aide à penser plus souvent à Allah et à Le remercier pour tous Ses bienfaits.</p>
             </div>
 
             <div class="story-card">
-                <h3>👀 Comment observer la lune ?</h3>
-                <p>Pour observer le croissant de lune, regarde le ciel juste après le <strong>coucher du soleil</strong>, vers l'ouest (là où le soleil se couche). Le meilleur moment est environ 20 à 30 minutes après le coucher du soleil. Si le ciel est dégagé et sans nuages, tu pourras voir le magnifique croissant briller doucement ! N'oublie pas de faire une petite prière quand tu le vois ! 🤲</p>
+                <h3>❤️ Apprendre la patience et la gratitude</h3>
+                <p>Le jeûne nous apprend à être <strong>patients</strong>. Quand on a faim ou soif, on attend avec patience l'heure de l'Iftar. Et quand on mange enfin, on apprécie tellement plus notre nourriture ! On dit <strong>Alhamdulillah</strong> (Merci Allah) avec tout notre cœur. Le jeûne nous fait comprendre combien les cadeaux d'Allah sont précieux !</p>
             </div>
 
             <div class="story-card">
-                <h3>📅 Le calendrier lunaire</h3>
-                <p>Les musulmans utilisent un <strong>calendrier lunaire</strong> basé sur la lune, pas sur le soleil ! Chaque mois commence quand on voit le nouveau croissant. C'est pour ça que les dates du Ramadan changent chaque année sur le calendrier solaire. Un mois lunaire dure environ 29 ou 30 jours. C'est la lune qui décide ! 🗓️</p>
+                <h3>🤝 Comprendre ceux qui ont faim</h3>
+                <p>Dans le monde, il y a des personnes qui ont faim tous les jours. Quand nous jeûnons, nous ressentons un peu ce qu'elles ressentent. Cela nous rend plus <strong>gentils et généreux</strong>. On veut aider les pauvres, partager notre nourriture et faire du bien autour de nous. Le Ramadan nous apprend à penser aux autres !</p>
             </div>
 
             <div class="story-card">
-                <h3>⭐ L'importance en Islam</h3>
-                <p>Le croissant de lune est très important en Islam ! Il marque le début du Ramadan, de l'Aïd al-Fitr, et de tous les mois islamiques. Quand les musulmans voient le croissant, ils disent une belle prière : <em>"Allahu Akbar, Allahumma ahillahu 'alayna bil-amni wal-iman..."</em> (Ô Allah, fais que ce croissant nous apporte sécurité et foi !). C'est un moment de joie et de spiritualité ! 💫</p>
+                <h3>📿 Purifier son cœur et son corps</h3>
+                <p>Le jeûne est comme un grand nettoyage pour notre cœur et notre corps ! Il nous aide à nous débarrasser des mauvaises habitudes. On devient plus calmes, plus gentils, et on essaie d'éviter les disputes. Le jeûne nous aide aussi à contrôler nos envies et à devenir plus forts à l'intérieur. C'est une purification complète ! 💫</p>
             </div>
         </div>
 
         <div class="fun-facts">
             <h3>✨ Le savais-tu ?</h3>
             <ul>
-                <li>La lune fait le tour de la Terre en environ <strong>29,5 jours</strong> - c'est un mois lunaire !</li>
-                <li>Le Prophète Muhammad (paix et bénédictions sur lui) enseignait à ses compagnons à observer le croissant avec attention</li>
-                <li>Il y a une prière spéciale à dire quand on voit le croissant de lune pour la première fois</li>
-                <li>Le calendrier islamique compte <strong>12 mois lunaires</strong>, tout comme le calendrier solaire, mais les mois sont plus courts !</li>
+                <li>Le jeûne est l'un des <strong>5 piliers de l'Islam</strong>, c'est vraiment important !</li>
+                <li>Le Prophète Muhammad (paix et bénédictions sur lui) a dit que celui qui jeûne pendant le Ramadan avec foi, tous ses péchés passés seront pardonnés !</li>
+                <li>Allah aime tellement le jeûne qu'Il a dit : "Le jeûne est pour Moi et c'est Moi qui en donne la récompense !"</li>
+                <li>Le jeûne nous rend plus <strong>sains</strong> : notre corps se nettoie et se repose pendant qu'on ne mange pas</li>
             </ul>
-        </div>
-
-        <div class="drawing-section">
-            <h3>🎨 À toi de dessiner le croissant !</h3>
-            <p>Utilise ton imagination pour dessiner le beau croissant de lune dans le ciel nocturne !</p>
-
-            <div class="canvas-container">
-                <canvas id="drawingCanvas" width="600" height="400"></canvas>
-            </div>
-
-            <div class="drawing-controls">
-                <div class="color-picker">
-                    <span>Couleur : </span>
-                    <button class="color-btn" data-color="#ffd700"></button>
-                    <button class="color-btn" data-color="#ffffff"></button>
-                    <button class="color-btn" data-color="#8b9584"></button>
-                    <button class="color-btn" data-color="#f5e6d3"></button>
-                    <button class="color-btn" data-color="#ffeb3b"></button>
-                </div>
-                <div class="brush-size">
-                    <span>Taille : </span>
-                    <button class="size-btn" data-size="2">Fin</button>
-                    <button class="size-btn" data-size="5">Moyen</button>
-                    <button class="size-btn" data-size="10">Gros</button>
-                </div>
-                <button class="btn-clear" onclick="clearCanvas()">🗑️ Effacer</button>
-            </div>
         </div>
 
         <div class="quiz-section">
             <h3>🎮 Quiz : As-tu bien compris ?</h3>
 
             <div class="question-card">
-                <div class="question-text">1. Quand est le meilleur moment pour observer le croissant de lune ?</div>
+                <div class="question-text">1. Quelle est la raison la plus importante du jeûne ?</div>
                 <div class="options">
-                    <div class="option" onclick="selectAnswer(this, false, 0)">En pleine journée</div>
-                    <div class="option" onclick="selectAnswer(this, true, 0)">Juste après le coucher du soleil, vers l'ouest</div>
-                    <div class="option" onclick="selectAnswer(this, false, 0)">Au milieu de la nuit</div>
+                    <div class="option" onclick="selectAnswer(this, false, 0)">Pour maigrir</div>
+                    <div class="option" onclick="selectAnswer(this, true, 0)">Se rapprocher d'Allah</div>
+                    <div class="option" onclick="selectAnswer(this, false, 0)">Parce que tout le monde le fait</div>
                 </div>
             </div>
 
             <div class="question-card">
-                <div class="question-text">2. Qu'est-ce que le croissant de lune marque pour les musulmans ?</div>
+                <div class="question-text">2. Qu'est-ce que le jeûne nous apprend ?</div>
                 <div class="options">
-                    <div class="option" onclick="selectAnswer(this, false, 1)">L'heure de la prière du matin</div>
-                    <div class="option" onclick="selectAnswer(this, true, 1)">Le début d'un nouveau mois islamique, comme le Ramadan</div>
-                    <div class="option" onclick="selectAnswer(this, false, 1)">La fin de l'année</div>
+                    <div class="option" onclick="selectAnswer(this, false, 1)">À dormir toute la journée</div>
+                    <div class="option" onclick="selectAnswer(this, true, 1)">La patience et la gratitude</div>
+                    <div class="option" onclick="selectAnswer(this, false, 1)">À ne pas parler</div>
                 </div>
             </div>
 
             <div class="question-card">
-                <div class="question-text">3. Combien de jours dure un mois lunaire ?</div>
+                <div class="question-text">3. Pourquoi le jeûne nous aide à comprendre les pauvres ?</div>
                 <div class="options">
-                    <div class="option" onclick="selectAnswer(this, false, 2)">Exactement 30 jours</div>
-                    <div class="option" onclick="selectAnswer(this, true, 2)">Environ 29 ou 30 jours</div>
-                    <div class="option" onclick="selectAnswer(this, false, 2)">31 jours</div>
+                    <div class="option" onclick="selectAnswer(this, false, 2)">Parce qu'on perd de l'argent</div>
+                    <div class="option" onclick="selectAnswer(this, true, 2)">Parce qu'on ressent la faim comme eux</div>
+                    <div class="option" onclick="selectAnswer(this, false, 2)">Parce qu'on doit donner tous nos jouets</div>
                 </div>
             </div>
 
             <div class="question-card">
-                <div class="question-text">4. Pourquoi voyons-nous le croissant de lune ?</div>
+                <div class="question-text">4. Le jeûne est comme un grand nettoyage de quoi ?</div>
                 <div class="options">
-                    <div class="option" onclick="selectAnswer(this, false, 3)">Parce que la lune brille toute seule</div>
-                    <div class="option" onclick="selectAnswer(this, true, 3)">Parce que le soleil éclaire une petite partie de la lune</div>
-                    <div class="option" onclick="selectAnswer(this, false, 3)">Parce que la lune est très petite</div>
+                    <div class="option" onclick="selectAnswer(this, false, 3)">De notre chambre</div>
+                    <div class="option" onclick="selectAnswer(this, true, 3)">De notre cœur et notre corps</div>
+                    <div class="option" onclick="selectAnswer(this, false, 3)">De nos vêtements</div>
                 </div>
             </div>
 
             <div class="question-card">
-                <div class="question-text">5. Que doit-on faire quand on voit le nouveau croissant ?</div>
+                <div class="question-text">5. Que dit Allah à propos du jeûne ?</div>
                 <div class="options">
-                    <div class="option" onclick="selectAnswer(this, false, 4)">Rien de spécial</div>
-                    <div class="option" onclick="selectAnswer(this, true, 4)">Dire une prière spéciale</div>
-                    <div class="option" onclick="selectAnswer(this, false, 4)">Fermer les yeux</div>
+                    <div class="option" onclick="selectAnswer(this, false, 4)">C'est difficile et obligatoire</div>
+                    <div class="option" onclick="selectAnswer(this, true, 4)">"Le jeûne est pour Moi et c'est Moi qui en donne la récompense"</div>
+                    <div class="option" onclick="selectAnswer(this, false, 4)">Il faut jeûner tous les jours de l'année</div>
                 </div>
             </div>
 
@@ -600,7 +456,7 @@
         <div style="text-align: center; margin-top: 40px;">
             <p style="color: #8b9584; font-size: 1.1rem;">
                 <strong>Bravo d'avoir terminé le Jour 3 ! 🌟</strong><br>
-                N'oublie pas de regarder le ciel ce soir pour observer le croissant !<br>
+                Tu comprends maintenant pourquoi le jeûne est si spécial !<br>
                 Rendez-vous demain pour le Jour 4 !
             </p>
         </div>
@@ -612,13 +468,12 @@
         <h3 id="resultTitle">Excellent !</h3>
         <div class="score-display" id="scoreDisplay">Score : 5/5</div>
         <div class="result-message" id="resultMessage">
-            Masha Allah ! Tu as tout compris sur le croissant de lune !
+            Masha Allah ! Tu as tout compris sur les raisons du jeûne !
         </div>
         <button class="btn" onclick="closeModal()">Continuer</button>
     </div>
 
     <script>
-        // Quiz functionality
         let answers = [null, null, null, null, null];
         let selectedCount = 0;
 
@@ -649,15 +504,15 @@
             if (score === 5) {
                 document.getElementById('resultIcon').textContent = '🎉';
                 document.getElementById('resultTitle').textContent = 'Masha Allah ! Parfait !';
-                document.getElementById('resultMessage').textContent = 'Tu as tout compris sur le croissant de lune ! Tu es un champion ! Continue comme ça ! 🌟';
+                document.getElementById('resultMessage').textContent = 'Tu as tout compris sur les raisons du jeûne ! Tu es un champion ! Continue comme ça ! 🌟';
             } else if (score >= 3) {
                 document.getElementById('resultIcon').textContent = '😊';
                 document.getElementById('resultTitle').textContent = 'Très bien !';
-                document.getElementById('resultMessage').textContent = 'Tu as bien compris le croissant de lune ! Avec un peu plus d\'attention, tu auras tout juste la prochaine fois ! 💪';
+                document.getElementById('resultMessage').textContent = 'Tu as bien compris pourquoi on jeûne ! Avec un peu plus d\'attention, tu auras tout juste la prochaine fois ! 💪';
             } else {
                 document.getElementById('resultIcon').textContent = '📚';
                 document.getElementById('resultTitle').textContent = 'Continue tes efforts !';
-                document.getElementById('resultMessage').textContent = 'Relis bien la leçon sur le croissant de lune et tu vas mieux comprendre. N\'abandonne jamais ! 🌈';
+                document.getElementById('resultMessage').textContent = 'Relis bien la leçon et tu vas mieux comprendre les raisons du jeûne. N\'abandonne jamais ! 🌈';
             }
             overlay.classList.add('show');
             modal.classList.add('show');
@@ -666,109 +521,6 @@
         function closeModal() {
             document.getElementById('resultModal').classList.remove('show');
             document.getElementById('overlay').classList.remove('show');
-        }
-
-        // Canvas Drawing functionality
-        const canvas = document.getElementById('drawingCanvas');
-        const ctx = canvas.getContext('2d');
-
-        let isDrawing = false;
-        let currentColor = '#ffd700';
-        let currentSize = 5;
-
-        // Set canvas background to night sky
-        ctx.fillStyle = '#1a1a2e';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        // Color picker setup
-        document.querySelectorAll('.color-btn').forEach((btn, index) => {
-            const color = btn.getAttribute('data-color');
-            btn.style.backgroundColor = color;
-            if (index === 0) btn.classList.add('active');
-
-            btn.addEventListener('click', () => {
-                currentColor = color;
-                document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-            });
-        });
-
-        // Brush size setup
-        document.querySelectorAll('.size-btn').forEach((btn, index) => {
-            if (index === 1) btn.classList.add('active');
-
-            btn.addEventListener('click', () => {
-                currentSize = parseInt(btn.getAttribute('data-size'));
-                document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-            });
-        });
-
-        // Get position from mouse or touch event
-        function getPosition(e) {
-            const rect = canvas.getBoundingClientRect();
-            const scaleX = canvas.width / rect.width;
-            const scaleY = canvas.height / rect.height;
-
-            if (e.touches) {
-                return {
-                    x: (e.touches[0].clientX - rect.left) * scaleX,
-                    y: (e.touches[0].clientY - rect.top) * scaleY
-                };
-            }
-            return {
-                x: (e.clientX - rect.left) * scaleX,
-                y: (e.clientY - rect.top) * scaleY
-            };
-        }
-
-        // Draw on canvas
-        function draw(e) {
-            if (!isDrawing) return;
-
-            const pos = getPosition(e);
-            ctx.lineCap = 'round';
-            ctx.strokeStyle = currentColor;
-            ctx.lineWidth = currentSize;
-
-            ctx.lineTo(pos.x, pos.y);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(pos.x, pos.y);
-        }
-
-        // Mouse events
-        canvas.addEventListener('mousedown', (e) => {
-            isDrawing = true;
-            const pos = getPosition(e);
-            ctx.beginPath();
-            ctx.moveTo(pos.x, pos.y);
-        });
-
-        canvas.addEventListener('mousemove', draw);
-        canvas.addEventListener('mouseup', () => { isDrawing = false; });
-        canvas.addEventListener('mouseout', () => { isDrawing = false; });
-
-        // Touch events
-        canvas.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            isDrawing = true;
-            const pos = getPosition(e);
-            ctx.beginPath();
-            ctx.moveTo(pos.x, pos.y);
-        });
-
-        canvas.addEventListener('touchmove', (e) => {
-            e.preventDefault();
-            draw(e);
-        });
-
-        canvas.addEventListener('touchend', () => { isDrawing = false; });
-
-        // Clear canvas
-        function clearCanvas() {
-            ctx.fillStyle = '#1a1a2e';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
         }
     </script>
 </body>

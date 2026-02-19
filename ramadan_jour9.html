@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jour 9 - La gratitude (Shukr) 🌸</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@400;600;700&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #f5e6d3 0%, #e8d5c4 50%, #f5e6d3 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #ffffff 0%, #faf8f5 100%);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(139, 149, 132, 0.2);
+            border: 3px solid #8b9584;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .day-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #8b9584, #a4b29b);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(139, 149, 132, 0.3);
+        }
+
+        h1 {
+            color: #5a6b4f;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-family: 'Amiri', serif;
+        }
+
+        .moon-icon {
+            font-size: 3rem;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(139,149,132,0.5)); }
+            50% { transform: scale(1.1); filter: drop-shadow(0 0 20px rgba(139,149,132,0.8)); }
+        }
+
+        .logo {
+            position: absolute; top: 0; left: 0;
+            width: 120px; height: auto;
+            opacity: 0.9; transition: opacity 0.3s ease;
+        }
+        .logo:hover { opacity: 1; }
+
+        .intro-text {
+            background: linear-gradient(135deg, #f5e6d3, #e8d5c4);
+            padding: 25px; border-radius: 20px;
+            border-left: 5px solid #8b9584;
+            margin: 30px 0;
+            font-size: 1.1rem; line-height: 1.8; color: #4a5442;
+        }
+
+        .story-card {
+            background: white; border-radius: 20px;
+            padding: 25px; margin: 20px 0;
+            border: 2px solid #d4c4b0;
+            transition: all 0.3s ease;
+        }
+        .story-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(139,149,132,0.2);
+            border-color: #8b9584;
+        }
+        .story-card h3 { color: #5a6b4f; margin-bottom: 15px; font-size: 1.3rem; }
+        .story-card p { color: #666; line-height: 1.7; font-size: 1.05rem; }
+
+        /* ===================== GARDEN GAME ===================== */
+        .garden-section {
+            background: linear-gradient(160deg, #3d6b44 0%, #4e8a58 40%, #6aab6f 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .garden-section::before {
+            content: '';
+            position: absolute;
+            top: -60px; right: -60px;
+            width: 200px; height: 200px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+
+        .garden-section h3 {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 6px;
+            position: relative;
+        }
+
+        .garden-subtitle {
+            text-align: center;
+            font-size: 0.95rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .garden-story {
+            background: rgba(255,255,255,0.15);
+            border-radius: 15px;
+            padding: 14px 18px;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Progress bar */
+        .garden-progress-wrap {
+            background: rgba(0,0,0,0.2);
+            border-radius: 20px;
+            height: 14px;
+            margin-bottom: 8px;
+            overflow: hidden;
+        }
+        .garden-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #f9d56e, #f7b731);
+            border-radius: 20px;
+            transition: width 0.6s ease;
+            width: 0%;
+        }
+        .garden-progress-label {
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 18px;
+        }
+
+        /* The visual garden (flower bed) */
+        .flower-garden {
+            background: linear-gradient(180deg, #87ceeb 0%, #b0e0ff 35%, #6aab6f 35%, #4e8a58 100%);
+            border-radius: 16px;
+            padding: 12px;
+            margin-bottom: 22px;
+            min-height: 110px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .flower-garden::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 35%;
+            background: linear-gradient(180deg, #4e8a58, #3d6b44);
+            z-index: 0;
+        }
+
+        .flower-slot {
+            width: 60px;
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            position: relative;
+            z-index: 1;
+        }
+
+        .flower-emoji {
+            font-size: 2.2rem;
+            line-height: 1;
+            transform: scale(0);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .flower-emoji.bloomed {
+            transform: scale(1);
+        }
+
+        .flower-stem {
+            width: 3px;
+            height: 0px;
+            background: #2d5a1b;
+            border-radius: 3px;
+            transition: height 0.4s ease 0.1s;
+            margin-top: 2px;
+        }
+
+        .flower-stem.grown {
+            height: 30px;
+        }
+
+        /* Matching game */
+        .match-game {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .match-col {
+            flex: 1;
+            min-width: 140px;
+        }
+
+        .match-col-title {
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            background: rgba(255,255,255,0.18);
+            border-radius: 10px;
+            padding: 6px 10px;
+            margin-bottom: 10px;
+        }
+
+        /* Bienfait cards (left) */
+        .bienfait-card {
+            background: white;
+            color: #4a5442;
+            border-radius: 12px;
+            padding: 10px 14px;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            user-select: none;
+        }
+
+        .bienfait-card:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+        }
+
+        .bienfait-card.selected {
+            border-color: #f7b731;
+            background: #fffbf0;
+            transform: scale(1.03);
+            box-shadow: 0 4px 16px rgba(247,183,49,0.4);
+        }
+
+        .bienfait-card.matched {
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            border-color: #5a8a5a;
+            color: #2d5a2d;
+            cursor: default;
+            opacity: 0.85;
+        }
+
+        .bienfait-card.matched:hover { transform: none; }
+
+        .bienfait-card.wrong {
+            animation: shake 0.4s ease;
+            border-color: #d4916c;
+            background: #fff5f0;
+        }
+
+        /* Category cards (right) */
+        .category-card {
+            background: rgba(255,255,255,0.18);
+            border-radius: 12px;
+            padding: 12px 14px;
+            margin-bottom: 8px;
+            font-size: 0.92rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.25s ease;
+            text-align: center;
+            user-select: none;
+        }
+
+        .category-card:hover {
+            background: rgba(255,255,255,0.28);
+            transform: translateX(-4px);
+        }
+
+        .category-card.matched {
+            background: rgba(80,160,80,0.35);
+            border-color: rgba(255,255,255,0.5);
+            cursor: default;
+        }
+        .category-card.matched:hover { transform: none; }
+
+        .category-card.highlight {
+            background: rgba(247,183,49,0.3);
+            border-color: #f7b731;
+        }
+
+        .category-icon { font-size: 1.6rem; display: block; margin-bottom: 3px; }
+
+        @keyframes shake {
+            0%,100% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            75% { transform: translateX(6px); }
+        }
+
+        @keyframes correctFlash {
+            0%,100% { transform: scale(1); }
+            50% { transform: scale(1.06); }
+        }
+
+        .category-card.correct-flash {
+            animation: correctFlash 0.4s ease;
+            background: rgba(100,180,100,0.5);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #8b9584, #a4b29b);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 20px auto 0;
+            box-shadow: 0 5px 20px rgba(139,149,132,0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139,149,132,0.4);
+        }
+
+        .btn:disabled {
+            background: rgba(255,255,255,0.3);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-garden {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.5);
+            color: white;
+            margin-top: 15px;
+        }
+
+        .btn-garden:hover {
+            background: rgba(255,255,255,0.35);
+        }
+
+        .game-feedback {
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 600;
+            min-height: 28px;
+            padding: 6px;
+            border-radius: 10px;
+            margin-top: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .score-chips {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .score-chip {
+            background: rgba(255,255,255,0.18);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        /* Quiz */
+        .quiz-section {
+            background: linear-gradient(135deg, #8b9584, #a4b29b);
+            padding: 30px; border-radius: 20px; margin: 30px 0; color: white;
+        }
+        .quiz-section h3 { text-align: center; font-size: 1.5rem; margin-bottom: 25px; }
+
+        .question-card {
+            background: white; border-radius: 15px; padding: 25px; margin: 20px 0; color: #4a5442;
+        }
+        .question-text { font-weight: 600; font-size: 1.15rem; margin-bottom: 20px; color: #5a6b4f; }
+
+        .options { display: grid; grid-template-columns: 1fr; gap: 12px; }
+
+        .option {
+            background: linear-gradient(135deg, #f5e6d3, #e8d5c4);
+            padding: 15px 20px; border-radius: 12px;
+            cursor: pointer; transition: all 0.3s ease;
+            border: 2px solid transparent; font-weight: 500;
+        }
+        .option:hover { background: linear-gradient(135deg, #e8d5c4, #d4c4b0); transform: translateX(5px); }
+        .option.selected { background: linear-gradient(135deg, #8b9584, #a4b29b); color: white; border-color: #5a6b4f; transform: scale(1.02); }
+        .option.correct { background: linear-gradient(135deg, #7fb069, #8fbc77); color: white; border-color: #5a8049; animation: correctPulse 0.5s ease; }
+        .option.incorrect { background: linear-gradient(135deg, #d4916c, #c47d5a); color: white; border-color: #a4614a; animation: shakeQ 0.5s ease; }
+
+        @keyframes correctPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+        @keyframes shakeQ { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
+
+        /* Fun facts */
+        .fun-facts {
+            background: linear-gradient(135deg, #f5e6d3, #e8d5c4);
+            padding: 25px; border-radius: 20px; margin: 30px 0;
+            border: 2px dashed #8b9584;
+        }
+        .fun-facts h3 { color: #5a6b4f; margin-bottom: 15px; text-align: center; }
+        .fun-facts ul { list-style: none; padding: 0; }
+        .fun-facts li {
+            padding: 10px 0; padding-left: 30px;
+            position: relative; color: #4a5442; line-height: 1.6;
+        }
+        .fun-facts li:before { content: "🌸"; position: absolute; left: 0; }
+
+        /* Modals */
+        .result-modal, .garden-complete-modal {
+            position: fixed; top: 50%; left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: white; padding: 40px; border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            z-index: 1001; text-align: center;
+            max-width: 420px; width: 90%;
+            transition: transform 0.3s ease;
+        }
+        .result-modal.show, .garden-complete-modal.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .result-modal h3, .garden-complete-modal h3 { color: #5a6b4f; font-size: 2rem; margin-bottom: 15px; }
+
+        .result-icon {
+            font-size: 4rem; margin-bottom: 15px;
+            animation: bounceIn 0.6s ease;
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .result-message { color: #666; font-size: 1.05rem; margin: 15px 0; line-height: 1.6; }
+        .score-display {
+            background: linear-gradient(135deg, #f5e6d3, #e8d5c4);
+            padding: 14px; border-radius: 15px;
+            font-size: 1.2rem; font-weight: 600; color: #5a6b4f; margin: 15px 0;
+        }
+
+        .overlay {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none; z-index: 999;
+        }
+        .overlay.show { display: block; }
+
+        .garden-flowers-big {
+            font-size: 2.4rem;
+            letter-spacing: 4px;
+            margin: 10px 0;
+        }
+
+        /* Floating particles */
+        .petal {
+            position: fixed;
+            pointer-events: none;
+            font-size: 1.4rem;
+            z-index: 1002;
+            animation: petalFall 3s ease-out forwards;
+        }
+        @keyframes petalFall {
+            0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+        @media (max-width: 768px) {
+            .logo { width: 80px; top: 5px; left: 5px; }
+            .container { padding: 20px; }
+            h1 { font-size: 2rem; }
+            .match-game { flex-direction: column; }
+            .match-col { min-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <img src="logonoir_lespetitesplumes.png" alt="Les petites plumes" class="logo">
+        <div class="day-badge">Jour 9 / 30</div>
+        <div class="moon-icon">🌸</div>
+        <h1>La gratitude — Shukr</h1>
+        <p style="color: #8b9584; font-size: 1.1rem;">Remercier Allah pour Ses bienfaits !</p>
+    </div>
+
+    <div class="intro-text">
+        <p style="font-weight: 600; margin-bottom: 10px;">🌟 Le Shukr, c'est quoi ?</p>
+        <p>Le <strong>Shukr</strong> (الشكر) veut dire <strong>gratitude</strong> en arabe — remercier Allah du fond du cœur pour tout ce qu'Il nous a donné. Allah a tout créé pour nous : la lumière du soleil, l'eau fraîche, notre famille, notre santé… Et Il nous promet : <em>"Si vous êtes reconnaissants, J'augmenterai Mes bienfaits pour vous"</em> <strong>(Coran 14:7)</strong>. Plus on remercie Allah, plus Il nous donne ! C'est magnifique, non ? 🌺</p>
+    </div>
+
+    <div class="story-section">
+        <div class="story-card">
+            <h3>📿 L'importance du Shukr en Islam</h3>
+            <p>Allah mentionne le Shukr plus de <strong>75 fois</strong> dans le Coran ! Il dit : <em>"Et peu de Mes serviteurs sont reconnaissants"</em> <strong>(Coran 34:13)</strong>. Cela veut dire qu'être vraiment reconnaissant est quelque chose de <strong>précieux et rare</strong>. Allah aime tellement ceux qui Le remercient qu'Il leur promet encore plus de bienfaits. Alors soyons parmi les reconnaissants ! 🤲</p>
+        </div>
+
+        <div class="story-card">
+            <h3>🌟 Comment remercier Allah ?</h3>
+            <p>On peut remercier Allah de plusieurs façons ! Dire <strong>"Alhamdulillah"</strong> (الحمد لله — "Louange à Allah") est la façon la plus belle de remercier Allah. On peut le dire quand on mange, quand on se réveille, quand quelque chose de bien arrive, ou même juste comme ça ! Le Prophète (paix et bénédictions sur lui) a dit : <em>"Alhamdulillah remplit la balance des bonnes actions"</em> <strong>(Sahih Muslim 223)</strong>. On peut aussi remercier Allah en <strong>utilisant Ses bienfaits pour faire le bien</strong> — partager sa nourriture, utiliser sa santé pour aider les autres, et aimer sa famille. 💛</p>
+        </div>
+
+        <div class="story-card">
+            <h3>🎁 Les bienfaits d'Allah sont innombrables</h3>
+            <p>Allah dit dans le Coran : <em>"Si vous essayiez de compter les bienfaits d'Allah, vous ne pourriez les dénombrer"</em> <strong>(Coran 16:18)</strong>. Pense à tout ce qu'Allah t'a donné : <strong>tes yeux</strong> pour voir les couleurs magnifiques du monde, <strong>tes oreilles</strong> pour entendre la belle voix de ta maman, <strong>tes mains</strong> pour jouer, dessiner, et câliner, <strong>ta famille</strong> qui t'aime, <strong>la nourriture</strong> sur ta table chaque jour, <strong>un toit</strong> pour te protéger, <strong>l'eau</strong> pour te laver et étancher ta soif… Et ce ne sont que quelques exemples ! Chaque souffle est un cadeau d'Allah. 🌈</p>
+        </div>
+
+        <div class="story-card">
+            <h3>💫 Le Shukr en Ramadan</h3>
+            <p>Le Ramadan est le moment idéal pour pratiquer le Shukr ! Quand on jeûne, on <strong>ressent la faim et la soif</strong>, et cela nous apprend à être reconnaissants pour chaque repas. Quand on rompt le jeûne avec une datte et de l'eau, on réalise combien ces choses simples sont précieuses. Le Prophète disait quand il rompait le jeûne : <em>"Dhahaba al-dhama'u wa abtallatil 'urūqu wa thabatal ajru insha'Allah"</em> — "La soif est partie, les veines sont hydratées, et la récompense est assurée, si Allah le veut." Remercions Allah pour chaque bouchée ! 🌙</p>
+        </div>
+    </div>
+
+    <!-- ===================== JARDIN DU SHUKR ===================== -->
+    <div class="garden-section">
+        <h3>🌱 Le Jardin du Shukr</h3>
+        <p class="garden-subtitle">Associe chaque bienfait à sa bonne catégorie pour faire fleurir ton jardin !</p>
+
+        <div class="garden-story">
+            🌷 Imagine un jardin qui fleurit chaque fois qu'on reconnaît un bienfait d'Allah. <strong>Clique sur un bienfait</strong> (à gauche), puis sur sa <strong>catégorie</strong> (à droite) pour faire pousser une fleur. Remplis tout le jardin d'Alhamdulillah ! 🌸
+        </div>
+
+        <div class="score-chips">
+            <div class="score-chip">🌸 Fleurs : <span id="flowersCount">0</span>/9</div>
+            <div class="score-chip">✨ <span id="feedbackText">Commence à associer !</span></div>
+        </div>
+
+        <div class="garden-progress-wrap">
+            <div class="garden-progress-bar" id="progressBar"></div>
+        </div>
+        <div class="garden-progress-label" id="progressLabel">0 bienfait(s) reconnu(s) sur 9</div>
+
+        <!-- Visual flower garden -->
+        <div class="flower-garden" id="flowerGarden">
+            <!-- Flowers injected by JS -->
+        </div>
+
+        <!-- Matching game -->
+        <div class="match-game">
+            <div class="match-col" id="bienfaitsCol">
+                <div class="match-col-title">🎁 Les bienfaits d'Allah</div>
+                <!-- injected by JS -->
+            </div>
+            <div class="match-col" id="categoriesCol">
+                <div class="match-col-title">🗂️ Les catégories</div>
+                <!-- injected by JS -->
+            </div>
+        </div>
+
+        <div class="game-feedback" id="gameFeedback"></div>
+
+        <button class="btn btn-garden" onclick="resetGame()">🔄 Nouveau jardin</button>
+    </div>
+
+    <div class="fun-facts">
+        <h3>✨ Le savais-tu ?</h3>
+        <ul>
+            <li>Dire <strong>"Alhamdulillah"</strong> après chaque repas remplit ta balance de bonnes actions !</li>
+            <li>Le Prophète se levait la nuit pour prier jusqu'à ce que ses pieds gonflent. On lui demanda pourquoi puisqu'Allah lui avait tout pardonné. Il répondit : <strong>"Ne dois-je pas être un serviteur reconnaissant ?"</strong></li>
+            <li>Sourire est une forme de Shukr — tu remercies Allah pour la joie qu'Il t'a donnée !</li>
+            <li>Quand tu dis <strong>"Alhamdulillah"</strong> après avoir éternué, tu remercies Allah de t'avoir gardé en bonne santé ! 🤧</li>
+        </ul>
+    </div>
+
+    <div class="quiz-section">
+        <h3>🎮 Quiz : As-tu bien compris ?</h3>
+
+        <div class="question-card">
+            <div class="question-text">1. Que signifie "Shukr" en arabe ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 0)">Patience</div>
+                <div class="option" onclick="selectAnswer(this, true, 0)">Gratitude / Remerciement</div>
+                <div class="option" onclick="selectAnswer(this, false, 0)">Générosité</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">2. Que promet Allah à ceux qui sont reconnaissants ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 1)">Il diminue leurs bienfaits</div>
+                <div class="option" onclick="selectAnswer(this, true, 1)">Il augmente Ses bienfaits pour eux</div>
+                <div class="option" onclick="selectAnswer(this, false, 1)">Il ne dit rien à ce sujet</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">3. Comment dit-on "Louange à Allah" en arabe ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 2)">Subhan Allah</div>
+                <div class="option" onclick="selectAnswer(this, false, 2)">Allahu Akbar</div>
+                <div class="option" onclick="selectAnswer(this, true, 2)">Alhamdulillah</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">4. Combien de fois Allah mentionne-t-il le Shukr dans le Coran (environ) ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 3)">5 fois</div>
+                <div class="option" onclick="selectAnswer(this, true, 3)">Plus de 75 fois</div>
+                <div class="option" onclick="selectAnswer(this, false, 3)">20 fois</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">5. Pourquoi le jeûne du Ramadan aide-t-il à pratiquer le Shukr ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 4)">Parce qu'on mange beaucoup</div>
+                <div class="option" onclick="selectAnswer(this, true, 4)">Parce qu'en ressentant la faim, on apprécie mieux chaque nourriture et chaque gorgée d'eau</div>
+                <div class="option" onclick="selectAnswer(this, false, 4)">Parce qu'on dort plus</div>
+            </div>
+        </div>
+
+        <button class="btn" id="submitBtn" onclick="checkAnswers()" disabled>Vérifier mes réponses</button>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+        <p style="color: #8b9584; font-size: 1.1rem;">
+            <strong>Bravo d'avoir terminé le Jour 9 ! 🌟</strong><br>
+            N'oublie pas de dire <strong>Alhamdulillah</strong> chaque jour pour tout !<br>
+            Chaque souffle est un cadeau d'Allah à remercier.<br>
+            Rendez-vous demain pour le Jour 10 !
+        </p>
+    </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="result-modal" id="resultModal">
+    <div class="result-icon" id="resultIcon">🎉</div>
+    <h3 id="resultTitle">Excellent !</h3>
+    <div class="score-display" id="scoreDisplay">Score : 5/5</div>
+    <div class="result-message" id="resultMessage">Masha Allah !</div>
+    <button class="btn" onclick="closeModal()">Continuer</button>
+</div>
+
+<div class="garden-complete-modal" id="gardenModal">
+    <div class="result-icon">🌺</div>
+    <h3>Alhamdulillah !</h3>
+    <div class="garden-flowers-big" id="gardenFlowers">🌸🌼🌺🌻💐🌷🌹🌸🌼</div>
+    <div class="score-display">Ton jardin du Shukr est complet !</div>
+    <div class="result-message">Tu as reconnu tous les bienfaits d'Allah ! Qu'Allah t'accorde encore plus de Ses bienfaits. <strong>Alhamdulillah !</strong> 🌟</div>
+    <button class="btn" onclick="closeGardenModal()">Continuer !</button>
+</div>
+
+<script>
+// ============================================================
+//  GARDEN MATCHING GAME
+// ============================================================
+
+const ALL_PAIRS = [
+    // { bienfait, category, catId, emoji (flower) }
+    { bienfait: '👁️ Mes yeux pour voir',        catId: 'sante',   flower: '🌸' },
+    { bienfait: '👂 Mes oreilles pour entendre', catId: 'sante',   flower: '🌼' },
+    { bienfait: '💧 L\'eau fraîche',             catId: 'nature',  flower: '💐' },
+    { bienfait: '☀️ La chaleur du soleil',       catId: 'nature',  flower: '🌻' },
+    { bienfait: '👨‍👩‍👧 Ma famille qui m\'aime',     catId: 'famille', flower: '🌺' },
+    { bienfait: '🍎 La nourriture chaque jour',  catId: 'nature',  flower: '🌷' },
+    { bienfait: '🏠 Un toit pour me protéger',  catId: 'famille', flower: '🌹' },
+    { bienfait: '📖 Pouvoir apprendre',          catId: 'sagesse', flower: '🌾' },
+    { bienfait: '😊 Le bonheur dans mon cœur',  catId: 'sagesse', flower: '🍀' },
+];
+
+const CATEGORIES = [
+    { id: 'sante',   label: 'Ma santé',      icon: '💪' },
+    { id: 'nature',  label: 'La nature',     icon: '🌿' },
+    { id: 'famille', label: 'Ma famille',    icon: '🏡' },
+    { id: 'sagesse', label: 'Connaissance',  icon: '📚' },
+];
+
+let pairs = [];
+let selectedBienfait = null;
+let matchedCount = 0;
+let errorCount = 0;
+let gameComplete = false;
+
+function shuffle(arr) {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+
+function initGame() {
+    // Pick 9 pairs (all of them)
+    pairs = shuffle(ALL_PAIRS).map((p, i) => ({ ...p, id: i, matched: false }));
+    matchedCount = 0;
+    errorCount = 0;
+    selectedBienfait = null;
+    gameComplete = false;
+
+    renderFlowerGarden();
+    renderBienfaits();
+    renderCategories();
+    updateProgress();
+    document.getElementById('gameFeedback').textContent = '';
+    document.getElementById('feedbackText').textContent = 'Commence à associer !';
+}
+
+function renderFlowerGarden() {
+    const garden = document.getElementById('flowerGarden');
+    garden.innerHTML = '';
+    pairs.forEach((p, i) => {
+        const slot = document.createElement('div');
+        slot.className = 'flower-slot';
+        slot.id = `flower-slot-${i}`;
+        slot.innerHTML = `
+            <span class="flower-emoji" id="flower-emoji-${i}">${p.flower}</span>
+            <div class="flower-stem" id="flower-stem-${i}"></div>
+        `;
+        garden.appendChild(slot);
+    });
+}
+
+function renderBienfaits() {
+    const col = document.getElementById('bienfaitsCol');
+    // Keep the title
+    col.innerHTML = '<div class="match-col-title">🎁 Les bienfaits d\'Allah</div>';
+    pairs.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'bienfait-card';
+        card.id = `bienfait-${p.id}`;
+        card.textContent = p.bienfait;
+        if (p.matched) {
+            card.classList.add('matched');
+            card.innerHTML = '✅ ' + p.bienfait;
+        } else {
+            card.onclick = () => selectBienfait(p.id);
+        }
+        col.appendChild(card);
+    });
+}
+
+function renderCategories() {
+    const col = document.getElementById('categoriesCol');
+    col.innerHTML = '<div class="match-col-title">🗂️ Les catégories</div>';
+    CATEGORIES.forEach(cat => {
+        const card = document.createElement('div');
+        card.className = 'category-card';
+        card.id = `cat-${cat.id}`;
+
+        // Count how many are matched in this category
+        const total = pairs.filter(p => p.catId === cat.id).length;
+        const done = pairs.filter(p => p.catId === cat.id && p.matched).length;
+
+        card.innerHTML = `<span class="category-icon">${cat.icon}</span>${cat.label}${done > 0 ? ` <small>(${done}/${total})</small>` : ''}`;
+
+        if (done === total && total > 0) {
+            card.classList.add('matched');
+        } else {
+            card.onclick = () => selectCategory(cat.id);
+        }
+        col.appendChild(card);
+    });
+}
+
+function selectBienfait(id) {
+    if (gameComplete) return;
+    const pair = pairs.find(p => p.id === id);
+    if (!pair || pair.matched) return;
+
+    // Deselect previous
+    if (selectedBienfait !== null) {
+        document.getElementById(`bienfait-${selectedBienfait}`).classList.remove('selected');
+    }
+
+    if (selectedBienfait === id) {
+        selectedBienfait = null;
+        return;
+    }
+
+    selectedBienfait = id;
+    document.getElementById(`bienfait-${id}`).classList.add('selected');
+
+    // Highlight valid categories
+    CATEGORIES.forEach(cat => {
+        const el = document.getElementById(`cat-${cat.id}`);
+        if (el && !el.classList.contains('matched')) {
+            el.classList.add('highlight');
+        }
+    });
+
+    setFeedback('Maintenant clique sur la bonne catégorie ! 👆', 'white');
+}
+
+function selectCategory(catId) {
+    if (gameComplete || selectedBienfait === null) {
+        if (selectedBienfait === null) {
+            setFeedback('Commence par choisir un bienfait à gauche ! 👈', 'rgba(255,220,100,0.9)');
+        }
+        return;
+    }
+
+    const pair = pairs.find(p => p.id === selectedBienfait);
+    if (!pair) return;
+
+    // Remove highlights
+    CATEGORIES.forEach(cat => {
+        const el = document.getElementById(`cat-${cat.id}`);
+        if (el) el.classList.remove('highlight');
+    });
+
+    if (pair.catId === catId) {
+        // CORRECT!
+        pair.matched = true;
+        matchedCount++;
+
+        // Visual feedback
+        const bienfaitEl = document.getElementById(`bienfait-${pair.id}`);
+        bienfaitEl.classList.remove('selected');
+        bienfaitEl.classList.add('matched');
+        bienfaitEl.innerHTML = '✅ ' + pair.bienfait;
+        bienfaitEl.onclick = null;
+
+        const catEl = document.getElementById(`cat-${catId}`);
+        catEl.classList.add('correct-flash');
+        setTimeout(() => catEl.classList.remove('correct-flash'), 400);
+
+        // Bloom flower
+        bloomFlower(pair.id);
+
+        selectedBienfait = null;
+        updateProgress();
+        renderCategories(); // update counters
+
+        // Update feedback
+        const msgs = [
+            '🌸 Alhamdulillah ! Bonne réponse !',
+            '🌼 Masha Allah ! C\'est exact !',
+            '🌺 Bravo ! Tu connais bien les bienfaits d\'Allah !',
+            '💐 Excellent ! Ton jardin fleurit !',
+            '🌻 Super ! Encore une fleur pour toi !',
+        ];
+        setFeedback(msgs[Math.floor(Math.random() * msgs.length)], 'rgba(150,220,150,0.9)');
+        document.getElementById('feedbackText').textContent = `${matchedCount}/9 bienfaits ! 🌸`;
+
+        if (matchedCount === pairs.length) {
+            gameComplete = true;
+            setTimeout(showGardenComplete, 800);
+        }
+
+    } else {
+        // WRONG
+        errorCount++;
+        const bienfaitEl = document.getElementById(`bienfait-${pair.id}`);
+        bienfaitEl.classList.add('wrong');
+        bienfaitEl.classList.remove('selected');
+        setTimeout(() => {
+            bienfaitEl.classList.remove('wrong');
+            bienfaitEl.classList.add('selected');
+        }, 500);
+
+        const catEl = document.getElementById(`cat-${catId}`);
+        catEl.style.background = 'rgba(220,100,80,0.3)';
+        setTimeout(() => catEl.style.background = '', 500);
+
+        setFeedback('❌ Pas tout à fait… Essaie une autre catégorie !', 'rgba(255,180,150,0.9)');
+    }
+}
+
+function bloomFlower(pairIndex) {
+    const stem = document.getElementById(`flower-stem-${pairIndex}`);
+    const emoji = document.getElementById(`flower-emoji-${pairIndex}`);
+    if (stem) {
+        setTimeout(() => stem.classList.add('grown'), 50);
+    }
+    if (emoji) {
+        setTimeout(() => emoji.classList.add('bloomed'), 250);
+    }
+}
+
+function updateProgress() {
+    const pct = Math.round((matchedCount / pairs.length) * 100);
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progressLabel').textContent = `${matchedCount} bienfait(s) reconnu(s) sur ${pairs.length}`;
+    document.getElementById('flowersCount').textContent = matchedCount;
+}
+
+function setFeedback(msg, bg) {
+    const el = document.getElementById('gameFeedback');
+    el.textContent = msg;
+    el.style.background = bg || 'transparent';
+    el.style.color = 'white';
+}
+
+function showGardenComplete() {
+    spawnPetals();
+    document.getElementById('overlay').classList.add('show');
+    document.getElementById('gardenModal').classList.add('show');
+}
+
+function closeGardenModal() {
+    document.getElementById('gardenModal').classList.remove('show');
+    document.getElementById('overlay').classList.remove('show');
+}
+
+function spawnPetals() {
+    const flowers = ['🌸','🌼','🌺','🌻','💐','🌷'];
+    for (let i = 0; i < 18; i++) {
+        setTimeout(() => {
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            petal.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.top = '-30px';
+            petal.style.fontSize = (1.2 + Math.random() * 1.2) + 'rem';
+            petal.style.animationDuration = (2 + Math.random() * 2) + 's';
+            document.body.appendChild(petal);
+            setTimeout(() => petal.remove(), 4000);
+        }, i * 120);
+    }
+}
+
+function resetGame() {
+    initGame();
+    // Re-bloom none
+}
+
+// Start game
+initGame();
+
+// ============================================================
+//  QUIZ
+// ============================================================
+let answers = [null, null, null, null, null];
+let selectedCount = 0;
+
+function selectAnswer(element, isCorrect, questionIndex) {
+    const options = element.parentElement.querySelectorAll('.option');
+    options.forEach(opt => opt.classList.remove('selected'));
+    element.classList.add('selected');
+    if (answers[questionIndex] === null) selectedCount++;
+    answers[questionIndex] = isCorrect;
+    if (selectedCount === 5) document.getElementById('submitBtn').disabled = false;
+}
+
+function checkAnswers() {
+    let score = 0;
+    const allOptions = document.querySelectorAll('.option.selected');
+    allOptions.forEach((option, index) => {
+        if (answers[index]) { option.classList.add('correct'); score++; }
+        else option.classList.add('incorrect');
+    });
+    document.getElementById('submitBtn').disabled = true;
+    setTimeout(() => showResults(score), 1000);
+}
+
+function showResults(score) {
+    document.getElementById('scoreDisplay').textContent = 'Score : ' + score + '/5';
+    if (score === 5) {
+        document.getElementById('resultIcon').textContent = '🌸';
+        document.getElementById('resultTitle').textContent = 'Alhamdulillah !';
+        document.getElementById('resultMessage').textContent = 'Tu as tout compris sur la gratitude envers Allah ! Qu\'Il t\'accorde encore plus de Ses bienfaits ! 🌟';
+    } else if (score >= 3) {
+        document.getElementById('resultIcon').textContent = '😊';
+        document.getElementById('resultTitle').textContent = 'Très bien !';
+        document.getElementById('resultMessage').textContent = 'Tu connais bien le Shukr ! Continue à remercier Allah chaque jour ! 💪';
+    } else {
+        document.getElementById('resultIcon').textContent = '📚';
+        document.getElementById('resultTitle').textContent = 'Continue tes efforts !';
+        document.getElementById('resultMessage').textContent = 'Relis la leçon sur le Shukr et tu vas mieux comprendre. N\'oublie pas de dire Alhamdulillah ! 🌈';
+    }
+    document.getElementById('overlay').classList.add('show');
+    document.getElementById('resultModal').classList.add('show');
+}
+
+function closeModal() {
+    document.getElementById('resultModal').classList.remove('show');
+    document.getElementById('overlay').classList.remove('show');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jour 10 - La patience (Sabr) 🌙</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@400;600;700&display=swap');
+
+        :root {
+            --sand: #f5e6d3;
+            --sand-dark: #e8d5c4;
+            --green: #8b9584;
+            --green-dark: #5a6b4f;
+            --green-light: #a4b29b;
+            --text: #4a5442;
+            --gold: #c9a84c;
+            --gold-light: #e8c76a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, var(--sand) 0%, var(--sand-dark) 50%, var(--sand) 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #ffffff 0%, #faf8f5 100%);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(139,149,132,0.2);
+            border: 3px solid var(--green);
+        }
+
+        /* HEADER */
+        .header { text-align: center; margin-bottom: 40px; position: relative; }
+
+        .day-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            color: white; padding: 10px 25px; border-radius: 25px;
+            font-size: 1rem; font-weight: 600; margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(139,149,132,0.3);
+        }
+
+        h1 { color: var(--green-dark); font-size: 2.5rem; margin-bottom: 10px; font-family: 'Amiri', serif; }
+
+        .moon-icon {
+            font-size: 3rem;
+            animation: glow 2s ease-in-out infinite;
+            display: block; margin-bottom: 10px;
+        }
+        @keyframes glow {
+            0%,100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(201,168,76,0.4)); }
+            50% { transform: scale(1.1); filter: drop-shadow(0 0 22px rgba(201,168,76,0.8)); }
+        }
+
+        .logo { position: absolute; top: 0; left: 0; width: 120px; height: auto; opacity: 0.9; transition: opacity 0.3s; }
+        .logo:hover { opacity: 1; }
+
+        /* INTRO */
+        .intro-text {
+            background: linear-gradient(135deg, var(--sand), var(--sand-dark));
+            padding: 25px; border-radius: 20px;
+            border-left: 5px solid var(--green);
+            margin: 30px 0; font-size: 1.1rem; line-height: 1.8; color: var(--text);
+        }
+
+        /* STORY CARDS */
+        .story-card {
+            background: white; border-radius: 20px; padding: 25px; margin: 20px 0;
+            border: 2px solid #d4c4b0; transition: all 0.3s ease;
+        }
+        .story-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(139,149,132,0.2); border-color: var(--green); }
+        .story-card h3 { color: var(--green-dark); margin-bottom: 15px; font-size: 1.3rem; }
+        .story-card p { color: #666; line-height: 1.7; font-size: 1.05rem; }
+
+        /* ============================================================
+           GAME SECTION — La Journée de Youssouf
+        ============================================================ */
+        .game-section {
+            background: linear-gradient(160deg, #1a2e3a 0%, #2c4a5a 50%, #1e3a4a 100%);
+            border-radius: 24px;
+            margin: 30px 0;
+            overflow: hidden;
+            position: relative;
+            color: white;
+        }
+
+        /* Sky / scene header */
+        .game-sky {
+            background: linear-gradient(180deg, #0f1e2e 0%, #1a3a5c 60%, #2e6b8a 100%);
+            padding: 24px 30px 0;
+            position: relative;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .game-sky::before {
+            content: '✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦';
+            position: absolute; top: 10px; left: 0; right: 0;
+            font-size: 0.7rem; letter-spacing: 8px;
+            color: rgba(255,255,255,0.3); pointer-events: none;
+        }
+
+        .game-title {
+            font-family: 'Amiri', serif;
+            font-size: 1.6rem;
+            color: #f9d56e;
+            margin-bottom: 4px;
+            position: relative;
+        }
+
+        .game-subtitle {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 16px;
+        }
+
+        /* Sun/moon arc */
+        .time-arc-wrap {
+            position: relative;
+            height: 70px;
+            margin: 0 auto 0;
+            max-width: 340px;
+        }
+
+        .time-arc {
+            width: 100%;
+            height: 70px;
+        }
+
+        /* Sabr bar */
+        .sabr-bar-section {
+            padding: 18px 30px 0;
+            background: rgba(0,0,0,0.2);
+        }
+
+        .sabr-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .sabr-bar-track {
+            background: rgba(255,255,255,0.12);
+            border-radius: 20px;
+            height: 18px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .sabr-bar-fill {
+            height: 100%;
+            border-radius: 20px;
+            background: linear-gradient(90deg, #c9a84c, #f9d56e, #e8c76a);
+            transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1);
+            box-shadow: 0 0 12px rgba(249,213,110,0.5);
+            width: 0%;
+        }
+
+        .sabr-stars {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px 0 0;
+        }
+
+        .sabr-star {
+            font-size: 1.6rem;
+            filter: grayscale(1) brightness(0.5);
+            transition: all 0.4s ease;
+            transform: scale(0.85);
+        }
+
+        .sabr-star.earned {
+            filter: none;
+            transform: scale(1.1);
+            animation: starPop 0.5s cubic-bezier(0.175,0.885,0.32,1.275);
+        }
+
+        @keyframes starPop {
+            0% { transform: scale(0); }
+            60% { transform: scale(1.3); }
+            100% { transform: scale(1.1); }
+        }
+
+        /* Scene card */
+        .scene-card {
+            margin: 18px 22px;
+            background: rgba(255,255,255,0.07);
+            border-radius: 18px;
+            border: 1.5px solid rgba(255,255,255,0.12);
+            overflow: hidden;
+        }
+
+        .scene-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 20px 12px;
+            background: rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .scene-emoji {
+            font-size: 2.8rem;
+            line-height: 1;
+            animation: sceneEnter 0.5s ease;
+        }
+
+        @keyframes sceneEnter {
+            from { transform: scale(0.5) rotate(-15deg); opacity: 0; }
+            to { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+
+        .scene-meta {
+            flex: 1;
+        }
+
+        .scene-time {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #f9d56e;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .scene-situation {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: white;
+            line-height: 1.3;
+        }
+
+        .scene-body {
+            padding: 18px 20px;
+        }
+
+        .scene-story {
+            color: rgba(255,255,255,0.88);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 18px;
+            font-style: italic;
+        }
+
+        .youssouf-says {
+            background: rgba(249,213,110,0.12);
+            border-left: 3px solid #f9d56e;
+            border-radius: 0 10px 10px 0;
+            padding: 10px 14px;
+            margin-bottom: 18px;
+            font-size: 0.95rem;
+            color: #f9d56e;
+        }
+
+        .choices-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 12px;
+        }
+
+        .choices {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .choice-btn {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.18);
+            color: white;
+            border-radius: 14px;
+            padding: 14px 18px;
+            font-size: 0.97rem;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .choice-btn:hover {
+            background: rgba(255,255,255,0.18);
+            border-color: rgba(255,255,255,0.4);
+            transform: translateX(4px);
+        }
+
+        .choice-btn.correct {
+            background: rgba(100,190,100,0.25);
+            border-color: #7fce7f;
+            animation: correctShine 0.5s ease;
+        }
+
+        .choice-btn.wrong {
+            background: rgba(210,90,70,0.25);
+            border-color: #d4705a;
+            animation: wrongShake 0.4s ease;
+        }
+
+        .choice-btn.disabled {
+            opacity: 0.4;
+            cursor: default;
+            pointer-events: none;
+        }
+
+        @keyframes correctShine {
+            0% { box-shadow: 0 0 0 rgba(127,206,127,0); }
+            50% { box-shadow: 0 0 20px rgba(127,206,127,0.5); }
+            100% { box-shadow: 0 0 0 rgba(127,206,127,0); }
+        }
+
+        @keyframes wrongShake {
+            0%,100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
+        }
+
+        .choice-icon {
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        /* Feedback bubble */
+        .feedback-bubble {
+            margin: 0 22px 18px;
+            padding: 16px 20px;
+            border-radius: 16px;
+            font-size: 0.97rem;
+            line-height: 1.6;
+            display: none;
+            animation: fadeSlide 0.4s ease;
+        }
+
+        .feedback-bubble.show { display: block; }
+
+        .feedback-bubble.good {
+            background: rgba(100,190,100,0.15);
+            border: 1.5px solid rgba(127,206,127,0.4);
+            color: #a8e6a8;
+        }
+
+        .feedback-bubble.bad {
+            background: rgba(210,90,70,0.15);
+            border: 1.5px solid rgba(212,112,90,0.4);
+            color: #f0a898;
+        }
+
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .feedback-hadith {
+            margin-top: 8px;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            font-style: italic;
+        }
+
+        /* Next button */
+        .btn-next {
+            display: none;
+            margin: 0 22px 20px;
+            background: linear-gradient(135deg, #c9a84c, #e8c76a);
+            color: #1a2e3a;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 18px rgba(201,168,76,0.35);
+        }
+
+        .btn-next:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(201,168,76,0.5);
+        }
+
+        .btn-next.show { display: block; }
+
+        /* Progress dots */
+        .progress-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            padding: 0 0 20px;
+        }
+
+        .progress-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .progress-dot.active {
+            background: #f9d56e;
+            transform: scale(1.2);
+            box-shadow: 0 0 8px rgba(249,213,110,0.6);
+        }
+
+        .progress-dot.done {
+            background: rgba(127,206,127,0.7);
+        }
+
+        /* Game end */
+        .game-end {
+            display: none;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .game-end.show { display: block; }
+
+        .end-emoji { font-size: 4rem; margin-bottom: 10px; }
+        .end-title { font-family: 'Amiri', serif; font-size: 2rem; color: #f9d56e; margin-bottom: 10px; }
+        .end-message { color: rgba(255,255,255,0.85); font-size: 1.05rem; line-height: 1.7; margin-bottom: 20px; }
+
+        .end-score {
+            background: rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 14px 20px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #f9d56e;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .btn-restart {
+            background: linear-gradient(135deg, #c9a84c, #e8c76a);
+            color: #1a2e3a;
+            border: none;
+            padding: 14px 36px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .btn-restart:hover { transform: translateY(-2px); }
+
+        /* FUN FACTS */
+        .fun-facts {
+            background: linear-gradient(135deg, var(--sand), var(--sand-dark));
+            padding: 25px; border-radius: 20px; margin: 30px 0;
+            border: 2px dashed var(--green);
+        }
+        .fun-facts h3 { color: var(--green-dark); margin-bottom: 15px; text-align: center; }
+        .fun-facts ul { list-style: none; padding: 0; }
+        .fun-facts li { padding: 10px 0; padding-left: 30px; position: relative; color: var(--text); line-height: 1.6; }
+        .fun-facts li:before { content: "⏳"; position: absolute; left: 0; }
+
+        /* QUIZ */
+        .quiz-section {
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            padding: 30px; border-radius: 20px; margin: 30px 0; color: white;
+        }
+        .quiz-section h3 { text-align: center; font-size: 1.5rem; margin-bottom: 25px; }
+
+        .question-card { background: white; border-radius: 15px; padding: 25px; margin: 20px 0; color: var(--text); }
+        .question-text { font-weight: 600; font-size: 1.15rem; margin-bottom: 20px; color: var(--green-dark); }
+        .options { display: grid; grid-template-columns: 1fr; gap: 12px; }
+
+        .option {
+            background: linear-gradient(135deg, var(--sand), var(--sand-dark));
+            padding: 15px 20px; border-radius: 12px;
+            cursor: pointer; transition: all 0.3s ease;
+            border: 2px solid transparent; font-weight: 500;
+        }
+        .option:hover { background: linear-gradient(135deg, var(--sand-dark), #d4c4b0); transform: translateX(5px); }
+        .option.selected { background: linear-gradient(135deg, var(--green), var(--green-light)); color: white; border-color: var(--green-dark); transform: scale(1.02); }
+        .option.correct { background: linear-gradient(135deg, #7fb069, #8fbc77); color: white; border-color: #5a8049; animation: qPulse 0.5s ease; }
+        .option.incorrect { background: linear-gradient(135deg, #d4916c, #c47d5a); color: white; border-color: #a4614a; animation: qShake 0.5s ease; }
+
+        @keyframes qPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+        @keyframes qShake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
+
+        .btn {
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            color: white; border: none; padding: 15px 40px;
+            border-radius: 30px; font-size: 1.1rem; font-weight: 600;
+            cursor: pointer; transition: all 0.3s ease;
+            display: block; margin: 25px auto 0;
+            box-shadow: 0 5px 20px rgba(139,149,132,0.3);
+            font-family: 'Quicksand', sans-serif;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(139,149,132,0.4); }
+        .btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+
+        /* MODALS */
+        .result-modal {
+            position: fixed; top: 50%; left: 50%;
+            transform: translate(-50%,-50%) scale(0);
+            background: white; padding: 40px; border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            z-index: 1001; text-align: center;
+            max-width: 420px; width: 90%;
+            transition: transform 0.3s ease;
+        }
+        .result-modal.show { transform: translate(-50%,-50%) scale(1); }
+        .result-modal h3 { color: var(--green-dark); font-size: 2rem; margin-bottom: 15px; }
+
+        .result-icon { font-size: 4rem; margin-bottom: 15px; animation: bounceIn 0.6s ease; }
+        @keyframes bounceIn { 0%{transform:scale(0);opacity:0} 60%{transform:scale(1.2)} 100%{transform:scale(1);opacity:1} }
+
+        .result-message { color: #666; font-size: 1.05rem; margin: 15px 0; line-height: 1.6; }
+        .score-display { background: linear-gradient(135deg, var(--sand), var(--sand-dark)); padding: 14px; border-radius: 15px; font-size: 1.2rem; font-weight: 600; color: var(--green-dark); margin: 15px 0; }
+
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 999; }
+        .overlay.show { display: block; }
+
+        @media (max-width: 768px) {
+            .logo { width: 80px; top: 5px; left: 5px; }
+            .container { padding: 20px; }
+            h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <img src="logonoir_lespetitesplumes.png" alt="Les petites plumes" class="logo">
+        <div class="day-badge">Jour 10 / 30</div>
+        <span class="moon-icon">⏳</span>
+        <h1>La patience — Sabr</h1>
+        <p style="color: #8b9584; font-size: 1.1rem;">Être patient pendant le jeûne, c'est un cadeau pour Allah !</p>
+    </div>
+
+    <div class="intro-text">
+        <p style="font-weight: 600; margin-bottom: 10px;">🌟 Le Sabr, qu'est-ce que c'est ?</p>
+        <p>Le <strong>Sabr</strong> (الصبر) signifie <strong>patience</strong> en arabe. C'est l'une des vertus les plus importantes en Islam. Allah dit dans le Coran : <em>"Ô vous qui croyez ! Cherchez le secours dans la patience et la prière. Car Allah est avec les patients"</em> <strong>(Coran 2:153)</strong>. Le Ramadan est le mois du Sabr par excellence — chaque heure de jeûne est une école de patience ! 🌙</p>
+    </div>
+
+    <div class="story-section">
+        <div class="story-card">
+            <h3>📿 Le Sabr en Islam</h3>
+            <p>Le mot <strong>Sabr</strong> et ses dérivés apparaissent plus de <strong>90 fois</strong> dans le Coran ! Allah aime tellement les patients qu'Il a dit : <em>"Annonce la bonne nouvelle aux patients, qui, lorsqu'un malheur les touche, disent : Nous sommes à Allah et c'est à Lui que nous retournons"</em> <strong>(Coran 2:155-157)</strong>. La patience, ce n'est pas juste attendre — c'est <strong>tenir bon avec foi</strong>, sans se plaindre, en sachant qu'Allah voit nos efforts. Le Prophète a dit : <em>"Comme c'est étonnant l'affaire du croyant ! Tout ce qui lui arrive est bien pour lui"</em> <strong>(Sahih Muslim 2999)</strong>. 💛</p>
+        </div>
+
+        <div class="story-card">
+            <h3>🌟 Les trois types de Sabr</h3>
+            <p>Les savants nous apprennent qu'il y a <strong>trois formes</strong> de Sabr ! La première est la <strong>patience dans l'obéissance à Allah</strong> — faire ses prières même quand on est fatigué, jeûner même quand on a faim. La deuxième est la <strong>patience face aux épreuves</strong> — ne pas se mettre en colère quand quelque chose nous contrarie. La troisième est la <strong>patience pour éviter ce qu'Allah interdit</strong> — résister à la tentation. Le Ramadan nous entraîne dans ces <strong>trois formes à la fois</strong> ! C'est pour ça qu'on appelle le Ramadan le mois du Sabr. 🌿</p>
+        </div>
+
+        <div class="story-card">
+            <h3>🎁 La récompense du Sabr</h3>
+            <p>Allah promet quelque chose d'extraordinaire aux patients ! Il dit : <em>"Les patients recevront une récompense sans limites"</em> <strong>(Coran 39:10)</strong>. Sans limites ! Imagine une récompense tellement grande qu'on ne peut même pas la compter. Et pour le jeûne spécifiquement, Allah dit dans le Hadith Qudsi : <em>"Le jeûne est pour Moi et c'est Moi qui en récompense"</em> <strong>(Sahih Bukhari 1904)</strong>. Cela veut dire qu'Allah Lui-même, avec toute Sa générosité infinie, récompense personnellement chaque heure de patience pendant le jeûne ! 🌟</p>
+        </div>
+
+        <div class="story-card">
+            <h3>💫 Comment pratiquer le Sabr chaque jour ?</h3>
+            <p>Voici comment être patient chaque jour ! Quand tu as <strong>faim ou soif</strong>, dis : <em>"Je jeûne pour Allah, et Il me récompensera"</em>. Quand quelqu'un te <strong>provoque</strong>, rappelle-toi que le Prophète disait : <em>"Je jeûne, je jeûne"</em> et s'éloignait. Quand tu es <strong>fatigué</strong>, pense à la récompense qui t'attend. Quand tu as envie de <strong>te mettre en colère</strong>, dis <strong>"A'udhu billah"</strong> et respire. Quand quelque chose de <strong>difficile arrive</strong>, dis <strong>"Inna lillahi wa inna ilayhi raji'un"</strong>. Chaque moment de patience est un trésor que tu déposes pour l'Éternité ! ✨</p>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         GAME : La Journée de Youssouf
+    ============================================================ -->
+    <div class="game-section" id="gameSection">
+
+        <div class="game-sky">
+            <div class="game-title">🧒 La Journée de Youssouf</div>
+            <div class="game-subtitle">Guide Youssouf à travers sa journée de jeûne avec patience !</div>
+
+            <!-- Sun arc SVG -->
+            <div class="time-arc-wrap">
+                <svg class="time-arc" viewBox="0 0 340 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Arc path -->
+                    <path d="M 20 65 Q 170 -20 320 65" stroke="rgba(255,255,255,0.12)" stroke-width="2" fill="none" stroke-dasharray="4 4"/>
+                    <!-- Sun marker — animated by JS -->
+                    <circle id="sunMarker" cx="20" cy="65" r="10" fill="#f9d56e" opacity="0.9">
+                        <animate attributeName="opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    <text id="sunLabel" x="20" y="68" text-anchor="middle" font-size="14" fill="#f9d56e">☀️</text>
+                    <!-- Labels -->
+                    <text x="20" y="68" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.4)" dy="18">Suhoor</text>
+                    <text x="170" y="10" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.4)">Midi</text>
+                    <text x="320" y="68" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.4)" dy="18">Iftar</text>
+                </svg>
+            </div>
+        </div>
+
+        <div class="sabr-bar-section">
+            <div class="sabr-label">
+                <span>⏳ Jauge Sabr de Youssouf</span>
+                <span id="sabrPct">0%</span>
+            </div>
+            <div class="sabr-bar-track">
+                <div class="sabr-bar-fill" id="sabrFill"></div>
+            </div>
+            <div class="sabr-stars" id="sabrStars">
+                <span class="sabr-star" id="star1">⭐</span>
+                <span class="sabr-star" id="star2">⭐</span>
+                <span class="sabr-star" id="star3">⭐</span>
+                <span class="sabr-star" id="star4">⭐</span>
+                <span class="sabr-star" id="star5">⭐</span>
+            </div>
+        </div>
+
+        <!-- Progress dots -->
+        <div class="progress-dots" id="progressDots"></div>
+
+        <!-- Scene card -->
+        <div class="scene-card" id="sceneCard">
+            <div class="scene-header">
+                <div class="scene-emoji" id="sceneEmoji">🌅</div>
+                <div class="scene-meta">
+                    <div class="scene-time" id="sceneTime">5h00 - Suhoor</div>
+                    <div class="scene-situation" id="sceneSituation">La journée commence…</div>
+                </div>
+            </div>
+            <div class="scene-body">
+                <div class="scene-story" id="sceneStory">Chargement…</div>
+                <div class="youssouf-says" id="youssoufSays" style="display:none"></div>
+                <div class="choices-title">Que doit faire Youssouf ?</div>
+                <div class="choices" id="choicesContainer"></div>
+            </div>
+        </div>
+
+        <!-- Feedback -->
+        <div class="feedback-bubble" id="feedbackBubble">
+            <span id="feedbackText"></span>
+            <div class="feedback-hadith" id="feedbackHadith"></div>
+        </div>
+
+        <!-- Next button -->
+        <button class="btn-next" id="btnNext" onclick="nextScene()">Moment suivant ➜</button>
+
+        <!-- Game end -->
+        <div class="game-end" id="gameEnd">
+            <div class="end-emoji" id="endEmoji">🌙</div>
+            <div class="end-title" id="endTitle">Masha Allah !</div>
+            <div class="end-score" id="endScore"></div>
+            <div class="end-message" id="endMessage"></div>
+            <button class="btn-restart" onclick="initGame()">🔄 Rejouer</button>
+        </div>
+
+    </div>
+    <!-- end game-section -->
+
+    <div class="fun-facts">
+        <h3>✨ Le savais-tu ?</h3>
+        <ul>
+            <li>Le Prophète disait quand quelqu'un l'insultait pendant qu'il jeûnait : <strong>"Je suis en état de jeûne !"</strong> pour se rappeler de rester patient.</li>
+            <li>La patience (Sabr) est mentionnée dans le Coran plus de <strong>90 fois</strong> — c'est une des vertus les plus répétées !</li>
+            <li>Même <strong>la douleur d'une épine</strong> qui pique un croyant patient efface des péchés, selon le Prophète (Sahih Bukhari) !</li>
+            <li>Le Ramadan s'appelle aussi <strong>Shahr al-Sabr</strong> — le Mois de la Patience — car tout en lui nous entraîne à patienter.</li>
+        </ul>
+    </div>
+
+    <div class="quiz-section">
+        <h3>🎮 Quiz : As-tu bien compris ?</h3>
+
+        <div class="question-card">
+            <div class="question-text">1. Que signifie "Sabr" en arabe ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 0)">Générosité</div>
+                <div class="option" onclick="selectAnswer(this, true, 0)">Patience</div>
+                <div class="option" onclick="selectAnswer(this, false, 0)">Gratitude</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">2. Que dit Allah sur la récompense des patients ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 1)">Ils auront une petite récompense</div>
+                <div class="option" onclick="selectAnswer(this, true, 1)">Ils recevront une récompense sans limites</div>
+                <div class="option" onclick="selectAnswer(this, false, 1)">Ils seront récompensés comme les autres</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">3. Combien y a-t-il de types de Sabr ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 2)">Un seul</div>
+                <div class="option" onclick="selectAnswer(this, false, 2)">Deux</div>
+                <div class="option" onclick="selectAnswer(this, true, 2)">Trois</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">4. Que disait le Prophète quand quelqu'un l'insultait pendant qu'il jeûnait ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 3)">Il répondait avec colère</div>
+                <div class="option" onclick="selectAnswer(this, true, 3)">"Je suis en état de jeûne !" et s'éloignait</div>
+                <div class="option" onclick="selectAnswer(this, false, 3)">Il ignorait sans rien dire</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">5. Quel autre nom donne-t-on au Ramadan à cause du Sabr ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 4)">Shahr al-Quran</div>
+                <div class="option" onclick="selectAnswer(this, true, 4)">Shahr al-Sabr (le Mois de la Patience)</div>
+                <div class="option" onclick="selectAnswer(this, false, 4)">Shahr al-Karam</div>
+            </div>
+        </div>
+
+        <button class="btn" id="submitBtn" onclick="checkAnswers()" disabled>Vérifier mes réponses</button>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+        <p style="color: #8b9584; font-size: 1.1rem;">
+            <strong>Bravo d'avoir terminé le Jour 10 ! 🌟</strong><br>
+            N'oublie pas : chaque moment de patience est un trésor pour l'Éternité !<br>
+            Dis <strong>"Alhamdoulillah"</strong> et tiens bon ! 💪<br>
+            Rendez-vous demain pour le Jour 11 !
+        </p>
+    </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+<div class="result-modal" id="resultModal">
+    <div class="result-icon" id="resultIcon">🎉</div>
+    <h3 id="resultTitle">Excellent !</h3>
+    <div class="score-display" id="scoreDisplay">Score : 5/5</div>
+    <div class="result-message" id="resultMessage">Masha Allah !</div>
+    <button class="btn" onclick="closeModal()">Continuer</button>
+</div>
+
+<script>
+// ============================================================
+//  GAME DATA — 6 scenes, each with 2-3 choices
+// ============================================================
+const SCENES = [
+    {
+        time: '4h30 — Suhoor',
+        emoji: '🌅',
+        situation: 'L\'heure du Suhoor',
+        story: 'Youssouf entend son réveil avant l\'aube. Il fait encore nuit dehors et il a sommeil. Sa maman l\'appelle pour manger avant le début du jeûne. Il a vraiment envie de se rendormir…',
+        youssoufThinks: '💭 "C\'est si tôt… je pourrais sauter le Suhoor…"',
+        choices: [
+            { text: '😴 Se rendormir et sauter le Suhoor', correct: false, icon: '❌' },
+            { text: '🤲 Se lever, faire une courte prière et aller manger', correct: true, icon: '✅' },
+            { text: '📱 Rester au lit à jouer sur la tablette', correct: false, icon: '❌' },
+        ],
+        goodFeedback: '✨ Bravo ! Le Prophète a dit : "Le Suhoor est une bénédiction, ne le laissez pas tomber" (Sahih Bukhari 1923). Se lever tôt avec patience, c\'est déjà du Sabr !',
+        badFeedback: '🌙 Se lever tôt pour le Suhoor est une Sunna ! Le Suhoor donne de l\'énergie et des bénédictions pour toute la journée de jeûne.',
+        goodHadith: '',
+        sunPos: 0.05,
+    },
+    {
+        time: '10h00 — Matin',
+        emoji: '🏫',
+        situation: 'À l\'école — La tentation',
+        story: 'Youssouf est à l\'école. Son ami Karim sort un beau gâteau au chocolat et lui propose d\'en prendre un morceau. "T\'inquiète, personne ne te verra !" dit Karim. Youssouf sent l\'odeur du chocolat…',
+        youssoufThinks: '💭 "Ça sent tellement bon… et j\'ai si faim…"',
+        choices: [
+            { text: '🎂 Prendre un morceau en cachette', correct: false, icon: '❌' },
+            { text: '🤲 Refuser poliment et se souvenir qu\'Allah voit tout', correct: true, icon: '✅' },
+            { text: '😤 Se mettre en colère contre Karim', correct: false, icon: '❌' },
+        ],
+        goodFeedback: '⭐ Excellent ! Allah dit : "Il laisse sa nourriture, sa boisson et ses désirs pour Moi" (Sahih Bukhari 1894). Youssouf sait qu\'Allah voit même ce que personne d\'autre ne voit !',
+        badFeedback: '🌟 Le jeûne, c\'est résister même quand personne ne regarde ! Allah voit tout. La récompense de la patience sera immense.',
+        sunPos: 0.3,
+    },
+    {
+        time: '12h30 — Midi',
+        emoji: '😤',
+        situation: 'La dispute dans la cour',
+        story: 'Pendant la récréation, Omar bouscule Youssouf par accident et fait tomber son livre. Des enfants rigolent. Youssouf sent la colère monter dans sa poitrine. Il a vraiment envie de crier…',
+        youssoufThinks: '💭 "Je suis en colère ET j\'ai faim. C\'est trop dur !"',
+        choices: [
+            { text: '😠 Crier et pousser Omar en retour', correct: false, icon: '❌' },
+            { text: '💨 Prendre une grande respiration, dire "A\'udhu billah" et pardonner', correct: true, icon: '✅' },
+            { text: '😭 Pleurer et se plaindre toute la journée', correct: false, icon: '❌' },
+        ],
+        goodFeedback: '🌟 Parfait ! Le Prophète a dit : "Le fort n\'est pas celui qui lutte, mais celui qui se maîtrise dans la colère" (Sahih Bukhari 6114). La vraie force, c\'est le Sabr !',
+        badFeedback: '💛 La patience dans la colère est l\'un des types les plus importants du Sabr ! Respirer et dire "A\'udhu billah" aide à calmer la colère.',
+        sunPos: 0.5,
+    },
+    {
+        time: '15h00 — Après-midi',
+        emoji: '😔',
+        situation: 'La fatigue et le doute',
+        story: 'Youssouf est fatigué. Il lui reste encore des heures avant l\'Iftar. Il pense : "Est-ce que ça vaut vraiment la peine ? Personne ne voit mes efforts de toute façon…"',
+        youssoufThinks: '💭 "Encore si longtemps… je suis épuisé…"',
+        choices: [
+            { text: '😤 Abandonner et se dire que ça ne sert à rien', correct: false, icon: '❌' },
+            { text: '📖 Lire une Sourate courte pour se reconnecter à Allah', correct: true, icon: '✅' },
+            { text: '📱 Regarder des vidéos pour "faire passer le temps"', correct: false, icon: '❌' },
+        ],
+        goodFeedback: '✨ Bravo ! "Certes, Allah est avec les patients" (Coran 2:153). Quand on se tourne vers Allah dans les moments difficiles, le Sabr devient plus léger !',
+        badFeedback: '🌿 Lire le Coran pendant les moments de fatigue est un remède pour le cœur. "Nous avons fait descendre du Coran ce qui est une guérison" (Coran 17:82).',
+        sunPos: 0.7,
+    },
+    {
+        time: '17h30 — Fin d\'après-midi',
+        emoji: '🏠',
+        situation: 'Aider à la maison',
+        story: 'Youssouf rentre chez lui épuisé. Sa maman prépare l\'Iftar et a besoin d\'aide pour mettre la table. Youssouf est tellement fatigué qu\'il n\'a qu\'une envie : s\'allonger.',
+        youssoufThinks: '💭 "Je jeûne déjà, c\'est assez non ?"',
+        choices: [
+            { text: '🛋️ S\'allonger et dire "Je suis fatigué, je jeûne !"', correct: false, icon: '❌' },
+            { text: '🏠 Aider sa maman malgré la fatigue avec le sourire', correct: true, icon: '✅' },
+            { text: '😒 Aider en se plaignant tout le temps', correct: false, icon: '❌' },
+        ],
+        goodFeedback: '💛 Magnifique ! Aider sa maman avec patience est une double récompense : Sabr ET bonté envers les parents ! Le Prophète a dit : "Le paradis est sous les pieds des mères."',
+        badFeedback: '🌸 Le Sabr, c\'est aussi être patient avec sa famille ! Aider sa maman pendant le jeûne est une bonne action qui compte double.',
+        sunPos: 0.88,
+    },
+    {
+        time: '19h45 — Iftar !',
+        emoji: '🌙',
+        situation: 'Le moment de l\'Iftar',
+        story: 'L\'appel à la prière (Adhan) retentit enfin ! Devant lui : une datte, un verre d\'eau, et un magnifique repas préparé avec amour. Que doit faire Youssouf en premier ?',
+        youssoufThinks: '💭 "Enfin ! Mais par quoi commencer ?"',
+        choices: [
+            { text: '🍽️ Se jeter immédiatement sur la nourriture', correct: false, icon: '❌' },
+            { text: '🤲 Dire "Bismillah", rompre avec une datte et remercier Allah', correct: true, icon: '✅' },
+            { text: '📱 Prendre une photo pour les réseaux avant de manger', correct: false, icon: '❌' },
+        ],
+        goodFeedback: '🌙✨ Masha Allah ! Le Prophète rompait toujours son jeûne avec une datte et disait : "La soif est partie, les veines sont hydratées, et la récompense est assurée, si Allah le veut." Youssouf a tenu toute la journée avec Sabr !',
+        badFeedback: '🌟 Rompre le jeûne avec Bismillah et une datte est la Sunna du Prophète ! Et remercier Allah après une journée de patience, c\'est le plus beau des Shukar.',
+        sunPos: 1.0,
+    },
+];
+
+// ============================================================
+//  GAME STATE
+// ============================================================
+let currentScene = 0;
+let sabrPoints = 0;
+let maxSabr = SCENES.length;
+let answered = false;
+
+function initGame() {
+    currentScene = 0;
+    sabrPoints = 0;
+    answered = false;
+
+    // Reset UI
+    document.getElementById('sabrFill').style.width = '0%';
+    document.getElementById('sabrPct').textContent = '0%';
+    for (let i = 1; i <= 5; i++) {
+        document.getElementById('star' + i).classList.remove('earned');
+    }
+    document.getElementById('gameEnd').classList.remove('show');
+    document.getElementById('sceneCard').style.display = '';
+
+    buildProgressDots();
+    renderScene();
+}
+
+function buildProgressDots() {
+    const dots = document.getElementById('progressDots');
+    dots.innerHTML = '';
+    SCENES.forEach((_, i) => {
+        const d = document.createElement('div');
+        d.className = 'progress-dot' + (i === 0 ? ' active' : '');
+        d.id = `dot-${i}`;
+        dots.appendChild(d);
+    });
+}
+
+function renderScene() {
+    const s = SCENES[currentScene];
+    answered = false;
+
+    // Update sun position along arc
+    updateSun(s.sunPos);
+
+    // Scene header
+    document.getElementById('sceneEmoji').textContent = s.emoji;
+    document.getElementById('sceneTime').textContent = s.time;
+    document.getElementById('sceneSituation').textContent = s.situation;
+    document.getElementById('sceneStory').textContent = s.story;
+
+    const ysEl = document.getElementById('youssefSays');
+    if (s.youssefThinks) {
+        ysEl.textContent = s.youssefThinks;
+        ysEl.style.display = '';
+    } else {
+        ysEl.style.display = 'none';
+    }
+
+    // Choices
+    const container = document.getElementById('choicesContainer');
+    container.innerHTML = '';
+    s.choices.forEach((c, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'choice-btn';
+        btn.innerHTML = `<span class="choice-icon">${c.icon}</span>${c.text}`;
+        btn.onclick = () => makeChoice(i, c.correct);
+        container.appendChild(btn);
+    });
+
+    // Hide feedback & next btn
+    document.getElementById('feedbackBubble').classList.remove('show');
+    const btnNext = document.getElementById('btnNext');
+    btnNext.classList.remove('show');
+    btnNext.textContent = currentScene < SCENES.length - 1 ? 'Moment suivant ➜' : 'Voir le résultat 🌙';
+
+    // Progress dots
+    for (let i = 0; i < SCENES.length; i++) {
+        const d = document.getElementById(`dot-${i}`);
+        if (d) {
+            d.className = 'progress-dot' + (i < currentScene ? ' done' : i === currentScene ? ' active' : '');
+        }
+    }
+
+    // Animate scene card
+    const card = document.getElementById('sceneCard');
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(12px)';
+    setTimeout(() => {
+        card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+    }, 20);
+}
+
+function updateSun(pos) {
+    // Quadratic bezier: P(t) = (1-t)²P0 + 2t(1-t)P1 + t²P2
+    // P0=(20,65), P1=(170,-20), P2=(320,65)
+    const t = Math.max(0, Math.min(1, pos));
+    const x = (1-t)*(1-t)*20 + 2*t*(1-t)*170 + t*t*320;
+    const y = (1-t)*(1-t)*65 + 2*t*(1-t)*(-20) + t*t*65;
+
+    const marker = document.getElementById('sunMarker');
+    const label = document.getElementById('sunLabel');
+    if (marker) { marker.setAttribute('cx', x); marker.setAttribute('cy', y); }
+    if (label) { label.setAttribute('x', x); label.setAttribute('y', y); }
+}
+
+function makeChoice(idx, isCorrect) {
+    if (answered) return;
+    answered = true;
+
+    const btns = document.querySelectorAll('.choice-btn');
+    btns.forEach((b, i) => {
+        b.classList.add('disabled');
+        if (i === idx) {
+            b.classList.add(isCorrect ? 'correct' : 'wrong');
+        }
+        // Also reveal the correct one
+        const c = SCENES[currentScene].choices[i];
+        if (c.correct && i !== idx) {
+            setTimeout(() => b.classList.add('correct'), 500);
+        }
+    });
+
+    const s = SCENES[currentScene];
+    const fb = document.getElementById('feedbackBubble');
+    document.getElementById('feedbackText').textContent = isCorrect ? s.goodFeedback : s.badFeedback;
+    document.getElementById('feedbackHadith').textContent = '';
+    fb.className = 'feedback-bubble show ' + (isCorrect ? 'good' : 'bad');
+
+    if (isCorrect) {
+        sabrPoints++;
+        updateSabrBar();
+    }
+
+    document.getElementById('btnNext').classList.add('show');
+}
+
+function updateSabrBar() {
+    const pct = Math.round((sabrPoints / maxSabr) * 100);
+    document.getElementById('sabrFill').style.width = pct + '%';
+    document.getElementById('sabrPct').textContent = pct + '%';
+
+    // Stars: earn 1 star per 1-2 correct answers
+    const thresholds = [1, 2, 3, 4, 5, 6];
+    for (let i = 0; i < 5; i++) {
+        if (sabrPoints >= Math.ceil((i + 1) * maxSabr / 5)) {
+            const star = document.getElementById('star' + (i + 1));
+            if (!star.classList.contains('earned')) {
+                setTimeout(() => star.classList.add('earned'), 300 * i);
+            }
+        }
+    }
+}
+
+function nextScene() {
+    currentScene++;
+    if (currentScene >= SCENES.length) {
+        showGameEnd();
+    } else {
+        renderScene();
+        // scroll to game
+        document.getElementById('gameSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
+function showGameEnd() {
+    document.getElementById('sceneCard').style.display = 'none';
+    document.getElementById('feedbackBubble').classList.remove('show');
+    document.getElementById('btnNext').classList.remove('show');
+
+    const end = document.getElementById('gameEnd');
+    end.classList.add('show');
+
+    const pct = Math.round((sabrPoints / maxSabr) * 100);
+    document.getElementById('endScore').textContent = `⏳ Sabr : ${sabrPoints}/${maxSabr} bons choix • ${pct}%`;
+
+    let emoji, title, msg;
+    if (sabrPoints === maxSabr) {
+        emoji = '🌙'; title = 'Masha Allah Youssef !';
+        msg = 'Youssef a traversé toute sa journée de jeûne avec patience et sagesse ! Qu\'Allah accepte son jeûne et lui accorde une récompense sans limites. Tu mérites toutes les étoiles du Sabr ! ⭐⭐⭐⭐⭐';
+    } else if (sabrPoints >= 4) {
+        emoji = '✨'; title = 'Très bien !';
+        msg = `Youssef a fait preuve de beaucoup de Sabr ! ${maxSabr - sabrPoints} moment(s) ont été difficiles, mais Allah voit tous ses efforts. Continue à pratiquer la patience chaque jour ! 💪`;
+    } else if (sabrPoints >= 2) {
+        emoji = '💛'; title = 'Bon début !';
+        msg = `Le Sabr s'apprend avec de la pratique ! Youssef a réussi ${sabrPoints} moments de patience. Rejoue pour aider Youssef à mieux traverser sa journée de jeûne ! 🌿`;
+    } else {
+        emoji = '📚'; title = 'On peut faire mieux !';
+        msg = 'Le Sabr, ça s\'apprend ! Relis la leçon sur la patience et rejoue pour aider Youssef à traverser sa journée avec sagesse. Chaque effort compte ! 🌈';
+    }
+
+    document.getElementById('endEmoji').textContent = emoji;
+    document.getElementById('endTitle').textContent = title;
+    document.getElementById('endMessage').textContent = msg;
+
+    // Dots — all done
+    for (let i = 0; i < SCENES.length; i++) {
+        const d = document.getElementById(`dot-${i}`);
+        if (d) d.className = 'progress-dot done';
+    }
+
+    document.getElementById('gameSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Start
+initGame();
+
+// ============================================================
+//  QUIZ
+// ============================================================
+let answers = [null, null, null, null, null];
+let selectedCount = 0;
+
+function selectAnswer(element, isCorrect, questionIndex) {
+    const options = element.parentElement.querySelectorAll('.option');
+    options.forEach(opt => opt.classList.remove('selected'));
+    element.classList.add('selected');
+    if (answers[questionIndex] === null) selectedCount++;
+    answers[questionIndex] = isCorrect;
+    if (selectedCount === 5) document.getElementById('submitBtn').disabled = false;
+}
+
+function checkAnswers() {
+    let score = 0;
+    const allOptions = document.querySelectorAll('.option.selected');
+    allOptions.forEach((option, index) => {
+        if (answers[index]) { option.classList.add('correct'); score++; }
+        else option.classList.add('incorrect');
+    });
+    document.getElementById('submitBtn').disabled = true;
+    setTimeout(() => showResults(score), 1000);
+}
+
+function showResults(score) {
+    document.getElementById('scoreDisplay').textContent = 'Score : ' + score + '/5';
+    if (score === 5) {
+        document.getElementById('resultIcon').textContent = '⏳';
+        document.getElementById('resultTitle').textContent = 'Alhamdoulillah !';
+        document.getElementById('resultMessage').textContent = 'Tu as tout compris sur le Sabr ! Qu\'Allah te rende patient comme le Prophète ! 🌟';
+    } else if (score >= 3) {
+        document.getElementById('resultIcon').textContent = '😊';
+        document.getElementById('resultTitle').textContent = 'Très bien !';
+        document.getElementById('resultMessage').textContent = 'Tu connais bien la patience en Islam ! Continue à pratiquer le Sabr chaque jour ! 💪';
+    } else {
+        document.getElementById('resultIcon').textContent = '📚';
+        document.getElementById('resultTitle').textContent = 'Continue tes efforts !';
+        document.getElementById('resultMessage').textContent = 'Relis la leçon sur le Sabr et tu vas mieux comprendre. La patience s\'apprend ! 🌈';
+    }
+    document.getElementById('overlay').classList.add('show');
+    document.getElementById('resultModal').classList.add('show');
+}
+
+function closeModal() {
+    document.getElementById('resultModal').classList.remove('show');
+    document.getElementById('overlay').classList.remove('show');
+}
+</script>
+</body>
+</html>
