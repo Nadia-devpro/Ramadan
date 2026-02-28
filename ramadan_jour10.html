@@ -758,7 +758,7 @@ const SCENES = [
             { text: '🤲 Se lever, faire une courte prière et aller manger', correct: true, icon: '🌅' },
             { text: '📱 Rester au lit à jouer sur la tablette', correct: false, icon: '💤' },
         ],
-        goodFeedback: '✨ Bravo ! Le Prophète a dit : "Le Suhoor est une bénédiction, ne le laissez pas tomber" (Sahih Bukhari 1923). Se lever tôt avec patience, c\'est déjà du Sabr !',
+        goodFeedback: '✨ Bravo ! Le Prophète a dit : " Faites le repas qui précède le point du jour , car une bénédiction est attachée a ce repas ." (Sahih Bukhari 1923). Se lever tôt avec patience, c\'est déjà du Sabr !',
         badFeedback: '🌙 Se lever tôt pour le Suhoor est une Sunna ! Le Suhoor donne de l\'énergie et des bénédictions pour toute la journée de jeûne.',
         goodHadith: '',
         sunPos: 0.05,
@@ -767,14 +767,14 @@ const SCENES = [
         time: '10h00 — Matin',
         emoji: '🏫',
         situation: 'À l\'école — La tentation',
-        story: 'Youssef est à l\'école. Son ami Karim sort un beau gâteau au chocolat et lui propose d\'en prendre un morceau. "T\'inquiète, personne ne te verra !" dit Karim. Youssef sent l\'odeur du chocolat…',
-        youssefThinks: '💭 "Ça sent tellement bon… et j\'ai si faim…"',
+        story: 'Youssouf est à l\'école. Son ami Karim sort un beau gâteau au chocolat et lui propose d\'en prendre un morceau. "T\'inquiète, personne ne te verra !" dit Karim. Youssouf sent l\'odeur du chocolat…',
+        youssoufThinks: '💭 "Ça sent tellement bon… et j\'ai si faim…"',
         choices: [
             { text: '🎂 Prendre un morceau en cachette', correct: false, icon: '🍰' },
             { text: '🤲 Refuser poliment et se souvenir qu\'Allah voit tout', correct: true, icon: '🙏' },
             { text: '😤 Se mettre en colère contre Karim', correct: false, icon: '😠' },
         ],
-        goodFeedback: '⭐ Excellent ! Allah dit : "Il laisse sa nourriture, sa boisson et ses désirs pour Moi" (Sahih Bukhari 1894). Youssef sait qu\'Allah voit même ce que personne d\'autre ne voit !',
+        goodFeedback: '⭐ Excellent ! Allah dit : "Il laisse sa nourriture, sa boisson et ses désirs pour Moi" (Sahih Bukhari 1894). Youssouf sait qu\'Allah voit même ce que personne d\'autre ne voit !',
         badFeedback: '🌟 Le jeûne, c\'est résister même quand personne ne regarde ! Allah voit tout. La récompense de la patience sera immense.',
         sunPos: 0.3,
     },
@@ -782,8 +782,8 @@ const SCENES = [
         time: '12h30 — Midi',
         emoji: '😤',
         situation: 'La dispute dans la cour',
-        story: 'Pendant la récréation, Omar bouscule Youssef par accident et fait tomber son livre. Des enfants rigolent. Youssef sent la colère monter dans sa poitrine. Il a vraiment envie de crier…',
-        youssefThinks: '💭 "Je suis en colère ET j\'ai faim. C\'est trop dur !"',
+        story: 'Pendant la récréation, Omar bouscule Youssouf par accident et fait tomber son livre. Des enfants rigolent. Youssouf sent la colère monter dans sa poitrine. Il a vraiment envie de crier…',
+        youssoufThinks: '💭 "Je suis en colère ET j\'ai faim. C\'est trop dur !"',
         choices: [
             { text: '😠 Crier et pousser Omar en retour', correct: false, icon: '💢' },
             { text: '💨 Prendre une grande respiration, dire "A\'udhu billah" et pardonner', correct: true, icon: '🌬️' },
@@ -797,8 +797,8 @@ const SCENES = [
         time: '15h00 — Après-midi',
         emoji: '😔',
         situation: 'La fatigue et le doute',
-        story: 'Youssef est fatigué. Il lui reste encore des heures avant l\'Iftar. Il pense : "Est-ce que ça vaut vraiment la peine ? Personne ne voit mes efforts de toute façon…"',
-        youssefThinks: '💭 "Encore si longtemps… je suis épuisé…"',
+        story: 'Youssouf est fatigué. Il lui reste encore des heures avant l\'Iftar. Il pense : "Est-ce que ça vaut vraiment la peine ? Personne ne voit mes efforts de toute façon…"',
+        youssoufThinks: '💭 "Encore si longtemps… je suis épuisé…"',
         choices: [
             { text: '😤 Abandonner et se dire que ça ne sert à rien', correct: false, icon: '😔' },
             { text: '📖 Lire une Sourate courte pour se reconnecter à Allah', correct: true, icon: '📚' },
@@ -812,14 +812,22 @@ const SCENES = [
         time: '17h30 — Fin d\'après-midi',
         emoji: '🏠',
         situation: 'Aider à la maison',
-        story: 'Youssef rentre chez lui épuisé. Sa maman prépare l\'Iftar et a besoin d\'aide pour mettre la table. Youssef est tellement fatigué qu\'il n\'a qu\'une envie : s\'allonger.',
-        youssefThinks: '💭 "Je jeûne déjà, c\'est assez non ?"',
+        story: 'Youssouf rentre chez lui. Sa maman prépare l\'Iftar et a besoin d\'aide pour mettre la table. Youssouf n\'a qu\'une envie : s\'allonger.',
+        youssoufThinks: '💭 "Je jeûne déjà, c\'est assez non ?"',
         choices: [
             { text: '🛋️ S\'allonger et dire "Je suis fatigué, je jeûne !"', correct: false, icon: '😴' },
             { text: '🏠 Aider sa maman malgré la fatigue avec le sourire', correct: true, icon: '💪' },
             { text: '😒 Aider en se plaignant tout le temps', correct: false, icon: '😑' },
         ],
-        goodFeedback: '💛 Magnifique ! Aider sa maman avec patience est une double récompense : Sabr ET bonté envers les parents ! Le Prophète a dit : "Le paradis est sous les pieds des mères."',
+        goodFeedback: '💛 Magnifique ! Aider sa maman avec patience est une double récompense : Sabr ET bonté envers les parents ! Un homme vint chez le Messager d'Allah (paix et bénédictions d'Allah sur lui) et lui dit : «Ô Messager d'Allah ! Quel est celui qui mérite le plus que je lui tienne compagnie ?»
+Il dit : « Ta mère. »
+« Et qui encore ? »
+Il dit : « Ta mère. »
+Il dit : « Et qui encore ? »
+Il dit : « Ta mère. »
+Il dit : « Et qui encore ? »
+Il dit : « Ton père. »
+[ Al Boukhârî et Mouslim]
         badFeedback: '🌸 Le Sabr, c\'est aussi être patient avec sa famille ! Aider sa maman pendant le jeûne est une bonne action qui compte double.',
         sunPos: 0.88,
     },
@@ -827,14 +835,14 @@ const SCENES = [
         time: '19h45 — Iftar !',
         emoji: '🌙',
         situation: 'Le moment de l\'Iftar',
-        story: 'L\'appel à la prière (Adhan) retentit enfin ! Devant lui : une datte, un verre d\'eau, et un magnifique repas préparé avec amour. Que doit faire Youssef en premier ?',
-        youssefThinks: '💭 "Enfin ! Mais par quoi commencer ?"',
+        story: 'L\'appel à la prière (Adhan) retentit enfin ! Devant lui : une datte, un verre d\'eau, et un magnifique repas préparé avec amour. Que doit faire Youssouf en premier ?',
+        youssoufThinks: '💭 "Enfin ! Mais par quoi commencer ?"',
         choices: [
             { text: '🍽️ Se jeter immédiatement sur la nourriture', correct: false, icon: '🍴' },
             { text: '🤲 Dire "Bismillah", rompre avec une datte et remercier Allah', correct: true, icon: '🌙' },
             { text: '📱 Prendre une photo pour les réseaux avant de manger', correct: false, icon: '📸' },
         ],
-        goodFeedback: '🌙✨ Masha Allah ! Le Prophète rompait toujours son jeûne avec une datte et disait : "La soif est partie, les veines sont hydratées, et la récompense est assurée, si Allah le veut." Youssef a tenu toute la journée avec Sabr !',
+        goodFeedback: '🌙✨ Masha Allah ! Le Prophète rompait toujours son jeûne avec une datte et disait : "La soif est partie, les veines sont hydratées, et la récompense est assurée, si Allah le veut." Youssouf a tenu toute la journée avec Sabr !',
         badFeedback: '🌟 Rompre le jeûne avec Bismillah et une datte est la Sunna du Prophète ! Et remercier Allah après une journée de patience, c\'est le plus beau des Shukar.',
         sunPos: 1.0,
     },
@@ -890,9 +898,9 @@ function renderScene() {
     document.getElementById('sceneSituation').textContent = s.situation;
     document.getElementById('sceneStory').textContent = s.story;
 
-    const ysEl = document.getElementById('youssefSays');
-    if (s.youssefThinks) {
-        ysEl.textContent = s.youssefThinks;
+    const ysEl = document.getElementById('youssoufSays');
+    if (s.youssoufThinks) {
+        ysEl.textContent = s.youssoufThinks;
         ysEl.style.display = '';
     } else {
         ysEl.style.display = 'none';
@@ -1019,17 +1027,17 @@ function showGameEnd() {
 
     let emoji, title, msg;
     if (sabrPoints === maxSabr) {
-        emoji = '🌙'; title = 'Masha Allah Youssef !';
-        msg = 'Youssef a traversé toute sa journée de jeûne avec patience et sagesse ! Qu\'Allah accepte son jeûne et lui accorde une récompense sans limites. Tu mérites toutes les étoiles du Sabr ! ⭐⭐⭐⭐⭐';
+        emoji = '🌙'; title = 'Masha Allah Youssouf !';
+        msg = 'Youssouf a traversé toute sa journée de jeûne avec patience et sagesse ! Qu\'Allah accepte son jeûne et lui accorde une récompense sans limites. Tu mérites toutes les étoiles du Sabr ! ⭐⭐⭐⭐⭐';
     } else if (sabrPoints >= 4) {
         emoji = '✨'; title = 'Très bien !';
-        msg = `Youssef a fait preuve de beaucoup de Sabr ! ${maxSabr - sabrPoints} moment(s) ont été difficiles, mais Allah voit tous ses efforts. Continue à pratiquer la patience chaque jour ! 💪`;
+        msg = `Youssouf a fait preuve de beaucoup de Sabr ! ${maxSabr - sabrPoints} moment(s) ont été difficiles, mais Allah voit tous ses efforts. Continue à pratiquer la patience chaque jour ! 💪`;
     } else if (sabrPoints >= 2) {
         emoji = '💛'; title = 'Bon début !';
-        msg = `Le Sabr s'apprend avec de la pratique ! Youssef a réussi ${sabrPoints} moments de patience. Rejoue pour aider Youssef à mieux traverser sa journée de jeûne ! 🌿`;
+        msg = `Le Sabr s'apprend avec de la pratique ! Youssouf a réussi ${sabrPoints} moments de patience. Rejoue pour aider Youssouf à mieux traverser sa journée de jeûne ! 🌿`;
     } else {
         emoji = '📚'; title = 'On peut faire mieux !';
-        msg = 'Le Sabr, ça s\'apprend ! Relis la leçon sur la patience et rejoue pour aider Youssef à traverser sa journée avec sagesse. Chaque effort compte ! 🌈';
+        msg = 'Le Sabr, ça s\'apprend ! Relis la leçon sur la patience et rejoue pour aider Youssouf à traverser sa journée avec sagesse. Chaque effort compte ! 🌈';
     }
 
     document.getElementById('endEmoji').textContent = emoji;
@@ -1078,7 +1086,7 @@ function showResults(score) {
     document.getElementById('scoreDisplay').textContent = 'Score : ' + score + '/5';
     if (score === 5) {
         document.getElementById('resultIcon').textContent = '⏳';
-        document.getElementById('resultTitle').textContent = 'Alhamdulillah !';
+        document.getElementById('resultTitle').textContent = 'Alhamdoulillah !';
         document.getElementById('resultMessage').textContent = 'Tu as tout compris sur le Sabr ! Qu\'Allah te rende patient comme le Prophète ! 🌟';
     } else if (score >= 3) {
         document.getElementById('resultIcon').textContent = '😊';
