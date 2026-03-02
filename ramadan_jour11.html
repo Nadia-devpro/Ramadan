@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jour 11 - L'entraide 🤝</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@400;600;700&display=swap');
+
+        :root {
+            --sand: #f5e6d3;
+            --sand-dark: #e8d5c4;
+            --green: #8b9584;
+            --green-dark: #5a6b4f;
+            --green-light: #a4b29b;
+            --text: #4a5442;
+            --blue: #5b9bd5;
+            --blue-light: #7fb5e0;
+            --orange: #ed7d31;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, var(--sand) 0%, var(--sand-dark) 50%, var(--sand) 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #ffffff 0%, #faf8f5 100%);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(139,149,132,0.2);
+            border: 3px solid var(--green);
+        }
+
+        /* HEADER */
+        .header { text-align: center; margin-bottom: 40px; position: relative; }
+
+        .day-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            color: white; padding: 10px 25px; border-radius: 25px;
+            font-size: 1rem; font-weight: 600; margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(139,149,132,0.3);
+        }
+
+        h1 { color: var(--green-dark); font-size: 2.5rem; margin-bottom: 10px; font-family: 'Amiri', serif; }
+
+        .moon-icon {
+            font-size: 3rem;
+            animation: glow 2s ease-in-out infinite;
+            display: block; margin-bottom: 10px;
+        }
+        @keyframes glow {
+            0%,100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(91,155,213,0.4)); }
+            50% { transform: scale(1.1); filter: drop-shadow(0 0 22px rgba(91,155,213,0.8)); }
+        }
+
+        .logo { position: absolute; top: 0; left: 0; width: 120px; height: auto; opacity: 0.9; transition: opacity 0.3s; }
+        .logo:hover { opacity: 1; }
+
+        /* INTRO */
+        .intro-text {
+            background: linear-gradient(135deg, var(--sand), var(--sand-dark));
+            padding: 25px; border-radius: 20px;
+            border-left: 5px solid var(--green);
+            margin: 30px 0; font-size: 1.1rem; line-height: 1.8; color: var(--text);
+        }
+
+        /* STORY CARDS */
+        .story-card {
+            background: white; border-radius: 20px; padding: 25px; margin: 20px 0;
+            border: 2px solid #d4c4b0; transition: all 0.3s ease;
+        }
+        .story-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(139,149,132,0.2); border-color: var(--green); }
+        .story-card h3 { color: var(--green-dark); margin-bottom: 15px; font-size: 1.3rem; }
+        .story-card p { color: #666; line-height: 1.7; font-size: 1.05rem; }
+
+        /* ============================================================
+           GAME SECTION — La Chaîne d'Entraide
+        ============================================================ */
+        .game-section {
+            background: linear-gradient(145deg, #2b5876 0%, #4e8098 50%, #2b5876 100%);
+            border-radius: 24px;
+            margin: 30px 0;
+            overflow: hidden;
+            position: relative;
+            color: white;
+            padding: 28px;
+        }
+
+        .game-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .game-title {
+            font-family: 'Amiri', serif;
+            font-size: 1.7rem;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+
+        .game-subtitle {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 14px;
+        }
+
+        .game-story {
+            background: rgba(255,255,255,0.12);
+            border-radius: 14px;
+            padding: 14px 18px;
+            margin-bottom: 20px;
+            font-size: 0.96rem;
+            line-height: 1.6;
+            border-left: 3px solid rgba(255,255,255,0.3);
+        }
+
+        /* Chain visualization */
+        .chain-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 20px;
+            padding: 16px 0;
+        }
+
+        .chain-link {
+            width: 32px;
+            height: 18px;
+            border: 3px solid rgba(255,255,255,0.25);
+            border-radius: 8px;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .chain-link.lit {
+            border-color: #f9d56e;
+            background: rgba(249,213,110,0.2);
+            box-shadow: 0 0 12px rgba(249,213,110,0.5);
+            animation: linkGlow 0.6s ease;
+        }
+
+        @keyframes linkGlow {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .chain-counter {
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+            color: #f9d56e;
+        }
+
+        /* Connection game */
+        .connection-board {
+            background: rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+            align-items: stretch;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .people-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .column-title {
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.88rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 8px;
+        }
+
+        .person-card {
+            background: rgba(255,255,255,0.15);
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 12px;
+            padding: 12px 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.92rem;
+            position: relative;
+        }
+
+        .person-card:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-2px);
+        }
+
+        .person-card.selected {
+            border-color: #f9d56e;
+            background: rgba(249,213,110,0.2);
+            box-shadow: 0 0 16px rgba(249,213,110,0.4);
+        }
+
+        .person-card.matched {
+            background: rgba(100,200,100,0.2);
+            border-color: rgba(100,255,100,0.5);
+            cursor: default;
+            opacity: 0.7;
+        }
+
+        .person-card.matched:hover {
+            transform: none;
+        }
+
+        .person-emoji {
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+
+        .person-text {
+            flex: 1;
+            line-height: 1.4;
+        }
+
+        .match-check {
+            position: absolute;
+            top: 50%;
+            right: -28px;
+            transform: translateY(-50%);
+            font-size: 1.4rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .person-card.matched .match-check {
+            opacity: 1;
+        }
+
+        /* Connector line (SVG overlay) */
+        .connector-svg {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .connector-line {
+            stroke: #7fcf7f;
+            stroke-width: 3;
+            fill: none;
+            opacity: 0;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: drawLine 0.6s ease forwards;
+        }
+
+        @keyframes drawLine {
+            to { stroke-dashoffset: 0; opacity: 1; }
+        }
+
+        /* Feedback */
+        .game-feedback {
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 600;
+            min-height: 28px;
+            padding: 10px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .game-feedback.good {
+            background: rgba(100,200,100,0.2);
+            color: #a8f0a8;
+        }
+
+        .game-feedback.bad {
+            background: rgba(220,100,80,0.2);
+            color: #f5b3a3;
+        }
+
+        .btn-game {
+            background: rgba(255,255,255,0.18);
+            border: 2px solid rgba(255,255,255,0.35);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .btn-game:hover {
+            background: rgba(255,255,255,0.28);
+            transform: translateY(-2px);
+        }
+
+        /* Game complete */
+        .game-complete {
+            display: none;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .game-complete.show { display: block; }
+
+        .complete-emoji { font-size: 4rem; margin-bottom: 10px; animation: bounceIn 0.7s ease; }
+        @keyframes bounceIn { 0%{transform:scale(0)} 60%{transform:scale(1.2)} 100%{transform:scale(1)} }
+
+        .complete-title {
+            font-family: 'Amiri', serif;
+            font-size: 2rem;
+            color: #f9d56e;
+            margin-bottom: 12px;
+        }
+
+        .complete-message {
+            color: rgba(255,255,255,0.88);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        /* FUN FACTS */
+        .fun-facts {
+            background: linear-gradient(135deg, var(--sand), var(--sand-dark));
+            padding: 25px; border-radius: 20px; margin: 30px 0;
+            border: 2px dashed var(--green);
+        }
+        .fun-facts h3 { color: var(--green-dark); margin-bottom: 15px; text-align: center; }
+        .fun-facts ul { list-style: none; padding: 0; }
+        .fun-facts li { padding: 10px 0; padding-left: 30px; position: relative; color: var(--text); line-height: 1.6; }
+        .fun-facts li:before { content: "🤝"; position: absolute; left: 0; }
+
+        /* QUIZ */
+        .quiz-section {
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            padding: 30px; border-radius: 20px; margin: 30px 0; color: white;
+        }
+        .quiz-section h3 { text-align: center; font-size: 1.5rem; margin-bottom: 25px; }
+
+        .question-card { background: white; border-radius: 15px; padding: 25px; margin: 20px 0; color: var(--text); }
+        .question-text { font-weight: 600; font-size: 1.15rem; margin-bottom: 20px; color: var(--green-dark); }
+        .options { display: grid; grid-template-columns: 1fr; gap: 12px; }
+
+        .option {
+            background: linear-gradient(135deg, var(--sand), var(--sand-dark));
+            padding: 15px 20px; border-radius: 12px;
+            cursor: pointer; transition: all 0.3s ease;
+            border: 2px solid transparent; font-weight: 500;
+        }
+        .option:hover { background: linear-gradient(135deg, var(--sand-dark), #d4c4b0); transform: translateX(5px); }
+        .option.selected { background: linear-gradient(135deg, var(--green), var(--green-light)); color: white; border-color: var(--green-dark); transform: scale(1.02); }
+        .option.correct { background: linear-gradient(135deg, #7fb069, #8fbc77); color: white; border-color: #5a8049; animation: qPulse 0.5s ease; }
+        .option.incorrect { background: linear-gradient(135deg, #d4916c, #c47d5a); color: white; border-color: #a4614a; animation: qShake 0.5s ease; }
+
+        @keyframes qPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+        @keyframes qShake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
+
+        .btn {
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            color: white; border: none; padding: 15px 40px;
+            border-radius: 30px; font-size: 1.1rem; font-weight: 600;
+            cursor: pointer; transition: all 0.3s ease;
+            display: block; margin: 25px auto 0;
+            box-shadow: 0 5px 20px rgba(139,149,132,0.3);
+            font-family: 'Quicksand', sans-serif;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(139,149,132,0.4); }
+        .btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+
+        /* MODALS */
+        .result-modal {
+            position: fixed; top: 50%; left: 50%;
+            transform: translate(-50%,-50%) scale(0);
+            background: white; padding: 40px; border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            z-index: 1001; text-align: center;
+            max-width: 420px; width: 90%;
+            transition: transform 0.3s ease;
+        }
+        .result-modal.show { transform: translate(-50%,-50%) scale(1); }
+        .result-modal h3 { color: var(--green-dark); font-size: 2rem; margin-bottom: 15px; }
+
+        .result-icon { font-size: 4rem; margin-bottom: 15px; animation: rBounce 0.6s ease; }
+        @keyframes rBounce { 0%{transform:scale(0);opacity:0} 60%{transform:scale(1.2)} 100%{transform:scale(1);opacity:1} }
+
+        .result-message { color: #666; font-size: 1.05rem; margin: 15px 0; line-height: 1.6; }
+        .score-display { background: linear-gradient(135deg, var(--sand), var(--sand-dark)); padding: 14px; border-radius: 15px; font-size: 1.2rem; font-weight: 600; color: var(--green-dark); margin: 15px 0; }
+
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 999; }
+        .overlay.show { display: block; }
+
+        @media (max-width: 768px) {
+            .logo { width: 80px; top: 5px; left: 5px; }
+            .container { padding: 20px; }
+            h1 { font-size: 2rem; }
+            .connection-board { flex-direction: column; gap: 16px; }
+            .match-check { right: 8px; top: 8px; transform: none; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <img src="logonoir_lespetitesplumes.png" alt="Les petites plumes" class="logo">
+        <div class="day-badge">Jour 11 / 30</div>
+        <span class="moon-icon">🤝</span>
+        <h1>L'entraide</h1>
+        <p style="color: #8b9584; font-size: 1.1rem;">Aider les autres, c'est aider toute l'humanité !</p>
+    </div>
+
+    <div class="intro-text">
+        <p style="font-weight: 600; margin-bottom: 10px;">🌟 L'entraide en Islam</p>
+        <p>L'<strong>entraide</strong> (التعاون - At-Ta'awun) est un pilier fondamental de l'Islam. Allah dit dans le Coran : <em>"Entraidez-vous dans l'accomplissement du bien et de la piété"</em> <strong>(Coran 5:2)</strong>. Le Prophète Muhammad (paix et bénédictions sur lui) a dit : <em>"Celui qui soulage un croyant d'une difficulté de ce monde, Allah le soulagera d'une difficulté le Jour de la Résurrection"</em> <strong>(Sahih Muslim 2699)</strong>. Chaque main tendue est une porte vers le Paradis ! 💫</p>
+    </div>
+
+    <div class="story-section">
+        <div class="story-card">
+            <h3>📿 L'importance de l'entraide</h3>
+            <p>Le Prophète (paix et bénédictions sur lui) nous enseigne que <strong>les croyants sont comme un seul corps</strong>. Il a dit : <em>"L'exemple des croyants dans leur amour mutuel, leur miséricorde et leur compassion est comme un seul corps : lorsqu'un membre souffre, c'est tout le corps qui ressent la douleur"</em> <strong>(Sahih Muslim 2586)</strong>. Imagine : quand tu aides quelqu'un, c'est comme si tu aidais toute l'humanité ! Allah dit : <em>"Celui qui sauve une vie, c'est comme s'il avait sauvé toute l'humanité"</em> <strong>(Coran 5:32)</strong>. Même un petit geste compte énormément ! 🌍</p>
+        </div>
+
+        <div class="story-card">
+            <h3>🌟 Les formes d'entraide</h3>
+            <p>L'entraide peut prendre <strong>mille visages</strong> ! Tu peux aider avec <strong>tes mains</strong> — porter les courses d'une personne âgée, ranger la maison, aider ton petit frère avec ses devoirs. Tu peux aider avec <strong>tes paroles</strong> — encourager quelqu'un de triste, donner un bon conseil, enseigner ce que tu sais. Tu peux aider avec <strong>ton argent</strong> — donner de la Sadaqah aux pauvres, offrir un cadeau à un ami. Tu peux même aider avec <strong>ton sourire</strong> ! Le Prophète a dit : <em>"Ton sourire à ton frère est une charité"</em> <strong>(Tirmidhi 1963)</strong>. Il y a toujours une façon d'aider ! 💛</p>
+        </div>
+
+        <div class="story-card">
+            <h3>🎁 La récompense de l'entraide</h3>
+            <p>Quand tu aides les autres, Allah te récompense de <strong>façons extraordinaires</strong> ! Le Prophète a dit : <em>"Allah aide le serviteur tant que le serviteur aide son frère"</em> <strong>(Sahih Muslim 2699)</strong>. C'est incroyable : quand tu aides quelqu'un, Allah t'aide en retour ! Il a aussi dit : <em>"La meilleure des personnes est celle qui est la plus utile aux autres"</em> <strong>(Al-Mu'jam al-Awsat 5787)</strong>. En Ramadan, cette récompense est <strong>multipliée</strong> ! Chaque acte d'entraide te rapproche du Paradis, où tu trouveras des portes spéciales pour ceux qui aidaient les autres dans ce monde. 🌟</p>
+        </div>
+
+        <div class="story-card">
+            <h3>💫 L'entraide en Ramadan</h3>
+            <p>Le Ramadan est le <strong>mois de l'entraide par excellence</strong> ! Partout dans le monde musulman, les gens se rassemblent pour aider. Ils organisent des <strong>Iftar collectifs</strong> pour que personne ne rompe le jeûne seul. Ils donnent de la <strong>Zakat</strong> (aumône obligatoire) et de la <strong>Sadaqah</strong> (charité volontaire) aux pauvres. Ils visitent les malades, aident les voisins, et partagent leur nourriture. Le Prophète disait : <em>"Celui qui donne à manger à un jeûneur pour rompre son jeûne aura la même récompense que lui"</em> <strong>(Tirmidhi 807)</strong>. Profite de ce mois pour créer une <strong>chaîne d'entraide</strong> autour de toi ! 🌙</p>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         GAME : La Chaîne d'Entraide
+    ============================================================ -->
+    <div class="game-section" id="gameSection">
+        <div class="game-header">
+            <div class="game-title">🤝 La Chaîne d'Entraide</div>
+            <div class="game-subtitle">Relie ceux qui ont besoin d'aide avec ceux qui peuvent les aider !</div>
+        </div>
+
+        <div class="game-story">
+            🌍 Dans notre communauté, tout le monde peut aider quelqu'un ! <strong>Relie chaque personne</strong> qui a besoin d'aide (colonne de gauche) avec la personne qui peut l'aider (colonne de droite). Chaque bonne connexion allume un maillon de la chaîne d'entraide ! Construisons ensemble une belle chaîne solidaire ! 💫
+        </div>
+
+        <!-- Chain visual -->
+        <div class="chain-visual" id="chainVisual">
+            <!-- Generated by JS -->
+        </div>
+        <div class="chain-counter" id="chainCounter">0 / 6 maillons allumés</div>
+
+        <!-- Connection board -->
+        <div class="connection-board" id="connectionBoard">
+            <svg class="connector-svg" id="connectorSvg"></svg>
+
+            <div class="people-column" id="needHelpColumn">
+                <div class="column-title">🙋 Ont besoin d'aide</div>
+                <!-- Generated by JS -->
+            </div>
+
+            <div class="people-column" id="canHelpColumn">
+                <div class="column-title">💪 Peuvent aider</div>
+                <!-- Generated by JS -->
+            </div>
+        </div>
+
+        <div class="game-feedback" id="gameFeedback"></div>
+
+        <button class="btn-game" onclick="resetGame()">🔄 Nouvelle chaîne</button>
+
+        <!-- Game complete screen -->
+        <div class="game-complete" id="gameComplete">
+            <div class="complete-emoji">🎉</div>
+            <div class="complete-title">Masha Allah !</div>
+            <div class="complete-message">
+                Tu as créé une belle chaîne d'entraide ! Chaque maillon représente une bonne action qui rapproche du Paradis. Continue à aider les autres chaque jour ! <strong>"La meilleure des personnes est celle qui est la plus utile aux autres."</strong> 🌟
+            </div>
+            <button class="btn-game" onclick="resetGame()">🔄 Rejouer</button>
+        </div>
+    </div>
+
+    <div class="fun-facts">
+        <h3>✨ Le savais-tu ?</h3>
+        <ul>
+            <li>Le Prophète aidait personnellement aux <strong>travaux de la maison</strong>, cousait ses propres vêtements et réparait ses chaussures — il montrait l'exemple !</li>
+            <li>Pendant la construction de la mosquée de Médine, le Prophète <strong>portait des briques</strong> comme tout le monde, même s'il était le leader !</li>
+            <li>Les Compagnons s'entraidaient tellement qu'ils préféraient donner aux autres ce dont ils avaient eux-mêmes besoin — c'est ce qu'on appelle <strong>l'Ithar</strong> (le sacrifice pour autrui) !</li>
+            <li>Aider quelqu'un à monter sur sa monture ou à charger ses bagages est une <strong>Sadaqah</strong> (charité) selon le Prophète !</li>
+        </ul>
+    </div>
+
+    <div class="quiz-section">
+        <h3>🎮 Quiz : As-tu bien compris ?</h3>
+
+        <div class="question-card">
+            <div class="question-text">1. Que dit Allah dans le Coran sur l'entraide ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 0)">Chacun pour soi</div>
+                <div class="option" onclick="selectAnswer(this, true, 0)">Entraidez-vous dans l'accomplissement du bien et de la piété</div>
+                <div class="option" onclick="selectAnswer(this, false, 0)">L'entraide n'est pas importante</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">2. À quoi le Prophète compare-t-il les croyants qui s'entraident ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 1)">À des arbres séparés</div>
+                <div class="option" onclick="selectAnswer(this, true, 1)">À un seul corps : si un membre souffre, tout le corps ressent la douleur</div>
+                <div class="option" onclick="selectAnswer(this, false, 1)">À des étoiles dans le ciel</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">3. Quelle est la meilleure des personnes selon le Prophète ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 2)">Celle qui a le plus d'argent</div>
+                <div class="option" onclick="selectAnswer(this, false, 2)">Celle qui prie le plus</div>
+                <div class="option" onclick="selectAnswer(this, true, 2)">Celle qui est la plus utile aux autres</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">4. Que se passe-t-il quand tu aides quelqu'un selon le hadith ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 3)">Rien de spécial</div>
+                <div class="option" onclick="selectAnswer(this, true, 3)">Allah t'aide en retour</div>
+                <div class="option" onclick="selectAnswer(this, false, 3)">Tu perds ton temps</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">5. Quelle récompense a celui qui donne à manger à un jeûneur ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 4)">Aucune récompense</div>
+                <div class="option" onclick="selectAnswer(this, false, 4)">La moitié de sa récompense</div>
+                <div class="option" onclick="selectAnswer(this, true, 4)">La même récompense que le jeûneur</div>
+            </div>
+        </div>
+
+        <button class="btn" id="submitBtn" onclick="checkAnswers()" disabled>Vérifier mes réponses</button>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+        <p style="color: #8b9584; font-size: 1.1rem;">
+            <strong>Bravo d'avoir terminé le Jour 11 ! 🌟</strong><br>
+            N'oublie pas : chaque main tendue est une porte vers le Paradis !<br>
+            Sois utile aux autres et Allah t'aidera en retour ! 💪<br>
+            Rendez-vous demain pour le Jour 12 !
+        </p>
+    </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+<div class="result-modal" id="resultModal">
+    <div class="result-icon" id="resultIcon">🎉</div>
+    <h3 id="resultTitle">Excellent !</h3>
+    <div class="score-display" id="scoreDisplay">Score : 5/5</div>
+    <div class="result-message" id="resultMessage">Masha Allah !</div>
+    <button class="btn" onclick="closeModal()">Continuer</button>
+</div>
+
+<script>
+// ============================================================
+//  CONNECTION GAME DATA
+// ============================================================
+const CONNECTIONS = [
+    {
+        need: { emoji: '👵', text: 'Mme Fatima a des courses lourdes à porter' },
+        help: { emoji: '🧒', text: 'Youssef peut porter ses sacs' },
+        id: 'fatima-youssef'
+    },
+    {
+        need: { emoji: '👦', text: 'Omar ne comprend pas ses devoirs de maths' },
+        help: { emoji: '👧', text: 'Amina est forte en maths et peut expliquer' },
+        id: 'omar-amina'
+    },
+    {
+        need: { emoji: '🤱', text: 'Maman a beaucoup de vaisselle à faire' },
+        help: { emoji: '👨', text: 'Papa peut l\'aider après l\'Iftar' },
+        id: 'maman-papa'
+    },
+    {
+        need: { emoji: '😢', text: 'Leila est triste car elle a perdu son jouet' },
+        help: { emoji: '😊', text: 'Salma peut la consoler et jouer avec elle' },
+        id: 'leila-salma'
+    },
+    {
+        need: { emoji: '🤒', text: 'M. Ahmed est malade et ne peut sortir' },
+        help: { emoji: '🛒', text: 'Les voisins peuvent lui apporter ses courses' },
+        id: 'ahmed-voisins'
+    },
+    {
+        need: { emoji: '📚', text: 'La bibliothèque a besoin de livres en bon état' },
+        help: { emoji: '📖', text: 'Khaled peut donner ses livres qu\'il ne lit plus' },
+        id: 'biblio-khaled'
+    },
+];
+
+// ============================================================
+//  GAME STATE
+// ============================================================
+let selectedNeed = null;
+let selectedHelp = null;
+let matchedPairs = [];
+let connectionLines = [];
+
+function initGame() {
+    matchedPairs = [];
+    connectionLines = [];
+    selectedNeed = null;
+    selectedHelp = null;
+
+    // Shuffle both columns independently
+    const shuffledNeeds = shuffle([...CONNECTIONS]);
+    const shuffledHelps = shuffle([...CONNECTIONS]);
+
+    renderChain();
+    renderPeople(shuffledNeeds, shuffledHelps);
+    updateCounter();
+    clearFeedback();
+    document.getElementById('gameComplete').classList.remove('show');
+    document.getElementById('connectionBoard').style.display = 'flex';
+}
+
+function shuffle(arr) {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+
+function renderChain() {
+    const chain = document.getElementById('chainVisual');
+    chain.innerHTML = '';
+    for (let i = 0; i < CONNECTIONS.length; i++) {
+        const link = document.createElement('div');
+        link.className = 'chain-link';
+        link.id = `chain-${i}`;
+        chain.appendChild(link);
+    }
+}
+
+function renderPeople(needList, helpList) {
+    const needCol = document.getElementById('needHelpColumn');
+    const helpCol = document.getElementById('canHelpColumn');
+
+    // Clear existing (keep title)
+    needCol.querySelectorAll('.person-card').forEach(el => el.remove());
+    helpCol.querySelectorAll('.person-card').forEach(el => el.remove());
+
+    // Render needs
+    needList.forEach((conn, i) => {
+        const card = createPersonCard(conn.need.emoji, conn.need.text, 'need', conn.id, i);
+        needCol.appendChild(card);
+    });
+
+    // Render helps
+    helpList.forEach((conn, i) => {
+        const card = createPersonCard(conn.help.emoji, conn.help.text, 'help', conn.id, i);
+        helpCol.appendChild(card);
+    });
+}
+
+function createPersonCard(emoji, text, type, pairId, index) {
+    const card = document.createElement('div');
+    card.className = 'person-card';
+    card.dataset.type = type;
+    card.dataset.pairId = pairId;
+    card.dataset.index = index;
+
+    card.innerHTML = `
+        <span class="person-emoji">${emoji}</span>
+        <span class="person-text">${text}</span>
+        <span class="match-check">✅</span>
+    `;
+
+    card.onclick = () => selectPerson(card, type, pairId);
+
+    return card;
+}
+
+function selectPerson(card, type, pairId) {
+    // Ignore if already matched
+    if (matchedPairs.includes(pairId)) return;
+
+    if (type === 'need') {
+        // Deselect previous need
+        document.querySelectorAll('.person-card[data-type="need"]').forEach(c => c.classList.remove('selected'));
+
+        if (selectedNeed === pairId) {
+            selectedNeed = null;
+        } else {
+            selectedNeed = pairId;
+            card.classList.add('selected');
+        }
+
+        // Try match if both selected
+        if (selectedNeed && selectedHelp) {
+            attemptMatch();
+        }
+    } else {
+        // Deselect previous help
+        document.querySelectorAll('.person-card[data-type="help"]').forEach(c => c.classList.remove('selected'));
+
+        if (selectedHelp === pairId) {
+            selectedHelp = null;
+        } else {
+            selectedHelp = pairId;
+            card.classList.add('selected');
+        }
+
+        // Try match if both selected
+        if (selectedNeed && selectedHelp) {
+            attemptMatch();
+        }
+    }
+}
+
+function attemptMatch() {
+    if (selectedNeed === selectedHelp) {
+        // CORRECT MATCH!
+        matchedPairs.push(selectedNeed);
+
+        // Mark cards as matched
+        document.querySelectorAll(`.person-card[data-pair-id="${selectedNeed}"]`).forEach(c => {
+            c.classList.remove('selected');
+            c.classList.add('matched');
+        });
+
+        // Draw connection line
+        drawConnection(selectedNeed);
+
+        // Light up chain link
+        const idx = matchedPairs.length - 1;
+        const link = document.getElementById(`chain-${idx}`);
+        if (link) {
+            setTimeout(() => link.classList.add('lit'), 200);
+        }
+
+        // Feedback
+        showFeedback('✨ Parfait ! Cette entraide fait grandir la chaîne de solidarité !', 'good');
+
+        // Update counter
+        updateCounter();
+
+        // Check if complete
+        if (matchedPairs.length === CONNECTIONS.length) {
+            setTimeout(showComplete, 800);
+        }
+
+    } else {
+        // WRONG MATCH
+        showFeedback('❌ Pas tout à fait… Essaie une autre association !', 'bad');
+
+        // Shake wrong cards
+        document.querySelectorAll('.person-card.selected').forEach(c => {
+            c.style.animation = 'none';
+            setTimeout(() => {
+                c.style.animation = 'qShake 0.4s ease';
+            }, 10);
+        });
+    }
+
+    // Reset selection
+    selectedNeed = null;
+    selectedHelp = null;
+    setTimeout(() => {
+        document.querySelectorAll('.person-card').forEach(c => c.classList.remove('selected'));
+    }, 600);
+}
+
+function drawConnection(pairId) {
+    const needCard = document.querySelector(`.person-card[data-type="need"][data-pair-id="${pairId}"]`);
+    const helpCard = document.querySelector(`.person-card[data-type="help"][data-pair-id="${pairId}"]`);
+    if (!needCard || !helpCard) return;
+
+    const board = document.getElementById('connectionBoard');
+    const svg = document.getElementById('connectorSvg');
+
+    const boardRect = board.getBoundingClientRect();
+    const needRect = needCard.getBoundingClientRect();
+    const helpRect = helpCard.getBoundingClientRect();
+
+    const x1 = needRect.right - boardRect.left;
+    const y1 = needRect.top + needRect.height / 2 - boardRect.top;
+    const x2 = helpRect.left - boardRect.left;
+    const y2 = helpRect.top + helpRect.height / 2 - boardRect.top;
+
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('x1', x1);
+    line.setAttribute('y1', y1);
+    line.setAttribute('x2', x2);
+    line.setAttribute('y2', y2);
+    line.classList.add('connector-line');
+
+    svg.appendChild(line);
+    connectionLines.push(line);
+}
+
+function updateCounter() {
+    document.getElementById('chainCounter').textContent = `${matchedPairs.length} / ${CONNECTIONS.length} maillons allumés`;
+}
+
+function showFeedback(msg, type) {
+    const fb = document.getElementById('gameFeedback');
+    fb.textContent = msg;
+    fb.className = 'game-feedback ' + type;
+}
+
+function clearFeedback() {
+    document.getElementById('gameFeedback').textContent = '';
+    document.getElementById('gameFeedback').className = 'game-feedback';
+}
+
+function showComplete() {
+    document.getElementById('connectionBoard').style.display = 'none';
+    document.getElementById('gameFeedback').style.display = 'none';
+    document.getElementById('gameComplete').classList.add('show');
+}
+
+function resetGame() {
+    // Clear SVG lines
+    const svg = document.getElementById('connectorSvg');
+    svg.innerHTML = '';
+
+    document.getElementById('gameFeedback').style.display = '';
+    initGame();
+}
+
+// Start
+initGame();
+
+// ============================================================
+//  QUIZ
+// ============================================================
+let answers = [null, null, null, null, null];
+let selectedCount = 0;
+
+function selectAnswer(element, isCorrect, questionIndex) {
+    const options = element.parentElement.querySelectorAll('.option');
+    options.forEach(opt => opt.classList.remove('selected'));
+    element.classList.add('selected');
+    if (answers[questionIndex] === null) selectedCount++;
+    answers[questionIndex] = isCorrect;
+    if (selectedCount === 5) document.getElementById('submitBtn').disabled = false;
+}
+
+function checkAnswers() {
+    let score = 0;
+    const allOptions = document.querySelectorAll('.option.selected');
+    allOptions.forEach((option, index) => {
+        if (answers[index]) { option.classList.add('correct'); score++; }
+        else option.classList.add('incorrect');
+    });
+    document.getElementById('submitBtn').disabled = true;
+    setTimeout(() => showResults(score), 1000);
+}
+
+function showResults(score) {
+    document.getElementById('scoreDisplay').textContent = 'Score : ' + score + '/5';
+    if (score === 5) {
+        document.getElementById('resultIcon').textContent = '🤝';
+        document.getElementById('resultTitle').textContent = 'Masha Allah !';
+        document.getElementById('resultMessage').textContent = 'Tu as tout compris sur l\'entraide en Islam ! Qu\'Allah te rende utile aux autres comme le Prophète ! 🌟';
+    } else if (score >= 3) {
+        document.getElementById('resultIcon').textContent = '😊';
+        document.getElementById('resultTitle').textContent = 'Très bien !';
+        document.getElementById('resultMessage').textContent = 'Tu connais bien l\'importance d\'aider les autres ! Continue à tendre la main ! 💪';
+    } else {
+        document.getElementById('resultIcon').textContent = '📚';
+        document.getElementById('resultTitle').textContent = 'Continue tes efforts !';
+        document.getElementById('resultMessage').textContent = 'Relis la leçon sur l\'entraide et tu vas mieux comprendre. Chaque geste compte ! 🌈';
+    }
+    document.getElementById('overlay').classList.add('show');
+    document.getElementById('resultModal').classList.add('show');
+}
+
+function closeModal() {
+    document.getElementById('resultModal').classList.remove('show');
+    document.getElementById('overlay').classList.remove('show');
+}
+</script>
+</body>
+</html>
