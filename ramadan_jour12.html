@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jour 12 - La vérité ✨</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@400;600;700&display=swap');
+
+        :root {
+            --sand: #f5e6d3;
+            --sand-dark: #e8d5c4;
+            --green: #8b9584;
+            --green-dark: #5a6b4f;
+            --green-light: #a4b29b;
+            --text: #4a5442;
+            --truth-green: #4caf50;
+            --lie-red: #e53935;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, var(--sand) 0%, var(--sand-dark) 50%, var(--sand) 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #ffffff 0%, #faf8f5 100%);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(139,149,132,0.2);
+            border: 3px solid var(--green);
+        }
+
+        /* HEADER */
+        .header { text-align: center; margin-bottom: 40px; position: relative; }
+
+        .day-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            color: white; padding: 10px 25px; border-radius: 25px;
+            font-size: 1rem; font-weight: 600; margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(139,149,132,0.3);
+        }
+
+        h1 { color: var(--green-dark); font-size: 2.5rem; margin-bottom: 10px; font-family: 'Amiri', serif; }
+
+        .moon-icon {
+            font-size: 3rem;
+            animation: glow 2s ease-in-out infinite;
+            display: block; margin-bottom: 10px;
+        }
+        @keyframes glow {
+            0%,100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(76,175,80,0.4)); }
+            50% { transform: scale(1.1); filter: drop-shadow(0 0 22px rgba(76,175,80,0.8)); }
+        }
+
+        .logo { position: absolute; top: 0; left: 0; width: 120px; height: auto; opacity: 0.9; transition: opacity 0.3s; }
+        .logo:hover { opacity: 1; }
+
+        /* INTRO */
+        .intro-text {
+            background: linear-gradient(135deg, var(--sand), var(--sand-dark));
+            padding: 25px; border-radius: 20px;
+            border-left: 5px solid var(--green);
+            margin: 30px 0; font-size: 1.1rem; line-height: 1.8; color: var(--text);
+        }
+
+        /* STORY CARDS */
+        .story-card {
+            background: white; border-radius: 20px; padding: 25px; margin: 20px 0;
+            border: 2px solid #d4c4b0; transition: all 0.3s ease;
+        }
+        .story-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(139,149,132,0.2); border-color: var(--green); }
+        .story-card h3 { color: var(--green-dark); margin-bottom: 15px; font-size: 1.3rem; }
+        .story-card p { color: #666; line-height: 1.7; font-size: 1.05rem; }
+
+        /* ============================================================
+           GAME SECTION — Le Détecteur de Vérité
+        ============================================================ */
+        .game-section {
+            background: linear-gradient(160deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            border-radius: 24px;
+            margin: 30px 0;
+            overflow: hidden;
+            position: relative;
+            color: white;
+            padding: 32px 28px;
+        }
+
+        .game-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .game-title {
+            font-family: 'Amiri', serif;
+            font-size: 1.8rem;
+            color: #4caf50;
+            margin-bottom: 6px;
+            text-shadow: 0 0 20px rgba(76,175,80,0.5);
+        }
+
+        .game-subtitle {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 16px;
+        }
+
+        .game-story {
+            background: rgba(76,175,80,0.1);
+            border-radius: 14px;
+            padding: 14px 18px;
+            margin-bottom: 24px;
+            font-size: 0.96rem;
+            line-height: 1.6;
+            border-left: 3px solid #4caf50;
+        }
+
+        /* Truth Detector Machine */
+        .detector-machine {
+            background: linear-gradient(145deg, #2a2a3e, #1f1f30);
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 2px solid rgba(76,175,80,0.3);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+        }
+
+        .detector-display {
+            background: #0a0a0a;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+            border: 2px solid #333;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Courier New', monospace;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .detector-display::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(76,175,80,0.1), transparent);
+            animation: scan 2s linear infinite;
+        }
+
+        @keyframes scan {
+            to { left: 100%; }
+        }
+
+        .display-text {
+            font-size: 1.1rem;
+            color: #4caf50;
+            text-align: center;
+            z-index: 1;
+            text-shadow: 0 0 10px rgba(76,175,80,0.6);
+        }
+
+        /* Truth Lights */
+        .truth-lights {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .truth-light {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.2);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .truth-light.lit {
+            background: #4caf50;
+            border-color: #66bb6a;
+            box-shadow: 0 0 20px rgba(76,175,80,0.8), inset 0 0 10px rgba(255,255,255,0.5);
+            animation: lightPulse 0.6s ease;
+        }
+
+        @keyframes lightPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        .lights-label {
+            text-align: center;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 20px;
+        }
+
+        /* Scenario Card */
+        .scenario-card {
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(255,255,255,0.15);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .scenario-number {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #4caf50;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .scenario-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .scenario-context {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+            font-style: italic;
+            margin-bottom: 20px;
+            padding-left: 12px;
+            border-left: 2px solid rgba(255,255,255,0.2);
+        }
+
+        /* Truth/Lie Buttons */
+        .choice-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .choice-btn {
+            padding: 16px 24px;
+            border-radius: 14px;
+            border: 2px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.08);
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: 'Quicksand', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .choice-btn:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-2px);
+        }
+
+        .choice-btn.truth {
+            border-color: rgba(76,175,80,0.4);
+        }
+
+        .choice-btn.truth:hover {
+            border-color: #4caf50;
+            background: rgba(76,175,80,0.15);
+        }
+
+        .choice-btn.lie {
+            border-color: rgba(229,57,53,0.4);
+        }
+
+        .choice-btn.lie:hover {
+            border-color: #e53935;
+            background: rgba(229,57,53,0.15);
+        }
+
+        .choice-btn.correct {
+            background: rgba(76,175,80,0.25);
+            border-color: #4caf50;
+            animation: correctGlow 0.6s ease;
+        }
+
+        .choice-btn.wrong {
+            background: rgba(229,57,53,0.25);
+            border-color: #e53935;
+            animation: wrongShake 0.5s ease;
+        }
+
+        @keyframes correctGlow {
+            0%, 100% { box-shadow: 0 0 0 rgba(76,175,80,0); }
+            50% { box-shadow: 0 0 30px rgba(76,175,80,0.6); }
+        }
+
+        @keyframes wrongShake {
+            0%,100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
+        }
+
+        .choice-btn:disabled {
+            cursor: default;
+            opacity: 0.6;
+        }
+
+        .choice-icon {
+            font-size: 1.4rem;
+        }
+
+        /* Feedback */
+        .game-feedback {
+            background: rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-top: 16px;
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .game-feedback.show { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .feedback-title {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .feedback-title.correct { color: #66bb6a; }
+        .feedback-title.wrong { color: #ef5350; }
+
+        .feedback-text {
+            color: rgba(255,255,255,0.85);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .feedback-hadith {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            font-size: 0.88rem;
+            color: rgba(255,255,255,0.6);
+            font-style: italic;
+        }
+
+        /* Next Button */
+        .btn-next {
+            display: none;
+            background: linear-gradient(135deg, #4caf50, #66bb6a);
+            border: none;
+            color: white;
+            padding: 14px 32px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            margin: 20px auto 0;
+            transition: all 0.3s ease;
+        }
+
+        .btn-next.show { display: block; }
+
+        .btn-next:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(76,175,80,0.4);
+        }
+
+        .btn-game {
+            background: rgba(255,255,255,0.12);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .btn-game:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Game Complete */
+        .game-complete {
+            display: none;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .game-complete.show { display: block; }
+
+        .complete-emoji { font-size: 4rem; margin-bottom: 12px; animation: bounceIn 0.7s ease; }
+        @keyframes bounceIn { 0%{transform:scale(0)} 60%{transform:scale(1.2)} 100%{transform:scale(1)} }
+
+        .complete-title {
+            font-family: 'Amiri', serif;
+            font-size: 2rem;
+            color: #4caf50;
+            margin-bottom: 12px;
+            text-shadow: 0 0 20px rgba(76,175,80,0.5);
+        }
+
+        .complete-score {
+            background: rgba(76,175,80,0.15);
+            border: 2px solid rgba(76,175,80,0.4);
+            border-radius: 14px;
+            padding: 14px 20px;
+            display: inline-block;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #66bb6a;
+            margin-bottom: 16px;
+        }
+
+        .complete-message {
+            color: rgba(255,255,255,0.88);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        /* FUN FACTS */
+        .fun-facts {
+            background: linear-gradient(135deg, var(--sand), var(--sand-dark));
+            padding: 25px; border-radius: 20px; margin: 30px 0;
+            border: 2px dashed var(--green);
+        }
+        .fun-facts h3 { color: var(--green-dark); margin-bottom: 15px; text-align: center; }
+        .fun-facts ul { list-style: none; padding: 0; }
+        .fun-facts li { padding: 10px 0; padding-left: 30px; position: relative; color: var(--text); line-height: 1.6; }
+        .fun-facts li:before { content: "✨"; position: absolute; left: 0; }
+
+        /* QUIZ */
+        .quiz-section {
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            padding: 30px; border-radius: 20px; margin: 30px 0; color: white;
+        }
+        .quiz-section h3 { text-align: center; font-size: 1.5rem; margin-bottom: 25px; }
+
+        .question-card { background: white; border-radius: 15px; padding: 25px; margin: 20px 0; color: var(--text); }
+        .question-text { font-weight: 600; font-size: 1.15rem; margin-bottom: 20px; color: var(--green-dark); }
+        .options { display: grid; grid-template-columns: 1fr; gap: 12px; }
+
+        .option {
+            background: linear-gradient(135deg, var(--sand), var(--sand-dark));
+            padding: 15px 20px; border-radius: 12px;
+            cursor: pointer; transition: all 0.3s ease;
+            border: 2px solid transparent; font-weight: 500;
+        }
+        .option:hover { background: linear-gradient(135deg, var(--sand-dark), #d4c4b0); transform: translateX(5px); }
+        .option.selected { background: linear-gradient(135deg, var(--green), var(--green-light)); color: white; border-color: var(--green-dark); transform: scale(1.02); }
+        .option.correct { background: linear-gradient(135deg, #7fb069, #8fbc77); color: white; border-color: #5a8049; animation: qPulse 0.5s ease; }
+        .option.incorrect { background: linear-gradient(135deg, #d4916c, #c47d5a); color: white; border-color: #a4614a; animation: qShake 0.5s ease; }
+
+        @keyframes qPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+        @keyframes qShake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
+
+        .btn {
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            color: white; border: none; padding: 15px 40px;
+            border-radius: 30px; font-size: 1.1rem; font-weight: 600;
+            cursor: pointer; transition: all 0.3s ease;
+            display: block; margin: 25px auto 0;
+            box-shadow: 0 5px 20px rgba(139,149,132,0.3);
+            font-family: 'Quicksand', sans-serif;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(139,149,132,0.4); }
+        .btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+
+        /* MODALS */
+        .result-modal {
+            position: fixed; top: 50%; left: 50%;
+            transform: translate(-50%,-50%) scale(0);
+            background: white; padding: 40px; border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            z-index: 1001; text-align: center;
+            max-width: 420px; width: 90%;
+            transition: transform 0.3s ease;
+        }
+        .result-modal.show { transform: translate(-50%,-50%) scale(1); }
+        .result-modal h3 { color: var(--green-dark); font-size: 2rem; margin-bottom: 15px; }
+
+        .result-icon { font-size: 4rem; margin-bottom: 15px; animation: rBounce 0.6s ease; }
+        @keyframes rBounce { 0%{transform:scale(0);opacity:0} 60%{transform:scale(1.2)} 100%{transform:scale(1);opacity:1} }
+
+        .result-message { color: #666; font-size: 1.05rem; margin: 15px 0; line-height: 1.6; }
+        .score-display { background: linear-gradient(135deg, var(--sand), var(--sand-dark)); padding: 14px; border-radius: 15px; font-size: 1.2rem; font-weight: 600; color: var(--green-dark); margin: 15px 0; }
+
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 999; }
+        .overlay.show { display: block; }
+
+        @media (max-width: 768px) {
+            .logo { width: 80px; top: 5px; left: 5px; }
+            .container { padding: 20px; }
+            h1 { font-size: 2rem; }
+            .choice-buttons { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <img src="logonoir_lespetitesplumes.png" alt="Les petites plumes" class="logo">
+        <div class="day-badge">Jour 12 / 30</div>
+        <span class="moon-icon">✨</span>
+        <h1>La vérité</h1>
+        <p style="color: #8b9584; font-size: 1.1rem;">Toujours dire la vérité, même quand c'est difficile !</p>
+    </div>
+
+    <div class="intro-text">
+        <p style="font-weight: 600; margin-bottom: 10px;">🌟 As-Sidq : La vérité en Islam</p>
+        <p><strong>As-Sidq</strong> (الصدق) signifie la vérité et la sincérité en arabe. C'est l'une des qualités les plus importantes du musulman ! Allah dit dans le Coran : <em>"Ô vous qui croyez ! Craignez Allah et soyez avec les véridiques"</em> <strong>(Coran 9:119)</strong>. Le Prophète Mouhammad (paix et bénédictions sur lui) a dit : <em>"La vérité mène à la vertu, et la vertu mène au Paradis"</em> <strong>(Sahih Bukhari 6094)</strong>. Dire toujours la vérité, c'est le chemin vers Allah ! ✨</p>
+    </div>
+
+    <div class="story-section">
+        <div class="story-card">
+            <h3>📿 Pourquoi la vérité est-elle si importante ?</h3>
+            <p>La vérité est un <strong>pilier de la foi</strong> ! Le Prophète Mouhammad (paix et bénédictions sur lui) était surnommé <strong>"As-Sadiq Al-Amin"</strong> — le Véridique, le Digne de confiance — même AVANT de devenir prophète. Même ses ennemis lui faisaient confiance ! Allah a fait de la vérité une des qualités des gens du Paradis. Il dit : <em>"Voilà le jour où leur véracité va profiter aux véridiques"</em> <strong>(Coran 5:119)</strong>. Quand tu dis la vérité, les gens te font confiance. Quand tu mens, même si personne ne le découvre, Allah le sait. Et le mensonge est une des portes vers le feu de l'Enfer ! 🔥</p>
+        </div>
+
+        <div class="story-card">
+            <h3>🌟 Le mensonge : un grand péché</h3>
+            <p>Le Prophète (saw) nous met en garde sévèrement contre le mensonge. Il a dit : <em>"Le mensonge mène à la perversion, et la perversion mène au Feu"</em> <strong>(Sahih Bukhari 6094)</strong>. Un mensonge en entraîne un autre, puis encore un autre, jusqu'à ce qu'une personne soit inscrite auprès d'Allah comme <strong>menteur</strong>. Imagine : Allah écrit ton nom dans le livre des menteurs ! C'est terrible. Le mensonge détruit la confiance, brise les amitiés, et fait du mal à tout le monde. Même un <strong>"petit mensonge"</strong> est grave. Certains pensent qu'un mensonge "pour rire" ne compte pas, mais le Prophète a dit : <em>"Malheur à celui qui ment pour faire rire les gens !"</em> 😔</p>
+        </div>
+
+        <div class="story-card">
+            <h3>🎁 Les récompenses de la vérité</h3>
+            <p>Quand tu choisis de dire la vérité, même quand c'est difficile, Allah te récompense magnifiquement ! Le Prophète (saw) a dit : <em>"Celui qui persiste à dire la vérité sera inscrit auprès d'Allah comme véridique"</em> <strong>(Sahih Bukhari 6094)</strong>. La vérité te protège des problèmes : un mensonge peut te mettre dans de plus grandes difficultés, mais la vérité, même si elle est difficile au début, finit toujours par apporter la paix. Les <strong>véridiques</strong> sont aimés par Allah, les anges, et les gens. On leur fait confiance pour tout. Et au Jour du Jugement, ils seront dans les rangs des prophètes, des martyrs, et des saints ! 🌟</p>
+        </div>
+
+        <div class="story-card">
+            <h3>💫 Dire la vérité pendant le Ramadan</h3>
+            <p>Le Ramadan est un moment parfait pour <strong>s'entraîner à la vérité totale</strong> ! Le Prophète (saw) a dit : <em>"Celui qui ne renonce pas au mensonge et aux mauvaises actions, Allah n'a pas besoin qu'il abandonne sa nourriture et sa boisson"</em> <strong>(Sahih Bukhari 1903)</strong>. Cela veut dire que le jeûne n'est pas seulement arrêter de manger — c'est aussi arrêter de mentir ! Pendant ce mois béni, entraîne-toi à dire la vérité dans <strong>toutes les situations</strong> : si tu as cassé quelque chose, dis-le. Si tu as fait une bêtise, avoue. Si tu ne sais pas, dis "je ne sais pas" au lieu d'inventer. La vérité est une lumière qui éclaire ton cœur ! ✨</p>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         GAME : Le Détecteur de Vérité
+    ============================================================ -->
+    <div class="game-section" id="gameSection">
+        <div class="game-header">
+            <div class="game-title">🔍 Le Détecteur de Vérité</div>
+            <div class="game-subtitle">Identifie les situations vraies et fausses !</div>
+        </div>
+
+        <div class="game-story">
+            ✨ Active ton détecteur de vérité ! On va te présenter des <strong>situations</strong>. À toi de décider si la personne dit la <strong>VÉRITÉ</strong> ou un <strong>MENSONGE</strong>. Chaque bonne réponse allume une lumière sur le détecteur ! Sois vigilant ! 🔎
+        </div>
+
+        <div class="detector-machine">
+            <div class="detector-display">
+                <div class="display-text" id="displayText">DÉTECTEUR ACTIVÉ — EN ATTENTE...</div>
+            </div>
+
+            <div class="truth-lights" id="truthLights">
+                <!-- Generated by JS -->
+            </div>
+            <div class="lights-label" id="lightsLabel">0 / 8 vérités détectées</div>
+
+            <div class="scenario-card" id="scenarioCard">
+                <div class="scenario-number" id="scenarioNumber">Situation 1 / 8</div>
+                <div class="scenario-text" id="scenarioText">Chargement...</div>
+                <div class="scenario-context" id="scenarioContext" style="display:none"></div>
+
+                <div class="choice-buttons" id="choiceButtons">
+                    <button class="choice-btn truth" onclick="checkAnswer(true)">
+                        <span class="choice-icon">✅</span>
+                        <span>VÉRITÉ</span>
+                    </button>
+                    <button class="choice-btn lie" onclick="checkAnswer(false)">
+                        <span class="choice-icon">❌</span>
+                        <span>MENSONGE</span>
+                    </button>
+                </div>
+
+                <div class="game-feedback" id="gameFeedback">
+                    <div class="feedback-title" id="feedbackTitle"></div>
+                    <div class="feedback-text" id="feedbackText"></div>
+                    <div class="feedback-hadith" id="feedbackHadith"></div>
+                </div>
+            </div>
+
+            <button class="btn-next" id="btnNext" onclick="nextScenario()">Situation suivante →</button>
+        </div>
+
+        <button class="btn-game" onclick="resetGame()">🔄 Redémarrer</button>
+
+        <!-- Game Complete -->
+        <div class="game-complete" id="gameComplete">
+            <div class="complete-emoji" id="completeEmoji">✨</div>
+            <div class="complete-title" id="completeTitle">Masha Allah !</div>
+            <div class="complete-score" id="completeScore">8 / 8 réponses correctes</div>
+            <div class="complete-message" id="completeMessage">Message...</div>
+            <button class="btn-game" onclick="resetGame()">🔄 Rejouer</button>
+        </div>
+    </div>
+
+    <div class="fun-facts">
+        <h3>✨ Le savais-tu ?</h3>
+        <ul>
+            <li>Le Prophète Mouhammad était appelé <strong>"As-Sadiq Al-Amin"</strong> (le Véridique, le Digne de confiance) par tout le monde, même ses ennemis !</li>
+            <li>Il n'a <strong>JAMAIS menti</strong> de toute sa vie — pas même une seule fois, même pour rire !</li>
+            <li>Il y a seulement <strong>3 situations</strong> où un "mensonge" est permis en Islam : pour réconcilier des gens, en temps de guerre, ou entre époux pour préserver l'harmonie.</li>
+            <li>Les enfants des Compagnons apprenaient la vérité dès tout petits — si un enfant mentait, ses parents le corrigeaient immédiatement avec amour ! 👨‍👩‍👧</li>
+        </ul>
+    </div>
+
+    <div class="quiz-section">
+        <h3>🎮 Quiz : As-tu bien compris ?</h3>
+
+        <div class="question-card">
+            <div class="question-text">1. Comment le Prophète Mouhammad était-il surnommé avant même de devenir prophète ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 0)">Le Fort</div>
+                <div class="option" onclick="selectAnswer(this, true, 0)">As-Sadiq Al-Amin (le Véridique, le Digne de confiance)</div>
+                <div class="option" onclick="selectAnswer(this, false, 0)">Le Sage</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">2. Que dit le Prophète (saw) sur le chemin du mensonge ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 1)">Il ne dit rien à ce sujet</div>
+                <div class="option" onclick="selectAnswer(this, true, 1)">Le mensonge mène à la perversion, et la perversion mène au Feu</div>
+                <div class="option" onclick="selectAnswer(this, false, 1)">Les petits mensonges ne comptent pas</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">3. Selon le hadith, où mène la vérité ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 2)">Nulle part de spécial</div>
+                <div class="option" onclick="selectAnswer(this, false, 2)">À des problèmes</div>
+                <div class="option" onclick="selectAnswer(this, true, 2)">À la vertu, et la vertu mène au Paradis</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">4. Que dit le Prophète (saw) sur le jeûne et le mensonge ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 3)">On peut mentir pendant le jeûne</div>
+                <div class="option" onclick="selectAnswer(this, true, 3)">Celui qui ne renonce pas au mensonge, Allah n'a pas besoin qu'il abandonne sa nourriture</div>
+                <div class="option" onclick="selectAnswer(this, false, 3)">Le mensonge n'affecte pas le jeûne</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">5. Le Prophète (saw) a-t-il déjà menti dans sa vie ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 4)">Oui, parfois pour rire</div>
+                <div class="option" onclick="selectAnswer(this, true, 4)">Jamais, pas une seule fois</div>
+                <div class="option" onclick="selectAnswer(this, false, 4)">Seulement quand c'était nécessaire</div>
+            </div>
+        </div>
+
+        <button class="btn" id="submitBtn" onclick="checkQuizAnswers()" disabled>Vérifier mes réponses</button>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+        <p style="color: #8b9584; font-size: 1.1rem;">
+            <strong>Bravo d'avoir terminé le Jour 12 ! 🌟</strong><br>
+            N'oublie pas : la vérité est une lumière qui éclaire ton chemin !<br>
+            Sois toujours véridique comme le Prophète (paix et bénédictions sur lui) ! ✨<br>
+            Rendez-vous demain pour le Jour 13 !
+        </p>
+    </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+<div class="result-modal" id="resultModal">
+    <div class="result-icon" id="resultIcon">🎉</div>
+    <h3 id="resultTitle">Excellent !</h3>
+    <div class="score-display" id="scoreDisplay">Score : 5/5</div>
+    <div class="result-message" id="resultMessage">Masha Allah !</div>
+    <button class="btn" onclick="closeModal()">Continuer</button>
+</div>
+
+<script>
+// ============================================================
+//  DETECTOR GAME DATA
+// ============================================================
+const SCENARIOS = [
+    {
+        text: 'Amina casse le vase de sa maman. Quand maman demande qui l\'a cassé, Amina dit : "C\'est moi maman, pardon."',
+        context: 'Même si elle a peur de la punition, Amina choisit de dire la vérité.',
+        isTruth: true,
+        correctFeedback: '✅ Exact ! Amina dit la VÉRITÉ même si c\'est difficile. C\'est du courage !',
+        wrongFeedback: '❌ Non ! Amina dit la vérité en avouant qu\'elle a cassé le vase.',
+        hadith: '"La vérité mène à la vertu" (Sahih Bukhari 6094)'
+    },
+    {
+        text: 'Omar n\'a pas fait ses devoirs. À l\'école, il dit au maître : "J\'ai oublié mon cahier à la maison."',
+        context: 'Omar invente une excuse pour ne pas avoir d\'ennuis.',
+        isTruth: false,
+        correctFeedback: '✅ Bien vu ! Omar ment. Il n\'a pas oublié son cahier, il n\'a pas fait ses devoirs.',
+        wrongFeedback: '❌ Non ! Omar ment pour cacher qu\'il n\'a pas fait ses devoirs.',
+        hadith: '"Le mensonge mène à la perversion" (Sahih Bukhari 6094)'
+    },
+    {
+        text: 'Salma trouve un billet de 10€ par terre à l\'école. Elle le rapporte à la maîtresse et dit : "J\'ai trouvé ça, je ne sais pas à qui c\'est."',
+        context: 'Même si personne ne l\'a vue, Salma choisit l\'honnêteté.',
+        isTruth: true,
+        correctFeedback: '✅ Parfait ! Salma dit la VÉRITÉ et est honnête. Allah voit même ce que personne ne voit !',
+        wrongFeedback: '❌ Salma dit bien la vérité en rapportant ce qu\'elle a trouvé.',
+        hadith: '"Soyez avec les véridiques" (Coran 9:119)'
+    },
+    {
+        text: 'Youssouf mange un bonbon avant l\'Iftar pendant son jeûne. Quand papa lui demande s\'il jeûne bien, il dit : "Oui papa, tout va bien."',
+        context: 'Youssouf cache qu\'il a rompu son jeûne.',
+        isTruth: false,
+        correctFeedback: '✅ Exact ! Youssouf MENT. Il a mangé le bonbon mais dit qu\'il jeûne bien.',
+        wrongFeedback: '❌ Youssouf ment car il a rompu son jeûne mais ne le dit pas.',
+        hadith: '"Celui qui ne renonce pas au mensonge, Allah n\'a pas besoin de son jeûne" (Bukhari 1903)'
+    },
+    {
+        text: 'Leila ne connaît pas la réponse à une question en classe. Elle dit : "Je ne sais pas, madame."',
+        context: 'Leila préfère avouer qu\'elle ne sait pas plutôt que d\'inventer.',
+        isTruth: true,
+        correctFeedback: '✅ Bravo ! Leila dit la VÉRITÉ. Dire "je ne sais pas" est mieux que mentir !',
+        wrongFeedback: '❌ Leila dit la vérité en avouant qu\'elle ne sait pas.',
+        hadith: '"Dis la vérité même si elle est amère" (Ibn Hibban)'
+    },
+    {
+        text: 'Bilal prend le jouet de son petit frère sans demander. Quand son frère pleure, Bilal dit : "Ce n\'est pas moi qui l\'ai pris !"',
+        context: 'Bilal nie pour éviter les ennuis.',
+        isTruth: false,
+        correctFeedback: '✅ Bien ! Bilal MENT. Il a pris le jouet mais prétend que ce n\'est pas lui.',
+        wrongFeedback: '❌ Bilal ment car c\'est bien lui qui a pris le jouet.',
+        hadith: '"Le menteur sera inscrit auprès d\'Allah comme menteur" (Bukhari 6094)'
+    },
+    {
+        text: 'Fatima voit quelqu\'un voler dans un magasin. Elle va voir le vendeur et dit : "J\'ai vu cette personne prendre quelque chose sans payer."',
+        context: 'Même si c\'est difficile, Fatima témoigne de la vérité.',
+        isTruth: true,
+        correctFeedback: '✅ Parfait ! Fatima dit la VÉRITÉ en témoignant de ce qu\'elle a vu. C\'est courageux !',
+        wrongFeedback: '❌ Fatima dit bien la vérité en signalant ce qu\'elle a vu.',
+        hadith: '"Ne cache pas un témoignage, celui qui le cache a un cœur pécheur" (Coran 2:283)'
+    },
+    {
+        text: 'Karim raconte à ses amis : "Hier, j\'ai marqué 10 buts au foot !" Mais en vérité, il n\'en a marqué qu\'un.',
+        context: 'Karim exagère pour impressionner ses amis.',
+        isTruth: false,
+        correctFeedback: '✅ Exact ! Karim MENT en exagérant. Même exagérer pour impressionner est un mensonge.',
+        wrongFeedback: '❌ Karim ment car il exagère énormément (10 buts au lieu d\'1).',
+        hadith: '"Malheur à celui qui ment pour faire rire les gens" (Ahmad)'
+    }
+];
+
+// ============================================================
+//  GAME STATE
+// ============================================================
+let currentScenario = 0;
+let correctCount = 0;
+let answered = false;
+
+function initGame() {
+    currentScenario = 0;
+    correctCount = 0;
+    answered = false;
+
+    // Shuffle scenarios
+    SCENARIOS.sort(() => Math.random() - 0.5);
+
+    // Reset lights
+    renderLights();
+    updateLightsLabel();
+
+    // Show first scenario
+    document.getElementById('gameComplete').classList.remove('show');
+    document.getElementById('scenarioCard').style.display = '';
+    document.getElementById('displayText').textContent = 'DÉTECTEUR ACTIVÉ — EN ATTENTE...';
+
+    renderScenario();
+}
+
+function renderLights() {
+    const container = document.getElementById('truthLights');
+    container.innerHTML = '';
+    for (let i = 0; i < SCENARIOS.length; i++) {
+        const light = document.createElement('div');
+        light.className = 'truth-light';
+        light.id = `light-${i}`;
+        container.appendChild(light);
+    }
+}
+
+function updateLightsLabel() {
+    document.getElementById('lightsLabel').textContent = `${correctCount} / ${SCENARIOS.length} vérités détectées`;
+}
+
+function renderScenario() {
+    answered = false;
+    const s = SCENARIOS[currentScenario];
+
+    document.getElementById('scenarioNumber').textContent = `Situation ${currentScenario + 1} / ${SCENARIOS.length}`;
+    document.getElementById('scenarioText').textContent = s.text;
+
+    const contextEl = document.getElementById('scenarioContext');
+    if (s.context) {
+        contextEl.textContent = '💭 ' + s.context;
+        contextEl.style.display = '';
+    } else {
+        contextEl.style.display = 'none';
+    }
+
+    // Reset buttons
+    const buttons = document.querySelectorAll('.choice-btn');
+    buttons.forEach(b => {
+        b.disabled = false;
+        b.classList.remove('correct', 'wrong');
+    });
+
+    // Hide feedback and next button
+    document.getElementById('gameFeedback').classList.remove('show');
+    document.getElementById('btnNext').classList.remove('show');
+
+    // Update display
+    document.getElementById('displayText').textContent = 'ANALYSE EN COURS...';
+}
+
+function checkAnswer(userSaysTrue) {
+    if (answered) return;
+    answered = true;
+
+    const s = SCENARIOS[currentScenario];
+    const isCorrect = userSaysTrue === s.isTruth;
+
+    const buttons = document.querySelectorAll('.choice-btn');
+    buttons.forEach(b => b.disabled = true);
+
+    // Mark button
+    const clickedBtn = userSaysTrue ? buttons[0] : buttons[1];
+    clickedBtn.classList.add(isCorrect ? 'correct' : 'wrong');
+
+    // Update display
+    if (isCorrect) {
+        document.getElementById('displayText').textContent = '✅ VÉRITÉ DÉTECTÉE !';
+        correctCount++;
+        // Light up
+        const light = document.getElementById(`light-${correctCount - 1}`);
+        if (light) {
+            setTimeout(() => light.classList.add('lit'), 300);
+        }
+        updateLightsLabel();
+    } else {
+        document.getElementById('displayText').textContent = '❌ ERREUR DE DÉTECTION';
+    }
+
+    // Show feedback
+    const fb = document.getElementById('gameFeedback');
+    document.getElementById('feedbackTitle').textContent = isCorrect ? '✅ Bien joué !' : '❌ Pas tout à fait...';
+    document.getElementById('feedbackTitle').className = 'feedback-title ' + (isCorrect ? 'correct' : 'wrong');
+    document.getElementById('feedbackText').textContent = isCorrect ? s.correctFeedback : s.wrongFeedback;
+    document.getElementById('feedbackHadith').textContent = s.hadith;
+    fb.classList.add('show');
+
+    // Show next button
+    const btnNext = document.getElementById('btnNext');
+    btnNext.textContent = currentScenario < SCENARIOS.length - 1 ? 'Situation suivante →' : 'Voir le résultat ✨';
+    btnNext.classList.add('show');
+}
+
+function nextScenario() {
+    currentScenario++;
+    if (currentScenario >= SCENARIOS.length) {
+        showComplete();
+    } else {
+        renderScenario();
+    }
+}
+
+function showComplete() {
+    document.getElementById('scenarioCard').style.display = 'none';
+    document.getElementById('btnNext').classList.remove('show');
+
+    const complete = document.getElementById('gameComplete');
+    complete.classList.add('show');
+
+    const score = correctCount;
+    const total = SCENARIOS.length;
+    const pct = Math.round((score / total) * 100);
+
+    document.getElementById('completeScore').textContent = `${score} / ${total} réponses correctes (${pct}%)`;
+
+    let emoji, title, msg;
+    if (score === total) {
+        emoji = '✨'; title = 'As-Sadiq Al-Amin !';
+        msg = 'Parfait ! Tu as détecté toutes les vérités et tous les mensonges ! Tu as le cœur d\'un véridique. Qu\'Allah t\'inscrive parmi les As-Sadiqin (les véridiques) ! 🌟';
+    } else if (score >= total - 1) {
+        emoji = '😊'; title = 'Très bien !';
+        msg = `Masha Allah ! ${score} bonnes réponses sur ${total}. Tu as un bon sens de la vérité ! Continue à t\'entraîner à toujours dire la vérité ! 💪`;
+    } else if (score >= total / 2) {
+        emoji = '🤔'; title = 'Bon début !';
+        msg = `${score} bonnes réponses. Le détecteur de vérité s\'améliore avec la pratique ! Relis la leçon et rejoue pour affiner ton sens de la vérité ! 📚`;
+    } else {
+        emoji = '📖'; title = 'Continue !';
+        msg = 'Le détecteur a besoin d\'entraînement ! Relis bien la leçon sur la vérité et rejoue. Souviens-toi : la vérité mène au Paradis ! 🌈';
+    }
+
+    document.getElementById('completeEmoji').textContent = emoji;
+    document.getElementById('completeTitle').textContent = title;
+    document.getElementById('completeMessage').textContent = msg;
+}
+
+function resetGame() {
+    initGame();
+}
+
+// Start
+initGame();
+
+// ============================================================
+//  QUIZ
+// ============================================================
+let answers = [null, null, null, null, null];
+let selectedCount = 0;
+
+function selectAnswer(element, isCorrect, questionIndex) {
+    const options = element.parentElement.querySelectorAll('.option');
+    options.forEach(opt => opt.classList.remove('selected'));
+    element.classList.add('selected');
+    if (answers[questionIndex] === null) selectedCount++;
+    answers[questionIndex] = isCorrect;
+    if (selectedCount === 5) document.getElementById('submitBtn').disabled = false;
+}
+
+function checkQuizAnswers() {
+    let score = 0;
+    const allOptions = document.querySelectorAll('.option.selected');
+    allOptions.forEach((option, index) => {
+        if (answers[index]) { option.classList.add('correct'); score++; }
+        else option.classList.add('incorrect');
+    });
+    document.getElementById('submitBtn').disabled = true;
+    setTimeout(() => showResults(score), 1000);
+}
+
+function showResults(score) {
+    document.getElementById('scoreDisplay').textContent = 'Score : ' + score + '/5';
+    if (score === 5) {
+        document.getElementById('resultIcon').textContent = '✨';
+        document.getElementById('resultTitle').textContent = 'As-Sadiq !';
+        document.getElementById('resultMessage').textContent = 'Tu as tout compris sur la vérité en Islam ! Qu\'Allah fasse de toi un véridique comme le Prophète ! 🌟';
+    } else if (score >= 3) {
+        document.getElementById('resultIcon').textContent = '😊';
+        document.getElementById('resultTitle').textContent = 'Très bien !';
+        document.getElementById('resultMessage').textContent = 'Tu connais bien l\'importance de la vérité ! Continue à être véridique ! 💪';
+    } else {
+        document.getElementById('resultIcon').textContent = '📚';
+        document.getElementById('resultTitle').textContent = 'Continue tes efforts !';
+        document.getElementById('resultMessage').textContent = 'Relis la leçon sur la vérité et tu vas mieux comprendre. La vérité est le chemin ! 🌈';
+    }
+    document.getElementById('overlay').classList.add('show');
+    document.getElementById('resultModal').classList.add('show');
+}
+
+function closeModal() {
+    document.getElementById('resultModal').classList.remove('show');
+    document.getElementById('overlay').classList.remove('show');
+}
+</script>
+</body>
+</html>
