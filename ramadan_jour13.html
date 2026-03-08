@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jour 13 - La propreté 🧼</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@400;600;700&display=swap');
+
+        :root {
+            --sand: #f5e6d3;
+            --sand-dark: #e8d5c4;
+            --green: #8b9584;
+            --green-dark: #5a6b4f;
+            --green-light: #a4b29b;
+            --text: #4a5442;
+            --cyan: #00bcd4;
+            --cyan-light: #4dd0e1;
+            --blue: #2196f3;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, var(--sand) 0%, var(--sand-dark) 50%, var(--sand) 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #ffffff 0%, #faf8f5 100%);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(139,149,132,0.2);
+            border: 3px solid var(--green);
+        }
+
+        /* HEADER */
+        .header { text-align: center; margin-bottom: 40px; position: relative; }
+
+        .day-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            color: white; padding: 10px 25px; border-radius: 25px;
+            font-size: 1rem; font-weight: 600; margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(139,149,132,0.3);
+        }
+
+        h1 { color: var(--green-dark); font-size: 2.5rem; margin-bottom: 10px; font-family: 'Amiri', serif; }
+
+        .moon-icon {
+            font-size: 3rem;
+            animation: glow 2s ease-in-out infinite;
+            display: block; margin-bottom: 10px;
+        }
+        @keyframes glow {
+            0%,100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(0,188,212,0.4)); }
+            50% { transform: scale(1.1); filter: drop-shadow(0 0 22px rgba(0,188,212,0.8)); }
+        }
+
+        .logo { position: absolute; top: 0; left: 0; width: 120px; height: auto; opacity: 0.9; transition: opacity 0.3s; }
+        .logo:hover { opacity: 1; }
+
+        /* INTRO */
+        .intro-text {
+            background: linear-gradient(135deg, var(--sand), var(--sand-dark));
+            padding: 25px; border-radius: 20px;
+            border-left: 5px solid var(--green);
+            margin: 30px 0; font-size: 1.1rem; line-height: 1.8; color: var(--text);
+        }
+
+        /* STORY CARDS */
+        .story-card {
+            background: white; border-radius: 20px; padding: 25px; margin: 20px 0;
+            border: 2px solid #d4c4b0; transition: all 0.3s ease;
+        }
+        .story-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(139,149,132,0.2); border-color: var(--green); }
+        .story-card h3 { color: var(--green-dark); margin-bottom: 15px; font-size: 1.3rem; }
+        .story-card p { color: #666; line-height: 1.7; font-size: 1.05rem; }
+
+        /* ============================================================
+           GAME SECTION — La Maison de Nour
+        ============================================================ */
+        .game-section {
+            background: linear-gradient(160deg, #e1f5fe 0%, #b3e5fc 50%, #81d4fa 100%);
+            border-radius: 24px;
+            margin: 30px 0;
+            overflow: hidden;
+            position: relative;
+            color: #01579b;
+            padding: 28px;
+        }
+
+        .game-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .game-title {
+            font-family: 'Amiri', serif;
+            font-size: 1.8rem;
+            color: #0277bd;
+            margin-bottom: 6px;
+        }
+
+        .game-subtitle {
+            font-size: 0.95rem;
+            color: #01579b;
+            opacity: 0.8;
+            margin-bottom: 14px;
+        }
+
+        .game-story {
+            background: rgba(255,255,255,0.6);
+            border-radius: 14px;
+            padding: 14px 18px;
+            margin-bottom: 20px;
+            font-size: 0.96rem;
+            line-height: 1.6;
+            border-left: 3px solid #00bcd4;
+            color: #01579b;
+        }
+
+        /* Cleanliness Progress */
+        .clean-progress {
+            background: rgba(255,255,255,0.7);
+            border-radius: 16px;
+            padding: 16px 20px;
+            margin-bottom: 20px;
+            border: 2px solid rgba(0,188,212,0.3);
+        }
+
+        .progress-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #0277bd;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .progress-bar-wrap {
+            background: rgba(0,0,0,0.1);
+            border-radius: 20px;
+            height: 16px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00bcd4, #4dd0e1);
+            border-radius: 20px;
+            transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1);
+            width: 0%;
+            box-shadow: 0 0 12px rgba(0,188,212,0.5);
+        }
+
+        .progress-label {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #01579b;
+            font-weight: 600;
+        }
+
+        /* Room selector */
+        .room-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .room-btn {
+            background: rgba(255,255,255,0.5);
+            border: 2px solid rgba(0,188,212,0.3);
+            border-radius: 14px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-weight: 600;
+            color: #0277bd;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .room-btn:hover {
+            background: rgba(255,255,255,0.8);
+            border-color: #00bcd4;
+            transform: translateY(-2px);
+        }
+
+        .room-btn.active {
+            background: linear-gradient(135deg, #00bcd4, #4dd0e1);
+            border-color: #0277bd;
+            color: white;
+            box-shadow: 0 4px 12px rgba(0,188,212,0.4);
+        }
+
+        .room-btn.completed {
+            background: rgba(76,175,80,0.3);
+            border-color: #4caf50;
+            color: #2e7d32;
+        }
+
+        .room-btn.completed::after {
+            content: ' ✓';
+        }
+
+        .room-emoji {
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* Cleaning area */
+        .cleaning-area {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            min-height: 300px;
+            position: relative;
+            border: 3px solid #b3e5fc;
+            overflow: hidden;
+        }
+
+        .room-title {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #0277bd;
+            margin-bottom: 16px;
+            font-family: 'Amiri', serif;
+        }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .cleanable-item {
+            background: #f5f5f5;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .cleanable-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .cleanable-item.dirty {
+            background: #ffebee;
+            border-color: #ef5350;
+        }
+
+        .cleanable-item.dirty::after {
+            content: '❌';
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            font-size: 1rem;
+        }
+
+        .cleanable-item.clean {
+            background: #e8f5e9;
+            border-color: #4caf50;
+            cursor: default;
+            animation: sparkle 0.6s ease;
+        }
+
+        .cleanable-item.clean::after {
+            content: '✨';
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            font-size: 1rem;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); box-shadow: 0 0 20px rgba(76,175,80,0.5); }
+        }
+
+        .item-emoji {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .item-label {
+            font-size: 0.8rem;
+            color: #666;
+            font-weight: 600;
+        }
+
+        /* Cleaning animation */
+        .bubble {
+            position: absolute;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(0,188,212,0.3));
+            border-radius: 50%;
+            pointer-events: none;
+            animation: bubbleRise 1s ease-out forwards;
+        }
+
+        @keyframes bubbleRise {
+            0% { transform: translateY(0) scale(0); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-60px) scale(1); opacity: 0; }
+        }
+
+        /* Room complete message */
+        .room-complete {
+            text-align: center;
+            padding: 20px;
+            background: rgba(76,175,80,0.15);
+            border-radius: 12px;
+            border: 2px dashed #4caf50;
+            margin-top: 16px;
+            display: none;
+        }
+
+        .room-complete.show { display: block; }
+
+        .room-complete-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+        }
+
+        .room-complete-text {
+            color: #2e7d32;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        /* Game complete */
+        .game-complete {
+            display: none;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .game-complete.show { display: block; }
+
+        .complete-emoji { font-size: 4rem; margin-bottom: 12px; animation: bounceIn 0.7s ease; }
+        @keyframes bounceIn { 0%{transform:scale(0)} 60%{transform:scale(1.2)} 100%{transform:scale(1)} }
+
+        .complete-title {
+            font-family: 'Amiri', serif;
+            font-size: 2rem;
+            color: #0277bd;
+            margin-bottom: 12px;
+        }
+
+        .complete-message {
+            color: #01579b;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .btn-game {
+            background: linear-gradient(135deg, #00bcd4, #4dd0e1);
+            border: none;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin: 8px;
+        }
+
+        .btn-game:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,188,212,0.4);
+        }
+
+        /* FUN FACTS */
+        .fun-facts {
+            background: linear-gradient(135deg, var(--sand), var(--sand-dark));
+            padding: 25px; border-radius: 20px; margin: 30px 0;
+            border: 2px dashed var(--green);
+        }
+        .fun-facts h3 { color: var(--green-dark); margin-bottom: 15px; text-align: center; }
+        .fun-facts ul { list-style: none; padding: 0; }
+        .fun-facts li { padding: 10px 0; padding-left: 30px; position: relative; color: var(--text); line-height: 1.6; }
+        .fun-facts li:before { content: "🧼"; position: absolute; left: 0; }
+
+        /* QUIZ */
+        .quiz-section {
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            padding: 30px; border-radius: 20px; margin: 30px 0; color: white;
+        }
+        .quiz-section h3 { text-align: center; font-size: 1.5rem; margin-bottom: 25px; }
+
+        .question-card { background: white; border-radius: 15px; padding: 25px; margin: 20px 0; color: var(--text); }
+        .question-text { font-weight: 600; font-size: 1.15rem; margin-bottom: 20px; color: var(--green-dark); }
+        .options { display: grid; grid-template-columns: 1fr; gap: 12px; }
+
+        .option {
+            background: linear-gradient(135deg, var(--sand), var(--sand-dark));
+            padding: 15px 20px; border-radius: 12px;
+            cursor: pointer; transition: all 0.3s ease;
+            border: 2px solid transparent; font-weight: 500;
+        }
+        .option:hover { background: linear-gradient(135deg, var(--sand-dark), #d4c4b0); transform: translateX(5px); }
+        .option.selected { background: linear-gradient(135deg, var(--green), var(--green-light)); color: white; border-color: var(--green-dark); transform: scale(1.02); }
+        .option.correct { background: linear-gradient(135deg, #7fb069, #8fbc77); color: white; border-color: #5a8049; animation: qPulse 0.5s ease; }
+        .option.incorrect { background: linear-gradient(135deg, #d4916c, #c47d5a); color: white; border-color: #a4614a; animation: qShake 0.5s ease; }
+
+        @keyframes qPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+        @keyframes qShake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
+
+        .btn {
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            color: white; border: none; padding: 15px 40px;
+            border-radius: 30px; font-size: 1.1rem; font-weight: 600;
+            cursor: pointer; transition: all 0.3s ease;
+            display: block; margin: 25px auto 0;
+            box-shadow: 0 5px 20px rgba(139,149,132,0.3);
+            font-family: 'Quicksand', sans-serif;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(139,149,132,0.4); }
+        .btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+
+        /* MODALS */
+        .result-modal {
+            position: fixed; top: 50%; left: 50%;
+            transform: translate(-50%,-50%) scale(0);
+            background: white; padding: 40px; border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            z-index: 1001; text-align: center;
+            max-width: 420px; width: 90%;
+            transition: transform 0.3s ease;
+        }
+        .result-modal.show { transform: translate(-50%,-50%) scale(1); }
+        .result-modal h3 { color: var(--green-dark); font-size: 2rem; margin-bottom: 15px; }
+
+        .result-icon { font-size: 4rem; margin-bottom: 15px; animation: rBounce 0.6s ease; }
+        @keyframes rBounce { 0%{transform:scale(0);opacity:0} 60%{transform:scale(1.2)} 100%{transform:scale(1);opacity:1} }
+
+        .result-message { color: #666; font-size: 1.05rem; margin: 15px 0; line-height: 1.6; }
+        .score-display { background: linear-gradient(135deg, var(--sand), var(--sand-dark)); padding: 14px; border-radius: 15px; font-size: 1.2rem; font-weight: 600; color: var(--green-dark); margin: 15px 0; }
+
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 999; }
+        .overlay.show { display: block; }
+
+        @media (max-width: 768px) {
+            .logo { width: 80px; top: 5px; left: 5px; }
+            .container { padding: 20px; }
+            h1 { font-size: 2rem; }
+            .room-selector { grid-template-columns: 1fr; }
+            .items-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <img src="logonoir_lespetitesplumes.png" alt="Les petites plumes" class="logo">
+        <div class="day-badge">Jour 13 / 30</div>
+        <span class="moon-icon">🧼</span>
+        <h1>La propreté</h1>
+        <p style="color: #8b9584; font-size: 1.1rem;">Garder son corps et son espace propres !</p>
+    </div>
+
+    <div class="intro-text">
+        <p style="font-weight: 600; margin-bottom: 10px;">🌟 At-Taharah : La propreté en Islam</p>
+        <p><strong>At-Taharah</strong> (الطهارة) signifie la propreté et la pureté en arabe. C'est tellement important en Islam que le Prophète (paix et bénédictions sur lui) a dit : <em>"La propreté fait partie de la foi"</em> <strong>(Sahih Muslim 223)</strong>. Cela veut dire qu'être propre n'est pas juste une bonne habitude — c'est une partie de ta religion ! Allah aime ceux qui sont propres. Il dit dans le Coran : <em>"Allah aime ceux qui se repentent et Il aime ceux qui se purifient"</em> <strong>(Coran 2:222)</strong>. 🧼✨</p>
+    </div>
+
+    <div class="story-section">
+        <div class="story-card">
+            <h3>📿 Pourquoi la propreté est-elle si importante ?</h3>
+            <p>La propreté en Islam touche <strong>deux aspects</strong> : la propreté du <strong>corps</strong> et la propreté de l'<strong>environnement</strong>. Pour le corps, on doit faire le <strong>Wudhu</strong> (ablutions) avant chaque prière — se laver le visage, les mains, les bras, la tête et les pieds. On doit aussi prendre un <strong>Ghusl</strong> (bain complet) régulièrement. Pour l'environnement, le Prophète nous enseigne de garder nos maisons propres, nos vêtements propres, et même les rues ! Il a dit : <em>"Enlever un obstacle du chemin est une charité"</em> <strong>(Sahih Bukhari 2989)</strong>. Même ramasser un déchet par terre rapporte des récompenses ! 🌍</p>
+        </div>
+
+        <div class="story-card">
+            <h3>🌟 La propreté du corps</h3>
+            <p>Le Prophète Mouhammad (paix et bénédictions sur lui) était <strong>la personne la plus propre</strong> de son temps ! Il se lavait régulièrement, se brossait les dents avec le <strong>Siwak</strong> (bâtonnet naturel), coupait ses ongles, peignait ses cheveux, et portait des vêtements propres et parfumés. Il a dit : <em>"Celui qui fait les ablutions et les fait bien, les péchés sortent de son corps"</em> <strong>(Sahih Muslim 245)</strong>. Imagine : quand tu te laves correctement pour la prière, tes péchés partent avec l'eau ! C'est magnifique. Prends soin de ton corps : lave-toi, brosse tes dents, coupe tes ongles, lave tes vêtements. C'est ta responsabilité ! 🚿</p>
+        </div>
+
+        <div class="story-card">
+            <h3>🎁 La propreté de l'environnement</h3>
+            <p>Le Prophète (saw) nous apprend à garder propre <strong>tout autour de nous</strong> ! Ta chambre, ta maison, ta classe, ta rue — tout doit être propre. Il a dit : <em>"Allah est beau et Il aime la beauté"</em> <strong>(Sahih Muslim 91)</strong>, et la beauté commence par la propreté. Range tes jouets, fais ton lit, aide à ranger la maison, jette les déchets à la poubelle, et ne laisse jamais de saleté traîner. Même dans la mosquée, le Prophète (saw) enlevait lui-même les saletés qu'il voyait ! Il nous montre que la propreté est un <strong>acte d'adoration</strong>. 🏡</p>
+        </div>
+
+        <div class="story-card">
+            <h3>💫 La propreté en Ramadan</h3>
+            <p>Le Ramadan est un moment parfait pour <strong>renforcer ta propreté</strong> ! Avant chaque prière, tu fais le Wudhu — 5 fois par jour, c'est beaucoup de propreté ! Prends aussi soin de ta maison pendant ce mois béni. Le Prophète (saw) faisait nettoyer la mosquée et la parfumait pour le Ramadan. À la maison, aide ta famille à garder tout propre : range ta chambre, aide à la vaisselle, nettoie après avoir mangé. Et n'oublie pas : pendant que tu jeûnes, garde ta <strong>langue propre</strong> aussi — pas de gros mots, pas de mensonges, pas de disputes ! La vraie propreté, c'est le corps ET le cœur ! 💙</p>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         GAME : La Maison de Nour
+    ============================================================ -->
+    <div class="game-section" id="gameSection">
+        <div class="game-header">
+            <div class="game-title">🏠 La Maison de Nour</div>
+            <div class="game-subtitle">Aide Nour à nettoyer toute sa maison avant l'Iftar !</div>
+        </div>
+
+        <div class="game-story">
+            🧹 Nour veut que sa maison soit <strong>parfaitement propre</strong> pour le Ramadan ! Aide-la à nettoyer chaque pièce en cliquant sur les objets sales ou en désordre. Chaque objet nettoyé devient brillant ! Nettoie les 3 pièces pour gagner ! 💫
+        </div>
+
+        <div class="clean-progress">
+            <div class="progress-title">🧼 Propreté totale de la maison</div>
+            <div class="progress-bar-wrap">
+                <div class="progress-bar-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-label" id="progressLabel">0 / 18 objets nettoyés</div>
+        </div>
+
+        <div class="room-selector" id="roomSelector">
+            <!-- Generated by JS -->
+        </div>
+
+        <div class="cleaning-area" id="cleaningArea">
+            <div class="room-title" id="roomTitle">Choisis une pièce à nettoyer</div>
+            <div class="items-grid" id="itemsGrid">
+                <!-- Generated by JS -->
+            </div>
+            <div class="room-complete" id="roomComplete">
+                <div class="room-complete-emoji">✨</div>
+                <div class="room-complete-text">Cette pièce est maintenant impeccable ! Masha Allah !</div>
+            </div>
+        </div>
+
+        <button class="btn-game" onclick="resetGame()">🔄 Nouvelle maison</button>
+
+        <!-- Game Complete -->
+        <div class="game-complete" id="gameComplete">
+            <div class="complete-emoji">🏡</div>
+            <div class="complete-title">Masha Allah !</div>
+            <div class="complete-message">
+                Nour a maintenant une maison parfaitement propre pour le Ramadan ! <strong>"La propreté fait partie de la foi"</strong>. Continue à garder ton espace propre chaque jour ! 🌟
+            </div>
+            <button class="btn-game" onclick="resetGame()">🔄 Rejouer</button>
+        </div>
+    </div>
+
+    <div class="fun-facts">
+        <h3>✨ Le savais-tu ?</h3>
+        <ul>
+            <li>Le Prophète se brossait les dents avec le <strong>Siwak</strong> jusqu'à 5 fois par jour — après chaque prière !</li>
+            <li>Il aimait tellement la propreté qu'il disait : <strong>"Si je ne craignais pas de surcharger ma communauté, je leur ordonnerais le Siwak à chaque prière"</strong> !</li>
+            <li>Le jour du vendredi, le Prophète (saw) nous recommande de prendre un <strong>bain complet (Ghusl)</strong>, de porter nos meilleurs vêtements, et même de mettre du parfum !</li>
+            <li>Enlever un déchet du chemin, même une petite pierre, est une <strong>Sadaqah</strong> (charité) qui efface des péchés ! 🗑️</li>
+        </ul>
+    </div>
+
+    <div class="quiz-section">
+        <h3>🎮 Quiz : As-tu bien compris ?</h3>
+
+        <div class="question-card">
+            <div class="question-text">1. Que dit le Prophète (saw) sur la propreté ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 0)">Elle n'est pas importante</div>
+                <div class="option" onclick="selectAnswer(this, true, 0)">La propreté fait partie de la foi</div>
+                <div class="option" onclick="selectAnswer(this, false, 0)">C'est juste une habitude</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">2. Qu'est-ce que le Wudhu ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 1)">Un bain complet</div>
+                <div class="option" onclick="selectAnswer(this, true, 1)">Les ablutions avant la prière (se laver le visage, les mains, les bras, etc.)</div>
+                <div class="option" onclick="selectAnswer(this, false, 1)">Se brosser les dents</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">3. Qu'est-ce que le Siwak ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 2)">Un parfum</div>
+                <div class="option" onclick="selectAnswer(this, false, 2)">Un savon</div>
+                <div class="option" onclick="selectAnswer(this, true, 2)">Un bâtonnet naturel pour se brosser les dents</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">4. Que dit le Prophète (saw) sur enlever un obstacle du chemin ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 3)">Ce n'est pas notre problème</div>
+                <div class="option" onclick="selectAnswer(this, true, 3)">C'est une charité (Sadaqah)</div>
+                <div class="option" onclick="selectAnswer(this, false, 3)">C'est le travail des autres</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">5. Que se passe-t-il quand on fait bien le Wudhu selon le hadith ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 4)">Rien de spécial</div>
+                <div class="option" onclick="selectAnswer(this, true, 4)">Les péchés sortent de notre corps</div>
+                <div class="option" onclick="selectAnswer(this, false, 4)">On devient plus fort</div>
+            </div>
+        </div>
+
+        <button class="btn" id="submitBtn" onclick="checkQuizAnswers()" disabled>Vérifier mes réponses</button>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+        <p style="color: #8b9584; font-size: 1.1rem;">
+            <strong>Bravo d'avoir terminé le Jour 13 ! 🌟</strong><br>
+            N'oublie pas : la propreté fait partie de la foi !<br>
+            Garde ton corps et ton espace propres chaque jour ! 🧼<br>
+            Rendez-vous demain pour le Jour 14 !
+        </p>
+    </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+<div class="result-modal" id="resultModal">
+    <div class="result-icon" id="resultIcon">🎉</div>
+    <h3 id="resultTitle">Excellent !</h3>
+    <div class="score-display" id="scoreDisplay">Score : 5/5</div>
+    <div class="result-message" id="resultMessage">Masha Allah !</div>
+    <button class="btn" onclick="closeModal()">Continuer</button>
+</div>
+
+<script>
+// ============================================================
+//  CLEANING GAME DATA
+// ============================================================
+const ROOMS = {
+    bedroom: {
+        name: 'Chambre',
+        emoji: '🛏️',
+        items: [
+            { emoji: '👕', label: 'Vêtements', dirty: true },
+            { emoji: '📚', label: 'Livres', dirty: true },
+            { emoji: '🧸', label: 'Jouets', dirty: true },
+            { emoji: '🛏️', label: 'Lit', dirty: true },
+            { emoji: '🗑️', label: 'Poubelle', dirty: true },
+            { emoji: '🪟', label: 'Fenêtre', dirty: true },
+        ]
+    },
+    bathroom: {
+        name: 'Salle de bain',
+        emoji: '🚿',
+        items: [
+            { emoji: '🚽', label: 'Toilettes', dirty: true },
+            { emoji: '🚿', label: 'Douche', dirty: true },
+            { emoji: '🪥', label: 'Lavabo', dirty: true },
+            { emoji: '🪞', label: 'Miroir', dirty: true },
+            { emoji: '🧴', label: 'Étagères', dirty: true },
+            { emoji: '🧹', label: 'Sol', dirty: true },
+        ]
+    },
+    kitchen: {
+        name: 'Cuisine',
+        emoji: '🍳',
+        items: [
+            { emoji: '🍽️', label: 'Vaisselle', dirty: true },
+            { emoji: '🍳', label: 'Casseroles', dirty: true },
+            { emoji: '🔪', label: 'Couteaux', dirty: true },
+            { emoji: '🧽', label: 'Évier', dirty: true },
+            { emoji: '🗑️', label: 'Poubelle', dirty: true },
+            { emoji: '🧹', label: 'Sol', dirty: true },
+        ]
+    }
+};
+
+// ============================================================
+//  GAME STATE
+// ============================================================
+let currentRoom = null;
+let roomsData = {};
+let totalItems = 0;
+let cleanedItems = 0;
+
+function initGame() {
+    // Reset data
+    roomsData = JSON.parse(JSON.stringify(ROOMS)); // Deep copy
+    currentRoom = null;
+    totalItems = 0;
+    cleanedItems = 0;
+
+    // Count total items
+    Object.values(roomsData).forEach(room => {
+        totalItems += room.items.length;
+    });
+
+    // Render UI
+    renderRoomSelector();
+    updateProgress();
+    
+    // Clear area
+    document.getElementById('cleaningArea').style.display = 'block';
+    document.getElementById('gameComplete').classList.remove('show');
+    document.getElementById('roomTitle').textContent = 'Choisis une pièce à nettoyer';
+    document.getElementById('itemsGrid').innerHTML = '<p style="text-align:center;color:#666;padding:40px;">👆 Clique sur une pièce ci-dessus pour commencer !</p>';
+    document.getElementById('roomComplete').classList.remove('show');
+}
+
+function renderRoomSelector() {
+    const selector = document.getElementById('roomSelector');
+    selector.innerHTML = '';
+
+    Object.entries(roomsData).forEach(([id, room]) => {
+        const btn = document.createElement('button');
+        btn.className = 'room-btn';
+        btn.id = `room-${id}`;
+        btn.onclick = () => selectRoom(id);
+
+        const allClean = room.items.every(item => !item.dirty);
+        if (allClean) btn.classList.add('completed');
+
+        btn.innerHTML = `<span class="room-emoji">${room.emoji}</span>${room.name}`;
+        selector.appendChild(btn);
+    });
+}
+
+function selectRoom(roomId) {
+    currentRoom = roomId;
+    const room = roomsData[roomId];
+
+    // Update buttons
+    document.querySelectorAll('.room-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(`room-${roomId}`).classList.add('active');
+
+    // Update title
+    document.getElementById('roomTitle').textContent = `${room.emoji} ${room.name}`;
+
+    // Render items
+    renderItems(room);
+
+    // Check if room already clean
+    const allClean = room.items.every(item => !item.dirty);
+    document.getElementById('roomComplete').classList.toggle('show', allClean);
+}
+
+function renderItems(room) {
+    const grid = document.getElementById('itemsGrid');
+    grid.innerHTML = '';
+
+    room.items.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = 'cleanable-item ' + (item.dirty ? 'dirty' : 'clean');
+        card.onclick = () => cleanItem(index);
+
+        card.innerHTML = `
+            <span class="item-emoji">${item.emoji}</span>
+            <div class="item-label">${item.label}</div>
+        `;
+
+        grid.appendChild(card);
+    });
+}
+
+function cleanItem(index) {
+    const room = roomsData[currentRoom];
+    const item = room.items[index];
+
+    if (!item.dirty) return; // Already clean
+
+    // Mark as clean
+    item.dirty = false;
+    cleanedItems++;
+
+    // Update UI
+    renderItems(room);
+    updateProgress();
+    renderRoomSelector();
+
+    // Spawn bubbles
+    spawnBubbles();
+
+    // Check room complete
+    const allClean = room.items.every(i => !i.dirty);
+    if (allClean) {
+        setTimeout(() => {
+            document.getElementById('roomComplete').classList.add('show');
+        }, 300);
+    }
+
+    // Check game complete
+    if (cleanedItems === totalItems) {
+        setTimeout(showComplete, 800);
+    }
+}
+
+function updateProgress() {
+    const pct = Math.round((cleanedItems / totalItems) * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressLabel').textContent = `${cleanedItems} / ${totalItems} objets nettoyés`;
+}
+
+function spawnBubbles() {
+    const area = document.getElementById('cleaningArea');
+    for (let i = 0; i < 6; i++) {
+        setTimeout(() => {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            const size = 20 + Math.random() * 30;
+            bubble.style.width = size + 'px';
+            bubble.style.height = size + 'px';
+            bubble.style.left = Math.random() * 100 + '%';
+            bubble.style.bottom = '20px';
+            area.appendChild(bubble);
+
+            setTimeout(() => bubble.remove(), 1000);
+        }, i * 100);
+    }
+}
+
+function showComplete() {
+    document.getElementById('cleaningArea').style.display = 'none';
+    document.getElementById('gameComplete').classList.add('show');
+}
+
+function resetGame() {
+    initGame();
+}
+
+// Start
+initGame();
+
+// ============================================================
+//  QUIZ
+// ============================================================
+let answers = [null, null, null, null, null];
+let selectedCount = 0;
+
+function selectAnswer(element, isCorrect, questionIndex) {
+    const options = element.parentElement.querySelectorAll('.option');
+    options.forEach(opt => opt.classList.remove('selected'));
+    element.classList.add('selected');
+    if (answers[questionIndex] === null) selectedCount++;
+    answers[questionIndex] = isCorrect;
+    if (selectedCount === 5) document.getElementById('submitBtn').disabled = false;
+}
+
+function checkQuizAnswers() {
+    let score = 0;
+    const allOptions = document.querySelectorAll('.option.selected');
+    allOptions.forEach((option, index) => {
+        if (answers[index]) { option.classList.add('correct'); score++; }
+        else option.classList.add('incorrect');
+    });
+    document.getElementById('submitBtn').disabled = true;
+    setTimeout(() => showResults(score), 1000);
+}
+
+function showResults(score) {
+    document.getElementById('scoreDisplay').textContent = 'Score : ' + score + '/5';
+    if (score === 5) {
+        document.getElementById('resultIcon').textContent = '🧼';
+        document.getElementById('resultTitle').textContent = 'At-Taharah !';
+        document.getElementById('resultMessage').textContent = 'Tu as tout compris sur la propreté en Islam ! Qu\'Allah te garde toujours propre et pur ! 🌟';
+    } else if (score >= 3) {
+        document.getElementById('resultIcon').textContent = '😊';
+        document.getElementById('resultTitle').textContent = 'Très bien !';
+        document.getElementById('resultMessage').textContent = 'Tu connais bien l\'importance de la propreté ! Continue à garder ton espace propre ! 💪';
+    } else {
+        document.getElementById('resultIcon').textContent = '📚';
+        document.getElementById('resultTitle').textContent = 'Continue tes efforts !';
+        document.getElementById('resultMessage').textContent = 'Relis la leçon sur la propreté et tu vas mieux comprendre. La propreté fait partie de la foi ! 🌈';
+    }
+    document.getElementById('overlay').classList.add('show');
+    document.getElementById('resultModal').classList.add('show');
+}
+
+function closeModal() {
+    document.getElementById('resultModal').classList.remove('show');
+    document.getElementById('overlay').classList.remove('show');
+}
+</script>
+</body>
+</html>
