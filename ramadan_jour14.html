@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jour 14 - Le pardon 💜</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@400;600;700&display=swap');
+
+        :root {
+            --sand: #f5e6d3;
+            --sand-dark: #e8d5c4;
+            --green: #8b9584;
+            --green-dark: #5a6b4f;
+            --green-light: #a4b29b;
+            --text: #4a5442;
+            --purple: #9c27b0;
+            --purple-light: #ba68c8;
+            --pink: #e91e63;
+            --lavender: #e1bee7;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, var(--sand) 0%, var(--sand-dark) 50%, var(--sand) 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #ffffff 0%, #faf8f5 100%);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(139,149,132,0.2);
+            border: 3px solid var(--green);
+        }
+
+        /* HEADER */
+        .header { text-align: center; margin-bottom: 40px; position: relative; }
+
+        .day-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            color: white; padding: 10px 25px; border-radius: 25px;
+            font-size: 1rem; font-weight: 600; margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(139,149,132,0.3);
+        }
+
+        h1 { color: var(--green-dark); font-size: 2.5rem; margin-bottom: 10px; font-family: 'Amiri', serif; }
+
+        .moon-icon {
+            font-size: 3rem;
+            animation: glow 2s ease-in-out infinite;
+            display: block; margin-bottom: 10px;
+        }
+        @keyframes glow {
+            0%,100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(156,39,176,0.4)); }
+            50% { transform: scale(1.1); filter: drop-shadow(0 0 22px rgba(156,39,176,0.8)); }
+        }
+
+        .logo { position: absolute; top: 0; left: 0; width: 120px; height: auto; opacity: 0.9; transition: opacity 0.3s; }
+        .logo:hover { opacity: 1; }
+
+        /* INTRO */
+        .intro-text {
+            background: linear-gradient(135deg, var(--sand), var(--sand-dark));
+            padding: 25px; border-radius: 20px;
+            border-left: 5px solid var(--green);
+            margin: 30px 0; font-size: 1.1rem; line-height: 1.8; color: var(--text);
+        }
+
+        /* STORY CARDS */
+        .story-card {
+            background: white; border-radius: 20px; padding: 25px; margin: 20px 0;
+            border: 2px solid #d4c4b0; transition: all 0.3s ease;
+        }
+        .story-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(139,149,132,0.2); border-color: var(--green); }
+        .story-card h3 { color: var(--green-dark); margin-bottom: 15px; font-size: 1.3rem; }
+        .story-card p { color: #666; line-height: 1.7; font-size: 1.05rem; }
+
+        /* ============================================================
+           GAME SECTION — Le Pont du Pardon
+        ============================================================ */
+        .game-section {
+            background: linear-gradient(160deg, #f3e5f5 0%, #e1bee7 50%, #ce93d8 100%);
+            border-radius: 24px;
+            margin: 30px 0;
+            overflow: hidden;
+            position: relative;
+            color: #4a148c;
+            padding: 28px;
+        }
+
+        .game-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .game-title {
+            font-family: 'Amiri', serif;
+            font-size: 1.8rem;
+            color: #6a1b9a;
+            margin-bottom: 6px;
+        }
+
+        .game-subtitle {
+            font-size: 0.95rem;
+            color: #4a148c;
+            opacity: 0.85;
+            margin-bottom: 14px;
+        }
+
+        .game-story {
+            background: rgba(255,255,255,0.6);
+            border-radius: 14px;
+            padding: 14px 18px;
+            margin-bottom: 20px;
+            font-size: 0.96rem;
+            line-height: 1.6;
+            border-left: 3px solid #9c27b0;
+            color: #4a148c;
+        }
+
+        /* Bridge Visual */
+        .bridge-container {
+            background: linear-gradient(180deg, #e3f2fd 0%, #90caf9 40%, #64b5f6 60%, #42a5f5 100%);
+            border-radius: 16px;
+            padding: 30px 20px;
+            margin-bottom: 20px;
+            position: relative;
+            min-height: 180px;
+            border: 2px solid rgba(156,39,176,0.3);
+            overflow: hidden;
+        }
+
+        .bridge-svg {
+            width: 100%;
+            height: 140px;
+        }
+
+        .bridge-segment {
+            fill: #ddd;
+            stroke: #999;
+            stroke-width: 2;
+            transition: all 0.6s cubic-bezier(0.34,1.56,0.64,1);
+        }
+
+        .bridge-segment.built {
+            fill: #9c27b0;
+            stroke: #6a1b9a;
+            animation: segmentBuild 0.6s ease;
+        }
+
+        @keyframes segmentBuild {
+            0% { transform: translateY(-20px); opacity: 0; }
+            60% { transform: translateY(5px); }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        .person-icon {
+            position: absolute;
+            font-size: 2.5rem;
+            transition: all 0.8s ease;
+        }
+
+        .person-left {
+            left: 20px;
+            bottom: 30px;
+        }
+
+        .person-right {
+            right: 20px;
+            bottom: 30px;
+        }
+
+        .person-icon.reconciled {
+            animation: celebrate 0.8s ease;
+        }
+
+        @keyframes celebrate {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.2) rotate(-10deg); }
+            75% { transform: scale(1.2) rotate(10deg); }
+        }
+
+        .bridge-label {
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #6a1b9a;
+            margin-bottom: 12px;
+        }
+
+        /* Scenario Card */
+        .scenario-card {
+            background: rgba(255,255,255,0.7);
+            border: 2px solid rgba(156,39,176,0.3);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .scenario-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .scenario-number {
+            background: linear-gradient(135deg, #9c27b0, #ba68c8);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .scenario-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #6a1b9a;
+            flex: 1;
+        }
+
+        .scenario-text {
+            background: rgba(156,39,176,0.08);
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #4a148c;
+            border-left: 3px solid #9c27b0;
+        }
+
+        .scenario-question {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #6a1b9a;
+            margin-bottom: 14px;
+        }
+
+        /* Choice Buttons */
+        .choice-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .choice-btn {
+            background: rgba(255,255,255,0.8);
+            border: 2px solid rgba(156,39,176,0.3);
+            border-radius: 14px;
+            padding: 14px 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #4a148c;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .choice-btn:hover {
+            background: rgba(255,255,255,1);
+            border-color: #9c27b0;
+            transform: translateX(4px);
+        }
+
+        .choice-icon {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .choice-btn.forgiveness {
+            border-color: rgba(156,39,176,0.4);
+        }
+
+        .choice-btn.forgiveness:hover {
+            background: rgba(156,39,176,0.1);
+        }
+
+        .choice-btn.correct {
+            background: linear-gradient(135deg, rgba(156,39,176,0.2), rgba(186,104,200,0.2));
+            border-color: #9c27b0;
+            animation: correctGlow 0.6s ease;
+        }
+
+        .choice-btn.wrong {
+            background: rgba(239,83,80,0.15);
+            border-color: #ef5350;
+            animation: wrongShake 0.5s ease;
+        }
+
+        @keyframes correctGlow {
+            0%, 100% { box-shadow: 0 0 0 rgba(156,39,176,0); }
+            50% { box-shadow: 0 0 30px rgba(156,39,176,0.5); }
+        }
+
+        @keyframes wrongShake {
+            0%,100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
+        }
+
+        .choice-btn:disabled {
+            cursor: default;
+            opacity: 0.6;
+        }
+
+        /* Feedback */
+        .game-feedback {
+            background: rgba(255,255,255,0.7);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-top: 16px;
+            display: none;
+            animation: fadeIn 0.4s ease;
+            border-left: 4px solid #9c27b0;
+        }
+
+        .game-feedback.show { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .feedback-title {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: #6a1b9a;
+        }
+
+        .feedback-text {
+            color: #4a148c;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .feedback-hadith {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(156,39,176,0.2);
+            font-size: 0.88rem;
+            color: #7b1fa2;
+            font-style: italic;
+        }
+
+        /* Next Button */
+        .btn-next {
+            display: none;
+            background: linear-gradient(135deg, #9c27b0, #ba68c8);
+            border: none;
+            color: white;
+            padding: 14px 32px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            margin: 20px auto 0;
+            transition: all 0.3s ease;
+        }
+
+        .btn-next.show { display: block; }
+
+        .btn-next:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(156,39,176,0.4);
+        }
+
+        .btn-game {
+            background: linear-gradient(135deg, #9c27b0, #ba68c8);
+            border: none;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin: 8px;
+        }
+
+        .btn-game:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(156,39,176,0.4);
+        }
+
+        /* Game Complete */
+        .game-complete {
+            display: none;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .game-complete.show { display: block; }
+
+        .complete-emoji { font-size: 4rem; margin-bottom: 12px; animation: bounceIn 0.7s ease; }
+        @keyframes bounceIn { 0%{transform:scale(0)} 60%{transform:scale(1.2)} 100%{transform:scale(1)} }
+
+        .complete-title {
+            font-family: 'Amiri', serif;
+            font-size: 2rem;
+            color: #6a1b9a;
+            margin-bottom: 12px;
+        }
+
+        .complete-score {
+            background: rgba(156,39,176,0.15);
+            border: 2px solid rgba(156,39,176,0.4);
+            border-radius: 14px;
+            padding: 14px 20px;
+            display: inline-block;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #6a1b9a;
+            margin-bottom: 16px;
+        }
+
+        .complete-message {
+            color: #4a148c;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        /* FUN FACTS */
+        .fun-facts {
+            background: linear-gradient(135deg, var(--sand), var(--sand-dark));
+            padding: 25px; border-radius: 20px; margin: 30px 0;
+            border: 2px dashed var(--green);
+        }
+        .fun-facts h3 { color: var(--green-dark); margin-bottom: 15px; text-align: center; }
+        .fun-facts ul { list-style: none; padding: 0; }
+        .fun-facts li { padding: 10px 0; padding-left: 30px; position: relative; color: var(--text); line-height: 1.6; }
+        .fun-facts li:before { content: "💜"; position: absolute; left: 0; }
+
+        /* QUIZ */
+        .quiz-section {
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            padding: 30px; border-radius: 20px; margin: 30px 0; color: white;
+        }
+        .quiz-section h3 { text-align: center; font-size: 1.5rem; margin-bottom: 25px; }
+
+        .question-card { background: white; border-radius: 15px; padding: 25px; margin: 20px 0; color: var(--text); }
+        .question-text { font-weight: 600; font-size: 1.15rem; margin-bottom: 20px; color: var(--green-dark); }
+        .options { display: grid; grid-template-columns: 1fr; gap: 12px; }
+
+        .option {
+            background: linear-gradient(135deg, var(--sand), var(--sand-dark));
+            padding: 15px 20px; border-radius: 12px;
+            cursor: pointer; transition: all 0.3s ease;
+            border: 2px solid transparent; font-weight: 500;
+        }
+        .option:hover { background: linear-gradient(135deg, var(--sand-dark), #d4c4b0); transform: translateX(5px); }
+        .option.selected { background: linear-gradient(135deg, var(--green), var(--green-light)); color: white; border-color: var(--green-dark); transform: scale(1.02); }
+        .option.correct { background: linear-gradient(135deg, #7fb069, #8fbc77); color: white; border-color: #5a8049; animation: qPulse 0.5s ease; }
+        .option.incorrect { background: linear-gradient(135deg, #d4916c, #c47d5a); color: white; border-color: #a4614a; animation: qShake 0.5s ease; }
+
+        @keyframes qPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+        @keyframes qShake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
+
+        .btn {
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            color: white; border: none; padding: 15px 40px;
+            border-radius: 30px; font-size: 1.1rem; font-weight: 600;
+            cursor: pointer; transition: all 0.3s ease;
+            display: block; margin: 25px auto 0;
+            box-shadow: 0 5px 20px rgba(139,149,132,0.3);
+            font-family: 'Quicksand', sans-serif;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(139,149,132,0.4); }
+        .btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+
+        /* MODALS */
+        .result-modal {
+            position: fixed; top: 50%; left: 50%;
+            transform: translate(-50%,-50%) scale(0);
+            background: white; padding: 40px; border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            z-index: 1001; text-align: center;
+            max-width: 420px; width: 90%;
+            transition: transform 0.3s ease;
+        }
+        .result-modal.show { transform: translate(-50%,-50%) scale(1); }
+        .result-modal h3 { color: var(--green-dark); font-size: 2rem; margin-bottom: 15px; }
+
+        .result-icon { font-size: 4rem; margin-bottom: 15px; animation: rBounce 0.6s ease; }
+        @keyframes rBounce { 0%{transform:scale(0);opacity:0} 60%{transform:scale(1.2)} 100%{transform:scale(1);opacity:1} }
+
+        .result-message { color: #666; font-size: 1.05rem; margin: 15px 0; line-height: 1.6; }
+        .score-display { background: linear-gradient(135deg, var(--sand), var(--sand-dark)); padding: 14px; border-radius: 15px; font-size: 1.2rem; font-weight: 600; color: var(--green-dark); margin: 15px 0; }
+
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 999; }
+        .overlay.show { display: block; }
+
+        @media (max-width: 768px) {
+            .logo { width: 80px; top: 5px; left: 5px; }
+            .container { padding: 20px; }
+            h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <img src="logonoir_lespetitesplumes.png" alt="Les petites plumes" class="logo">
+        <div class="day-badge">Jour 14 / 30</div>
+        <span class="moon-icon">💜</span>
+        <h1>Le pardon</h1>
+        <p style="color: #8b9584; font-size: 1.1rem;">Pardonner aux autres libère ton cœur !</p>
+    </div>
+
+    <div class="intro-text">
+        <p style="font-weight: 600; margin-bottom: 10px;">🌟 Al-'Afw : Le pardon en Islam</p>
+        <p><strong>Al-'Afw</strong> (العفو) signifie le pardon en arabe. C'est l'une des plus belles qualités d'un musulman ! Allah Lui-même est <strong>Al-'Afuww</strong> — Celui qui pardonne. Il dit dans le Coran : <em>"Qu'ils pardonnent et passent (sur les offenses). N'aimez-vous pas qu'Allah vous pardonne ?"</em> <strong>(Coran 24:22)</strong>. Le Prophète Muhammad (paix et bénédictions sur lui) a dit : <em>"Celui qui pardonne, Allah élèvera son rang"</em> <strong>(Sahih Muslim 2588)</strong>. Pardonner, c'est se libérer ! 💜</p>
+    </div>
+
+    <div class="story-section">
+        <div class="story-card">
+            <h3>📿 Pourquoi pardonner est-il si important ?</h3>
+            <p>Le pardon libère ton cœur de la <strong>colère et de la rancune</strong>. Quand quelqu'un te fait du mal et que tu gardes la colère dans ton cœur, c'est <strong>toi</strong> qui souffres le plus ! Le pardon te rend léger et heureux. Allah dit : <em>"Repousse le mal par ce qui est meilleur. Et voilà que celui avec qui tu avais une animosité devient comme un ami chaleureux"</em> <strong>(Coran 41:34)</strong>. Le Prophète nous enseigne que pardonner ne te rend pas faible — au contraire, c'est un signe de <strong>force et de sagesse</strong>. Il a dit : <em>"Le fort n'est pas celui qui terrasse, mais celui qui se maîtrise dans la colère"</em> <strong>(Sahih Bukhari 6114)</strong>. 💪</p>
+        </div>
+
+        <div class="story-card">
+            <h3>🌟 L'exemple du Prophète</h3>
+            <p>Le Prophète Mouhammad (paix et bénédictions sur lui) est le <strong>plus grand exemple de pardon</strong> ! Les gens de La Mecque l'ont chassé, insulté, torturé pendant des années. Mais quand il est revenu victorieux à La Mecque avec une armée, qu'a-t-il fait ? Il leur a <strong>pardonné à tous</strong> ! Il a dit : <em>"Allez, vous êtes libres !"</em>. Imagine : il aurait pu se venger, mais il a choisi le pardon. Une femme essayait même de l'empoisonner — il lui a pardonné ! Un jour, quelqu'un l'a insulté. Ses Compagnons voulaient le punir. Le Prophète a dit : "Laissez-le, celui qui pardonne, Allah élèvera son rang." C'est magnifique ! 🌟</p>
+        </div>
+
+        <div class="story-card">
+            <h3>🎁 Les récompenses du pardon</h3>
+            <p>Quand tu pardonnes, Allah te récompense de <strong>façons extraordinaires</strong> ! Le Prophète a dit : <em>"Allah ne fait qu'augmenter en honneur celui qui pardonne"</em> <strong>(Sahih Muslim 2588)</strong>. Cela veut dire que le pardon te rend <strong>plus noble, plus respecté, plus aimé</strong>. Allah pardonne aussi tes péchés quand tu pardonnes aux autres. Il dit : <em>"N'aimez-vous pas qu'Allah vous pardonne ?"</em> — si tu veux qu'Allah te pardonne, commence par pardonner aux autres ! Et au Jour du Jugement, ceux qui pardonnaient seront appelés devant tout le monde et honorés. Le pardon ouvre les portes du Paradis ! 💫</p>
+        </div>
+
+        <div class="story-card">
+            <h3>💫 Le pardon en Ramadan</h3>
+            <p>Le Ramadan est le <strong>mois du pardon par excellence</strong> ! C'est le moment parfait pour pardonner à tous ceux qui t'ont fait du mal. Avant le Ramadan, beaucoup de musulmans demandent pardon à leur famille, leurs amis, leurs voisins. Pendant le Ramadan, essaie de <strong>pardonner à tout le monde</strong> : ton frère qui t'a embêté, ton ami qui t'a dit quelque chose de méchant, même ceux qui t'ont vraiment blessé. Le Prophète disait dans le Ramadan : <em>"Quiconque jeûne le Ramadan avec foi et sincérité, ses péchés passés lui seront pardonnés"</em> <strong>(Sahih Bukhari 38)</strong>. Pardonne, et Allah te pardonnera ! 🌙</p>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         GAME : Le Pont du Pardon
+    ============================================================ -->
+    <div class="game-section" id="gameSection">
+        <div class="game-header">
+            <div class="game-title">🌉 Le Pont du Pardon</div>
+            <div class="game-subtitle">Reconstruit les ponts brisés en choisissant le pardon !</div>
+        </div>
+
+        <div class="game-story">
+            💜 Deux personnes se sont disputées et leur pont d'amitié s'est brisé. À chaque situation, <strong>choisis la réaction qui pardonne</strong>. Chaque bon choix reconstruit un segment du pont jusqu'à ce qu'ils se réconcilient ! 🌉
+        </div>
+
+        <div class="bridge-label" id="bridgeLabel">Pont en construction : 0 / 6 segments</div>
+
+        <div class="bridge-container">
+            <svg class="bridge-svg" id="bridgeSvg" viewBox="0 0 500 140">
+                <!-- Water -->
+                <rect x="0" y="100" width="500" height="40" fill="#4fc3f7" opacity="0.3"/>
+                
+                <!-- Left shore -->
+                <rect x="0" y="100" width="80" height="40" fill="#8d6e63"/>
+                <!-- Right shore -->
+                <rect x="420" y="100" width="80" height="40" fill="#8d6e63"/>
+                
+                <!-- Bridge segments (6 planks) -->
+                <rect class="bridge-segment" id="seg-0" x="80" y="95" width="50" height="10" rx="2"/>
+                <rect class="bridge-segment" id="seg-1" x="140" y="95" width="50" height="10" rx="2"/>
+                <rect class="bridge-segment" id="seg-2" x="200" y="95" width="50" height="10" rx="2"/>
+                <rect class="bridge-segment" id="seg-3" x="260" y="95" width="50" height="10" rx="2"/>
+                <rect class="bridge-segment" id="seg-4" x="320" y="95" width="50" height="10" rx="2"/>
+                <rect class="bridge-segment" id="seg-5" x="380" y="95" width="40" height="10" rx="2"/>
+            </svg>
+
+            <div class="person-icon person-left" id="personLeft">😔</div>
+            <div class="person-icon person-right" id="personRight">😔</div>
+        </div>
+
+        <div class="scenario-card" id="scenarioCard">
+            <div class="scenario-header">
+                <div class="scenario-number" id="scenarioNum">1</div>
+                <div class="scenario-title" id="scenarioTitle">Situation...</div>
+            </div>
+
+            <div class="scenario-text" id="scenarioText">Chargement...</div>
+            <div class="scenario-question">Comment devrais-tu réagir ?</div>
+
+            <div class="choice-buttons" id="choiceButtons">
+                <!-- Generated by JS -->
+            </div>
+
+            <div class="game-feedback" id="gameFeedback">
+                <div class="feedback-title" id="feedbackTitle"></div>
+                <div class="feedback-text" id="feedbackText"></div>
+                <div class="feedback-hadith" id="feedbackHadith"></div>
+            </div>
+        </div>
+
+        <button class="btn-next" id="btnNext" onclick="nextScenario()">Situation suivante →</button>
+
+        <button class="btn-game" onclick="resetGame()">🔄 Nouveau pont</button>
+
+        <!-- Game Complete -->
+        <div class="game-complete" id="gameComplete">
+            <div class="complete-emoji">🤝</div>
+            <div class="complete-title">Le pont est reconstruit !</div>
+            <div class="complete-score" id="completeScore">6 / 6 choix de pardon</div>
+            <div class="complete-message" id="completeMessage">Message...</div>
+            <button class="btn-game" onclick="resetGame()">🔄 Rejouer</button>
+        </div>
+    </div>
+
+    <div class="fun-facts">
+        <h3>✨ Le savais-tu ?</h3>
+        <ul>
+            <li>Quand le Prophète est retourné victorieux à La Mecque, il a <strong>pardonné à tous ses ennemis</strong> qui l'avaient torturé pendant des années !</li>
+            <li>Il y a une invocation spéciale du Ramadan : <strong>"Allahumma innaka 'afuwwun tuhibbul 'afwa fa'fu 'anni"</strong> — "Ô Allah, Tu es Pardonneur et Tu aimes le pardon, alors pardonne-moi" !</li>
+            <li>Le Prophète (saw) a dit : <strong>"Les gens les plus aimés d'Allah sont ceux qui pardonnent le plus facilement"</strong> !</li>
+            <li>Chaque fois que tu pardonnes à quelqu'un, <strong>Allah efface certains de tes péchés</strong> — c'est un cadeau ! 🎁</li>
+        </ul>
+    </div>
+
+    <div class="quiz-section">
+        <h3>🎮 Quiz : As-tu bien compris ?</h3>
+
+        <div class="question-card">
+            <div class="question-text">1. Que signifie "Al-'Afw" en arabe ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 0)">La colère</div>
+                <div class="option" onclick="selectAnswer(this, true, 0)">Le pardon</div>
+                <div class="option" onclick="selectAnswer(this, false, 0)">La patience</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">2. Qu'a fait le Prophète quand il est revenu victorieux à La Mecque ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 1)">Il s'est vengé de ses ennemis</div>
+                <div class="option" onclick="selectAnswer(this, true, 1)">Il a pardonné à tous ses ennemis</div>
+                <div class="option" onclick="selectAnswer(this, false, 1)">Il les a ignorés</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">3. Que dit le hadith sur celui qui pardonne ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 2)">Il devient faible</div>
+                <div class="option" onclick="selectAnswer(this, false, 2)">Il ne change pas</div>
+                <div class="option" onclick="selectAnswer(this, true, 2)">Allah élève son rang et l'honore</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">4. Selon le Coran, que se passe-t-il si on pardonne aux autres ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 3)">Rien de spécial</div>
+                <div class="option" onclick="selectAnswer(this, true, 3)">On mérite qu'Allah nous pardonne aussi</div>
+                <div class="option" onclick="selectAnswer(this, false, 3)">On perd notre dignité</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">5. Qui est le véritable "fort" selon le Prophète ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 4)">Celui qui se bat et gagne</div>
+                <div class="option" onclick="selectAnswer(this, true, 4)">Celui qui se maîtrise dans la colère et pardonne</div>
+                <div class="option" onclick="selectAnswer(this, false, 4)">Celui qui crie le plus fort</div>
+            </div>
+        </div>
+
+        <button class="btn" id="submitBtn" onclick="checkQuizAnswers()" disabled>Vérifier mes réponses</button>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+        <p style="color: #8b9584; font-size: 1.1rem;">
+            <strong>Bravo d'avoir terminé le Jour 14 ! 🌟</strong><br>
+            N'oublie pas : pardonner libère ton cœur et rapproche d'Allah !<br>
+            Sois comme le Prophète (saw), pardonne toujours ! 💜<br>
+            Rendez-vous demain pour le Jour 15 !
+        </p>
+    </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+<div class="result-modal" id="resultModal">
+    <div class="result-icon" id="resultIcon">🎉</div>
+    <h3 id="resultTitle">Excellent !</h3>
+    <div class="score-display" id="scoreDisplay">Score : 5/5</div>
+    <div class="result-message" id="resultMessage">Masha Allah !</div>
+    <button class="btn" onclick="closeModal()">Continuer</button>
+</div>
+
+<script>
+// ============================================================
+//  BRIDGE GAME DATA
+// ============================================================
+const SCENARIOS = [
+    {
+        title: 'Le jouet cassé',
+        text: 'Ton petit frère a cassé ton jouet préféré sans faire exprès. Il pleure et dit : "Pardon, je ne voulais pas..."',
+        choices: [
+            { text: '😠 Me mettre en colère et crier sur lui', forgives: false, icon: '💢' },
+            { text: '💜 Lui dire : "Ce n\'est pas grave, je te pardonne. Ce n\'est qu\'un jouet"', forgives: true, icon: '🤗' },
+            { text: '😤 Ignorer ses excuses et bouder toute la journée', forgives: false, icon: '😑' },
+        ],
+        goodFeedback: '💜 Masha Allah ! Tu as pardonné comme le Prophète (saw) ! Un jouet peut être remplacé, mais l\'amour de ton frère est précieux.',
+        badFeedback: 'Garder la colère fait mal à ton cœur. Le Prophète pardonnait toujours, même pour de grandes choses.',
+        hadith: '"Celui qui pardonne, Allah élèvera son rang" (Muslim 2588)'
+    },
+    {
+        title: 'L\'insulte à l\'école',
+        text: 'À l\'école, un camarade t\'a dit quelque chose de méchant devant tout le monde. Tu es blessé(e).',
+        choices: [
+            { text: '😡 Lui dire quelque chose de méchant en retour', forgives: false, icon: '🗯️' },
+            { text: '😢 Aller pleurer et ne plus lui parler', forgives: false, icon: '💔' },
+            { text: '💜 Lui parler calmement : "Ce que tu as dit m\'a blessé(e), mais je te pardonne"', forgives: true, icon: '☮️' },
+        ],
+        goodFeedback: '✨ Magnifique ! Tu as choisi la paix et le pardon. Allah dit : "Repousse le mal par ce qui est meilleur" (Coran 41:34).',
+        badFeedback: 'La vengeance ne fait qu\'empirer les choses. Le pardon apporte la paix.',
+        hadith: '"Le fort n\'est pas celui qui terrasse, mais celui qui se maîtrise" (Bukhari 6114)'
+    },
+    {
+        title: 'L\'erreur du parent',
+        text: 'Papa t\'a grondé(e) injustement pour quelque chose que tu n\'as pas fait. Plus tard, il s\'en rend compte.',
+        choices: [
+            { text: '💜 Lui dire : "Ce n\'est pas grave Papa, je te pardonne. Tout le monde peut se tromper"', forgives: true, icon: '❤️' },
+            { text: '😤 Lui rappeler tout le temps son erreur', forgives: false, icon: '☝️' },
+            { text: '😒 Faire semblant de pardonner mais rester fâché(e) dans mon cœur', forgives: false, icon: '😐' },
+        ],
+        goodFeedback: '🌟 Tu as un grand cœur ! Pardonner à ses parents est une des meilleures choses. Ils t\'aiment et peuvent se tromper aussi.',
+        badFeedback: 'Garder la rancune fait du mal à ton cœur. Le vrai pardon vient du cœur.',
+        hadith: '"Allah ne fait qu\'augmenter en honneur celui qui pardonne" (Muslim 2588)'
+    },
+    {
+        title: 'Le mensonge de l\'ami',
+        text: 'Ton meilleur(e) ami(e) a menti sur toi et maintenant d\'autres enfants te regardent bizarrement. Il/elle vient s\'excuser.',
+        choices: [
+            { text: '😠 Refuser de lui parler et mettre fin à l\'amitié', forgives: false, icon: '🚫' },
+            { text: '💜 Accepter ses excuses : "Je suis blessé(e), mais je te pardonne. Juste, ne recommence plus"', forgives: true, icon: '🤝' },
+            { text: '😤 Dire que je pardonne, mais raconter des choses sur lui/elle aussi', forgives: false, icon: '🗣️' },
+        ],
+        goodFeedback: '💫 Bravo ! Tu as sauvé une amitié avec le pardon. Le Prophète (saw) disait : "Les meilleurs d\'entre vous sont ceux qui pardonnent le plus facilement".',
+        badFeedback: 'La vengeance détruit les amitiés. Le pardon les renforce.',
+        hadith: '"N\'aimez-vous pas qu\'Allah vous pardonne ?" (Coran 24:22)'
+    },
+    {
+        title: 'La trahison du secret',
+        text: 'Tu as confié un secret à quelqu\'un et il/elle l\'a raconté à tout le monde. Tu es très triste.',
+        choices: [
+            { text: '😤 Raconter tous ses secrets aussi pour me venger', forgives: false, icon: '📢' },
+            { text: '💜 Lui parler : "J\'ai mal, mais je te pardonne. J\'espère qu\'on pourra se refaire confiance"', forgives: true, icon: '🕊️' },
+            { text: '😔 Ne plus jamais lui faire confiance ni lui parler', forgives: false, icon: '🚷' },
+        ],
+        goodFeedback: '🌟 Masha Allah ! Le pardon est difficile, mais tu l\'as choisi quand même. C\'est la vraie force !',
+        badFeedback: 'La rancune t\'emprisonne. Le pardon te libère et te rend plus fort(e).',
+        hadith: '"Pardonne et Allah te pardonnera" (Tirmidhi)'
+    },
+    {
+        title: 'L\'accident pendant le jeûne',
+        text: 'Pendant que tu jeûnais, quelqu\'un a renversé de l\'eau sur ton nouveau vêtement par accident. Il s\'excuse beaucoup.',
+        choices: [
+            { text: '💜 Sourire et dire : "Je jeûne, je ne dois pas me mettre en colère. Je te pardonne, c\'était un accident"', forgives: true, icon: '😊' },
+            { text: '😠 Me mettre en colère malgré le jeûne', forgives: false, icon: '😤' },
+            { text: '😒 Dire "D\'accord" mais garder de la colère en moi', forgives: false, icon: '😑' },
+        ],
+        goodFeedback: '✨ Parfait ! Tu as compris que le jeûne, c\'est aussi jeûner de la colère. Le Prophète (saw) disait : "Je suis en état de jeûne" quand on le provoquait.',
+        badFeedback: 'Le Prophète (saw) a dit : "Celui qui ne renonce pas à la colère, Allah n\'a pas besoin de son jeûne".',
+        hadith: '"Le jeûne, c\'est jeûner de la colère et des disputes" (Bukhari 1903)'
+    }
+];
+
+// ============================================================
+//  GAME STATE
+// ============================================================
+let currentScenario = 0;
+let segmentsBuilt = 0;
+let answered = false;
+
+function initGame() {
+    currentScenario = 0;
+    segmentsBuilt = 0;
+    answered = false;
+
+    // Shuffle scenarios
+    SCENARIOS.sort(() => Math.random() - 0.5);
+
+    // Reset bridge
+    for (let i = 0; i < 6; i++) {
+        document.getElementById(`seg-${i}`).classList.remove('built');
+    }
+
+    // Reset persons
+    document.getElementById('personLeft').textContent = '😔';
+    document.getElementById('personRight').textContent = '😔';
+    document.getElementById('personLeft').classList.remove('reconciled');
+    document.getElementById('personRight').classList.remove('reconciled');
+
+    updateBridgeLabel();
+
+    // Show game
+    document.getElementById('gameComplete').classList.remove('show');
+    document.getElementById('scenarioCard').style.display = '';
+
+    renderScenario();
+}
+
+function updateBridgeLabel() {
+    document.getElementById('bridgeLabel').textContent = `Pont en construction : ${segmentsBuilt} / 6 segments`;
+}
+
+function renderScenario() {
+    answered = false;
+    const s = SCENARIOS[currentScenario];
+
+    document.getElementById('scenarioNum').textContent = currentScenario + 1;
+    document.getElementById('scenarioTitle').textContent = s.title;
+    document.getElementById('scenarioText').textContent = s.text;
+
+    // Render choices
+    const container = document.getElementById('choiceButtons');
+    container.innerHTML = '';
+    s.choices.forEach((choice, index) => {
+        const btn = document.createElement('button');
+        btn.className = 'choice-btn' + (choice.forgives ? ' forgiveness' : '');
+        btn.onclick = () => makeChoice(index, choice.forgives);
+        btn.innerHTML = `<span class="choice-icon">${choice.icon}</span>${choice.text}`;
+        container.appendChild(btn);
+    });
+
+    // Hide feedback and next
+    document.getElementById('gameFeedback').classList.remove('show');
+    document.getElementById('btnNext').classList.remove('show');
+}
+
+function makeChoice(index, isForgiveness) {
+    if (answered) return;
+    answered = true;
+
+    const s = SCENARIOS[currentScenario];
+    const buttons = document.querySelectorAll('.choice-btn');
+    buttons.forEach((b, i) => {
+        b.disabled = true;
+        if (i === index) {
+            b.classList.add(isForgiveness ? 'correct' : 'wrong');
+        }
+    });
+
+    // Show feedback
+    const fb = document.getElementById('gameFeedback');
+    document.getElementById('feedbackTitle').textContent = isForgiveness ? '💜 Masha Allah !' : '💭 Réfléchis...';
+    document.getElementById('feedbackText').textContent = isForgiveness ? s.goodFeedback : s.badFeedback;
+    document.getElementById('feedbackHadith').textContent = s.hadith;
+    fb.classList.add('show');
+
+    if (isForgiveness) {
+        // Build segment
+        if (segmentsBuilt < 6) {
+            setTimeout(() => {
+                document.getElementById(`seg-${segmentsBuilt}`).classList.add('built');
+                segmentsBuilt++;
+                updateBridgeLabel();
+
+                // Check complete
+                if (segmentsBuilt === 6) {
+                    setTimeout(reconcile, 600);
+                }
+            }, 400);
+        }
+    }
+
+    // Show next button
+    const btnNext = document.getElementById('btnNext');
+    btnNext.textContent = currentScenario < SCENARIOS.length - 1 ? 'Situation suivante →' : 'Voir le résultat 💜';
+    btnNext.classList.add('show');
+}
+
+function reconcile() {
+    // Animate persons
+    document.getElementById('personLeft').textContent = '😊';
+    document.getElementById('personRight').textContent = '😊';
+    document.getElementById('personLeft').classList.add('reconciled');
+    document.getElementById('personRight').classList.add('reconciled');
+}
+
+function nextScenario() {
+    currentScenario++;
+    if (currentScenario >= SCENARIOS.length) {
+        showComplete();
+    } else {
+        renderScenario();
+    }
+}
+
+function showComplete() {
+    document.getElementById('scenarioCard').style.display = 'none';
+    document.getElementById('btnNext').classList.remove('show');
+
+    const complete = document.getElementById('gameComplete');
+    complete.classList.add('show');
+
+    const total = 6;
+    const pct = Math.round((segmentsBuilt / total) * 100);
+
+    document.getElementById('completeScore').textContent = `${segmentsBuilt} / ${total} segments construits (${pct}%)`;
+
+    let msg;
+    if (segmentsBuilt === total) {
+        msg = 'Masha Allah ! Tu as reconstruit tout le pont avec le pardon ! Les deux personnes sont réconciliées grâce à ta sagesse. <strong>"Celui qui pardonne, Allah élèvera son rang"</strong>. Continue à pardonner toujours ! 💜';
+    } else if (segmentsBuilt >= 4) {
+        msg = `Bien joué ! Tu as construit ${segmentsBuilt} segments sur 6. Le pardon est difficile, mais tu progresses ! Rejoue pour compléter le pont entier ! 🌉`;
+    } else if (segmentsBuilt >= 2) {
+        msg = `Tu as commencé à construire le pont avec ${segmentsBuilt} segments. Le pardon demande de la pratique. Relis la leçon et rejoue pour mieux comprendre ! 📚`;
+    } else {
+        msg = 'Le pont n\'a pas beaucoup avancé. Le pardon est difficile, mais c\'est le chemin vers la paix. Relis la leçon sur le pardon et rejoue ! 💭';
+    }
+
+    document.getElementById('completeMessage').innerHTML = msg;
+}
+
+function resetGame() {
+    initGame();
+}
+
+// Start
+initGame();
+
+// ============================================================
+//  QUIZ
+// ============================================================
+let answers = [null, null, null, null, null];
+let selectedCount = 0;
+
+function selectAnswer(element, isCorrect, questionIndex) {
+    const options = element.parentElement.querySelectorAll('.option');
+    options.forEach(opt => opt.classList.remove('selected'));
+    element.classList.add('selected');
+    if (answers[questionIndex] === null) selectedCount++;
+    answers[questionIndex] = isCorrect;
+    if (selectedCount === 5) document.getElementById('submitBtn').disabled = false;
+}
+
+function checkQuizAnswers() {
+    let score = 0;
+    const allOptions = document.querySelectorAll('.option.selected');
+    allOptions.forEach((option, index) => {
+        if (answers[index]) { option.classList.add('correct'); score++; }
+        else option.classList.add('incorrect');
+    });
+    document.getElementById('submitBtn').disabled = true;
+    setTimeout(() => showResults(score), 1000);
+}
+
+function showResults(score) {
+    document.getElementById('scoreDisplay').textContent = 'Score : ' + score + '/5';
+    if (score === 5) {
+        document.getElementById('resultIcon').textContent = '💜';
+        document.getElementById('resultTitle').textContent = 'Al-\'Afuww !';
+        document.getElementById('resultMessage').textContent = 'Tu as tout compris sur le pardon en Islam ! Qu\'Allah fasse de toi quelqu\'un qui pardonne toujours ! 🌟';
+    } else if (score >= 3) {
+        document.getElementById('resultIcon').textContent = '😊';
+        document.getElementById('resultTitle').textContent = 'Très bien !';
+        document.getElementById('resultMessage').textContent = 'Tu connais bien l\'importance du pardon ! Continue à pardonner aux autres ! 💪';
+    } else {
+        document.getElementById('resultIcon').textContent = '📚';
+        document.getElementById('resultTitle').textContent = 'Continue tes efforts !';
+        document.getElementById('resultMessage').textContent = 'Relis la leçon sur le pardon et tu vas mieux comprendre. Le pardon libère le cœur ! 🌈';
+    }
+    document.getElementById('overlay').classList.add('show');
+    document.getElementById('resultModal').classList.add('show');
+}
+
+function closeModal() {
+    document.getElementById('resultModal').classList.remove('show');
+    document.getElementById('overlay').classList.remove('show');
+}
+</script>
+</body>
+</html>
