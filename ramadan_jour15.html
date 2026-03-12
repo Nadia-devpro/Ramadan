@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jour 15 - Lire le Coran 📖</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@400;600;700&display=swap');
+
+        :root {
+            --sand: #f5e6d3;
+            --sand-dark: #e8d5c4;
+            --green: #8b9584;
+            --green-dark: #5a6b4f;
+            --green-light: #a4b29b;
+            --text: #4a5442;
+            --gold: #d4af37;
+            --gold-light: #f4e3a0;
+            --gold-dark: #b8941f;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, var(--sand) 0%, var(--sand-dark) 50%, var(--sand) 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #ffffff 0%, #faf8f5 100%);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(139,149,132,0.2);
+            border: 3px solid var(--green);
+        }
+
+        /* HEADER */
+        .header { text-align: center; margin-bottom: 40px; position: relative; }
+
+        .day-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            color: white; padding: 10px 25px; border-radius: 25px;
+            font-size: 1rem; font-weight: 600; margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(139,149,132,0.3);
+        }
+
+        h1 { color: var(--green-dark); font-size: 2.5rem; margin-bottom: 10px; font-family: 'Amiri', serif; }
+
+        .moon-icon {
+            font-size: 3rem;
+            animation: glow 2s ease-in-out infinite;
+            display: block; margin-bottom: 10px;
+        }
+        @keyframes glow {
+            0%,100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(212,175,55,0.5)); }
+            50% { transform: scale(1.1); filter: drop-shadow(0 0 25px rgba(212,175,55,0.9)); }
+        }
+
+        .logo { position: absolute; top: 0; left: 0; width: 120px; height: auto; opacity: 0.9; transition: opacity 0.3s; }
+        .logo:hover { opacity: 1; }
+
+        /* INTRO */
+        .intro-text {
+            background: linear-gradient(135deg, var(--sand), var(--sand-dark));
+            padding: 25px; border-radius: 20px;
+            border-left: 5px solid var(--green);
+            margin: 30px 0; font-size: 1.1rem; line-height: 1.8; color: var(--text);
+        }
+
+        /* STORY CARDS */
+        .story-card {
+            background: white; border-radius: 20px; padding: 25px; margin: 20px 0;
+            border: 2px solid #d4c4b0; transition: all 0.3s ease;
+        }
+        .story-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(139,149,132,0.2); border-color: var(--green); }
+        .story-card h3 { color: var(--green-dark); margin-bottom: 15px; font-size: 1.3rem; }
+        .story-card p { color: #666; line-height: 1.7; font-size: 1.05rem; }
+
+        /* ============================================================
+           GAME SECTION — Le Trésor des Sourates
+        ============================================================ */
+        .game-section {
+            background: linear-gradient(160deg, #1a1612 0%, #2d2416 50%, #3d3020 100%);
+            border-radius: 24px;
+            margin: 30px 0;
+            overflow: hidden;
+            position: relative;
+            color: #f4e3a0;
+            padding: 32px 28px;
+        }
+
+        /* Decorative pattern overlay */
+        .game-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(212,175,55,0.03) 35px, rgba(212,175,55,0.03) 70px);
+            pointer-events: none;
+        }
+
+        .game-header {
+            text-align: center;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .game-title {
+            font-family: 'Amiri', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 8px;
+            text-shadow: 0 2px 8px rgba(212,175,55,0.4);
+        }
+
+        .game-subtitle {
+            font-size: 0.95rem;
+            color: rgba(244,227,160,0.8);
+            margin-bottom: 16px;
+        }
+
+        .game-story {
+            background: rgba(212,175,55,0.12);
+            border-radius: 14px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            font-size: 0.96rem;
+            line-height: 1.6;
+            border-left: 3px solid var(--gold);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Treasure Chests */
+        .treasure-display {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .treasure-chest {
+            width: 70px;
+            text-align: center;
+            position: relative;
+        }
+
+        .chest-icon {
+            font-size: 3rem;
+            filter: grayscale(1) brightness(0.4);
+            transition: all 0.5s ease;
+            display: block;
+        }
+
+        .chest-icon.unlocked {
+            filter: none;
+            animation: chestUnlock 0.8s cubic-bezier(0.175,0.885,0.32,1.275);
+        }
+
+        @keyframes chestUnlock {
+            0% { transform: scale(1) rotate(0deg); }
+            30% { transform: scale(1.3) rotate(-10deg); }
+            60% { transform: scale(1.3) rotate(10deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        .chest-label {
+            font-size: 0.75rem;
+            color: rgba(244,227,160,0.6);
+            margin-top: 4px;
+        }
+
+        .chest-icon.unlocked + .chest-label {
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .progress-label {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Quiz Card */
+        .quiz-card {
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(212,175,55,0.3);
+            border-radius: 18px;
+            padding: 24px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quiz-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        .quiz-number {
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+            color: #1a1612;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(212,175,55,0.3);
+        }
+
+        .quiz-type {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .quiz-question {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: white;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .arabic-text {
+            font-family: 'Amiri', serif;
+            font-size: 1.5rem;
+            text-align: center;
+            direction: rtl;
+            color: var(--gold-light);
+            margin: 16px 0;
+            padding: 12px;
+            background: rgba(212,175,55,0.08);
+            border-radius: 10px;
+        }
+
+        /* Quiz Options */
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .quiz-option {
+            background: rgba(255,255,255,0.08);
+            border: 2px solid rgba(212,175,55,0.25);
+            border-radius: 14px;
+            padding: 14px 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: rgba(244,227,160,0.9);
+        }
+
+        .quiz-option:hover {
+            background: rgba(255,255,255,0.12);
+            border-color: var(--gold);
+            transform: translateX(4px);
+        }
+
+        .quiz-option.selected {
+            background: rgba(212,175,55,0.2);
+            border-color: var(--gold);
+            color: white;
+        }
+
+        .quiz-option.correct {
+            background: rgba(76,175,80,0.25);
+            border-color: #4caf50;
+            color: #a8e6a8;
+            animation: correctGlow 0.6s ease;
+        }
+
+        .quiz-option.wrong {
+            background: rgba(239,83,80,0.25);
+            border-color: #ef5350;
+            color: #f5b3a3;
+            animation: wrongShake 0.5s ease;
+        }
+
+        @keyframes correctGlow {
+            0%, 100% { box-shadow: 0 0 0 rgba(76,175,80,0); }
+            50% { box-shadow: 0 0 30px rgba(76,175,80,0.5); }
+        }
+
+        @keyframes wrongShake {
+            0%,100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
+        }
+
+        .quiz-option:disabled {
+            cursor: default;
+        }
+
+        /* Feedback */
+        .quiz-feedback {
+            background: rgba(212,175,55,0.12);
+            border-left: 4px solid var(--gold);
+            border-radius: 0 12px 12px 0;
+            padding: 14px 18px;
+            margin-top: 16px;
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .quiz-feedback.show { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .feedback-text {
+            color: rgba(244,227,160,0.95);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .feedback-detail {
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(212,175,55,0.2);
+            font-size: 0.88rem;
+            color: rgba(244,227,160,0.7);
+            font-style: italic;
+        }
+
+        /* Buttons */
+        .btn-next {
+            display: none;
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+            border: none;
+            color: #1a1612;
+            padding: 14px 32px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            margin: 20px auto 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(212,175,55,0.3);
+        }
+
+        .btn-next.show { display: block; }
+
+        .btn-next:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(212,175,55,0.5);
+        }
+
+        .btn-game {
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+            border: none;
+            color: #1a1612;
+            padding: 12px 28px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin: 8px;
+        }
+
+        .btn-game:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212,175,55,0.4);
+        }
+
+        /* Game Complete */
+        .game-complete {
+            display: none;
+            text-align: center;
+            padding: 30px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .game-complete.show { display: block; }
+
+        .complete-emoji { font-size: 4.5rem; margin-bottom: 16px; animation: bounceIn 0.8s ease; }
+        @keyframes bounceIn { 0%{transform:scale(0)} 60%{transform:scale(1.2)} 100%{transform:scale(1)} }
+
+        .complete-title {
+            font-family: 'Amiri', serif;
+            font-size: 2.2rem;
+            color: var(--gold);
+            margin-bottom: 14px;
+            text-shadow: 0 2px 12px rgba(212,175,55,0.5);
+        }
+
+        .complete-score {
+            background: rgba(212,175,55,0.15);
+            border: 2px solid rgba(212,175,55,0.4);
+            border-radius: 16px;
+            padding: 16px 24px;
+            display: inline-block;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--gold-light);
+            margin-bottom: 18px;
+        }
+
+        .complete-message {
+            color: rgba(244,227,160,0.9);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        /* FUN FACTS */
+        .fun-facts {
+            background: linear-gradient(135deg, var(--sand), var(--sand-dark));
+            padding: 25px; border-radius: 20px; margin: 30px 0;
+            border: 2px dashed var(--green);
+        }
+        .fun-facts h3 { color: var(--green-dark); margin-bottom: 15px; text-align: center; }
+        .fun-facts ul { list-style: none; padding: 0; }
+        .fun-facts li { padding: 10px 0; padding-left: 30px; position: relative; color: var(--text); line-height: 1.6; }
+        .fun-facts li:before { content: "📖"; position: absolute; left: 0; }
+
+        /* QUIZ SECTION */
+        .quiz-section {
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            padding: 30px; border-radius: 20px; margin: 30px 0; color: white;
+        }
+        .quiz-section h3 { text-align: center; font-size: 1.5rem; margin-bottom: 25px; }
+
+        .question-card { background: white; border-radius: 15px; padding: 25px; margin: 20px 0; color: var(--text); }
+        .question-text { font-weight: 600; font-size: 1.15rem; margin-bottom: 20px; color: var(--green-dark); }
+        .options { display: grid; grid-template-columns: 1fr; gap: 12px; }
+
+        .option {
+            background: linear-gradient(135deg, var(--sand), var(--sand-dark));
+            padding: 15px 20px; border-radius: 12px;
+            cursor: pointer; transition: all 0.3s ease;
+            border: 2px solid transparent; font-weight: 500;
+        }
+        .option:hover { background: linear-gradient(135deg, var(--sand-dark), #d4c4b0); transform: translateX(5px); }
+        .option.selected { background: linear-gradient(135deg, var(--green), var(--green-light)); color: white; border-color: var(--green-dark); transform: scale(1.02); }
+        .option.correct { background: linear-gradient(135deg, #7fb069, #8fbc77); color: white; border-color: #5a8049; animation: qPulse 0.5s ease; }
+        .option.incorrect { background: linear-gradient(135deg, #d4916c, #c47d5a); color: white; border-color: #a4614a; animation: qShake 0.5s ease; }
+
+        @keyframes qPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+        @keyframes qShake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
+
+        .btn {
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            color: white; border: none; padding: 15px 40px;
+            border-radius: 30px; font-size: 1.1rem; font-weight: 600;
+            cursor: pointer; transition: all 0.3s ease;
+            display: block; margin: 25px auto 0;
+            box-shadow: 0 5px 20px rgba(139,149,132,0.3);
+            font-family: 'Quicksand', sans-serif;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(139,149,132,0.4); }
+        .btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+
+        /* MODALS */
+        .result-modal {
+            position: fixed; top: 50%; left: 50%;
+            transform: translate(-50%,-50%) scale(0);
+            background: white; padding: 40px; border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            z-index: 1001; text-align: center;
+            max-width: 420px; width: 90%;
+            transition: transform 0.3s ease;
+        }
+        .result-modal.show { transform: translate(-50%,-50%) scale(1); }
+        .result-modal h3 { color: var(--green-dark); font-size: 2rem; margin-bottom: 15px; }
+
+        .result-icon { font-size: 4rem; margin-bottom: 15px; animation: rBounce 0.6s ease; }
+        @keyframes rBounce { 0%{transform:scale(0);opacity:0} 60%{transform:scale(1.2)} 100%{transform:scale(1);opacity:1} }
+
+        .result-message { color: #666; font-size: 1.05rem; margin: 15px 0; line-height: 1.6; }
+        .score-display { background: linear-gradient(135deg, var(--sand), var(--sand-dark)); padding: 14px; border-radius: 15px; font-size: 1.2rem; font-weight: 600; color: var(--green-dark); margin: 15px 0; }
+
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 999; }
+        .overlay.show { display: block; }
+
+        @media (max-width: 768px) {
+            .logo { width: 80px; top: 5px; left: 5px; }
+            .container { padding: 20px; }
+            h1 { font-size: 2rem; }
+            .treasure-chest { width: 60px; }
+            .chest-icon { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <img src="logonoir_lespetitesplumes.png" alt="Les petites plumes" class="logo">
+        <div class="day-badge">Jour 15 / 30</div>
+        <span class="moon-icon">📖</span>
+        <h1>Lire le Coran</h1>
+        <p style="color: #8b9584; font-size: 1.1rem;">Le plus grand trésor de l'Islam !</p>
+    </div>
+
+    <div class="intro-text">
+        <p style="font-weight: 600; margin-bottom: 10px;">🌟 Le Coran : La Parole d'Allah</p>
+        <p>Le <strong>Coran</strong> (القرآن) est la Parole d'Allah révélée au Prophète Mouhammad (paix et bénédictions sur lui). C'est le <strong>plus grand trésor</strong> que nous possédons ! Allah dit : <em>"Nous avons fait descendre vers toi le Livre comme un exposé explicite de toute chose, ainsi qu'un guide, une miséricorde et une bonne annonce aux musulmans"</em> <strong>(Coran 16:89)</strong>. Le Prophète (saw) a dit : <em>"Le meilleur d'entre vous est celui qui apprend le Coran et l'enseigne"</em> <strong>(Sahih Bukhari 5027)</strong>. 📖✨</p>
+    </div>
+
+    <div class="story-section">
+        <div class="story-card">
+            <h3>📿 L'importance de lire le Coran</h3>
+            <p>Lire le Coran est l'une des <strong>meilleures actions</strong> qu'un musulman peut faire ! Le Prophète a dit : <em>"Celui qui lit une lettre du Coran aura une bonne action, et la bonne action compte pour dix. Je ne dis pas que Alif-Lam-Mim est une lettre, mais Alif est une lettre, Lam est une lettre, et Mim est une lettre"</em> <strong>(Tirmidhi 2910)</strong>. Imagine : chaque <strong>lettre</strong> que tu lis te donne 10 récompenses ! Si tu lis "Bismillah" (بسم الله), c'est 19 lettres = 190 récompenses ! Le Coran est une lumière pour ton cœur et un guide pour ta vie. 💫</p>
+        </div>
+
+        <div class="story-card">
+            <h3>🌟 Les sourates courtes : des trésors précieux</h3>
+            <p>Les sourates courtes à la fin du Coran sont particulièrement <strong>précieuses</strong> ! <strong>Sourate Al-Ikhlas (112)</strong> est si importante que le Prophète a dit : <em>"Elle équivaut au tiers du Coran"</em> <strong>(Sahih Bukhari 5013)</strong>. Les <strong>Mu'awwidhatayn</strong> (sourates Al-Falaq et An-Nas) nous protègent du mal — le Prophète les récitait chaque soir avant de dormir ! <strong>Sourate Al-Fatiha</strong> est appelée "Oum al-Kitab" (la Mère du Livre) car elle résume tout le Coran. Apprendre ces sourates courtes, c'est collecter des trésors pour l'au-delà ! 💎</p>
+        </div>
+
+        <div class="story-card">
+            <h3>🎁 Les récompenses de la lecture du Coran</h3>
+            <p>Quand tu lis le Coran, tu reçois des <strong>récompenses extraordinaires</strong> ! Le Prophète a dit : <em>"Lisez le Coran, car il viendra le Jour de la Résurrection comme intercesseur pour ses compagnons"</em> <strong>(Sahih Muslim 804)</strong>. Le Coran <strong>plaidera en ta faveur</strong> devant Allah ! Il a aussi dit : <em>"Le meilleur parmi vous est celui qui apprend le Coran et l'enseigne"</em>. Et pour tes parents : <em>"Celui qui lit le Coran, l'apprend et agit selon ses enseignements, ses parents recevront une couronne de lumière le Jour du Jugement"</em> <strong>(Abu Dawud 1453)</strong>. Chaque verset que tu apprends élève ton rang au Paradis ! 🌟</p>
+        </div>
+
+        <div class="story-card">
+            <h3>💫 Lire le Coran en Ramadan</h3>
+            <p>Le Ramadan a une relation <strong>spéciale</strong> avec le Coran ! C'est pendant le Ramadan que le Coran a été révélé : <em>"Le mois de Ramadan au cours duquel le Coran a été descendu"</em> <strong>(Coran 2:185)</strong>. Le Prophète lisait tout le Coran avec l'ange Jibril chaque Ramadan, et il l'a lu <strong>deux fois</strong> pendant son dernier Ramadan ! Pendant ce mois béni, les récompenses sont <strong>multipliées</strong>. Essaie de lire au moins une page par jour, ou même juste quelques versets. Écoute aussi le Coran en audio — c'est magnifique ! Chaque lettre compte, et Allah voit tous tes efforts ! 🌙</p>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         GAME : Le Trésor des Sourates
+    ============================================================ -->
+    <div class="game-section" id="gameSection">
+        <div class="game-header">
+            <div class="game-title">💎 Le Trésor des Sourates</div>
+            <div class="game-subtitle">Débloque les coffres en répondant aux questions sur les sourates !</div>
+        </div>
+
+        <div class="game-story">
+            📖 Chaque sourate du Coran est un <strong>trésor précieux</strong> ! Réponds correctement aux questions pour débloquer les coffres d'or. Chaque bonne réponse révèle une partie du trésor coranique ! ✨
+        </div>
+
+        <div class="treasure-display" id="treasureDisplay">
+            <div class="treasure-chest">
+                <span class="chest-icon" id="chest0">🎁</span>
+                <div class="chest-label">Coffre 1</div>
+            </div>
+            <div class="treasure-chest">
+                <span class="chest-icon" id="chest1">🎁</span>
+                <div class="chest-label">Coffre 2</div>
+            </div>
+            <div class="treasure-chest">
+                <span class="chest-icon" id="chest2">🎁</span>
+                <div class="chest-label">Coffre 3</div>
+            </div>
+            <div class="treasure-chest">
+                <span class="chest-icon" id="chest3">🎁</span>
+                <div class="chest-label">Coffre 4</div>
+            </div>
+            <div class="treasure-chest">
+                <span class="chest-icon" id="chest4">🎁</span>
+                <div class="chest-label">Coffre 5</div>
+            </div>
+            <div class="treasure-chest">
+                <span class="chest-icon" id="chest5">🎁</span>
+                <div class="chest-label">Coffre 6</div>
+            </div>
+        </div>
+
+        <div class="progress-label" id="progressLabel">0 / 6 coffres débloqués</div>
+
+        <div class="quiz-card" id="quizCard">
+            <div class="quiz-header">
+                <div class="quiz-number" id="quizNum">1</div>
+                <div>
+                    <div class="quiz-type" id="quizType">Question Coranique</div>
+                </div>
+            </div>
+
+            <div class="quiz-question" id="quizQuestion">Chargement...</div>
+
+            <div id="arabicContainer"></div>
+
+            <div class="quiz-options" id="quizOptions">
+                <!-- Generated by JS -->
+            </div>
+
+            <div class="quiz-feedback" id="quizFeedback">
+                <div class="feedback-text" id="feedbackText"></div>
+                <div class="feedback-detail" id="feedbackDetail"></div>
+            </div>
+        </div>
+
+        <button class="btn-next" id="btnNext" onclick="nextQuestion()">Question suivante →</button>
+
+        <button class="btn-game" onclick="resetGame()">🔄 Nouveau trésor</button>
+
+        <!-- Game Complete -->
+        <div class="game-complete" id="gameComplete">
+            <div class="complete-emoji">📚</div>
+            <div class="complete-title">Masha Allah !</div>
+            <div class="complete-score" id="completeScore">6 / 6 coffres débloqués</div>
+            <div class="complete-message" id="completeMessage">Message...</div>
+            <button class="btn-game" onclick="resetGame()">🔄 Rejouer</button>
+        </div>
+    </div>
+
+    <div class="fun-facts">
+        <h3>✨ Le savais-tu ?</h3>
+        <ul>
+            <li>Le Coran contient <strong>114 sourates</strong>, 6236 versets, et environ 77,000 mots !</li>
+            <li>La plus longue sourate est <strong>Al-Baqarah (286 versets)</strong> et la plus courte est <strong>Al-Kawthar (3 versets)</strong> !</li>
+            <li>Le Prophète a dit que celui qui mémorise le Coran sera avec <strong>les anges nobles et obéissants</strong> au Paradis !</li>
+            <li>Pendant le Ramadan, l'ange <strong>Jibril</strong> descendait chaque nuit pour réviser le Coran avec le Prophète ! 📖</li>
+        </ul>
+    </div>
+
+    <div class="quiz-section">
+        <h3>🎮 Quiz : As-tu bien compris ?</h3>
+
+        <div class="question-card">
+            <div class="question-text">1. Combien de récompenses reçoit-on pour chaque lettre du Coran qu'on lit ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 0)">1 récompense</div>
+                <div class="option" onclick="selectAnswer(this, true, 0)">10 récompenses</div>
+                <div class="option" onclick="selectAnswer(this, false, 0)">100 récompenses</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">2. Quelle sourate équivaut au tiers du Coran selon le Prophète ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 1)">Al-Fatiha</div>
+                <div class="option" onclick="selectAnswer(this, true, 1)">Al-Ikhlas</div>
+                <div class="option" onclick="selectAnswer(this, false, 1)">An-Nas</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">3. Pendant quel mois le Coran a-t-il été révélé ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 2)">Muharram</div>
+                <div class="option" onclick="selectAnswer(this, false, 2)">Rajab</div>
+                <div class="option" onclick="selectAnswer(this, true, 2)">Ramadan</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">4. Que fera le Coran le Jour de la Résurrection pour celui qui le lisait ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 3)">Rien de spécial</div>
+                <div class="option" onclick="selectAnswer(this, true, 3)">Il intercédera (plaidera) en sa faveur</div>
+                <div class="option" onclick="selectAnswer(this, false, 3)">Il disparaîtra</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">5. Qui est le meilleur parmi les gens selon le hadith ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 4)">Le plus riche</div>
+                <div class="option" onclick="selectAnswer(this, true, 4)">Celui qui apprend le Coran et l'enseigne</div>
+                <div class="option" onclick="selectAnswer(this, false, 4)">Le plus fort</div>
+            </div>
+        </div>
+
+        <button class="btn" id="submitBtn" onclick="checkQuizAnswers()" disabled>Vérifier mes réponses</button>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+        <p style="color: #8b9584; font-size: 1.1rem;">
+            <strong>Bravo d'avoir terminé le Jour 15 ! 🌟</strong><br>
+            N'oublie pas : chaque lettre du Coran que tu lis te rapporte 10 récompenses !<br>
+            Lis le Coran chaque jour, même quelques versets ! 📖<br>
+            Rendez-vous demain pour le Jour 16 !
+        </p>
+    </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+<div class="result-modal" id="resultModal">
+    <div class="result-icon" id="resultIcon">🎉</div>
+    <h3 id="resultTitle">Excellent !</h3>
+    <div class="score-display" id="scoreDisplay">Score : 5/5</div>
+    <div class="result-message" id="resultMessage">Masha Allah !</div>
+    <button class="btn" onclick="closeModal()">Continuer</button>
+</div>
+
+<script>
+// ============================================================
+//  QURAN TREASURE GAME DATA
+// ============================================================
+const QUESTIONS = [
+    {
+        type: 'Sourate Al-Fatiha',
+        question: 'Combien de fois par jour récite-t-on au minimum Sourate Al-Fatiha ?',
+        options: [
+            'Une fois',
+            'Au moins 17 fois (dans les 5 prières obligatoires)',
+            '5 fois'
+        ],
+        correct: 1,
+        feedback: '✨ Exact ! On récite Al-Fatiha dans chaque unité (rak\'ah) de prière. Avec 17 rak\'ahs obligatoires par jour minimum, c\'est au moins 17 fois !',
+        detail: 'Le Prophète (saw) a dit : "Pas de prière pour celui qui ne récite pas la Fatiha" (Bukhari 756)'
+    },
+    {
+        type: 'Sourate Al-Ikhlas',
+        question: 'Quelle est la principale leçon de Sourate Al-Ikhlas (Qul Huwa Allahu Ahad) ?',
+        arabic: 'قُلْ هُوَ اللَّهُ أَحَدٌ ۝ اللَّهُ الصَّمَدُ',
+        options: [
+            'Le Tawhid - l\'Unicité absolue d\'Allah',
+            'La prière',
+            'Le jeûne'
+        ],
+        correct: 0,
+        feedback: '💎 Parfait ! Al-Ikhlas (Le Monothéisme Pur) enseigne que Allah est Un, Unique, n\'a ni enfant ni parent, et rien ne Lui ressemble !',
+        detail: 'Le Prophète (saw) a dit : "Elle équivaut au tiers du Coran" (Bukhari 5013)'
+    },
+    {
+        type: 'Sourate Al-Falaq',
+        question: 'De quoi nous protège Sourate Al-Falaq ?',
+        arabic: 'قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ',
+        options: [
+            'Du mal de la création, de la nuit, de la sorcellerie et de la jalousie',
+            'Seulement des mauvais rêves',
+            'De la faim'
+        ],
+        correct: 0,
+        feedback: '🛡️ Bravo ! Al-Falaq nous protège du mal de toute la création, de l\'obscurité, des sorciers et des envieux !',
+        detail: 'Le Prophète (saw) récitait Al-Falaq et An-Nas chaque soir avant de dormir pour se protéger'
+    },
+    {
+        type: 'Sourate An-Nas',
+        question: 'Contre quoi Sourate An-Nas nous protège-t-elle spécifiquement ?',
+        arabic: 'قُلْ أَعُوذُ بِرَبِّ النَّاسِ',
+        options: [
+            'Les animaux',
+            'Les wasawis (mauvaises suggestions) de Shaytan',
+            'La pluie'
+        ],
+        correct: 1,
+        feedback: '✨ Excellent ! An-Nas nous protège des wasawis (chuchotements/mauvaises pensées) que Shaytan met dans nos cœurs !',
+        detail: 'C\'est pourquoi on dit "A\'udhu billah min ash-shaytan ar-rajim" avant de lire le Coran'
+    },
+    {
+        type: 'Sourate Al-Kawthar',
+        question: 'Que signifie "Al-Kawthar" ?',
+        arabic: 'إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ',
+        options: [
+            'La patience',
+            'L\'Abondance (un fleuve au Paradis donné au Prophète)',
+            'La nuit'
+        ],
+        correct: 1,
+        feedback: '🌊 Parfait ! Al-Kawthar est un fleuve au Paradis qu\'Allah a donné au Prophète Mouhammad (saw). Son eau est plus blanche que le lait et plus douce que le miel !',
+        detail: 'C\'est la sourate la plus courte du Coran avec seulement 3 versets !'
+    },
+    {
+        type: 'Sourate Al-Asr',
+        question: 'Selon Sourate Al-Asr, l\'homme est en perte sauf ceux qui ont 4 qualités. Lesquelles ?',
+        arabic: 'وَالْعَصْرِ ۝ إِنَّ الْإِنسَانَ لَفِي خُسْرٍ',
+        options: [
+            'Foi, bonnes œuvres, s\'enjoindre la vérité, s\'enjoindre la patience',
+            'Jeûner, prier, donner, lire',
+            'Manger, dormir, jouer, étudier'
+        ],
+        correct: 0,
+        feedback: '🌟 Masha Allah ! Ces 4 qualités résument tout l\'Islam : croire, agir, enseigner la vérité aux autres, et s\'encourager mutuellement à la patience !',
+        detail: 'L\'Imam Shafi\'i a dit : "Si les gens méditaient cette sourate, elle leur suffirait" !'
+    }
+];
+
+// ============================================================
+//  GAME STATE
+// ============================================================
+let currentQuestion = 0;
+let chestsUnlocked = 0;
+let answered = false;
+
+function initGame() {
+    currentQuestion = 0;
+    chestsUnlocked = 0;
+    answered = false;
+
+    // Shuffle questions
+    QUESTIONS.sort(() => Math.random() - 0.5);
+
+    // Reset chests
+    for (let i = 0; i < 6; i++) {
+        document.getElementById(`chest${i}`).classList.remove('unlocked');
+    }
+
+    updateProgress();
+
+    // Show game
+    document.getElementById('gameComplete').classList.remove('show');
+    document.getElementById('quizCard').style.display = '';
+
+    renderQuestion();
+}
+
+function updateProgress() {
+    document.getElementById('progressLabel').textContent = `${chestsUnlocked} / 6 coffres débloqués`;
+}
+
+function renderQuestion() {
+    answered = false;
+    const q = QUESTIONS[currentQuestion];
+
+    document.getElementById('quizNum').textContent = currentQuestion + 1;
+    document.getElementById('quizType').textContent = q.type;
+    document.getElementById('quizQuestion').textContent = q.question;
+
+    // Arabic text if present
+    const arabicContainer = document.getElementById('arabicContainer');
+    if (q.arabic) {
+        arabicContainer.innerHTML = `<div class="arabic-text">${q.arabic}</div>`;
+    } else {
+        arabicContainer.innerHTML = '';
+    }
+
+    // Render options
+    const container = document.getElementById('quizOptions');
+    container.innerHTML = '';
+    q.options.forEach((option, index) => {
+        const btn = document.createElement('div');
+        btn.className = 'quiz-option';
+        btn.textContent = option;
+        btn.onclick = () => selectOption(index);
+        container.appendChild(btn);
+    });
+
+    // Hide feedback and next
+    document.getElementById('quizFeedback').classList.remove('show');
+    document.getElementById('btnNext').classList.remove('show');
+}
+
+function selectOption(index) {
+    if (answered) return;
+    answered = true;
+
+    const q = QUESTIONS[currentQuestion];
+    const isCorrect = index === q.correct;
+
+    const options = document.querySelectorAll('.quiz-option');
+    options.forEach((opt, i) => {
+        opt.style.pointerEvents = 'none';
+        if (i === index) {
+            opt.classList.add(isCorrect ? 'correct' : 'wrong');
+        }
+        // Also show correct answer
+        if (i === q.correct && i !== index) {
+            setTimeout(() => opt.classList.add('correct'), 400);
+        }
+    });
+
+    // Show feedback
+    const fb = document.getElementById('quizFeedback');
+    document.getElementById('feedbackText').textContent = isCorrect ? q.feedback : '❌ Pas tout à fait... ' + q.feedback;
+    document.getElementById('feedbackDetail').textContent = q.detail;
+    fb.classList.add('show');
+
+    if (isCorrect) {
+        // Unlock chest
+        setTimeout(() => {
+            document.getElementById(`chest${chestsUnlocked}`).classList.add('unlocked');
+            chestsUnlocked++;
+            updateProgress();
+        }, 500);
+    }
+
+    // Show next button
+    const btnNext = document.getElementById('btnNext');
+    btnNext.textContent = currentQuestion < QUESTIONS.length - 1 ? 'Question suivante →' : 'Voir le trésor 💎';
+    btnNext.classList.add('show');
+}
+
+function nextQuestion() {
+    currentQuestion++;
+    if (currentQuestion >= QUESTIONS.length) {
+        showComplete();
+    } else {
+        renderQuestion();
+    }
+}
+
+function showComplete() {
+    document.getElementById('quizCard').style.display = 'none';
+    document.getElementById('btnNext').classList.remove('show');
+
+    const complete = document.getElementById('gameComplete');
+    complete.classList.add('show');
+
+    const total = 6;
+    const pct = Math.round((chestsUnlocked / total) * 100);
+
+    document.getElementById('completeScore').textContent = `${chestsUnlocked} / ${total} coffres débloqués (${pct}%)`;
+
+    let msg;
+    if (chestsUnlocked === total) {
+        msg = 'Masha Allah ! Tu as débloqué tous les coffres ! Tu connais bien les sourates du Coran. <strong>"Le meilleur d\'entre vous est celui qui apprend le Coran et l\'enseigne"</strong>. Continue à lire et apprendre le Coran chaque jour ! 📖✨';
+    } else if (chestsUnlocked >= 4) {
+        msg = `Très bien ! Tu as débloqué ${chestsUnlocked} coffres sur 6. Continue à apprendre les sourates et leurs significations ! Rejoue pour débloquer tous les trésors ! 💎`;
+    } else if (chestsUnlocked >= 2) {
+        msg = `${chestsUnlocked} coffres débloqués ! Le Coran demande de l\'étude. Relis les sourates et leurs significations, puis rejoue ! 📚`;
+    } else {
+        msg = 'Peu de coffres ont été débloqués. Apprends les sourates courtes avec tes parents ou à la mosquée, puis rejoue ! Chaque verset est un trésor ! 🌟';
+    }
+
+    document.getElementById('completeMessage').innerHTML = msg;
+}
+
+function resetGame() {
+    initGame();
+}
+
+// Start
+initGame();
+
+// ============================================================
+//  QUIZ
+// ============================================================
+let answers = [null, null, null, null, null];
+let selectedCount = 0;
+
+function selectAnswer(element, isCorrect, questionIndex) {
+    const options = element.parentElement.querySelectorAll('.option');
+    options.forEach(opt => opt.classList.remove('selected'));
+    element.classList.add('selected');
+    if (answers[questionIndex] === null) selectedCount++;
+    answers[questionIndex] = isCorrect;
+    if (selectedCount === 5) document.getElementById('submitBtn').disabled = false;
+}
+
+function checkQuizAnswers() {
+    let score = 0;
+    const allOptions = document.querySelectorAll('.option.selected');
+    allOptions.forEach((option, index) => {
+        if (answers[index]) { option.classList.add('correct'); score++; }
+        else option.classList.add('incorrect');
+    });
+    document.getElementById('submitBtn').disabled = true;
+    setTimeout(() => showResults(score), 1000);
+}
+
+function showResults(score) {
+    document.getElementById('scoreDisplay').textContent = 'Score : ' + score + '/5';
+    if (score === 5) {
+        document.getElementById('resultIcon').textContent = '📖';
+        document.getElementById('resultTitle').textContent = 'Al-Qur\'an !';
+        document.getElementById('resultMessage').textContent = 'Tu as tout compris sur le Coran ! Qu\'Allah fasse de toi un(e) mémorisateur/mémorisatrice du Coran ! 🌟';
+    } else if (score >= 3) {
+        document.getElementById('resultIcon').textContent = '😊';
+        document.getElementById('resultTitle').textContent = 'Très bien !';
+        document.getElementById('resultMessage').textContent = 'Tu connais bien le Coran ! Continue à le lire et l\'apprendre chaque jour ! 💪';
+    } else {
+        document.getElementById('resultIcon').textContent = '📚';
+        document.getElementById('resultTitle').textContent = 'Continue tes efforts !';
+        document.getElementById('resultMessage').textContent = 'Relis la leçon sur le Coran et tu vas mieux comprendre. Chaque lettre compte ! 🌈';
+    }
+    document.getElementById('overlay').classList.add('show');
+    document.getElementById('resultModal').classList.add('show');
+}
+
+function closeModal() {
+    document.getElementById('resultModal').classList.remove('show');
+    document.getElementById('overlay').classList.remove('show');
+}
+</script>
+</body>
+</html>
