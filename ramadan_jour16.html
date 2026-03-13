@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jour 16 - Les invocations (Dua) 🤲</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@400;600;700&display=swap');
+
+        :root {
+            --sand: #f5e6d3;
+            --sand-dark: #e8d5c4;
+            --green: #8b9584;
+            --green-dark: #5a6b4f;
+            --green-light: #a4b29b;
+            --text: #4a5442;
+            --mint: #98d8c8;
+            --peach: #f7b2ad;
+            --lavender: #c7b7e0;
+            --cream: #fef9e7;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, var(--sand) 0%, var(--sand-dark) 50%, var(--sand) 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #ffffff 0%, #faf8f5 100%);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(139,149,132,0.2);
+            border: 3px solid var(--green);
+        }
+
+        /* HEADER */
+        .header { text-align: center; margin-bottom: 40px; position: relative; }
+
+        .day-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            color: white; padding: 10px 25px; border-radius: 25px;
+            font-size: 1rem; font-weight: 600; margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(139,149,132,0.3);
+        }
+
+        h1 { color: var(--green-dark); font-size: 2.5rem; margin-bottom: 10px; font-family: 'Amiri', serif; }
+
+        .moon-icon {
+            font-size: 3rem;
+            animation: glow 2s ease-in-out infinite;
+            display: block; margin-bottom: 10px;
+        }
+        @keyframes glow {
+            0%,100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(152,216,200,0.5)); }
+            50% { transform: scale(1.1); filter: drop-shadow(0 0 25px rgba(152,216,200,0.9)); }
+        }
+
+        .logo { position: absolute; top: 0; left: 0; width: 120px; height: auto; opacity: 0.9; transition: opacity 0.3s; }
+        .logo:hover { opacity: 1; }
+
+        /* INTRO */
+        .intro-text {
+            background: linear-gradient(135deg, var(--sand), var(--sand-dark));
+            padding: 25px; border-radius: 20px;
+            border-left: 5px solid var(--green);
+            margin: 30px 0; font-size: 1.1rem; line-height: 1.8; color: var(--text);
+        }
+
+        /* STORY CARDS */
+        .story-card {
+            background: white; border-radius: 20px; padding: 25px; margin: 20px 0;
+            border: 2px solid #d4c4b0; transition: all 0.3s ease;
+        }
+        .story-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(139,149,132,0.2); border-color: var(--green); }
+        .story-card h3 { color: var(--green-dark); margin-bottom: 15px; font-size: 1.3rem; }
+        .story-card p { color: #666; line-height: 1.7; font-size: 1.05rem; }
+
+        /* ============================================================
+           GAME SECTION — Le Carnet de Dou'as
+        ============================================================ */
+        .game-section {
+            background: linear-gradient(160deg, #fef9e7 0%, #fff5e6 50%, #fef3e2 100%);
+            border-radius: 24px;
+            margin: 30px 0;
+            overflow: hidden;
+            position: relative;
+            color: #5d4e37;
+            padding: 32px 28px;
+            border: 3px solid #98d8c8;
+        }
+
+        .game-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .game-title {
+            font-family: 'Amiri', serif;
+            font-size: 2rem;
+            color: #5d4e37;
+            margin-bottom: 8px;
+        }
+
+        .game-subtitle {
+            font-size: 0.95rem;
+            color: #7d6e57;
+            margin-bottom: 16px;
+        }
+
+        .game-story {
+            background: rgba(152,216,200,0.15);
+            border-radius: 14px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            font-size: 0.96rem;
+            line-height: 1.6;
+            border-left: 3px solid #98d8c8;
+        }
+
+        /* Collection Progress */
+        .collection-progress {
+            background: white;
+            border-radius: 16px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            border: 2px solid rgba(152,216,200,0.3);
+            text-align: center;
+        }
+
+        .progress-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #5d4e37;
+            margin-bottom: 10px;
+        }
+
+        .collected-cards {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        .card-slot {
+            width: 40px;
+            height: 50px;
+            border-radius: 6px;
+            background: #f5f5f5;
+            border: 2px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            transition: all 0.4s ease;
+        }
+
+        .card-slot.collected {
+            background: linear-gradient(135deg, #98d8c8, #b3e5d9);
+            border-color: #98d8c8;
+            animation: cardCollect 0.6s cubic-bezier(0.175,0.885,0.32,1.275);
+        }
+
+        @keyframes cardCollect {
+            0% { transform: scale(0) rotate(-180deg); }
+            60% { transform: scale(1.2) rotate(10deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        .progress-label {
+            font-size: 0.85rem;
+            color: #7d6e57;
+            font-weight: 600;
+        }
+
+        /* Match Game */
+        .match-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .match-column {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .column-title {
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #5d4e37;
+            background: rgba(152,216,200,0.2);
+            padding: 8px 12px;
+            border-radius: 10px;
+            margin-bottom: 4px;
+        }
+
+        /* Situation cards */
+        .situation-card {
+            background: white;
+            border: 2px solid rgba(152,216,200,0.4);
+            border-radius: 14px;
+            padding: 14px 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.92rem;
+            color: #5d4e37;
+        }
+
+        .situation-card:hover {
+            background: rgba(152,216,200,0.1);
+            border-color: #98d8c8;
+            transform: scale(1.03);
+        }
+
+        .situation-card.selected {
+            background: linear-gradient(135deg, rgba(152,216,200,0.3), rgba(152,216,200,0.2));
+            border-color: #98d8c8;
+            box-shadow: 0 4px 12px rgba(152,216,200,0.4);
+        }
+
+        .situation-card.matched {
+            background: rgba(152,216,200,0.2);
+            border-color: #7bc4b3;
+            cursor: default;
+            opacity: 0.7;
+        }
+
+        .situation-emoji {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        /* Dua cards */
+        .dua-card {
+            background: white;
+            border: 2px solid rgba(247,178,173,0.4);
+            border-radius: 14px;
+            padding: 12px 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dua-card:hover {
+            background: rgba(247,178,173,0.1);
+            border-color: #f7b2ad;
+            transform: scale(1.03);
+        }
+
+        .dua-card.selected {
+            background: linear-gradient(135deg, rgba(247,178,173,0.3), rgba(247,178,173,0.2));
+            border-color: #f7b2ad;
+            box-shadow: 0 4px 12px rgba(247,178,173,0.4);
+        }
+
+        .dua-card.matched {
+            background: rgba(152,216,200,0.2);
+            border-color: #7bc4b3;
+            cursor: default;
+            opacity: 0.7;
+        }
+
+        .dua-arabic {
+            font-family: 'Amiri', serif;
+            font-size: 1.2rem;
+            color: #5d4e37;
+            text-align: center;
+            direction: rtl;
+            margin-bottom: 6px;
+        }
+
+        .dua-transliteration {
+            font-size: 0.8rem;
+            color: #7d6e57;
+            font-style: italic;
+            text-align: center;
+        }
+
+        /* Feedback */
+        .game-feedback {
+            background: rgba(152,216,200,0.15);
+            border-left: 4px solid #98d8c8;
+            border-radius: 0 12px 12px 0;
+            padding: 14px 18px;
+            margin-top: 16px;
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .game-feedback.show { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .feedback-text {
+            color: #5d4e37;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            font-weight: 600;
+        }
+
+        .feedback-meaning {
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(152,216,200,0.3);
+            font-size: 0.88rem;
+            color: #7d6e57;
+        }
+
+        /* Buttons */
+        .btn-game {
+            background: linear-gradient(135deg, #98d8c8, #b3e5d9);
+            border: none;
+            color: #2d4d44;
+            padding: 12px 28px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin: 8px;
+        }
+
+        .btn-game:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(152,216,200,0.4);
+        }
+
+        /* Game Complete */
+        .game-complete {
+            display: none;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .game-complete.show { display: block; }
+
+        .complete-emoji { font-size: 4.5rem; margin-bottom: 16px; animation: bounceIn 0.8s ease; }
+        @keyframes bounceIn { 0%{transform:scale(0)} 60%{transform:scale(1.2)} 100%{transform:scale(1)} }
+
+        .complete-title {
+            font-family: 'Amiri', serif;
+            font-size: 2.2rem;
+            color: #5d4e37;
+            margin-bottom: 14px;
+        }
+
+        .complete-message {
+            color: #5d4e37;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .complete-cards-display {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+            font-size: 2rem;
+        }
+
+        /* FUN FACTS */
+        .fun-facts {
+            background: linear-gradient(135deg, var(--sand), var(--sand-dark));
+            padding: 25px; border-radius: 20px; margin: 30px 0;
+            border: 2px dashed var(--green);
+        }
+        .fun-facts h3 { color: var(--green-dark); margin-bottom: 15px; text-align: center; }
+        .fun-facts ul { list-style: none; padding: 0; }
+        .fun-facts li { padding: 10px 0; padding-left: 30px; position: relative; color: var(--text); line-height: 1.6; }
+        .fun-facts li:before { content: "🤲"; position: absolute; left: 0; }
+
+        /* QUIZ */
+        .quiz-section {
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            padding: 30px; border-radius: 20px; margin: 30px 0; color: white;
+        }
+        .quiz-section h3 { text-align: center; font-size: 1.5rem; margin-bottom: 25px; }
+
+        .question-card { background: white; border-radius: 15px; padding: 25px; margin: 20px 0; color: var(--text); }
+        .question-text { font-weight: 600; font-size: 1.15rem; margin-bottom: 20px; color: var(--green-dark); }
+        .options { display: grid; grid-template-columns: 1fr; gap: 12px; }
+
+        .option {
+            background: linear-gradient(135deg, var(--sand), var(--sand-dark));
+            padding: 15px 20px; border-radius: 12px;
+            cursor: pointer; transition: all 0.3s ease;
+            border: 2px solid transparent; font-weight: 500;
+        }
+        .option:hover { background: linear-gradient(135deg, var(--sand-dark), #d4c4b0); transform: translateX(5px); }
+        .option.selected { background: linear-gradient(135deg, var(--green), var(--green-light)); color: white; border-color: var(--green-dark); transform: scale(1.02); }
+        .option.correct { background: linear-gradient(135deg, #7fb069, #8fbc77); color: white; border-color: #5a8049; animation: qPulse 0.5s ease; }
+        .option.incorrect { background: linear-gradient(135deg, #d4916c, #c47d5a); color: white; border-color: #a4614a; animation: qShake 0.5s ease; }
+
+        @keyframes qPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+        @keyframes qShake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
+
+        .btn {
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            color: white; border: none; padding: 15px 40px;
+            border-radius: 30px; font-size: 1.1rem; font-weight: 600;
+            cursor: pointer; transition: all 0.3s ease;
+            display: block; margin: 25px auto 0;
+            box-shadow: 0 5px 20px rgba(139,149,132,0.3);
+            font-family: 'Quicksand', sans-serif;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(139,149,132,0.4); }
+        .btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+
+        /* MODALS */
+        .result-modal {
+            position: fixed; top: 50%; left: 50%;
+            transform: translate(-50%,-50%) scale(0);
+            background: white; padding: 40px; border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            z-index: 1001; text-align: center;
+            max-width: 420px; width: 90%;
+            transition: transform 0.3s ease;
+        }
+        .result-modal.show { transform: translate(-50%,-50%) scale(1); }
+        .result-modal h3 { color: var(--green-dark); font-size: 2rem; margin-bottom: 15px; }
+
+        .result-icon { font-size: 4rem; margin-bottom: 15px; animation: rBounce 0.6s ease; }
+        @keyframes rBounce { 0%{transform:scale(0);opacity:0} 60%{transform:scale(1.2)} 100%{transform:scale(1);opacity:1} }
+
+        .result-message { color: #666; font-size: 1.05rem; margin: 15px 0; line-height: 1.6; }
+        .score-display { background: linear-gradient(135deg, var(--sand), var(--sand-dark)); padding: 14px; border-radius: 15px; font-size: 1.2rem; font-weight: 600; color: var(--green-dark); margin: 15px 0; }
+
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 999; }
+        .overlay.show { display: block; }
+
+        @media (max-width: 768px) {
+            .logo { width: 80px; top: 5px; left: 5px; }
+            .container { padding: 20px; }
+            h1 { font-size: 2rem; }
+            .match-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <img src="logonoir_lespetitesplumes.png" alt="Les petites plumes" class="logo">
+        <div class="day-badge">Jour 16 / 30</div>
+        <span class="moon-icon">🤲</span>
+        <h1>Les invocations (Dua)</h1>
+        <p style="color: #8b9584; font-size: 1.1rem;">Apprendre des dou'as simples pour chaque jour !</p>
+    </div>
+
+    <div class="intro-text">
+        <p style="font-weight: 600; margin-bottom: 10px;">🌟 Ad-Dou'a : L'invocation en Islam</p>
+        <p><strong>Ad-Dou'a</strong> (الدعاء) signifie l'invocation — c'est parler à Allah, Lui demander ce dont on a besoin, Le remercier. Le Prophète (paix et bénédictions sur lui) a dit : <em>"L'invocation est l'arme du croyant"</em>. Allah dit dans le Coran : <em>"Invoquez-Moi, Je vous répondrai"</em> <strong>(Coran 40:60)</strong>. Chaque fois que tu lèves tes mains vers Allah, Il t'écoute. Les dou'as sont un trésor précieux ! 🤲✨</p>
+    </div>
+
+    <div class="story-section">
+        <div class="story-card">
+            <h3>📿 L'importance des invocations</h3>
+            <p>L'invocation est une <strong>conversation directe avec Allah</strong> ! Tu n'as besoin de personne d'autre — pas d'intermédiaire, pas d'attente. Allah est <strong>plus proche de toi que ta veine jugulaire</strong> ! Le Prophète a dit : <em>"Rien n'est plus noble auprès d'Allah que l'invocation"</em> <strong>(Tirmidhi 3370)</strong>. Quand tu fais une dou'a, Allah te donne l'une de ces trois choses : soit Il exauce ta demande tout de suite, soit Il la garde pour te donner quelque chose de mieux plus tard, soit Il écarte un mal qui devait t'arriver. Dans tous les cas, tu gagnes ! Le dou'a est <strong>toujours</strong> exaucé d'une manière ou d'une autre. 💫</p>
+        </div>
+
+        <div class="story-card">
+            <h3>🌟 Les dou'as du quotidien</h3>
+            <p>Le Prophète (saw) nous a enseigné des <strong>invocations pour chaque moment</strong> de la journée ! Quand tu te réveilles : <em>"Al-hamdu li-l-lâhi l-ladhî ahyânâ ba'da mâ amâtanâ wa ilayhi n-nushûr."</em> (Louange à Allah qui nous a redonné la vie après nous avoir fait mourir - le sommeil). Avant de manger : <strong>Bismillah</strong>. Après manger : <em>"Al hamdu li-l-lâhi ladhî at'amanî hâdhâ wa razaqanîhi min ghayrin hawlin minnî wa lâ quwwatin."</em> (Louange à Allah Qui m’a accordé cette nourriture et me l’a octroyé sans pouvoir ni force de ma part). En sortant de la maison : <em>"Bismillâhi, tawakkaltou 'alâ l-lâhi, wa lâ hawla wa lâ qouwwata illâ billâhi."</em> (Au nom d’Allah, je m’en remets à Allah, il n’y a de force et de puissance que par Allah). Ces petites dou'as te gardent connecté à Allah <strong>toute la journée</strong> ! 🌞</p>
+        </div>
+
+        <div class="story-card">
+            <h3>🎁 Les moments où les dou'as sont exaucés</h3>
+            <p>Il y a des <strong>moments spéciaux</strong> où les invocations sont particulièrement exaucées ! Le Prophète (saw) nous enseigne que ces moments sont précieux. <strong> Pendant la prosternation (Sujud)</strong> — tu es le plus proche d'Allah à ce moment. <strong>Le dernier tiers de la nuit</strong> — Allah dit "Qui M'invoque pour que Je l'exauce ?". <strong>Entre l'Adhan et l'Iqama</strong> (l'appel à la prière). <strong>Le vendredi</strong>, il y a une heure où toute invocation est exaucée. Et pendant le <strong>Ramadan</strong>, surtout juste avant l'Iftar, les dou'as sont comme des flèches qui vont directement vers Allah ! 🌙</p>
+        </div>
+
+        <div class="story-card">
+            <h3>💫 Les dou'as en Ramadan</h3>
+            <p>Le Ramadan est le <strong>mois des dou'as par excellence</strong> ! Le jeûneur a une invocation qui ne sera pas rejetée, surtout au moment de rompre le jeûne. Le Prophète (saw) disait juste avant l'Iftar : <em>"Allahumma laka sumtu wa 'ala rizqika aftartu"</em> (Ô Allah, pour Toi j'ai jeûné et avec Ta subsistance je romps mon jeûne). Il y a aussi l'invocation spéciale du Ramadan que le Prophète aimait : <em>"Allahumma innaka 'afuwwun tuhibbul 'afwa fa'fu 'anni"</em> (Ô Allah, Tu es Pardonneur et Tu aimes le pardon, alors pardonne-moi). Lève tes mains chaque soir du Ramadan et demande à Allah tout ce que tu veux — Il t'écoute ! 🤲</p>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         GAME : Le Carnet de Dou'as
+    ============================================================ -->
+    <div class="game-section" id="gameSection">
+        <div class="game-header">
+            <div class="game-title">📝 Le Carnet de Dou'as</div>
+            <div class="game-subtitle">Collectionne les dou'as en les associant aux bonnes situations !</div>
+        </div>
+
+        <div class="game-story">
+            🤲 Chaque situation de ta journée a une dou'a spéciale ! <strong>Associe chaque invocation</strong> (à droite) avec la situation où on la dit (à gauche). Chaque bonne association ajoute une carte à ta collection ! 📖
+        </div>
+
+        <div class="collection-progress">
+            <div class="progress-title">📚 Collection de Dou'as</div>
+            <div class="collected-cards" id="collectedCards">
+                <!-- Generated by JS -->
+            </div>
+            <div class="progress-label" id="progressLabel">0 / 6 dou'as collectées</div>
+        </div>
+
+        <div class="match-container">
+            <div class="match-column">
+                <div class="column-title">🌅 Situations quotidiennes</div>
+                <div id="situationsColumn">
+                    <!-- Generated by JS -->
+                </div>
+            </div>
+
+            <div class="match-column">
+                <div class="column-title">🤲 Invocations (Dou'as)</div>
+                <div id="duasColumn">
+                    <!-- Generated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <div class="game-feedback" id="gameFeedback">
+            <div class="feedback-text" id="feedbackText"></div>
+            <div class="feedback-meaning" id="feedbackMeaning"></div>
+        </div>
+
+        <button class="btn-game" onclick="resetGame()">🔄 Nouveau carnet</button>
+
+        <!-- Game Complete -->
+        <div class="game-complete" id="gameComplete">
+            <div class="complete-emoji">📖</div>
+            <div class="complete-title">Masha Allah !</div>
+            <div class="complete-cards-display" id="completeCards">
+                🌅 🍽️ 🚪 😴 🌧️ 🌙
+            </div>
+            <div class="complete-message">
+                Tu as complété ton carnet de dou'as ! Tu connais maintenant 6 invocations importantes pour ta journée. <strong>"L'invocation est l'arme du croyant"</strong>. Apprends-les par cœur et dis-les chaque jour ! 🤲✨
+            </div>
+            <button class="btn-game" onclick="resetGame()">🔄 Rejouer</button>
+        </div>
+    </div>
+
+    <div class="fun-facts">
+        <h3>✨ Le savais-tu ?</h3>
+        <ul>
+            <li>Le Prophète a dit : <strong>"L'invocation est l'adoration elle-même"</strong> — faire une dou'a est déjà une adoration !</li>
+            <li>Allah aime tellement qu'on L'invoque qu'Il Se fâche contre celui qui ne Lui demande rien !</li>
+            <li>Le jeûneur a <strong>trois moments</strong> où son invocation n'est jamais rejetée : pendant qu'il jeûne, au moment de rompre le jeûne, et la nuit de Laylatul Qadr !</li>
+            <li>Dire <strong>"Ameen"</strong> après une dou'a, c'est comme apposer un sceau sur une lettre à Allah ! 📮</li>
+        </ul>
+    </div>
+
+    <div class="quiz-section">
+        <h3>🎮 Quiz : As-tu bien compris ?</h3>
+
+        <div class="question-card">
+            <div class="question-text">1. Que dit Allah sur ceux qui L'invoquent dans le Coran ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 0)">Il ne répond pas toujours</div>
+                <div class="option" onclick="selectAnswer(this, true, 0)">"Invoquez-Moi, Je vous répondrai"</div>
+                <div class="option" onclick="selectAnswer(this, false, 0)">Il faut attendre longtemps</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">2. Selon le Prophète, qu'est-ce que l'invocation pour le croyant ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 1)">Un passe-temps</div>
+                <div class="option" onclick="selectAnswer(this, true, 1)">L'arme du croyant</div>
+                <div class="option" onclick="selectAnswer(this, false, 1)">Quelque chose d'optionnel</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">3. Quel est un moment spécial pour faire des dou'as ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 2)">En jouant</div>
+                <div class="option" onclick="selectAnswer(this, true, 2)">Pendant la prosternation (Soujud) dans la prière</div>
+                <div class="option" onclick="selectAnswer(this, false, 2)">En mangeant</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">4. Que se passe-t-il quand on fait une dou'a selon le hadith ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 3)">Rien parfois</div>
+                <div class="option" onclick="selectAnswer(this, true, 3)">Allah l'exauce, ou la garde pour plus tard, ou écarte un mal</div>
+                <div class="option" onclick="selectAnswer(this, false, 3)">Seulement si on prie beaucoup</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">5. Quelle invocation le Prophète (saw) aimait-il particulièrement en Ramadan ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 4)">Bismillah seulement</div>
+                <div class="option" onclick="selectAnswer(this, true, 4)">"Allahumma innaka 'afuwwun..." (Ô Allah, Tu es Pardonneur...)</div>
+                <div class="option" onclick="selectAnswer(this, false, 4)">Il n'avait pas de préférence</div>
+            </div>
+        </div>
+
+        <button class="btn" id="submitBtn" onclick="checkQuizAnswers()" disabled>Vérifier mes réponses</button>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+        <p style="color: #8b9584; font-size: 1.1rem;">
+            <strong>Bravo d'avoir terminé le Jour 16 ! 🌟</strong><br>
+            N'oublie pas : Allah t'écoute toujours, lève tes mains et invoque-Le !<br>
+            Apprends les dou'as du quotidien et dis-les chaque jour ! 🤲<br>
+            Rendez-vous demain pour le Jour 17 !
+        </p>
+    </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+<div class="result-modal" id="resultModal">
+    <div class="result-icon" id="resultIcon">🎉</div>
+    <h3 id="resultTitle">Excellent !</h3>
+    <div class="score-display" id="scoreDisplay">Score : 5/5</div>
+    <div class="result-message" id="resultMessage">Masha Allah !</div>
+    <button class="btn" onclick="closeModal()">Continuer</button>
+</div>
+
+<script>
+// ============================================================
+//  DUA COLLECTION GAME DATA
+// ============================================================
+const DUAS = [
+    {
+        id: 'morning',
+        situation: 'Au réveil le matin',
+        emoji: '🌅',
+        arabic: 'الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا',
+        transliteration: 'Alhamdulillah alladhi ahyana',
+        meaning: 'Louange à Allah qui nous a redonné la vie (après le sommeil)',
+        feedback: '🌅 Parfait ! Cette dou\'a remercie Allah de nous avoir réveillés en bonne santé. Le sommeil est comme une petite mort !'
+    },
+    {
+        id: 'eating',
+        situation: 'Avant de manger',
+        emoji: '🍽️',
+        arabic: 'بِسْمِ اللَّهِ',
+        transliteration: 'Bismillah',
+        meaning: 'Au nom d\'Allah',
+        feedback: '🍽️ Excellent ! Dire Bismillah avant de manger bénit la nourriture et chasse Shaytan de notre repas !'
+    },
+    {
+        id: 'leaving',
+        situation: 'En sortant de la maison',
+        emoji: '🚪',
+        arabic: 'بِسْمِ اللَّهِ تَوَكَّلْتُ عَلَى اللَّهِ',
+        transliteration: 'Bismillah, tawakkaltu \'ala Allah',
+        meaning: 'Au nom d\'Allah, je place ma confiance en Allah',
+        feedback: '🚪 Bravo ! Cette dou\'a nous protège quand on sort. Allah dit : "Celui qui dit cela, il sera guidé, protégé et éloigné de Shaytan" !'
+    },
+    {
+        id: 'sleeping',
+        situation: 'Avant de dormir',
+        emoji: '😴',
+        arabic: 'بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا',
+        transliteration: 'Bismika Allahumma amutu wa ahya',
+        meaning: 'En Ton nom Ô Allah, je meurs et je vis',
+        feedback: '😴 Masha Allah ! Le Prophète disait cette dou\'a avant de dormir. Le sommeil est comme une petite mort et le réveil comme une résurrection !'
+    },
+    {
+        id: 'rain',
+        situation: 'Quand il pleut',
+        emoji: '🌧️',
+        arabic: 'اللَّهُمَّ صَيِّبًا نَافِعًا',
+        transliteration: 'Allahumma sayyiban nafi\'an',
+        meaning: 'Ô Allah, fais qu\'elle soit une pluie bénéfique',
+        feedback: '🌧️ Magnifique ! La pluie est une bénédiction d\'Allah. C\'est aussi un moment où les dou\'as sont exaucées !'
+    },
+    {
+        id: 'ramadan',
+        situation: 'Dou\'a spéciale du Ramadan',
+        emoji: '🌙',
+        arabic: 'اللَّهُمَّ إِنَّكَ عَفُوٌّ تُحِبُّ الْعَفْوَ فَاعْفُ عَنِّي',
+        transliteration: 'Allahumma innaka \'afuwwun tuhibbul \'afwa fa\'fu \'anni',
+        meaning: 'Ô Allah, Tu es Pardonneur et Tu aimes le pardon, alors pardonne-moi',
+        feedback: '🌙 Masha Allah ! C\'est la dou\'a que le Prophète aimait le plus pendant le Ramadan, surtout la nuit de Laylatul Qadr !'
+    }
+];
+
+// ============================================================
+//  GAME STATE
+// ============================================================
+let selectedSituation = null;
+let selectedDua = null;
+let matchedPairs = [];
+
+function initGame() {
+    selectedSituation = null;
+    selectedDua = null;
+    matchedPairs = [];
+
+    // Shuffle duas
+    const shuffledDuas = shuffle([...DUAS]);
+
+    renderCollectionSlots();
+    renderSituations();
+    renderDuas(shuffledDuas);
+    updateProgress();
+    clearFeedback();
+
+    document.getElementById('gameComplete').classList.remove('show');
+}
+
+function shuffle(arr) {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+
+function renderCollectionSlots() {
+    const container = document.getElementById('collectedCards');
+    container.innerHTML = '';
+    DUAS.forEach((dua, i) => {
+        const slot = document.createElement('div');
+        slot.className = 'card-slot';
+        slot.id = `slot-${i}`;
+        slot.textContent = matchedPairs.includes(dua.id) ? dua.emoji : '';
+        if (matchedPairs.includes(dua.id)) {
+            slot.classList.add('collected');
+        }
+        container.appendChild(slot);
+    });
+}
+
+function renderSituations() {
+    const container = document.getElementById('situationsColumn');
+    container.innerHTML = '';
+
+    DUAS.forEach(dua => {
+        const card = document.createElement('div');
+        card.className = 'situation-card';
+        card.id = `sit-${dua.id}`;
+        if (matchedPairs.includes(dua.id)) {
+            card.classList.add('matched');
+        }
+        card.innerHTML = `
+            <span class="situation-emoji">${dua.emoji}</span>
+            ${dua.situation}
+        `;
+        card.onclick = () => selectSituation(dua.id);
+        container.appendChild(card);
+    });
+}
+
+function renderDuas(shuffledDuas) {
+    const container = document.getElementById('duasColumn');
+    container.innerHTML = '';
+
+    shuffledDuas.forEach(dua => {
+        const card = document.createElement('div');
+        card.className = 'dua-card';
+        card.id = `dua-${dua.id}`;
+        if (matchedPairs.includes(dua.id)) {
+            card.classList.add('matched');
+        }
+        card.innerHTML = `
+            <div class="dua-arabic">${dua.arabic}</div>
+            <div class="dua-transliteration">${dua.transliteration}</div>
+        `;
+        card.onclick = () => selectDua(dua.id);
+        container.appendChild(card);
+    });
+}
+
+function selectSituation(id) {
+    if (matchedPairs.includes(id)) return;
+
+    // Deselect previous
+    document.querySelectorAll('.situation-card').forEach(c => c.classList.remove('selected'));
+
+    if (selectedSituation === id) {
+        selectedSituation = null;
+    } else {
+        selectedSituation = id;
+        document.getElementById(`sit-${id}`).classList.add('selected');
+    }
+
+    tryMatch();
+}
+
+function selectDua(id) {
+    if (matchedPairs.includes(id)) return;
+
+    // Deselect previous
+    document.querySelectorAll('.dua-card').forEach(c => c.classList.remove('selected'));
+
+    if (selectedDua === id) {
+        selectedDua = null;
+    } else {
+        selectedDua = id;
+        document.getElementById(`dua-${id}`).classList.add('selected');
+    }
+
+    tryMatch();
+}
+
+function tryMatch() {
+    if (!selectedSituation || !selectedDua) return;
+
+    const isMatch = selectedSituation === selectedDua;
+
+    if (isMatch) {
+        // CORRECT!
+        matchedPairs.push(selectedSituation);
+
+        // Mark as matched
+        document.getElementById(`sit-${selectedSituation}`).classList.add('matched');
+        document.getElementById(`dua-${selectedDua}`).classList.add('matched');
+        document.getElementById(`sit-${selectedSituation}`).classList.remove('selected');
+        document.getElementById(`dua-${selectedDua}`).classList.remove('selected');
+
+        // Update collection
+        const index = DUAS.findIndex(d => d.id === selectedSituation);
+        const slot = document.getElementById(`slot-${index}`);
+        const dua = DUAS.find(d => d.id === selectedSituation);
+        slot.textContent = dua.emoji;
+        slot.classList.add('collected');
+
+        // Show feedback
+        showFeedback(dua.feedback, dua.meaning, true);
+
+        updateProgress();
+
+        // Check complete
+        if (matchedPairs.length === DUAS.length) {
+            setTimeout(showComplete, 1000);
+        }
+
+    } else {
+        // WRONG
+        showFeedback('❌ Ce n\'est pas la bonne association. Essaie une autre combinaison !', '', false);
+
+        // Shake
+        document.querySelectorAll('.selected').forEach(c => {
+            c.style.animation = 'none';
+            setTimeout(() => {
+                c.style.animation = 'qShake 0.4s ease';
+            }, 10);
+        });
+    }
+
+    // Reset selection
+    selectedSituation = null;
+    selectedDua = null;
+    setTimeout(() => {
+        document.querySelectorAll('.situation-card, .dua-card').forEach(c => c.classList.remove('selected'));
+    }, 600);
+}
+
+function updateProgress() {
+    document.getElementById('progressLabel').textContent = `${matchedPairs.length} / ${DUAS.length} dou'as collectées`;
+}
+
+function showFeedback(text, meaning, isGood) {
+    const fb = document.getElementById('gameFeedback');
+    document.getElementById('feedbackText').textContent = text;
+    document.getElementById('feedbackMeaning').textContent = meaning ? '📖 Signification : ' + meaning : '';
+    fb.classList.add('show');
+
+    if (!isGood) {
+        setTimeout(() => fb.classList.remove('show'), 3000);
+    }
+}
+
+function clearFeedback() {
+    document.getElementById('gameFeedback').classList.remove('show');
+}
+
+function showComplete() {
+    document.getElementById('gameComplete').classList.add('show');
+}
+
+function resetGame() {
+    initGame();
+}
+
+// Start
+initGame();
+
+// ============================================================
+//  QUIZ
+// ============================================================
+let answers = [null, null, null, null, null];
+let selectedCount = 0;
+
+function selectAnswer(element, isCorrect, questionIndex) {
+    const options = element.parentElement.querySelectorAll('.option');
+    options.forEach(opt => opt.classList.remove('selected'));
+    element.classList.add('selected');
+    if (answers[questionIndex] === null) selectedCount++;
+    answers[questionIndex] = isCorrect;
+    if (selectedCount === 5) document.getElementById('submitBtn').disabled = false;
+}
+
+function checkQuizAnswers() {
+    let score = 0;
+    const allOptions = document.querySelectorAll('.option.selected');
+    allOptions.forEach((option, index) => {
+        if (answers[index]) { option.classList.add('correct'); score++; }
+        else option.classList.add('incorrect');
+    });
+    document.getElementById('submitBtn').disabled = true;
+    setTimeout(() => showResults(score), 1000);
+}
+
+function showResults(score) {
+    document.getElementById('scoreDisplay').textContent = 'Score : ' + score + '/5';
+    if (score === 5) {
+        document.getElementById('resultIcon').textContent = '🤲';
+        document.getElementById('resultTitle').textContent = 'Ad-Dou\'a !';
+        document.getElementById('resultMessage').textContent = 'Tu as tout compris sur les invocations ! Qu\'Allah exauce toutes tes dou\'as ! 🌟';
+    } else if (score >= 3) {
+        document.getElementById('resultIcon').textContent = '😊';
+        document.getElementById('resultTitle').textContent = 'Très bien !';
+        document.getElementById('resultMessage').textContent = 'Tu connais bien l\'importance des invocations ! Continue à invoquer Allah ! 💪';
+    } else {
+        document.getElementById('resultIcon').textContent = '📚';
+        document.getElementById('resultTitle').textContent = 'Continue tes efforts !';
+        document.getElementById('resultMessage').textContent = 'Relis la leçon sur les invocations et tu vas mieux comprendre. Allah t\'écoute toujours ! 🌈';
+    }
+    document.getElementById('overlay').classList.add('show');
+    document.getElementById('resultModal').classList.add('show');
+}
+
+function closeModal() {
+    document.getElementById('resultModal').classList.remove('show');
+    document.getElementById('overlay').classList.remove('show');
+}
+</script>
+</body>
+</html>
