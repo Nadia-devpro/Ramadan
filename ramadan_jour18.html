@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jour 18 - La Zakat al-Fitr 💚</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@400;600;700&display=swap');
+
+        :root {
+            --sand: #f5e6d3;
+            --sand-dark: #e8d5c4;
+            --green: #8b9584;
+            --green-dark: #5a6b4f;
+            --green-light: #a4b29b;
+            --text: #4a5442;
+            --emerald: #2ecc71;
+            --emerald-dark: #27ae60;
+            --gold: #f39c12;
+            --gold-light: #f1c40f;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, var(--sand) 0%, var(--sand-dark) 50%, var(--sand) 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #ffffff 0%, #faf8f5 100%);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(139,149,132,0.2);
+            border: 3px solid var(--green);
+        }
+
+        /* HEADER */
+        .header { text-align: center; margin-bottom: 40px; position: relative; }
+
+        .day-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            color: white; padding: 10px 25px; border-radius: 25px;
+            font-size: 1rem; font-weight: 600; margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(139,149,132,0.3);
+        }
+
+        h1 { color: var(--green-dark); font-size: 2.5rem; margin-bottom: 10px; font-family: 'Amiri', serif; }
+
+        .moon-icon {
+            font-size: 3rem;
+            animation: glow 2s ease-in-out infinite;
+            display: block; margin-bottom: 10px;
+        }
+        @keyframes glow {
+            0%,100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(46,204,113,0.5)); }
+            50% { transform: scale(1.1); filter: drop-shadow(0 0 25px rgba(46,204,113,0.9)); }
+        }
+
+        .logo { position: absolute; top: 0; left: 0; width: 120px; height: auto; opacity: 0.9; transition: opacity 0.3s; }
+        .logo:hover { opacity: 1; }
+
+        /* INTRO */
+        .intro-text {
+            background: linear-gradient(135deg, var(--sand), var(--sand-dark));
+            padding: 25px; border-radius: 20px;
+            border-left: 5px solid var(--green);
+            margin: 30px 0; font-size: 1.1rem; line-height: 1.8; color: var(--text);
+        }
+
+        /* STORY CARDS */
+        .story-card {
+            background: white; border-radius: 20px; padding: 25px; margin: 20px 0;
+            border: 2px solid #d4c4b0; transition: all 0.3s ease;
+        }
+        .story-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(139,149,132,0.2); border-color: var(--green); }
+        .story-card h3 { color: var(--green-dark); margin-bottom: 15px; font-size: 1.3rem; }
+        .story-card p { color: #666; line-height: 1.7; font-size: 1.05rem; }
+
+        /* ============================================================
+           GAME SECTION — Le Distributeur de Zakat
+        ============================================================ */
+        .game-section {
+            background: linear-gradient(160deg, #e8f8f5 0%, #d5f4e6 50%, #a9dfbf 100%);
+            border-radius: 24px;
+            margin: 30px 0;
+            overflow: hidden;
+            position: relative;
+            color: #145a32;
+            padding: 32px 28px;
+            border: 3px solid var(--emerald);
+        }
+
+        .game-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .game-title {
+            font-family: 'Amiri', serif;
+            font-size: 2rem;
+            color: #145a32;
+            margin-bottom: 8px;
+        }
+
+        .game-subtitle {
+            font-size: 0.95rem;
+            color: #1e8449;
+            margin-bottom: 16px;
+        }
+
+        .game-story {
+            background: rgba(46,204,113,0.15);
+            border-radius: 14px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            font-size: 0.96rem;
+            line-height: 1.6;
+            border-left: 3px solid var(--emerald);
+        }
+
+        /* Timer */
+        .timer-section {
+            background: white;
+            border-radius: 14px;
+            padding: 16px 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            border: 2px solid rgba(46,204,113,0.3);
+        }
+
+        .timer-label {
+            font-size: 0.85rem;
+            color: #145a32;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .timer-display {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--emerald);
+            font-family: 'Amiri', serif;
+        }
+
+        .timer-warning {
+            color: #e74c3c;
+        }
+
+        /* Families Grid */
+        .families-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .family-card {
+            background: white;
+            border: 2px solid rgba(46,204,113,0.3);
+            border-radius: 14px;
+            padding: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .family-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(46,204,113,0.2);
+            border-color: var(--emerald);
+        }
+
+        .family-card.selected {
+            background: linear-gradient(135deg, rgba(46,204,113,0.2), rgba(46,204,113,0.1));
+            border-color: var(--emerald);
+            box-shadow: 0 8px 20px rgba(46,204,113,0.3);
+        }
+
+        .family-card.helped {
+            background: rgba(46,204,113,0.15);
+            border-color: #27ae60;
+            cursor: default;
+        }
+
+        .family-emoji {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .family-name {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #145a32;
+            margin-bottom: 6px;
+        }
+
+        .family-members {
+            font-size: 0.85rem;
+            color: #1e8449;
+            margin-bottom: 8px;
+        }
+
+        .family-status {
+            font-size: 0.8rem;
+            color: #27ae60;
+            font-weight: 600;
+            display: none;
+        }
+
+        .family-card.helped .family-status {
+            display: block;
+        }
+
+        /* Distribution Panel */
+        .distribution-panel {
+            background: white;
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 2px solid rgba(46,204,113,0.3);
+        }
+
+        .panel-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #145a32;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .zakat-amount {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .amount-display {
+            background: linear-gradient(135deg, var(--emerald), var(--emerald-dark));
+            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .amount-btn {
+            background: rgba(46,204,113,0.2);
+            border: 2px solid var(--emerald);
+            color: #145a32;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .amount-btn:hover {
+            background: var(--emerald);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .amount-btn:active {
+            transform: scale(0.95);
+        }
+
+        .distribute-btn {
+            background: linear-gradient(135deg, var(--emerald), var(--emerald-dark));
+            border: none;
+            color: white;
+            padding: 14px 32px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 0 auto;
+            box-shadow: 0 4px 12px rgba(46,204,113,0.3);
+        }
+
+        .distribute-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(46,204,113,0.5);
+        }
+
+        .distribute-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* Feedback */
+        .game-feedback {
+            background: rgba(46,204,113,0.15);
+            border-left: 4px solid var(--emerald);
+            border-radius: 0 12px 12px 0;
+            padding: 14px 18px;
+            margin-top: 16px;
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .game-feedback.show { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .feedback-text {
+            color: #145a32;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            font-weight: 600;
+        }
+
+        /* Progress */
+        .progress-bar {
+            background: rgba(0,0,0,0.1);
+            border-radius: 20px;
+            height: 12px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--emerald), var(--emerald-dark));
+            border-radius: 20px;
+            transition: width 0.6s ease;
+            width: 0%;
+        }
+
+        .progress-label {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #145a32;
+            font-weight: 600;
+        }
+
+        /* Buttons */
+        .btn-game {
+            background: linear-gradient(135deg, var(--emerald), var(--emerald-dark));
+            border: none;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin: 8px;
+        }
+
+        .btn-game:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(46,204,113,0.4);
+        }
+
+        /* Game Complete */
+        .game-complete {
+            display: none;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .game-complete.show { display: block; }
+
+        .complete-emoji { font-size: 4.5rem; margin-bottom: 16px; animation: bounceIn 0.8s ease; }
+        @keyframes bounceIn { 0%{transform:scale(0)} 60%{transform:scale(1.2)} 100%{transform:scale(1)} }
+
+        .complete-title {
+            font-family: 'Amiri', serif;
+            font-size: 2.2rem;
+            color: #145a32;
+            margin-bottom: 14px;
+        }
+
+        .complete-message {
+            color: #145a32;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        /* FUN FACTS */
+        .fun-facts {
+            background: linear-gradient(135deg, var(--sand), var(--sand-dark));
+            padding: 25px; border-radius: 20px; margin: 30px 0;
+            border: 2px dashed var(--green);
+        }
+        .fun-facts h3 { color: var(--green-dark); margin-bottom: 15px; text-align: center; }
+        .fun-facts ul { list-style: none; padding: 0; }
+        .fun-facts li { padding: 10px 0; padding-left: 30px; position: relative; color: var(--text); line-height: 1.6; }
+        .fun-facts li:before { content: "💚"; position: absolute; left: 0; }
+
+        /* QUIZ */
+        .quiz-section {
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            padding: 30px; border-radius: 20px; margin: 30px 0; color: white;
+        }
+        .quiz-section h3 { text-align: center; font-size: 1.5rem; margin-bottom: 25px; }
+
+        .question-card { background: white; border-radius: 15px; padding: 25px; margin: 20px 0; color: var(--text); }
+        .question-text { font-weight: 600; font-size: 1.15rem; margin-bottom: 20px; color: var(--green-dark); }
+        .options { display: grid; grid-template-columns: 1fr; gap: 12px; }
+
+        .option {
+            background: linear-gradient(135deg, var(--sand), var(--sand-dark));
+            padding: 15px 20px; border-radius: 12px;
+            cursor: pointer; transition: all 0.3s ease;
+            border: 2px solid transparent; font-weight: 500;
+        }
+        .option:hover { background: linear-gradient(135deg, var(--sand-dark), #d4c4b0); transform: translateX(5px); }
+        .option.selected { background: linear-gradient(135deg, var(--green), var(--green-light)); color: white; border-color: var(--green-dark); transform: scale(1.02); }
+        .option.correct { background: linear-gradient(135deg, #7fb069, #8fbc77); color: white; border-color: #5a8049; animation: qPulse 0.5s ease; }
+        .option.incorrect { background: linear-gradient(135deg, #d4916c, #c47d5a); color: white; border-color: #a4614a; animation: qShake 0.5s ease; }
+
+        @keyframes qPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+        @keyframes qShake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
+
+        .btn {
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            color: white; border: none; padding: 15px 40px;
+            border-radius: 30px; font-size: 1.1rem; font-weight: 600;
+            cursor: pointer; transition: all 0.3s ease;
+            display: block; margin: 25px auto 0;
+            box-shadow: 0 5px 20px rgba(139,149,132,0.3);
+            font-family: 'Quicksand', sans-serif;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(139,149,132,0.4); }
+        .btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+
+        /* MODALS */
+        .result-modal {
+            position: fixed; top: 50%; left: 50%;
+            transform: translate(-50%,-50%) scale(0);
+            background: white; padding: 40px; border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            z-index: 1001; text-align: center;
+            max-width: 420px; width: 90%;
+            transition: transform 0.3s ease;
+        }
+        .result-modal.show { transform: translate(-50%,-50%) scale(1); }
+        .result-modal h3 { color: var(--green-dark); font-size: 2rem; margin-bottom: 15px; }
+
+        .result-icon { font-size: 4rem; margin-bottom: 15px; animation: rBounce 0.6s ease; }
+        @keyframes rBounce { 0%{transform:scale(0);opacity:0} 60%{transform:scale(1.2)} 100%{transform:scale(1);opacity:1} }
+
+        .result-message { color: #666; font-size: 1.05rem; margin: 15px 0; line-height: 1.6; }
+        .score-display { background: linear-gradient(135deg, var(--sand), var(--sand-dark)); padding: 14px; border-radius: 15px; font-size: 1.2rem; font-weight: 600; color: var(--green-dark); margin: 15px 0; }
+
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 999; }
+        .overlay.show { display: block; }
+
+        @media (max-width: 768px) {
+            .logo { width: 80px; top: 5px; left: 5px; }
+            .container { padding: 20px; }
+            h1 { font-size: 2rem; }
+            .families-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <img src="logonoir_lespetitesplumes.png" alt="Les petites plumes" class="logo">
+        <div class="day-badge">Jour 18 / 30</div>
+        <span class="moon-icon">💚</span>
+        <h1>La Zakat al-Fitr</h1>
+        <p style="color: #8b9584; font-size: 1.1rem;">L'aumône de la rupture du jeûne !</p>
+    </div>
+
+    <div class="intro-text">
+        <p style="font-weight: 600; margin-bottom: 10px;">🌟 Zakat al-Fitr : L'aumône obligatoire</p>
+        <p><strong>Zakat al-Fitr</strong> (زكاة الفطر) est l'aumône obligatoire que chaque musulman doit donner à la fin du Ramadan, avant la prière de l'Eïd. Le Prophète (paix et bénédictions sur lui) a rendu obligatoire la Zakat al-Fitr pour <strong>purifier le jeûneur</strong> de ses paroles futiles et mauvaises, et pour <strong>nourrir les pauvres</strong> afin qu'ils puissent célébrer l'Eïd avec joie ! C'est un pilier important du Ramadan qui permet de partager notre bonheur avec ceux qui sont dans le besoin. 💚</p>
+    </div>
+
+    <div class="story-section">
+        <div class="story-card">
+            <h3>📿 Pourquoi donner la Zakat al-Fitr ?</h3>
+            <p>La Zakat al-Fitr a <strong>deux objectifs principaux</strong>. Premièrement, elle <strong>purifie notre jeûne</strong>. Pendant le Ramadan, même si nous jeûnons, nous pouvons dire des paroles inutiles, médire, ou faire des erreurs. La Zakat al-Fitr efface ces petites fautes ! Ibn Abbas (qu'Allah l'agrée) a dit : <em>"Le Prophète (saw) a rendu obligatoire la Zakat al-Fitr comme purification pour le jeûneur des paroles futiles et obscènes, et comme nourriture pour les pauvres"</em> <strong>(Abu Dawud 1609)</strong>. Deuxièmement, elle permet aux <strong>pauvres de célébrer l'Eïd</strong> dignement, avec de la nourriture et de la joie. Tout le monde mérite de fêter ! 🎉</p>
+        </div>
+
+        <div class="story-card">
+            <h3>🌟 Qui doit donner la Zakat al-Fitr ?</h3>
+            <p><strong>Tout musulman</strong> qui possède plus que ses besoins de base (nourriture, vêtements, logement) pour un jour et une nuit doit donner la Zakat al-Fitr. Le chef de famille doit la donner pour <strong>chaque membre</strong> de sa famille : lui-même, sa femme, ses enfants (même les bébés !), et même les personnes âgées sous sa responsabilité. Ibn Umar (qu'Allah l'agrée) a dit : <em>"Le Prophète (saw) a rendu obligatoire la Zakat al-Fitr d'un Sa' de dattes ou un Sa' d'orge pour le serviteur et le libre, l'homme et la femme, le petit et le grand parmi les musulmans"</em> <strong>(Sahih Bukhari 1503)</strong>. Même un nouveau-né né avant la prière de l'Eïd reçoit sa Zakat ! 👶</p>
+        </div>
+
+        <div class="story-card">
+            <h3>🎁 Combien donner ?</h3>
+            <p>À l'époque du Prophète (saw), la Zakat al-Fitr était <strong>un Sa'</strong> (environ 2,5 kg) de nourriture de base : dattes, orge, blé, raisins secs, ou fromage. Aujourd'hui, les savants permettent de donner l'<strong>équivalent en argent</strong> pour faciliter. Le montant varie selon le pays et le prix de la nourriture, mais c'est généralement entre 5 et 10 euros par personne (à vérifier auprès de ta mosquée locale). L'important, c'est de donner une quantité qui peut <strong>nourrir une personne pauvre pour une journée</strong> ! Si ta famille compte 5 personnes, vous devez donner la Zakat al-Fitr pour 5 personnes. C'est simple et béni ! 💰</p>
+        </div>
+
+        <div class="story-card">
+            <h3>💫 À qui et quand donner ?</h3>
+            <p>La Zakat al-Fitr est donnée aux <strong>pauvres et aux nécessiteux</strong> de ta communauté, pour qu'ils puissent acheter de la nourriture et des vêtements pour l'Eïd. Elle doit être donnée <strong>avant la prière de l'Eïd</strong> ! Ibn Abbas a dit : <em>"Celui qui la donne avant la prière, c'est une Zakat acceptée. Celui qui la donne après la prière, c'est une simple aumône parmi les aumônes"</em> <strong>(Abu Dawud 1609)</strong>. Le meilleur moment ? Les derniers jours du Ramadan, ou même le matin de l'Eïd avant la prière. Beaucoup de gens la donnent à la mosquée qui se charge de la distribuer. Ne tarde pas, sinon ce ne sera plus la Zakat al-Fitr mais juste une Sadaqah normale ! ⏰</p>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         GAME : Le Distributeur de Zakat
+    ============================================================ -->
+    <div class="game-section" id="gameSection">
+        <div class="game-header">
+            <div class="game-title">🏘️ Le Distributeur de Zakat</div>
+            <div class="game-subtitle">Distribue la bonne quantité de Zakat al-Fitr avant la prière de l'Eïd !</div>
+        </div>
+
+        <div class="game-story">
+            💚 C'est le dernier jour du Ramadan ! Ta famille doit donner la Zakat al-Fitr pour <strong>4 personnes</strong> (Papa, Maman, toi, et ton petit frère). Aide à distribuer <strong>1 Zakat par personne nécessiteuse</strong> avant la prière de l'Eïd. Le temps presse ! ⏰
+        </div>
+
+        <div class="timer-section">
+            <div class="timer-label">⏰ Temps restant avant la prière de l'Eïd</div>
+            <div class="timer-display" id="timerDisplay">3:00</div>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-label" id="progressLabel">0 / 4 Zakat distribuées</div>
+
+        <div class="families-grid" id="familiesGrid">
+            <!-- Generated by JS -->
+        </div>
+
+        <div class="distribution-panel" id="distributionPanel">
+            <div class="panel-title">💚 Distribuer la Zakat al-Fitr</div>
+            <div id="selectionMessage" style="text-align: center; color: #1e8449; margin-bottom: 16px;">
+                Clique sur une famille pour l'aider
+            </div>
+
+            <div id="distributionControls" style="display: none;">
+                <div class="zakat-amount">
+                    <button class="amount-btn" onclick="changeAmount(-1)">−</button>
+                    <div class="amount-display" id="amountDisplay">1</div>
+                    <button class="amount-btn" onclick="changeAmount(1)">+</button>
+                </div>
+                <button class="distribute-btn" onclick="distributeZakat()">
+                    Donner la Zakat 💚
+                </button>
+            </div>
+
+            <div class="game-feedback" id="gameFeedback">
+                <div class="feedback-text" id="feedbackText"></div>
+            </div>
+        </div>
+
+        <button class="btn-game" onclick="resetGame()">🔄 Nouvelle distribution</button>
+
+        <!-- Game Complete -->
+        <div class="game-complete" id="gameComplete">
+            <div class="complete-emoji">🎉</div>
+            <div class="complete-title" id="completeTitle">Masha Allah !</div>
+            <div class="complete-message" id="completeMessage">
+                Tu as distribué toute la Zakat al-Fitr à temps ! Les familles peuvent maintenant célébrer l'Eïd avec joie. <strong>"La Zakat al-Fitr purifie le jeûneur"</strong>. Qu'Allah accepte ton jeûne et ta Zakat ! 💚
+            </div>
+            <button class="btn-game" onclick="resetGame()">🔄 Rejouer</button>
+        </div>
+    </div>
+
+    <div class="fun-facts">
+        <h3>✨ Le savais-tu ?</h3>
+        <ul>
+            <li>Même un <strong>bébé né une minute avant la prière de l'Eïd</strong> doit recevoir sa Zakat al-Fitr !</li>
+            <li>La Zakat al-Fitr est <strong>obligatoire</strong>, pas optionnelle ! C'est un devoir pour chaque musulman qui en a les moyens.</li>
+            <li>Le Prophète (saw) donnait la Zakat al-Fitr en <strong>dattes</strong> car c'était la nourriture de base à Médine. Aujourd'hui, on peut donner en argent.</li>
+            <li>Si tu donnes la Zakat al-Fitr <strong>après la prière de l'Eïd</strong>, ce n'est plus accepté comme Zakat al-Fitr, mais juste comme une Sadaqah normale ! ⏰</li>
+        </ul>
+    </div>
+
+    <div class="quiz-section">
+        <h3>🎮 Quiz : As-tu bien compris ?</h3>
+
+        <div class="question-card">
+            <div class="question-text">1. Pourquoi donne-t-on la Zakat al-Fitr selon le hadith ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 0)">Pour devenir riche</div>
+                <div class="option" onclick="selectAnswer(this, true, 0)">Pour purifier le jeûneur et nourrir les pauvres</div>
+                <div class="option" onclick="selectAnswer(this, false, 0)">Pour remplacer la prière</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">2. Qui doit donner la Zakat al-Fitr ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 1)">Seulement les adultes</div>
+                <div class="option" onclick="selectAnswer(this, false, 1)">Seulement les riches</div>
+                <div class="option" onclick="selectAnswer(this, true, 1)">Tout musulman qui possède plus que ses besoins de base (pour chaque membre de sa famille)</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">3. Quand doit-on donner la Zakat al-Fitr ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 2)">Au début du Ramadan</div>
+                <div class="option" onclick="selectAnswer(this, true, 2)">Avant la prière de l'Eïd (fin du Ramadan)</div>
+                <div class="option" onclick="selectAnswer(this, false, 2)">N'importe quand dans l'année</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">4. À qui donne-t-on la Zakat al-Fitr ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 3)">À nos amis</div>
+                <div class="option" onclick="selectAnswer(this, true, 3)">Aux pauvres et aux nécessiteux</div>
+                <div class="option" onclick="selectAnswer(this, false, 3)">À la mosquée pour la garder</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">5. Que se passe-t-il si on donne la Zakat al-Fitr APRÈS la prière de l'Eïd ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 4)">C'est encore mieux</div>
+                <div class="option" onclick="selectAnswer(this, false, 4)">Rien ne change</div>
+                <div class="option" onclick="selectAnswer(this, true, 4)">Ce n'est plus la Zakat al-Fitr, juste une Sadaqah normale</div>
+            </div>
+        </div>
+
+        <button class="btn" id="submitBtn" onclick="checkQuizAnswers()" disabled>Vérifier mes réponses</button>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+        <p style="color: #8b9584; font-size: 1.1rem;">
+            <strong>Bravo d'avoir terminé le Jour 18 ! 🌟</strong><br>
+            N'oublie pas : donne la Zakat al-Fitr avant la prière de l'Eïd !<br>
+            Aide les pauvres à célébrer l'Eïd avec joie ! 💚<br>
+            Rendez-vous demain pour le Jour 19 !
+        </p>
+    </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+<div class="result-modal" id="resultModal">
+    <div class="result-icon" id="resultIcon">🎉</div>
+    <h3 id="resultTitle">Excellent !</h3>
+    <div class="score-display" id="scoreDisplay">Score : 5/5</div>
+    <div class="result-message" id="resultMessage">Masha Allah !</div>
+    <button class="btn" onclick="closeModal()">Continuer</button>
+</div>
+
+<script>
+// ============================================================
+//  ZAKAT DISTRIBUTION GAME DATA
+// ============================================================
+const FAMILIES = [
+    { id: 1, name: 'Famille Ahmed', emoji: '👨‍👩‍👧', members: '3 personnes', correctAmount: 1 },
+    { id: 2, name: 'Famille Fatima', emoji: '👩‍👧‍👦', members: '3 personnes', correctAmount: 1 },
+    { id: 3, name: 'Famille Ibrahim', emoji: '👨‍👩‍👦‍👦', members: '4 personnes', correctAmount: 1 },
+    { id: 4, name: 'Famille Khadija', emoji: '👵👴', members: '2 personnes âgées', correctAmount: 1 },
+];
+
+// ============================================================
+//  GAME STATE
+// ============================================================
+let selectedFamily = null;
+let distributedZakat = 0;
+let currentAmount = 1;
+let timerSeconds = 180; // 3 minutes
+let timerInterval = null;
+let helpedFamilies = [];
+
+function initGame() {
+    selectedFamily = null;
+    distributedZakat = 0;
+    currentAmount = 1;
+    timerSeconds = 180;
+    helpedFamilies = [];
+
+    clearInterval(timerInterval);
+    startTimer();
+
+    renderFamilies();
+    updateProgress();
+    clearFeedback();
+    resetDistributionPanel();
+
+    document.getElementById('gameComplete').classList.remove('show');
+}
+
+function startTimer() {
+    updateTimerDisplay();
+    timerInterval = setInterval(() => {
+        timerSeconds--;
+        updateTimerDisplay();
+
+        if (timerSeconds <= 0) {
+            clearInterval(timerInterval);
+            gameOver(false); // Time's up
+        }
+    }, 1000);
+}
+
+function updateTimerDisplay() {
+    const mins = Math.floor(timerSeconds / 60);
+    const secs = timerSeconds % 60;
+    const display = document.getElementById('timerDisplay');
+    display.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+    
+    if (timerSeconds <= 30) {
+        display.classList.add('timer-warning');
+    } else {
+        display.classList.remove('timer-warning');
+    }
+}
+
+function renderFamilies() {
+    const grid = document.getElementById('familiesGrid');
+    grid.innerHTML = '';
+
+    FAMILIES.forEach(family => {
+        const card = document.createElement('div');
+        card.className = 'family-card';
+        card.id = `family-${family.id}`;
+        if (helpedFamilies.includes(family.id)) {
+            card.classList.add('helped');
+        }
+        card.onclick = () => selectFamily(family.id);
+
+        card.innerHTML = `
+            <span class="family-emoji">${family.emoji}</span>
+            <div class="family-name">${family.name}</div>
+            <div class="family-members">${family.members}</div>
+            <div class="family-status">✅ Aidée !</div>
+        `;
+
+        grid.appendChild(card);
+    });
+}
+
+function selectFamily(id) {
+    if (helpedFamilies.includes(id)) return;
+
+    selectedFamily = id;
+    currentAmount = 1;
+
+    // Update UI
+    document.querySelectorAll('.family-card').forEach(c => c.classList.remove('selected'));
+    document.getElementById(`family-${id}`).classList.add('selected');
+
+    // Show distribution controls
+    document.getElementById('selectionMessage').style.display = 'none';
+    document.getElementById('distributionControls').style.display = 'block';
+    document.getElementById('amountDisplay').textContent = currentAmount;
+
+    clearFeedback();
+}
+
+function changeAmount(delta) {
+    currentAmount = Math.max(1, Math.min(4, currentAmount + delta));
+    document.getElementById('amountDisplay').textContent = currentAmount;
+}
+
+function distributeZakat() {
+    if (!selectedFamily) return;
+
+    const family = FAMILIES.find(f => f.id === selectedFamily);
+    const isCorrect = currentAmount === family.correctAmount;
+
+    if (isCorrect) {
+        // SUCCESS
+        helpedFamilies.push(selectedFamily);
+        distributedZakat++;
+
+        // Update family card
+        document.getElementById(`family-${selectedFamily}`).classList.add('helped');
+        document.getElementById(`family-${selectedFamily}`).classList.remove('selected');
+
+        showFeedback(`💚 Parfait ! Tu as donné ${currentAmount} Zakat al-Fitr à la ${family.name}. Qu'Allah te récompense !`, true);
+
+        updateProgress();
+
+        // Check if game complete
+        if (distributedZakat === 4) {
+            clearInterval(timerInterval);
+            setTimeout(() => gameOver(true), 1000);
+        } else {
+            resetDistributionPanel();
+        }
+
+    } else {
+        // WRONG AMOUNT
+        showFeedback(`⚠️ Attention ! Chaque personne nécessiteuse reçoit 1 Zakat al-Fitr (pas ${currentAmount}). Essaie encore !`, false);
+    }
+}
+
+function showFeedback(text, isGood) {
+    const fb = document.getElementById('gameFeedback');
+    document.getElementById('feedbackText').textContent = text;
+    fb.classList.add('show');
+
+    if (!isGood) {
+        setTimeout(() => fb.classList.remove('show'), 3000);
+    }
+}
+
+function clearFeedback() {
+    document.getElementById('gameFeedback').classList.remove('show');
+}
+
+function resetDistributionPanel() {
+    selectedFamily = null;
+    currentAmount = 1;
+    document.getElementById('selectionMessage').style.display = 'block';
+    document.getElementById('distributionControls').style.display = 'none';
+    document.querySelectorAll('.family-card').forEach(c => c.classList.remove('selected'));
+}
+
+function updateProgress() {
+    const pct = (distributedZakat / 4) * 100;
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressLabel').textContent = `${distributedZakat} / 4 Zakat distribuées`;
+}
+
+function gameOver(success) {
+    const complete = document.getElementById('gameComplete');
+    const title = document.getElementById('completeTitle');
+    const message = document.getElementById('completeMessage');
+
+    if (success) {
+        title.textContent = 'Masha Allah !';
+        message.innerHTML = 'Tu as distribué toute la Zakat al-Fitr à temps ! Les familles peuvent maintenant célébrer l\'Eïd avec joie. <strong>"La Zakat al-Fitr purifie le jeûneur"</strong>. Qu\'Allah accepte ton jeûne et ta Zakat ! 💚';
+    } else {
+        title.textContent = 'Temps écoulé !';
+        message.innerHTML = `La prière de l'Eïd a commencé ! Tu as distribué ${distributedZakat} / 4 Zakat. N'oublie pas : la Zakat al-Fitr doit être donnée <strong>avant la prière de l'Eïd</strong>. Rejoue pour réussir ! ⏰`;
+    }
+
+    complete.classList.add('show');
+}
+
+function resetGame() {
+    initGame();
+}
+
+// Start
+initGame();
+
+// ============================================================
+//  QUIZ
+// ============================================================
+let answers = [null, null, null, null, null];
+let selectedCount = 0;
+
+function selectAnswer(element, isCorrect, questionIndex) {
+    const options = element.parentElement.querySelectorAll('.option');
+    options.forEach(opt => opt.classList.remove('selected'));
+    element.classList.add('selected');
+    if (answers[questionIndex] === null) selectedCount++;
+    answers[questionIndex] = isCorrect;
+    if (selectedCount === 5) document.getElementById('submitBtn').disabled = false;
+}
+
+function checkQuizAnswers() {
+    let score = 0;
+    const allOptions = document.querySelectorAll('.option.selected');
+    allOptions.forEach((option, index) => {
+        if (answers[index]) { option.classList.add('correct'); score++; }
+        else option.classList.add('incorrect');
+    });
+    document.getElementById('submitBtn').disabled = true;
+    setTimeout(() => showResults(score), 1000);
+}
+
+function showResults(score) {
+    document.getElementById('scoreDisplay').textContent = 'Score : ' + score + '/5';
+    if (score === 5) {
+        document.getElementById('resultIcon').textContent = '💚';
+        document.getElementById('resultTitle').textContent = 'Zakat al-Fitr !';
+        document.getElementById('resultMessage').textContent = 'Tu as tout compris sur la Zakat al-Fitr ! Qu\'Allah accepte ta Zakat et purifie ton jeûne ! 🌟';
+    } else if (score >= 3) {
+        document.getElementById('resultIcon').textContent = '😊';
+        document.getElementById('resultTitle').textContent = 'Très bien !';
+        document.getElementById('resultMessage').textContent = 'Tu connais bien la Zakat al-Fitr ! N\'oublie pas de la donner avant l\'Eïd ! 💪';
+    } else {
+        document.getElementById('resultIcon').textContent = '📚';
+        document.getElementById('resultTitle').textContent = 'Continue tes efforts !';
+        document.getElementById('resultMessage').textContent = 'Relis la leçon sur la Zakat al-Fitr et tu vas mieux comprendre. C\'est important ! 🌈';
+    }
+    document.getElementById('overlay').classList.add('show');
+    document.getElementById('resultModal').classList.add('show');
+}
+
+function closeModal() {
+    document.getElementById('resultModal').classList.remove('show');
+    document.getElementById('overlay').classList.remove('show');
+}
+</script>
+</body>
+</html>
