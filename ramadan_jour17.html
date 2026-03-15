@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jour 17 - Laylat al-Qadr 🌟</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@400;600;700&display=swap');
+
+        :root {
+            --sand: #f5e6d3;
+            --sand-dark: #e8d5c4;
+            --green: #8b9584;
+            --green-dark: #5a6b4f;
+            --green-light: #a4b29b;
+            --text: #4a5442;
+            --night: #0a1929;
+            --night-light: #1a2f4a;
+            --indigo: #3949ab;
+            --silver: #c0c0c0;
+            --gold: #ffd700;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, var(--sand) 0%, var(--sand-dark) 50%, var(--sand) 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #ffffff 0%, #faf8f5 100%);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(139,149,132,0.2);
+            border: 3px solid var(--green);
+        }
+
+        /* HEADER */
+        .header { text-align: center; margin-bottom: 40px; position: relative; }
+
+        .day-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            color: white; padding: 10px 25px; border-radius: 25px;
+            font-size: 1rem; font-weight: 600; margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(139,149,132,0.3);
+        }
+
+        h1 { color: var(--green-dark); font-size: 2.5rem; margin-bottom: 10px; font-family: 'Amiri', serif; }
+
+        .moon-icon {
+            font-size: 3rem;
+            animation: glow 2s ease-in-out infinite;
+            display: block; margin-bottom: 10px;
+        }
+        @keyframes glow {
+            0%,100% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(255,215,0,0.6)); }
+            50% { transform: scale(1.1); filter: drop-shadow(0 0 30px rgba(255,215,0,1)); }
+        }
+
+        .logo { position: absolute; top: 0; left: 0; width: 120px; height: auto; opacity: 0.9; transition: opacity 0.3s; }
+        .logo:hover { opacity: 1; }
+
+        /* INTRO */
+        .intro-text {
+            background: linear-gradient(135deg, var(--sand), var(--sand-dark));
+            padding: 25px; border-radius: 20px;
+            border-left: 5px solid var(--green);
+            margin: 30px 0; font-size: 1.1rem; line-height: 1.8; color: var(--text);
+        }
+
+        /* STORY CARDS */
+        .story-card {
+            background: white; border-radius: 20px; padding: 25px; margin: 20px 0;
+            border: 2px solid #d4c4b0; transition: all 0.3s ease;
+        }
+        .story-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(139,149,132,0.2); border-color: var(--green); }
+        .story-card h3 { color: var(--green-dark); margin-bottom: 15px; font-size: 1.3rem; }
+        .story-card p { color: #666; line-height: 1.7; font-size: 1.05rem; }
+
+        /* ============================================================
+           GAME SECTION — La Nuit des Étoiles
+        ============================================================ */
+        .game-section {
+            background: linear-gradient(180deg, #0a1929 0%, #1a2f4a 50%, #2d4a6f 100%);
+            border-radius: 24px;
+            margin: 30px 0;
+            overflow: hidden;
+            position: relative;
+            color: #e0e7ff;
+            padding: 32px 28px;
+        }
+
+        /* Starry background */
+        .game-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: 
+                radial-gradient(2px 2px at 20% 30%, white, transparent),
+                radial-gradient(2px 2px at 60% 70%, white, transparent),
+                radial-gradient(1px 1px at 50% 50%, white, transparent),
+                radial-gradient(1px 1px at 80% 10%, white, transparent),
+                radial-gradient(2px 2px at 90% 60%, white, transparent),
+                radial-gradient(1px 1px at 33% 80%, white, transparent),
+                radial-gradient(1px 1px at 75% 40%, white, transparent);
+            background-size: 200% 200%;
+            animation: twinkle 8s ease-in-out infinite;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+
+        .game-header {
+            text-align: center;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .game-title {
+            font-family: 'Amiri', serif;
+            font-size: 2rem;
+            color: #ffd700;
+            margin-bottom: 8px;
+            text-shadow: 0 0 20px rgba(255,215,0,0.5);
+        }
+
+        .game-subtitle {
+            font-size: 0.95rem;
+            color: rgba(224,231,255,0.85);
+            margin-bottom: 16px;
+        }
+
+        .game-story {
+            background: rgba(255,255,255,0.08);
+            border-radius: 14px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            font-size: 0.96rem;
+            line-height: 1.6;
+            border-left: 3px solid #ffd700;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Night Sky Canvas */
+        .night-sky {
+            background: linear-gradient(180deg, #0d1b2a 0%, #1b263b 60%, #415a77 100%);
+            border-radius: 16px;
+            min-height: 400px;
+            position: relative;
+            margin-bottom: 24px;
+            border: 3px solid rgba(255,215,0,0.3);
+            overflow: hidden;
+        }
+
+        /* Moon */
+        .moon {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #fff, #e0e0e0);
+            box-shadow: 0 0 40px rgba(255,255,255,0.5), inset -10px -10px 20px rgba(0,0,0,0.1);
+            animation: moonGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes moonGlow {
+            0%, 100% { box-shadow: 0 0 40px rgba(255,255,255,0.4); }
+            50% { box-shadow: 0 0 60px rgba(255,255,255,0.7); }
+        }
+
+        /* Stars to find */
+        .star {
+            position: absolute;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 0 10px rgba(255,215,0,0.6));
+            animation: starPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes starPulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.2); opacity: 1; }
+        }
+
+        .star:hover {
+            transform: scale(1.4) rotate(20deg);
+            filter: drop-shadow(0 0 20px rgba(255,215,0,1));
+        }
+
+        .star.found {
+            animation: starFound 0.8s cubic-bezier(0.175,0.885,0.32,1.275) forwards;
+        }
+
+        @keyframes starFound {
+            0% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(2) rotate(360deg); }
+            100% { transform: scale(0) rotate(720deg); opacity: 0; }
+        }
+
+        /* Progress */
+        .stars-progress {
+            background: rgba(255,255,255,0.08);
+            border-radius: 14px;
+            padding: 16px 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .progress-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+
+        .nights-display {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        .night-badge {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,215,0,0.3);
+            border-radius: 12px;
+            padding: 8px 16px;
+            font-weight: 700;
+            font-size: 1rem;
+            color: rgba(224,231,255,0.6);
+            transition: all 0.4s ease;
+        }
+
+        .night-badge.found {
+            background: rgba(255,215,0,0.2);
+            border-color: #ffd700;
+            color: #ffd700;
+            box-shadow: 0 0 20px rgba(255,215,0,0.4);
+            animation: badgeFound 0.6s ease;
+        }
+
+        @keyframes badgeFound {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .progress-label {
+            font-size: 0.85rem;
+            color: rgba(224,231,255,0.7);
+        }
+
+        /* Fact reveal */
+        .fact-reveal {
+            background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,215,0,0.08));
+            border: 2px solid rgba(255,215,0,0.4);
+            border-radius: 14px;
+            padding: 16px 20px;
+            margin-bottom: 16px;
+            display: none;
+            animation: fadeSlide 0.5s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .fact-reveal.show { display: block; }
+
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fact-night {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #ffd700;
+            margin-bottom: 8px;
+        }
+
+        .fact-text {
+            color: rgba(224,231,255,0.95);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Buttons */
+        .btn-game {
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            border: none;
+            color: #0a1929;
+            padding: 12px 28px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin: 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-game:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,215,0,0.5);
+        }
+
+        /* Game Complete */
+        .game-complete {
+            display: none;
+            text-align: center;
+            padding: 30px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .game-complete.show { display: block; }
+
+        .complete-emoji { font-size: 4.5rem; margin-bottom: 16px; animation: bounceIn 0.8s ease; }
+        @keyframes bounceIn { 0%{transform:scale(0)} 60%{transform:scale(1.2)} 100%{transform:scale(1)} }
+
+        .complete-title {
+            font-family: 'Amiri', serif;
+            font-size: 2.2rem;
+            color: #ffd700;
+            margin-bottom: 14px;
+            text-shadow: 0 0 20px rgba(255,215,0,0.6);
+        }
+
+        .complete-message {
+            color: rgba(224,231,255,0.95);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .complete-nights {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            font-size: 1.5rem;
+            color: #ffd700;
+            font-weight: 700;
+        }
+
+        /* FUN FACTS */
+        .fun-facts {
+            background: linear-gradient(135deg, var(--sand), var(--sand-dark));
+            padding: 25px; border-radius: 20px; margin: 30px 0;
+            border: 2px dashed var(--green);
+        }
+        .fun-facts h3 { color: var(--green-dark); margin-bottom: 15px; text-align: center; }
+        .fun-facts ul { list-style: none; padding: 0; }
+        .fun-facts li { padding: 10px 0; padding-left: 30px; position: relative; color: var(--text); line-height: 1.6; }
+        .fun-facts li:before { content: "🌟"; position: absolute; left: 0; }
+
+        /* QUIZ */
+        .quiz-section {
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            padding: 30px; border-radius: 20px; margin: 30px 0; color: white;
+        }
+        .quiz-section h3 { text-align: center; font-size: 1.5rem; margin-bottom: 25px; }
+
+        .question-card { background: white; border-radius: 15px; padding: 25px; margin: 20px 0; color: var(--text); }
+        .question-text { font-weight: 600; font-size: 1.15rem; margin-bottom: 20px; color: var(--green-dark); }
+        .options { display: grid; grid-template-columns: 1fr; gap: 12px; }
+
+        .option {
+            background: linear-gradient(135deg, var(--sand), var(--sand-dark));
+            padding: 15px 20px; border-radius: 12px;
+            cursor: pointer; transition: all 0.3s ease;
+            border: 2px solid transparent; font-weight: 500;
+        }
+        .option:hover { background: linear-gradient(135deg, var(--sand-dark), #d4c4b0); transform: translateX(5px); }
+        .option.selected { background: linear-gradient(135deg, var(--green), var(--green-light)); color: white; border-color: var(--green-dark); transform: scale(1.02); }
+        .option.correct { background: linear-gradient(135deg, #7fb069, #8fbc77); color: white; border-color: #5a8049; animation: qPulse 0.5s ease; }
+        .option.incorrect { background: linear-gradient(135deg, #d4916c, #c47d5a); color: white; border-color: #a4614a; animation: qShake 0.5s ease; }
+
+        @keyframes qPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+        @keyframes qShake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
+
+        .btn {
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            color: white; border: none; padding: 15px 40px;
+            border-radius: 30px; font-size: 1.1rem; font-weight: 600;
+            cursor: pointer; transition: all 0.3s ease;
+            display: block; margin: 25px auto 0;
+            box-shadow: 0 5px 20px rgba(139,149,132,0.3);
+            font-family: 'Quicksand', sans-serif;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(139,149,132,0.4); }
+        .btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+
+        /* MODALS */
+        .result-modal {
+            position: fixed; top: 50%; left: 50%;
+            transform: translate(-50%,-50%) scale(0);
+            background: white; padding: 40px; border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            z-index: 1001; text-align: center;
+            max-width: 420px; width: 90%;
+            transition: transform 0.3s ease;
+        }
+        .result-modal.show { transform: translate(-50%,-50%) scale(1); }
+        .result-modal h3 { color: var(--green-dark); font-size: 2rem; margin-bottom: 15px; }
+
+        .result-icon { font-size: 4rem; margin-bottom: 15px; animation: rBounce 0.6s ease; }
+        @keyframes rBounce { 0%{transform:scale(0);opacity:0} 60%{transform:scale(1.2)} 100%{transform:scale(1);opacity:1} }
+
+        .result-message { color: #666; font-size: 1.05rem; margin: 15px 0; line-height: 1.6; }
+        .score-display { background: linear-gradient(135deg, var(--sand), var(--sand-dark)); padding: 14px; border-radius: 15px; font-size: 1.2rem; font-weight: 600; color: var(--green-dark); margin: 15px 0; }
+
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 999; }
+        .overlay.show { display: block; }
+
+        @media (max-width: 768px) {
+            .logo { width: 80px; top: 5px; left: 5px; }
+            .container { padding: 20px; }
+            h1 { font-size: 2rem; }
+            .night-sky { min-height: 300px; }
+            .moon { width: 60px; height: 60px; top: 20px; right: 20px; }
+            .star { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <img src="logonoir_lespetitesplumes.png" alt="Les petites plumes" class="logo">
+        <div class="day-badge">Jour 17 / 30</div>
+        <span class="moon-icon">🌟</span>
+        <h1>Laylat al-Qadr</h1>
+        <p style="color: #8b9584; font-size: 1.1rem;">La Nuit du Destin !</p>
+    </div>
+
+    <div class="intro-text">
+        <p style="font-weight: 600; margin-bottom: 10px;">🌟 Laylat al-Qadr : La Nuit la plus précieuse</p>
+        <p><strong>Laylat al-Qadr</strong> (ليلة القدر) signifie "La Nuit du Destin" ou "La Nuit du Décret". C'est la <strong>nuit la plus importante de toute l'année</strong> ! Allah dit dans le Coran : <em>"Nous l'avons certes fait descendre (le Coran) pendant la Nuit du Destin. Et qui te dira ce qu'est la Nuit du Destin ? La Nuit du Destin est meilleure que mille mois"</em> <strong>(Coran 97:1-3)</strong>. Une seule nuit vaut <strong>plus de 83 ans</strong> ! C'est pendant cette nuit que le Coran a commencé à être révélé. 🌙✨</p>
+    </div>
+
+    <div class="story-section">
+        <div class="story-card">
+            <h3>📿 Qu'est-ce que Laylat al-Qadr ?</h3>
+            <p>Laylat al-Qadr est la nuit où <strong>le Coran a commencé à descendre</strong> du ciel vers le Prophète Muhammad (paix et bénédictions sur lui). C'est une nuit de paix, de lumière et de miséricorde. Allah dit : <em>"Durant celle-ci descendent les Anges ainsi que l'Esprit, par permission de leur Seigneur pour tout ordre. Elle est paix et salut jusqu'à l'apparition de l'aube"</em> <strong>(Coran 97:4-5)</strong>. Les anges descendent en grand nombre cette nuit, et l'ange <strong>Jibril</strong> descend aussi ! Tout est décidé pour l'année à venir : qui vivra, qui mourra, qui recevra des bénédictions. C'est une nuit <strong>bénie et puissante</strong> ! 💫</p>
+        </div>
+
+        <div class="story-card">
+            <h3>🌟 Quand est Laylat al-Qadr ?</h3>
+            <p>Le Prophète nous a dit que Laylat al-Qadr se trouve dans les <strong>10 derniers jours du Ramadan</strong>, particulièrement dans les <strong>nuits impaires</strong> : la 21ème, la 23ème, la 25ème, la 27ème et la 29ème nuit. La plupart des savants pensent que c'est <strong>la 27ème nuit</strong> qui est la plus probable, mais personne ne le sait avec certitude ! Le Prophète a dit : <em>"Cherchez Laylat al-Qadr dans les dix derniers jours du Ramadan"</em> <strong>(Sahih Bukhari 2020)</strong>. Pourquoi Allah l'a-t-il cachée ? Pour qu'on fasse des efforts <strong>toutes ces nuits</strong> et pas juste une seule ! 🌙</p>
+        </div>
+
+        <div class="story-card">
+            <h3>🎁 Comment reconnaître Laylat al-Qadr ?</h3>
+            <p>Le Prophète nous a donné des <strong>signes</strong> pour reconnaître Laylat al-Qadr ! Il a dit : <em>"Laylat al-Qadr est une nuit douce, ni chaude ni froide. Le lendemain matin, le soleil se lève faiblement, blanchâtre, sans rayons forts"</em> <strong>(Sahih Muslim)</strong>. Certains disent qu'on ressent une <strong>paix profonde</strong> dans le cœur cette nuit. Les arbres se prosternent, la mer devient douce, même les pierres ! Certains ont vu des lumières dans le ciel. Mais le signe le plus sûr, c'est le <strong>soleil du lendemain</strong> qui se lève sans rayons forts, comme un disque blanc paisible. Si tu te réveilles et que le soleil est ainsi, c'était peut-être Laylat al-Qadr ! ☀️</p>
+        </div>
+
+        <div class="story-card">
+            <h3>💫 Que faire pendant Laylat al-Qadr ?</h3>
+            <p>Pendant Laylat al-Qadr, il faut faire le <strong>maximum d'adoration</strong> ! Le Prophète passait <strong>toute la nuit</strong> en prière, lecture du Coran, invocations et repentir. Il réveillait même sa famille ! Aisha (qu'Allah l'agrée) a demandé : "Ô Messager d'Allah, si je sais quelle nuit est Laylat al-Qadr, que dois-je dire ?" Il a répondu : <em>"Dis : Allahumma innaka 'afuwwun tuhibbul 'afwa fa'fu 'anni"</em> (Ô Allah, Tu es Pardonneur et Tu aimes le pardon, alors pardonne-moi) <strong>(Tirmidhi 3513)</strong>. Prie, lis le Coran, pleure pour tes péchés, demande le Paradis, invoque pour ta famille. Cette nuit vaut <strong>plus de 1000 mois</strong> ! Ne la gaspille pas ! 🤲</p>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         GAME : La Nuit des Étoiles
+    ============================================================ -->
+    <div class="game-section" id="gameSection">
+        <div class="game-header">
+            <div class="game-title">✨ La Nuit des Étoiles</div>
+            <div class="game-subtitle">Trouve les 5 étoiles cachées dans le ciel nocturne !</div>
+        </div>
+
+        <div class="game-story">
+            🌙 Les 10 derniers jours du Ramadan brillent comme des étoiles dans le ciel ! <strong>Trouve les 5 étoiles dorées</strong> qui représentent les nuits impaires (21, 23, 25, 27, 29). Chaque étoile trouvée te révèle un secret sur Laylat al-Qadr ! ✨
+        </div>
+
+        <div class="stars-progress">
+            <div class="progress-title">🌟 Nuits impaires à découvrir</div>
+            <div class="nights-display">
+                <div class="night-badge" id="badge21">Nuit 21</div>
+                <div class="night-badge" id="badge23">Nuit 23</div>
+                <div class="night-badge" id="badge25">Nuit 25</div>
+                <div class="night-badge" id="badge27">Nuit 27</div>
+                <div class="night-badge" id="badge29">Nuit 29</div>
+            </div>
+            <div class="progress-label" id="progressLabel">0 / 5 étoiles trouvées</div>
+        </div>
+
+        <div class="night-sky" id="nightSky">
+            <div class="moon"></div>
+            <!-- Stars generated by JS -->
+        </div>
+
+        <div class="fact-reveal" id="factReveal">
+            <div class="fact-night" id="factNight"></div>
+            <div class="fact-text" id="factText"></div>
+        </div>
+
+        <button class="btn-game" onclick="resetGame()">🔄 Nouveau ciel</button>
+
+        <!-- Game Complete -->
+        <div class="game-complete" id="gameComplete">
+            <div class="complete-emoji">🌌</div>
+            <div class="complete-title">Masha Allah !</div>
+            <div class="complete-nights">21 • 23 • 25 • 27 • 29</div>
+            <div class="complete-message">
+                Tu as trouvé toutes les nuits impaires ! Tu connais maintenant les secrets de Laylat al-Qadr. Cherche-la dans ces nuits, prie, lis le Coran, et invoque Allah. <strong>Une nuit vaut plus de 1000 mois !</strong> Ne rate pas cette chance ! 🌟
+            </div>
+            <button class="btn-game" onclick="resetGame()">🔄 Rejouer</button>
+        </div>
+    </div>
+
+    <div class="fun-facts">
+        <h3>✨ Le savais-tu ?</h3>
+        <ul>
+            <li>Laylat al-Qadr vaut <strong>plus de 83 ans</strong> d'adoration ! (1000 mois ÷ 12 mois)</li>
+            <li>Le Prophète faisait <strong>I'tikaf</strong> (retraite spirituelle) les 10 derniers jours du Ramadan juste pour trouver Laylat al-Qadr !</li>
+            <li>Les anges descendent en si grand nombre cette nuit qu'il y a <strong>plus d'anges que de grains de sable</strong> sur terre !</li>
+            <li>Toute personne qui prie et invoque Allah pendant Laylat al-Qadr avec foi sincère verra <strong>tous ses péchés passés pardonnés</strong> ! 🤲</li>
+        </ul>
+    </div>
+
+    <div class="quiz-section">
+        <h3>🎮 Quiz : As-tu bien compris ?</h3>
+
+        <div class="question-card">
+            <div class="question-text">1. Que signifie "Laylat al-Qadr" ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 0)">La Nuit de la Lune</div>
+                <div class="option" onclick="selectAnswer(this, true, 0)">La Nuit du Destin (ou du Décret)</div>
+                <div class="option" onclick="selectAnswer(this, false, 0)">La Nuit du Jeûne</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">2. Selon le Coran, Laylat al-Qadr vaut combien ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 1)">100 nuits</div>
+                <div class="option" onclick="selectAnswer(this, true, 1)">Plus de 1000 mois (83+ ans)</div>
+                <div class="option" onclick="selectAnswer(this, false, 1)">10 ans</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">3. Quand doit-on chercher Laylat al-Qadr selon le Prophète ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 2)">Au début du Ramadan</div>
+                <div class="option" onclick="selectAnswer(this, false, 2)">Au milieu du Ramadan</div>
+                <div class="option" onclick="selectAnswer(this, true, 2)">Dans les 10 derniers jours, surtout les nuits impaires</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">4. Quelle invocation le Prophète recommandait-il pour Laylat al-Qadr ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 3)">Subhanallah seulement</div>
+                <div class="option" onclick="selectAnswer(this, true, 3)">"Allahumma innaka 'afuwwun..." (Ô Allah, Tu es Pardonneur...)</div>
+                <div class="option" onclick="selectAnswer(this, false, 3)">Alhamdulillah seulement</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">5. Qu'est-ce qui s'est passé pendant Laylat al-Qadr ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 4)">La première prière</div>
+                <div class="option" onclick="selectAnswer(this, true, 4)">Le Coran a commencé à être révélé</div>
+                <div class="option" onclick="selectAnswer(this, false, 4)">Le premier jeûne</div>
+            </div>
+        </div>
+
+        <button class="btn" id="submitBtn" onclick="checkQuizAnswers()" disabled>Vérifier mes réponses</button>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+        <p style="color: #8b9584; font-size: 1.1rem;">
+            <strong>Bravo d'avoir terminé le Jour 17 ! 🌟</strong><br>
+            N'oublie pas : cherche Laylat al-Qadr dans les 10 derniers jours !<br>
+            Une nuit vaut plus de 83 ans d'adoration ! 🌙<br>
+            Rendez-vous demain pour le Jour 18 !
+        </p>
+    </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+<div class="result-modal" id="resultModal">
+    <div class="result-icon" id="resultIcon">🎉</div>
+    <h3 id="resultTitle">Excellent !</h3>
+    <div class="score-display" id="scoreDisplay">Score : 5/5</div>
+    <div class="result-message" id="resultMessage">Masha Allah !</div>
+    <button class="btn" onclick="closeModal()">Continuer</button>
+</div>
+
+<script>
+// ============================================================
+//  NIGHT SKY GAME DATA
+// ============================================================
+const NIGHTS = [
+    {
+        night: 21,
+        fact: '🌙 La 21ème nuit est la première nuit impaire des 10 derniers jours ! Le Prophète redoublait d\'efforts à partir de cette nuit. Il réveillait sa famille et serrait son izaar (vêtement) — c\'est-à-dire qu\'il se préparait sérieusement pour l\'adoration !'
+    },
+    {
+        night: 23,
+        fact: '✨ La 23ème nuit est très importante ! Beaucoup de compagnons du Prophète ont rapporté avoir vu des signes cette nuit. Le Prophète a dit : "Je l\'ai vue (Laylat al-Qadr) puis on me l\'a fait oublier." Ne sous-estime jamais cette nuit !'
+    },
+    {
+        night: 25,
+        fact: '🌟 La 25ème nuit marque le milieu des 10 derniers jours ! Ubayy ibn Ka\'b (qu\'Allah l\'agrée) jurait que c\'était Laylat al-Qadr. Il disait : "Par Allah, je sais quelle nuit c\'est !" Multiplie tes adorations cette nuit !'
+    },
+    {
+        night: 27,
+        fact: '💫 La 27ème nuit est la plus probable selon la majorité des savants ! Le Prophète a dit : "J\'ai vu que vous vous prosterniez dans la boue et l\'eau" — et effectivement, il a plu la nuit du 27 et ils ont prié dans la boue ! Cette nuit est bénie entre toutes !'
+    },
+    {
+        night: 29,
+        fact: '🌌 La 29ème nuit est la dernière chance si le mois compte 29 jours ! Ne la néglige jamais ! Le Prophète cherchait Laylat al-Qadr jusqu\'à la toute dernière nuit. Reste debout, prie, invoque, lis le Coran jusqu\'à l\'aube !'
+    }
+];
+
+// ============================================================
+//  GAME STATE
+// ============================================================
+let foundStars = [];
+let starPositions = [];
+
+function initGame() {
+    foundStars = [];
+    starPositions = [];
+    
+    // Reset badges
+    [21,23,25,27,29].forEach(n => {
+        document.getElementById(`badge${n}`).classList.remove('found');
+    });
+
+    // Hide fact and complete
+    document.getElementById('factReveal').classList.remove('show');
+    document.getElementById('gameComplete').classList.remove('show');
+
+    updateProgress();
+    generateStars();
+}
+
+function generateStars() {
+    const sky = document.getElementById('nightSky');
+    
+    // Remove existing stars
+    const oldStars = sky.querySelectorAll('.star');
+    oldStars.forEach(s => s.remove());
+
+    // Generate random positions for 5 stars
+    const nights = [21, 23, 25, 27, 29];
+    nights.forEach((night, index) => {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.textContent = '⭐';
+        star.dataset.night = night;
+        star.onclick = () => findStar(night);
+
+        // Random position (avoiding moon and edges)
+        let left, top;
+        let attempts = 0;
+        do {
+            left = 10 + Math.random() * 70; // 10-80%
+            top = 20 + Math.random() * 70;  // 20-90%
+            attempts++;
+        } while (attempts < 20 && isNearMoon(left, top));
+
+        star.style.left = left + '%';
+        star.style.top = top + '%';
+        
+        // Stagger animation
+        star.style.animationDelay = (index * 0.2) + 's';
+
+        sky.appendChild(star);
+    });
+}
+
+function isNearMoon(left, top) {
+    // Moon is at top: 30px, right: 40px → roughly 85-95% left, 5-15% top
+    const moonLeft = 90; // approximate %
+    const moonTop = 8;   // approximate %
+    const distance = Math.sqrt(Math.pow(left - moonLeft, 2) + Math.pow(top - moonTop, 2));
+    return distance < 15; // Too close to moon
+}
+
+function findStar(night) {
+    if (foundStars.includes(night)) return;
+
+    // Mark as found
+    foundStars.push(night);
+
+    // Animate star
+    const stars = document.querySelectorAll('.star');
+    stars.forEach(s => {
+        if (parseInt(s.dataset.night) === night) {
+            s.classList.add('found');
+            setTimeout(() => s.remove(), 800);
+        }
+    });
+
+    // Update badge
+    document.getElementById(`badge${night}`).classList.add('found');
+
+    // Show fact
+    const nightData = NIGHTS.find(n => n.night === night);
+    showFact(nightData);
+
+    updateProgress();
+
+    // Check complete
+    if (foundStars.length === 5) {
+        setTimeout(showComplete, 1500);
+    }
+}
+
+function showFact(nightData) {
+    const fb = document.getElementById('factReveal');
+    document.getElementById('factNight').textContent = `⭐ Nuit ${nightData.night} trouvée !`;
+    document.getElementById('factText').textContent = nightData.fact;
+    fb.classList.add('show');
+}
+
+function updateProgress() {
+    document.getElementById('progressLabel').textContent = `${foundStars.length} / 5 étoiles trouvées`;
+}
+
+function showComplete() {
+    document.getElementById('gameComplete').classList.add('show');
+    document.getElementById('factReveal').classList.remove('show');
+}
+
+function resetGame() {
+    initGame();
+}
+
+// Start
+initGame();
+
+// ============================================================
+//  QUIZ
+// ============================================================
+let answers = [null, null, null, null, null];
+let selectedCount = 0;
+
+function selectAnswer(element, isCorrect, questionIndex) {
+    const options = element.parentElement.querySelectorAll('.option');
+    options.forEach(opt => opt.classList.remove('selected'));
+    element.classList.add('selected');
+    if (answers[questionIndex] === null) selectedCount++;
+    answers[questionIndex] = isCorrect;
+    if (selectedCount === 5) document.getElementById('submitBtn').disabled = false;
+}
+
+function checkQuizAnswers() {
+    let score = 0;
+    const allOptions = document.querySelectorAll('.option.selected');
+    allOptions.forEach((option, index) => {
+        if (answers[index]) { option.classList.add('correct'); score++; }
+        else option.classList.add('incorrect');
+    });
+    document.getElementById('submitBtn').disabled = true;
+    setTimeout(() => showResults(score), 1000);
+}
+
+function showResults(score) {
+    document.getElementById('scoreDisplay').textContent = 'Score : ' + score + '/5';
+    if (score === 5) {
+        document.getElementById('resultIcon').textContent = '🌟';
+        document.getElementById('resultTitle').textContent = 'Laylat al-Qadr !';
+        document.getElementById('resultMessage').textContent = 'Tu as tout compris sur la Nuit du Destin ! Qu\'Allah te permette de la trouver et d\'en profiter ! 🌙';
+    } else if (score >= 3) {
+        document.getElementById('resultIcon').textContent = '😊';
+        document.getElementById('resultTitle').textContent = 'Très bien !';
+        document.getElementById('resultMessage').textContent = 'Tu connais bien Laylat al-Qadr ! Cherche-la dans les 10 derniers jours ! 💪';
+    } else {
+        document.getElementById('resultIcon').textContent = '📚';
+        document.getElementById('resultTitle').textContent = 'Continue tes efforts !';
+        document.getElementById('resultMessage').textContent = 'Relis la leçon sur Laylat al-Qadr et tu vas mieux comprendre. C\'est la nuit la plus importante ! 🌈';
+    }
+    document.getElementById('overlay').classList.add('show');
+    document.getElementById('resultModal').classList.add('show');
+}
+
+function closeModal() {
+    document.getElementById('resultModal').classList.remove('show');
+    document.getElementById('overlay').classList.remove('show');
+}
+</script>
+</body>
+</html>
