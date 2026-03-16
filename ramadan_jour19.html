@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jour 19 - Le Ramadan dans le monde 🌍</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@400;600;700&display=swap');
+
+        :root {
+            --sand: #f5e6d3;
+            --sand-dark: #e8d5c4;
+            --green: #8b9584;
+            --green-dark: #5a6b4f;
+            --green-light: #a4b29b;
+            --text: #4a5442;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, var(--sand) 0%, var(--sand-dark) 50%, var(--sand) 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #ffffff 0%, #faf8f5 100%);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(139,149,132,0.2);
+            border: 3px solid var(--green);
+        }
+
+        /* HEADER */
+        .header { text-align: center; margin-bottom: 40px; position: relative; }
+
+        .day-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            color: white; padding: 10px 25px; border-radius: 25px;
+            font-size: 1rem; font-weight: 600; margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(139,149,132,0.3);
+        }
+
+        h1 { color: var(--green-dark); font-size: 2.5rem; margin-bottom: 10px; font-family: 'Amiri', serif; }
+
+        .moon-icon {
+            font-size: 3rem;
+            animation: glow 2s ease-in-out infinite;
+            display: block; margin-bottom: 10px;
+        }
+        @keyframes glow {
+            0%,100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(52,152,219,0.5)); }
+            50% { transform: scale(1.1); filter: drop-shadow(0 0 25px rgba(52,152,219,0.9)); }
+        }
+
+        .logo { position: absolute; top: 0; left: 0; width: 120px; height: auto; opacity: 0.9; transition: opacity 0.3s; }
+        .logo:hover { opacity: 1; }
+
+        /* INTRO */
+        .intro-text {
+            background: linear-gradient(135deg, var(--sand), var(--sand-dark));
+            padding: 25px; border-radius: 20px;
+            border-left: 5px solid var(--green);
+            margin: 30px 0; font-size: 1.1rem; line-height: 1.8; color: var(--text);
+        }
+
+        /* STORY CARDS */
+        .story-card {
+            background: white; border-radius: 20px; padding: 25px; margin: 20px 0;
+            border: 2px solid #d4c4b0; transition: all 0.3s ease;
+        }
+        .story-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(139,149,132,0.2); border-color: var(--green); }
+        .story-card h3 { color: var(--green-dark); margin-bottom: 15px; font-size: 1.3rem; }
+        .story-card p { color: #666; line-height: 1.7; font-size: 1.05rem; }
+
+        /* ============================================================
+           GAME SECTION — Tour du Monde du Ramadan
+        ============================================================ */
+        .game-section {
+            background: linear-gradient(160deg, #e8f4f8 0%, #d4ebf2 50%, #b3dce8 100%);
+            border-radius: 24px;
+            margin: 30px 0;
+            overflow: hidden;
+            position: relative;
+            color: #1a5276;
+            padding: 32px 28px;
+            border: 3px solid #3498db;
+        }
+
+        .game-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .game-title {
+            font-family: 'Amiri', serif;
+            font-size: 2rem;
+            color: #1a5276;
+            margin-bottom: 8px;
+        }
+
+        .game-subtitle {
+            font-size: 0.95rem;
+            color: #2874a6;
+            margin-bottom: 16px;
+        }
+
+        .game-story {
+            background: rgba(52,152,219,0.15);
+            border-radius: 14px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            font-size: 0.96rem;
+            line-height: 1.6;
+            border-left: 3px solid #3498db;
+        }
+
+        /* Progress */
+        .travel-progress {
+            background: white;
+            border-radius: 14px;
+            padding: 16px 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            border: 2px solid rgba(52,152,219,0.3);
+        }
+
+        .progress-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #1a5276;
+            margin-bottom: 10px;
+        }
+
+        .visited-countries {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        .country-flag {
+            font-size: 2rem;
+            filter: grayscale(1) opacity(0.4);
+            transition: all 0.4s ease;
+        }
+
+        .country-flag.visited {
+            filter: none;
+            animation: flagReveal 0.6s ease;
+        }
+
+        @keyframes flagReveal {
+            0% { transform: scale(0) rotate(-180deg); }
+            60% { transform: scale(1.2) rotate(10deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        .progress-label {
+            font-size: 0.85rem;
+            color: #2874a6;
+            font-weight: 600;
+        }
+
+        /* World Map */
+        .world-map {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 2px solid rgba(52,152,219,0.3);
+        }
+
+        .map-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+        }
+
+        .country-card {
+            background: linear-gradient(135deg, #ebf5fb, #d6eaf8);
+            border: 2px solid rgba(52,152,219,0.3);
+            border-radius: 12px;
+            padding: 16px 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .country-card:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(52,152,219,0.3);
+            border-color: #3498db;
+        }
+
+        .country-card.visited {
+            background: linear-gradient(135deg, rgba(46,204,113,0.2), rgba(39,174,96,0.1));
+            border-color: #27ae60;
+        }
+
+        .country-flag-large {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .country-name {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #1a5276;
+        }
+
+        /* Country Details Modal */
+        .country-details {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            border: 3px solid #3498db;
+            display: none;
+            animation: slideIn 0.4s ease;
+        }
+
+        .country-details.show { display: block; }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .details-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #ebf5fb;
+        }
+
+        .details-flag {
+            font-size: 4rem;
+        }
+
+        .details-title {
+            flex: 1;
+        }
+
+        .details-country-name {
+            font-family: 'Amiri', serif;
+            font-size: 1.8rem;
+            color: #1a5276;
+            margin-bottom: 4px;
+        }
+
+        .details-continent {
+            font-size: 0.9rem;
+            color: #5dade2;
+            font-weight: 600;
+        }
+
+        .details-section {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #1a5276;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-content {
+            color: #34495e;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .tradition-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tradition-list li {
+            padding: 8px 0;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .tradition-list li:before {
+            content: "🌙";
+            position: absolute;
+            left: 0;
+        }
+
+        .close-btn {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            border: none;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 16px auto 0;
+        }
+
+        .close-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52,152,219,0.4);
+        }
+
+        /* Buttons */
+        .btn-game {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            border: none;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin: 8px;
+        }
+
+        .btn-game:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52,152,219,0.4);
+        }
+
+        /* Game Complete */
+        .game-complete {
+            display: none;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .game-complete.show { display: block; }
+
+        .complete-emoji { font-size: 4.5rem; margin-bottom: 16px; animation: bounceIn 0.8s ease; }
+        @keyframes bounceIn { 0%{transform:scale(0)} 60%{transform:scale(1.2)} 100%{transform:scale(1)} }
+
+        .complete-title {
+            font-family: 'Amiri', serif;
+            font-size: 2.2rem;
+            color: #1a5276;
+            margin-bottom: 14px;
+        }
+
+        .complete-message {
+            color: #1a5276;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .complete-flags {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 20px 0;
+            font-size: 2.5rem;
+        }
+
+        /* FUN FACTS */
+        .fun-facts {
+            background: linear-gradient(135deg, var(--sand), var(--sand-dark));
+            padding: 25px; border-radius: 20px; margin: 30px 0;
+            border: 2px dashed var(--green);
+        }
+        .fun-facts h3 { color: var(--green-dark); margin-bottom: 15px; text-align: center; }
+        .fun-facts ul { list-style: none; padding: 0; }
+        .fun-facts li { padding: 10px 0; padding-left: 30px; position: relative; color: var(--text); line-height: 1.6; }
+        .fun-facts li:before { content: "🌍"; position: absolute; left: 0; }
+
+        /* QUIZ */
+        .quiz-section {
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            padding: 30px; border-radius: 20px; margin: 30px 0; color: white;
+        }
+        .quiz-section h3 { text-align: center; font-size: 1.5rem; margin-bottom: 25px; }
+
+        .question-card { background: white; border-radius: 15px; padding: 25px; margin: 20px 0; color: var(--text); }
+        .question-text { font-weight: 600; font-size: 1.15rem; margin-bottom: 20px; color: var(--green-dark); }
+        .options { display: grid; grid-template-columns: 1fr; gap: 12px; }
+
+        .option {
+            background: linear-gradient(135deg, var(--sand), var(--sand-dark));
+            padding: 15px 20px; border-radius: 12px;
+            cursor: pointer; transition: all 0.3s ease;
+            border: 2px solid transparent; font-weight: 500;
+        }
+        .option:hover { background: linear-gradient(135deg, var(--sand-dark), #d4c4b0); transform: translateX(5px); }
+        .option.selected { background: linear-gradient(135deg, var(--green), var(--green-light)); color: white; border-color: var(--green-dark); transform: scale(1.02); }
+        .option.correct { background: linear-gradient(135deg, #7fb069, #8fbc77); color: white; border-color: #5a8049; animation: qPulse 0.5s ease; }
+        .option.incorrect { background: linear-gradient(135deg, #d4916c, #c47d5a); color: white; border-color: #a4614a; animation: qShake 0.5s ease; }
+
+        @keyframes qPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+        @keyframes qShake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
+
+        .btn {
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            color: white; border: none; padding: 15px 40px;
+            border-radius: 30px; font-size: 1.1rem; font-weight: 600;
+            cursor: pointer; transition: all 0.3s ease;
+            display: block; margin: 25px auto 0;
+            box-shadow: 0 5px 20px rgba(139,149,132,0.3);
+            font-family: 'Quicksand', sans-serif;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(139,149,132,0.4); }
+        .btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+
+        /* MODALS */
+        .result-modal {
+            position: fixed; top: 50%; left: 50%;
+            transform: translate(-50%,-50%) scale(0);
+            background: white; padding: 40px; border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            z-index: 1001; text-align: center;
+            max-width: 420px; width: 90%;
+            transition: transform 0.3s ease;
+        }
+        .result-modal.show { transform: translate(-50%,-50%) scale(1); }
+        .result-modal h3 { color: var(--green-dark); font-size: 2rem; margin-bottom: 15px; }
+
+        .result-icon { font-size: 4rem; margin-bottom: 15px; animation: rBounce 0.6s ease; }
+        @keyframes rBounce { 0%{transform:scale(0);opacity:0} 60%{transform:scale(1.2)} 100%{transform:scale(1);opacity:1} }
+
+        .result-message { color: #666; font-size: 1.05rem; margin: 15px 0; line-height: 1.6; }
+        .score-display { background: linear-gradient(135deg, var(--sand), var(--sand-dark)); padding: 14px; border-radius: 15px; font-size: 1.2rem; font-weight: 600; color: var(--green-dark); margin: 15px 0; }
+
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 999; }
+        .overlay.show { display: block; }
+
+        @media (max-width: 768px) {
+            .logo { width: 80px; top: 5px; left: 5px; }
+            .container { padding: 20px; }
+            h1 { font-size: 2rem; }
+            .map-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <img src="logonoir_lespetitesplumes.png" alt="Les petites plumes" class="logo">
+        <div class="day-badge">Jour 19 / 30</div>
+        <span class="moon-icon">🌍</span>
+        <h1>Le Ramadan dans le monde</h1>
+        <p style="color: #8b9584; font-size: 1.1rem;">Comment les musulmans jeûnent ailleurs !</p>
+    </div>
+
+    <div class="intro-text">
+        <p style="font-weight: 600; margin-bottom: 10px;">🌟 Une Oummah unie dans le monde entier</p>
+        <p>Le <strong>Ramadan</strong> est célébré par plus de <strong>1,8 milliard de musulmans</strong> dans le monde entier ! Du Maroc au Japon, de la Norvège à l'Indonésie, les musulmans jeûnent ensemble pendant le même mois sacré. Mais chaque pays a ses <strong>traditions uniques</strong> ! Certains ont des plats spéciaux, d'autres des célébrations particulières. Malgré nos différences de cultures et de langues, nous sommes tous <strong>une seule Oummah</strong> (communauté) qui adore le même Allah et suit le même Prophète Mouhammad (paix et bénédictions sur lui). C'est magnifique ! 🌍✨</p>
+    </div>
+
+    <div class="story-section">
+        <div class="story-card">
+            <h3>📿 Un Ramadan pour tous les musulmans</h3>
+            <p>Quand le croissant de lune du Ramadan apparaît, <strong>des millions de musulmans</strong> sur tous les continents commencent leur jeûne ! En Arabie Saoudite, les deux mosquées sacrées (La Mecque et Médine) se remplissent de millions de pèlerins. En Indonésie, le plus grand pays musulman du monde avec 230 millions de musulmans, les rues s'illuminent de décorations. En France, au Royaume-Uni, aux États-Unis, les musulmans rompent le jeûne ensemble dans les mosquées. Et même dans des pays où les musulmans sont minoritaires comme le Japon ou l'Islande, ils jeûnent fidèlement ! Peu importe où tu vis, tu fais partie de cette <strong>grande famille mondiale</strong> ! 🌏</p>
+        </div>
+
+        <div class="story-card">
+            <h3>🌟 Des traditions différentes, une foi unique</h3>
+            <p>Chaque pays musulman a développé ses propres <strong>traditions</strong> pour le Ramadan ! En Égypte, il y a le <strong>"Fanous"</strong> — des lanternes colorées qu'on accroche partout. En Turquie, les <strong>"Ramazan davulcusu"</strong> sont des hommes qui réveillent les gens pour le Suhoor en tapant sur un tambour dans les rues ! En Indonésie, on organise des <strong>"Bukber"</strong> (Buka Bersama) — rompre le jeûne tous ensemble. Au Maroc, la <strong>"Harira"</strong> (soupe) et les dattes sont traditionnelles pour l'Iftar. En Inde et au Pakistan, les <strong>"Iftar parties"</strong> sont énormes avec des centaines de personnes ! Même si les coutumes changent, la base reste la même : jeûner pour Allah ! 🕌</p>
+        </div>
+
+        <div class="story-card">
+            <h3>🎁 Des défis uniques selon les pays</h3>
+            <p>Le Ramadan n'est pas vécu de la même façon partout ! Dans les <strong>pays nordiques</strong> comme la Norvège ou la Suède en été, le soleil ne se couche presque jamais — les musulmans jeûnent jusqu'à 20-22 heures ! C'est très difficile. En Arabie Saoudite ou aux Émirats, la chaleur du désert peut atteindre 45°C — jeûner sans boire est un vrai défi. En <strong>pays non-musulmans</strong>, les musulmans doivent souvent travailler ou aller à l'école normalement, sans pause pour le Ramadan. Et dans certains pays pauvres, les familles jeûnent mais n'ont presque rien pour l'Iftar. Chacun a ses épreuves, mais tous tiennent bon pour Allah ! 💪</p>
+        </div>
+
+        <div class="story-card">
+            <h3>💫 L'unité malgré la diversité</h3>
+            <p>Ce qui est <strong>extraordinaire</strong> avec le Ramadan, c'est que malgré toutes ces différences, nous sommes unis ! Un musulman en Chine et un musulman au Brésil font la même prière, lisent le même Coran, jeûnent pour le même Allah. Le Prophète Mouhammad (paix et bénédictions sur lui) a dit : <em>"Les croyants dans leur amour, leur miséricorde et leur compassion les uns envers les autres sont comme un seul corps. Si un membre souffre, tout le corps ressent la douleur"</em> <strong>(Sahih Bukhari 6011)</strong>. Pendant le Ramadan, nous sentons vraiment cette <strong>fraternité mondiale</strong> ! Peu importe notre couleur de peau, notre langue ou notre pays, nous sommes tous frères et sœurs en Islam ! 🤝</p>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         GAME : Tour du Monde du Ramadan
+    ============================================================ -->
+    <div class="game-section" id="gameSection">
+        <div class="game-header">
+            <div class="game-title">✈️ Tour du Monde du Ramadan</div>
+            <div class="game-subtitle">Découvre comment 6 pays célèbrent le Ramadan !</div>
+        </div>
+
+        <div class="game-story">
+            🌍 Voyage autour du monde et découvre les <strong>traditions uniques</strong> de chaque pays ! Clique sur un pays pour apprendre ses coutumes, ses plats typiques et ses célébrations. Visite les 6 pays pour compléter ton voyage ! ✨
+        </div>
+
+        <div class="travel-progress">
+            <div class="progress-title">🗺️ Pays visités</div>
+            <div class="visited-countries" id="visitedFlags">
+                <!-- Generated by JS -->
+            </div>
+            <div class="progress-label" id="progressLabel">0 / 6 pays découverts</div>
+        </div>
+
+        <div class="world-map">
+            <div class="map-grid" id="mapGrid">
+                <!-- Generated by JS -->
+            </div>
+        </div>
+
+        <div class="country-details" id="countryDetails">
+            <div class="details-header">
+                <div class="details-flag" id="detailsFlag">🇪🇬</div>
+                <div class="details-title">
+                    <div class="details-country-name" id="detailsCountry">Égypte</div>
+                    <div class="details-continent" id="detailsContinent">Afrique du Nord</div>
+                </div>
+            </div>
+
+            <div class="details-section">
+                <div class="section-title">🌙 Traditions spéciales</div>
+                <ul class="tradition-list" id="detailsTraditions">
+                    <!-- Generated by JS -->
+                </ul>
+            </div>
+
+            <div class="details-section">
+                <div class="section-title">🍽️ Plats traditionnels de l'Iftar</div>
+                <div class="section-content" id="detailsFood"></div>
+            </div>
+
+            <div class="details-section">
+                <div class="section-title">✨ Le savais-tu ?</div>
+                <div class="section-content" id="detailsFact"></div>
+            </div>
+
+            <button class="close-btn" onclick="closeDetails()">Continuer le voyage</button>
+        </div>
+
+        <button class="btn-game" onclick="resetGame()">🔄 Nouveau voyage</button>
+
+        <!-- Game Complete -->
+        <div class="game-complete" id="gameComplete">
+            <div class="complete-emoji">🌎</div>
+            <div class="complete-title">Tour du monde complet !</div>
+            <div class="complete-flags" id="completeFlags">
+                🇪🇬 🇹🇷 🇸🇦 🇮🇩 🇲🇦 🇵🇰
+            </div>
+            <div class="complete-message">
+                Masha Allah ! Tu as découvert comment 6 pays différents célèbrent le Ramadan ! Malgré nos différences, nous sommes tous <strong>une seule Oummah</strong> qui adore Allah. Le Ramadan unit les musulmans du monde entier ! 🌍💚
+            </div>
+            <button class="btn-game" onclick="resetGame()">🔄 Rejouer</button>
+        </div>
+    </div>
+
+    <div class="fun-facts">
+        <h3>✨ Le savais-tu ?</h3>
+        <ul>
+            <li>L'<strong>Indonésie</strong> est le pays avec le plus de musulmans au monde (230 millions) !</li>
+            <li>En <strong>Islande</strong> en été, certains jeûnent jusqu'à 22 heures du soir car le soleil ne se couche presque jamais !</li>
+            <li>À <strong>Dubai</strong>, il est illégal de manger ou boire en public pendant le Ramadan, même pour les non-musulmans !</li>
+            <li>La ville de <strong>Médine</strong> en Arabie Saoudite accueille des millions de visiteurs pendant le Ramadan pour prier dans la mosquée du Prophète ! 🕌</li>
+        </ul>
+    </div>
+
+    <div class="quiz-section">
+        <h3>🎮 Quiz : As-tu bien compris ?</h3>
+
+        <div class="question-card">
+            <div class="question-text">1. Combien de musulmans jeûnent le Ramadan dans le monde ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 0)">100 millions</div>
+                <div class="option" onclick="selectAnswer(this, true, 0)">Plus de 1,8 milliard</div>
+                <div class="option" onclick="selectAnswer(this, false, 0)">500 millions</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">2. Quel est le pays avec le plus de musulmans au monde ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 1)">Arabie Saoudite</div>
+                <div class="option" onclick="selectAnswer(this, false, 1)">Égypte</div>
+                <div class="option" onclick="selectAnswer(this, true, 1)">Indonésie (230 millions)</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">3. Qu'est-ce qu'un "Fanous" en Égypte ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 2)">Un plat traditionnel</div>
+                <div class="option" onclick="selectAnswer(this, true, 2)">Une lanterne colorée du Ramadan</div>
+                <div class="option" onclick="selectAnswer(this, false, 2)">Une prière spéciale</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">4. Que dit le Prophète (saw) sur l'unité des croyants ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 3)">Chacun pour soi</div>
+                <div class="option" onclick="selectAnswer(this, true, 3)">Les croyants sont comme un seul corps</div>
+                <div class="option" onclick="selectAnswer(this, false, 3)">Ils doivent vivre séparés</div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">5. Quel défi unique ont les musulmans en Norvège en été ?</div>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(this, false, 4)">Il fait trop froid</div>
+                <div class="option" onclick="selectAnswer(this, true, 4)">Le soleil ne se couche presque jamais (jeûne très long)</div>
+                <div class="option" onclick="selectAnswer(this, false, 4)">Il n'y a pas de mosquée</div>
+            </div>
+        </div>
+
+        <button class="btn" id="submitBtn" onclick="checkQuizAnswers()" disabled>Vérifier mes réponses</button>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+        <p style="color: #8b9584; font-size: 1.1rem;">
+            <strong>Bravo d'avoir terminé le Jour 19 ! 🌟</strong><br>
+            N'oublie pas : nous sommes tous une seule Oummah malgré nos différences !<br>
+            Le Ramadan unit les musulmans du monde entier ! 🌍<br>
+            Rendez-vous demain pour le Jour 20 !
+        </p>
+    </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+<div class="result-modal" id="resultModal">
+    <div class="result-icon" id="resultIcon">🎉</div>
+    <h3 id="resultTitle">Excellent !</h3>
+    <div class="score-display" id="scoreDisplay">Score : 5/5</div>
+    <div class="result-message" id="resultMessage">Masha Allah !</div>
+    <button class="btn" onclick="closeModal()">Continuer</button>
+</div>
+
+<script>
+// ============================================================
+//  WORLD TOUR GAME DATA
+// ============================================================
+const COUNTRIES = [
+    {
+        id: 'egypt',
+        name: 'Égypte',
+        flag: '🇪🇬',
+        continent: 'Afrique du Nord',
+        traditions: [
+            'Le Fanous (lanterne) décore toutes les maisons et les rues',
+            'Le canon du Ramadan tire à chaque Maghrib pour annoncer l\'Iftar',
+            'Les feuilletons TV spéciaux Ramadan sont regardés par des millions',
+            'Les "Mesaharaty" réveillent les gens pour le Suhoor en chantant dans les rues'
+        ],
+        food: 'Harira (soupe), dattes, Konafa (pâtisserie), jus de Tamr Hindi (tamarin)',
+        fact: 'Le Caire devient magique pendant le Ramadan avec des millions de lumières ! Al-Azhar, l\'une des plus anciennes universités islamiques du monde, s\'y trouve.'
+    },
+    {
+        id: 'turkey',
+        name: 'Turquie',
+        flag: '🇹🇷',
+        continent: 'Europe/Asie',
+        traditions: [
+            'Les "Ramazan davulcusu" tambourineurs réveillent les quartiers pour le Suhoor',
+            'Les mosquées s\'illuminent avec des messages lumineux entre les minarets',
+            'Distribution gratuite de pain "pide" spécial Ramadan',
+            'Les enfants font du porte-à-porte pour recevoir des bonbons'
+        ],
+        food: 'Pide (pain plat), Börek (feuilleté), Güllaç (dessert au lait), İmam Bayıldı (aubergines)',
+        fact: 'Istanbul devient une ville féerique ! Les mosquées historiques comme la Mosquée Bleue s\'illuminent magnifiquement chaque soir.'
+    },
+    {
+        id: 'saudi',
+        name: 'Arabie Saoudite',
+        flag: '🇸🇦',
+        continent: 'Moyen-Orient',
+        traditions: [
+            'Des millions de pèlerins visitent La Mecque et Médine',
+            'Le Haram (mosquée sacrée) reste ouvert 24h/24',
+            'Omra gratuite offerte à certains groupes',
+            'Distribution massive de nourriture aux pauvres et aux visiteurs'
+        ],
+        food: 'Dates de Médine, Kabsa (riz épicé), Sambousa, Harees (bouillie de blé)',
+        fact: 'La Mecque et Médine accueillent des MILLIONS de visiteurs ! Certains jeûnent en priant dans la mosquée du Prophète (saw) — imagine la baraka !'
+    },
+    {
+        id: 'indonesia',
+        name: 'Indonésie',
+        flag: '🇮🇩',
+        continent: 'Asie du Sud-Est',
+        traditions: [
+            'Mudik : des millions retournent dans leur village natal',
+            'Bukber (Buka Bersama) : Iftar géants communautaires',
+            'Les routes se ferment pour les prières de Tarawih',
+            'Tadarus Al-Quran : lecture collective du Coran partout'
+        ],
+        food: 'Kolak (dessert à la banane), Ketupat (riz dans feuilles), Rendang, Es Buah (salade de fruits)',
+        fact: 'C\'est le PLUS GRAND pays musulman du monde (230 millions) ! Tout le pays change complètement pendant le Ramadan.'
+    },
+    {
+        id: 'morocco',
+        name: 'Maroc',
+        flag: '🇲🇦',
+        continent: 'Afrique du Nord',
+        traditions: [
+            'La Harira (soupe) est OBLIGATOIRE à chaque Iftar !',
+            'Les sirènes annoncent le Maghrib dans tout le pays',
+            'Les rues des médinas (vieux quartiers) s\'illuminent',
+            'Nuit du 27 : célébration massive de Laylat ul-Qadr'
+        ],
+        food: 'Harira (soupe), Chebakia (pâtisserie au miel), Sellou, Msemen (crêpes)',
+        fact: 'Les Marocains prennent le Ramadan TRÈS au sérieux ! Même manger en public peut être mal vu. L\'ambiance est unique au monde !'
+    },
+    {
+        id: 'pakistan',
+        name: 'Pakistan',
+        flag: '🇵🇰',
+        continent: 'Asie du Sud',
+        traditions: [
+            'Iftar parties géants avec des centaines de personnes',
+            'Les bazars Ramadan vendent de tout pour l\'Iftar',
+            'Roshni (illuminations) sur tous les bâtiments',
+            'Chaand Raat : la nuit avant l\'Eïd est magique avec shopping et henné'
+        ],
+        food: 'Pakoras (beignets), Samosas, Fruit Chaat (salade), Rooh Afza (boisson rose)',
+        fact: 'Le Pakistan a 240 millions d\'habitants dont 97% sont musulmans ! Les Iftar parties sont légendaires avec des tables de plusieurs kilomètres !'
+    }
+];
+
+// ============================================================
+//  GAME STATE
+// ============================================================
+let visitedCountries = [];
+
+function initGame() {
+    visitedCountries = [];
+    renderFlags();
+    renderMap();
+    updateProgress();
+    closeDetails();
+    document.getElementById('gameComplete').classList.remove('show');
+}
+
+function renderFlags() {
+    const container = document.getElementById('visitedFlags');
+    container.innerHTML = '';
+
+    COUNTRIES.forEach(country => {
+        const flag = document.createElement('div');
+        flag.className = 'country-flag';
+        flag.id = `flag-${country.id}`;
+        flag.textContent = country.flag;
+        if (visitedCountries.includes(country.id)) {
+            flag.classList.add('visited');
+        }
+        container.appendChild(flag);
+    });
+}
+
+function renderMap() {
+    const grid = document.getElementById('mapGrid');
+    grid.innerHTML = '';
+
+    COUNTRIES.forEach(country => {
+        const card = document.createElement('div');
+        card.className = 'country-card';
+        if (visitedCountries.includes(country.id)) {
+            card.classList.add('visited');
+        }
+        card.onclick = () => visitCountry(country.id);
+
+        card.innerHTML = `
+            <span class="country-flag-large">${country.flag}</span>
+            <div class="country-name">${country.name}</div>
+        `;
+
+        grid.appendChild(card);
+    });
+}
+
+function visitCountry(id) {
+    const country = COUNTRIES.find(c => c.id === id);
+
+    // Mark as visited if new
+    if (!visitedCountries.includes(id)) {
+        visitedCountries.push(id);
+        document.getElementById(`flag-${id}`).classList.add('visited');
+        updateProgress();
+        renderMap();
+    }
+
+    // Show details
+    document.getElementById('detailsFlag').textContent = country.flag;
+    document.getElementById('detailsCountry').textContent = country.name;
+    document.getElementById('detailsContinent').textContent = country.continent;
+    
+    const tradList = document.getElementById('detailsTraditions');
+    tradList.innerHTML = '';
+    country.traditions.forEach(t => {
+        const li = document.createElement('li');
+        li.textContent = t;
+        tradList.appendChild(li);
+    });
+
+    document.getElementById('detailsFood').textContent = country.food;
+    document.getElementById('detailsFact').textContent = country.fact;
+
+    document.getElementById('countryDetails').classList.add('show');
+
+    // Check if complete
+    if (visitedCountries.length === COUNTRIES.length) {
+        setTimeout(showComplete, 1500);
+    }
+}
+
+function closeDetails() {
+    document.getElementById('countryDetails').classList.remove('show');
+}
+
+function updateProgress() {
+    document.getElementById('progressLabel').textContent = `${visitedCountries.length} / ${COUNTRIES.length} pays découverts`;
+}
+
+function showComplete() {
+    closeDetails();
+    document.getElementById('gameComplete').classList.add('show');
+}
+
+function resetGame() {
+    initGame();
+}
+
+// Start
+initGame();
+
+// ============================================================
+//  QUIZ
+// ============================================================
+let answers = [null, null, null, null, null];
+let selectedCount = 0;
+
+function selectAnswer(element, isCorrect, questionIndex) {
+    const options = element.parentElement.querySelectorAll('.option');
+    options.forEach(opt => opt.classList.remove('selected'));
+    element.classList.add('selected');
+    if (answers[questionIndex] === null) selectedCount++;
+    answers[questionIndex] = isCorrect;
+    if (selectedCount === 5) document.getElementById('submitBtn').disabled = false;
+}
+
+function checkQuizAnswers() {
+    let score = 0;
+    const allOptions = document.querySelectorAll('.option.selected');
+    allOptions.forEach((option, index) => {
+        if (answers[index]) { option.classList.add('correct'); score++; }
+        else option.classList.add('incorrect');
+    });
+    document.getElementById('submitBtn').disabled = true;
+    setTimeout(() => showResults(score), 1000);
+}
+
+function showResults(score) {
+    document.getElementById('scoreDisplay').textContent = 'Score : ' + score + '/5';
+    if (score === 5) {
+        document.getElementById('resultIcon').textContent = '🌍';
+        document.getElementById('resultTitle').textContent = 'Voyageur du monde !';
+        document.getElementById('resultMessage').textContent = 'Tu connais le Ramadan à travers le monde ! Nous sommes une seule Oummah unie ! 🌟';
+    } else if (score >= 3) {
+        document.getElementById('resultIcon').textContent = '😊';
+        document.getElementById('resultTitle').textContent = 'Très bien !';
+        document.getElementById('resultMessage').textContent = 'Tu connais bien les différentes traditions du Ramadan ! Continue d\'apprendre ! 💪';
+    } else {
+        document.getElementById('resultIcon').textContent = '📚';
+        document.getElementById('resultTitle').textContent = 'Continue tes efforts !';
+        document.getElementById('resultMessage').textContent = 'Relis la leçon sur le Ramadan dans le monde et tu vas mieux comprendre ! 🌈';
+    }
+    document.getElementById('overlay').classList.add('show');
+    document.getElementById('resultModal').classList.add('show');
+}
+
+function closeModal() {
+    document.getElementById('resultModal').classList.remove('show');
+    document.getElementById('overlay').classList.remove('show');
+}
+</script>
+</body>
+</html>
